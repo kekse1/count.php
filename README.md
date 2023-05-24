@@ -1,7 +1,7 @@
 # count.php
-It's a universal counter script. And it's still beta.. v2.5.3.
+It's a universal counter script. And it's still beta.. v2.5.4.
 
-* have to test the count files again
+* have to test the count files again (but they seem to work correctly)
 * not sure about port numbers (maybe a 'PORT' config is necessary?)
 * the clean() routine is still TODO
 * Going to extend the 'cli' functionality! ;)~
