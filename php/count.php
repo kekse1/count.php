@@ -2,7 +2,7 @@
 
 /*
  * Copyright (c) Sebastian Kucharczyk <kuchen@kekse.biz>
- * v2.5.5
+ * v2.5.6
  */
 
 //TODO/
@@ -36,6 +36,12 @@ if(php_sapi_name() === 'cli')
 	}
 
 	//
+	function version($_index = -1)
+	{
+		printf('v2.5.6' . PHP_EOL);
+		exit(0);
+	}
+
 	function help($_index = -1)
 	{
 		die('TODO: help()' . PHP_EOL);
@@ -300,6 +306,10 @@ if(php_sapi_name() === 'cli')
 		{
 			help($i);
 		}
+		else if($argv[$i] === '-v' || $argv[$i] === '--version')
+		{
+			version($i);
+		}
 		else if($argv[$i] === '-t' || $argv[$i] === '--test')
 		{
 			testConfig($i);
@@ -519,7 +529,7 @@ function errorLog($_reason, $_source = '', $_path = '', $_die = true)
 }
 
 //
-function countFiles($_path = DIRECTORY, $_dir = false, $_list = false, $_exclude_count = true, $_exclude_ip = false)
+function countFiles($_path = DIRECTORY, $_dir = false, $_exclude = null, $_list = false)
 {
 	$list = scandir($_path);
 
@@ -542,24 +552,28 @@ function countFiles($_path = DIRECTORY, $_dir = false, $_list = false, $_exclude
 		{
 			continue;
 		}
-		else if($_dir === false)
+		else if($_exclude)
 		{
-			if($_exclude_count && $list[$i][0] === '-')
+			if($list[$i][0] === '-')
 			{
 				continue;
 			}
-			else if(!is_file($_path . '/' . $list[$i]))
+			else if($list[$i][0] === '+')
+			{
+				continue;
+			}
+		}
+
+		if($_dir === false)
+		{
+			if(!is_file($_path . '/' . $list[$i]))
 			{
 				continue;
 			}
 		}
 		else if($_dir === true)
 		{
-			if($_exclude_ip && $list[$i][0] === '+')
-			{
-				continue;
-			}
-			else if(!is_dir($_path . '/' . $list[$i]))
+			if(!is_dir($_path . '/' . $list[$i]))
 			{
 				continue;
 			}
@@ -607,7 +621,7 @@ else if(AUTO !== true && !is_file(PATH_FILE))
 	}
 	else if(gettype(AUTO) === 'integer')
 	{
-		if(countFiles(DIRECTORY, false, false, true, false) >= AUTO)
+		if(countFiles(DIRECTORY, false, true, false) >= AUTO)
 		{
 			errorLog('AUTO is too low', '', PATH_FILE, false);
 			die(NONE);
@@ -716,7 +730,7 @@ function getTime($_path = PATH_IP)
 
 function initCount($_path = PATH_COUNT, $_directory = PATH_DIR)
 {
-	$result = countFiles($_directory, false, false, false, false);
+	$result = countFiles($_directory, false, false, false);
 	$written = file_put_contents($_path, (string)$result);
 
 	if($written === false)
