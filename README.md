@@ -30,14 +30,7 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 
 ## Configuration
 
-### CLI mode
-**You can test your own configuration (if it's valid) by running this script from command line
-(CLI mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
-is still TODO. And there'll be more CLI possibilities and argv parameters, including a short
-output of all the counted values and also a synchronisation of count files (if they differ from
-the real file count).
-
-### Config parameters (define())
+### Configuration parameters
 
 * `define('AUTO', 255)`
 * `define('THRESHOLD', 7200)`
@@ -55,3 +48,9 @@ the real file count).
 
 They are located on top of the file.
 
+### CLI mode
+**You can test your own configuration (if it's valid) by running this script from command line
+(CLI mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
+is still TODO. And there'll be more CLI possibilities and argv parameters, including a short
+output of all the counted values and also a synchronisation of count files (if they differ from
+the real file count).
