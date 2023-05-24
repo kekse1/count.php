@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. And it's still beta.. v2.5.4.
+It's a universal counter script. And it's still beta.. v2.5.6.
 
 * have to test the count files again (but they seem to work correctly)
 * maybe a 'PORT' config necessary? and have to set the cookie-[domain] w/o port!
