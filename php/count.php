@@ -2,7 +2,7 @@
 
 /*
  * Copyright (c) Sebastian Kucharczyk <kuchen@kekse.biz>
- * v2.5.4
+ * v2.5.5
  */
 
 //TODO/
@@ -15,7 +15,7 @@ define('CLIENT', true);
 define('SERVER', true);
 define('HASH', 'sha3-256');
 define('HASH_IP', false);
-define('TYPE_CONTENT', 'text/plain;charset=UTF-8');
+define('CONTENT', 'text/plain;charset=UTF-8');
 define('CLEAN', false);
 define('LIMIT', 65535);
 define('LOG', 'ERROR.log');
@@ -159,14 +159,14 @@ if(php_sapi_name() === 'cli')
 		}
 
 		//
-		if(gettype(TYPE_CONTENT) === 'string' && !empty(TYPE_CONTENT))
+		if(gettype(CONTENT) === 'string' && !empty(CONTENT))
 		{
-			printf(START.'Non-empty \'%s\'' . PHP_EOL, 'TYPE_CONTENT', 'OK', 'string');
+			printf(START.'Non-empty \'%s\'' . PHP_EOL, 'CONTENT', 'OK', 'string');
 			++$ok;
 		}
 		else
 		{
-			fprintf(STDERR, START.'No non-empty \'%s\'' . PHP_EOL, 'TYPE_CONTENT', 'BAD', 'string');
+			fprintf(STDERR, START.'No non-empty \'%s\'' . PHP_EOL, 'CONTENT', 'BAD', 'string');
 			++$errors;
 		}
 
@@ -232,7 +232,7 @@ if(php_sapi_name() === 'cli')
 		//
 		if(gettype(ERROR) === 'string')
 		{
-			printf(START.'\'%s\' (which can also be zero-length, and could also be \'anything\', for original die()\'s)' . PHP_EOL, 'ERROR', 'OK', 'string');
+			printf(START.'\'%s\' (which can also be zero-length, and also \'anything\')' . PHP_EOL, 'ERROR', 'OK', 'string');
 			++$ok;
 		}
 		else
@@ -311,7 +311,7 @@ if(php_sapi_name() === 'cli')
 	}
 	
 	//
-	printf(' >> Running in \'%s\' mode (outside a HTTPD).' . PHP_EOL . PHP_EOL, 'cli');
+	printf(' >> Running in \'%s\' mode (CLI, outside a HTTPD).' . PHP_EOL, 'cli');
 	
 	//
 	testConfig();
@@ -321,7 +321,7 @@ if(php_sapi_name() === 'cli')
 }
 
 //
-header('Content-Type: ' . TYPE_CONTENT);
+header('Content-Type: ' . CONTENT);
 
 //
 if(AUTO === null)
@@ -535,6 +535,10 @@ function countFiles($_path = DIRECTORY, $_dir = false, $_list = false, $_exclude
 	for($i = 0, $j = 0; $i < $len; ++$i)
 	{
 		if($list[$i] === '.' || $list[$i] === '..')
+		{
+			continue;
+		}
+		else if($list[$i][0] === '.')
 		{
 			continue;
 		}

@@ -39,7 +39,7 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 * `define('SERVER', true)`
 * `define('HASH', 'sha3-256')`
 * `define('HASH_IP', true)`
-* `define('TYPE_CONTENT', 'text/plain;charset=UTF-8')`
+* `define('CONTENT', 'text/plain;charset=UTF-8')`
 * `define('CLEAN', false)`
 * `define('LIMIT', 65535)`
 * `define('LOG', 'ERROR.log')`
@@ -54,3 +54,4 @@ They are located on top of the file.
 is still TODO. And there'll be more CLI possibilities and argv parameters, including a short
 output of all the counted values and also a synchronisation of count files (if they differ from
 the real file count).
+
