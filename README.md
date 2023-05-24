@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. And it's still beta.. v2.5.2.
+It's a universal counter script. And it's still beta.. v2.5.3.
 
 * have to test the count files again
 * not sure about port numbers (maybe a 'PORT' config is necessary?)
