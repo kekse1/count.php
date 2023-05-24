@@ -1,15 +1,14 @@
 # count.php
-It's still beta.. v2.5.2.
+It's a universal counter script. And it's still beta.. v2.5.2.
 
 * have to test the count files again
 * not sure about port numbers (maybe a 'PORT' config is necessary?)
 * the clean() routine is still TODO
-* ..?
+* Going to extend the 'cli' functionality! ;)~
 
 ## Functionality, Security & Efficiency
-My _universal [counter script](scripts/count.php)_ should be **really** maximum secure now,
-as everyhing got it's own limit, and handling the `$_SERVER` variables etc. are also running
-through a (character) filter; etc.
+It should be **really** maximum secure now (as everyhing got it's own limit, and all the
+`$_SERVER` variables are filtered, so no code injection is possible; etc.
 
 Uses the file system to store timestamp files for the client IPs (if actived 'SERVER'); and
 counting this files (which is a security concern) is done cached via some special files (so
@@ -30,7 +29,16 @@ Anything else to mention here? Yes, one point: by default the script generates a
 output, so you can easily embed the counting value via 'XMLHttpRequest()' or the 'Fetch API'.
 
 ## Configuration
-Configuration is (on top of file):
+
+### 'cli' mode
+**You can test your own configuration (if it's valid) by running this script from command line
+('cli' mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
+is still TODO. And there'll be more 'cli' possibilities and argv parameters, including a short
+output of all the counted values and also a synchronisation of count files (if they differ from
+the real file count).
+
+### Config parameters (define())
+
 * `define('AUTO', 255)`
 * `define('THRESHOLD', 7200)`
 * `define('DIRECTORY', 'count')`
@@ -45,7 +53,4 @@ Configuration is (on top of file):
 * `define('ERROR', '/')`
 * `define('NONE', '/')`
 
-**You can test your own configuration (if it's valid) by running this script from command line
-('cli' mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
-is still TODO.
-
+They are located on top of the file.
