@@ -2,9 +2,9 @@
 It's a universal counter script. And it's still beta.. v2.5.4.
 
 * have to test the count files again (but they seem to work correctly)
-* not sure about port numbers (maybe a 'PORT' config is necessary?)
+* maybe a 'PORT' config necessary? and have to set the cookie-[domain] w/o port!
 * the clean() routine is still TODO
-* Going to extend the 'cli' functionality! ;)~
+* Going to extend the CLI functionality! ;)~
 
 ## Functionality, Security & Efficiency
 It should be **really** maximum secure now (as everyhing got it's own limit, and all the
@@ -30,10 +30,10 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 
 ## Configuration
 
-### 'cli' mode
+### CLI mode
 **You can test your own configuration (if it's valid) by running this script from command line
-('cli' mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
-is still TODO. And there'll be more 'cli' possibilities and argv parameters, including a short
+(CLI mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
+is still TODO. And there'll be more CLI possibilities and argv parameters, including a short
 output of all the counted values and also a synchronisation of count files (if they differ from
 the real file count).
 
@@ -54,3 +54,4 @@ the real file count).
 * `define('NONE', '/')`
 
 They are located on top of the file.
+
