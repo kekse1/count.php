@@ -1,14 +1,15 @@
 # count.php
-It's a universal counter script. And it's still beta.. v2.5.6.
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v2.5.7.
+It's based on the HTTP host (without any '?'-GET-parameters), on file each. :)~
 
-* have to test the count files again (but they seem to work correctly)
-* maybe a 'PORT' config necessary? and have to set the cookie-[domain] w/o port!
+## TODO
+* going to remove any port for the value files, so it's host-only-defined..
 * the clean() routine is still TODO
 * Going to extend the CLI functionality! ;)~
 
 ## Functionality, Security & Efficiency
-It should be **really** maximum secure now (as everyhing got it's own limit, and all the
-`$_SERVER` variables are filtered, so no code injection is possible; etc.
+**It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
+`$_SERVER` variables are filtered, so no code injection is possible; etc.); ..
 
 Uses the file system to store timestamp files for the client IPs (if actived 'SERVER'); and
 counting this files (which is a security concern) is done cached via some special files (so
@@ -34,7 +35,7 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 
 * `define('AUTO', 255)`
 * `define('THRESHOLD', 7200)`
-* `define('DIRECTORY', 'count')`
+* `define('PATH', 'count')`
 * `define('CLIENT', true)`
 * `define('SERVER', true)`
 * `define('HASH', 'sha3-256')`
@@ -50,8 +51,22 @@ They are located on top of the file.
 
 ### CLI mode
 **You can test your own configuration (if it's valid) by running this script from command line
-(CLI mode) now!** Additionally I've integrated a check for '--help' or '-?', but the output
-is still TODO. And there'll be more CLI possibilities and argv parameters, including a short
-output of all the counted values and also a synchronisation of count files (if they differ from
-the real file count).
+(CLI mode) now!**
+
+#### The argument vector
+Just run it without parameters to see all possible argv[] options.
+Here's also the current list:
+
+| Short | Long        | Description                               |
+| ----: | :---------- | :---------------------------------------: |
+|    -? | --help      | Mo' infoz (TODO)..                        |
+|    -v | --version   | Print current script's version.           |
+|    -C | --copyright | Shows the author of this script. ^_^      |
+|    -c | --check     | Verify if current configuration is valid. |
+|    -h | --hashes    | Available algorithms for 'HASH' config.   |
+
+#### Default output
+Without parameter there WILL be a status output with all host's values and a output of all the
+IP/timestamp files of all available hosts - with a synchronization of these counted values,
+if they differ from the real `countFiles(..)` (but still TODO :)~ ...
 
