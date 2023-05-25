@@ -7,6 +7,9 @@ embed it via XMLHttpRequest() or the 'Fetch API', e.g.. mainly used in my **keks
 library project, see [https://github.com/kekse1/kekse.biz/], and also for all my other
 websites, where no further configuration or copy of this script is necessary. ;)~
 
+In the (near) future there will also be the option to DRAW an `<img>`, so embedding would
+be even easier. x)~
+
 ## TODO
 * the clean() routine is still TODO!!
 * Still going to extend the CLI functionality. ;)~
