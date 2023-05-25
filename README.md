@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v2.5.7.
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... **v_2.6.0_**!
 
 It's based on one file each HTTP host (without any GET('?')-parameters), with outputting
 the counted values as `Content-Type: text/plain;charset=UTF-8` (by default). So you can
@@ -38,8 +38,8 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 
 ### Configuration parameters
 
-* `define('AUTO', 255)`
-* `define('THRESHOLD', 7200)`
+* `define('AUTO', 32)`
+* `define('THRESHOLD', 10800)`
 * `define('PATH', 'count')`
 * `define('CLIENT', true)`
 * `define('SERVER', true)`
@@ -47,7 +47,7 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 * `define('HASH_IP', true)`
 * `define('CONTENT', 'text/plain;charset=UTF-8')`
 * `define('CLEAN', false)`
-* `define('LIMIT', 65535)`
+* `define('LIMIT', 32768)`
 * `define('LOG', 'ERROR.log')`
 * `define('ERROR', '/')`
 * `define('NONE', '/')`
@@ -67,16 +67,21 @@ as defined in 'CONTENT' option)! .. so please, just type `php count.php` in your
 Just run it without parameters to see all possible argv[] options.
 Here's also the current list:
 
-| Short | Long        | Description                               |
-| ----: | :---------- | :---------------------------------------: |
-|    -? | --help      | Mo' infoz (TODO)..                        |
-|    -v | --version   | Print current script's version.           |
-|    -C | --copyright | Shows the author of this script. ^_^      |
-|    -c | --check     | Verify if current configuration is valid. |
-|    -h | --hashes    | Available algorithms for 'HASH' config.   |
+| Short | Long        | Description                                         |
+| ----: | :---------- | :-------------------------------------------------: |
+|    -? | --help      | Mo' helping infoz, pls. (TODO)..                    |
+|    -v | --version   | Print current script's version.                     |
+|    -C | --copyright | Shows the author of this script. /me ..             |
+|    -h | --hashes    | Available algorithms for 'HASH' config.             |
+|    -c | --check     | Verify if current configuration is valid.           |
+|    -s | --stats     | All runtime status infos. w/ cache synchronization. |
+|    -l | --clean     | Clean all **outdated** (only!) ip/timestamp files.. |
+|    -p | --purge     | Delete any host's ip cache directory (w/ caches)!   |
+|    -i | --init      | Reset the _whole_ count directory (**CAUTION**)!    |
+
+All of these functions which are still TODO are marked as it in the default 'syntax' output..
 
 #### Default output
-Without parameter there WILL be a status output with all host's values and the count of all the
-IP/timestamp files of all the available hosts (with a synchronization, if this cache differs from
-the real `countFiles(..)` (but still TODO :)~ ...
+Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
+please select only one in each call (otherwise any first occurence will select the called function).
 
