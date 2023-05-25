@@ -60,6 +60,8 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 * `define('SIZE_LIMIT', 96)`;
 * `define('FONT', 'Source Code Pro')`
 * `define('FONT_LIMIT', [ 'Candara', 'Open Sans', 'Source Code Pro' ])`
+* `define('COLOR_FG', 'rgba(0, 0, 0, 1)')`
+* `define('COLOR_BG', 'rgba(255, 255, 255, 0)');
 
 They are located on top of the file.
 
