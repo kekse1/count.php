@@ -12,6 +12,7 @@ be even easier. x)~
 
 ## TODO
 * the clean() routine is still TODO!!
+* MAYBE the ip-counter doesn't work correctly?? test even more, pls..
 * Still going to extend the CLI functionality. ;)~
 * To simply embed as `<img>` I'll implement some drawing routines for this.. it'd be great! ;)~
 
