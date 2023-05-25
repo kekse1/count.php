@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.6.0**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.6.2**!
 
 It's based on one file each HTTP host (without any GET('?')-parameters), with outputting
 the counted values as `Content-Type: text/plain;charset=UTF-8` (by default). So you can
@@ -10,6 +10,7 @@ websites, where no further configuration or copy of this script is necessary. ;)
 ## TODO
 * the clean() routine is still TODO!!
 * Still going to extend the CLI functionality. ;)~
+* To simply embed as `<img>` I'll implement some drawing routines for this.. it'd be great! ;)~
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -50,6 +51,12 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 * `define('LOG', 'ERROR.log')`
 * `define('ERROR', '/')`
 * `define('NONE', '/')`
+* `define('DRAW', false)` (TODO!)
+* `define('DRAW_PARAMS', true)`
+* `define('SIZE', 24)` (?)
+* `define('SIZE_LIMIT', 96);
+* `define('FONT', 'Source Code Pro')`
+* `define('FONT_LIMIT', [ 'Candara', 'Open Sans', 'Source Code Pro' ])`
 
 They are located on top of the file.
 
@@ -72,7 +79,7 @@ Here's also the current list:
 |    -v | --version   | Print current script's version.                     |
 |    -C | --copyright | Shows the author of this script. /me ..             |
 |    -h | --hashes    | Available algorithms for 'HASH' config.             |
-|    -c | --check     | Verify if current configuration is valid.           |
+|    -t | --test      | Verify if current configuration is valid.           |
 |    -s | --stats     | All runtime status infos. w/ cache synchronization. |
 |    -l | --clean     | Clean all **outdated** (only!) ip/timestamp files.. |
 |    -p | --purge     | Delete any host's ip cache directory (w/ caches)!   |
