@@ -50,8 +50,8 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 They are located on top of the file.
 
 ### CLI mode
-**You can test your own configuration (if it's valid) by running this script from command line
-(CLI mode) now!**
+**You can test your own configuration (it's validity) by running this script from command line
+(the CLI mode)!**
 
 As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
 as argument to the 'php' executable: `php count.php`. The shebang isn't possible, as web servers
