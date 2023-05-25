@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.6.2**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.7.0**!
 
 It's based on one file each HTTP host (without any GET('?')-parameters), with outputting
 the counted values as `Content-Type: text/plain;charset=UTF-8` (by default). So you can
@@ -10,8 +10,10 @@ websites, where no further configuration or copy of this script is necessary. ;)
 In the (near) future there will also be the option to DRAW an `<img>`, so embedding would
 be even easier. x)~
 
+## News
+* The 'clean(Files)()' routine is also ready to be used! Please set 'CLEAN' = (true) (vs. integer);
+
 ## TODO
-* the clean() routine is still TODO!!
 * MAYBE the ip-counter doesn't work correctly?? test even more, pls..
 * Still going to extend the CLI functionality. ;)~
 * To simply embed as `<img>` I'll implement some drawing routines for this.. it'd be great! ;)~
@@ -87,9 +89,11 @@ Here's also the current list:
 |    -h | --hashes    | Available algorithms for 'HASH' config.             |
 |    -t | --test      | Verify if current configuration is valid.           |
 |    -s | --stats     | All runtime status infos. w/ cache synchronization. |
+|    -S | --sync      | Synchronize the cache with real counts (only)       |
 |    -l | --clean     | Clean all **outdated** (only!) ip/timestamp files.. |
 |    -p | --purge     | Delete any host's ip cache directory (w/ caches)!   |
-|    -i | --init      | Reset the _whole_ count directory (**CAUTION**)!    |
+|    -e | --errors    | Count error log lines, if existing..                |
+|    -u | --unlog     | Deletes the whole error log file, if already exists.|
 
 All of these functions which are still TODO are marked as it in the default 'syntax' output..
 
