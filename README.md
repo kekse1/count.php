@@ -57,7 +57,7 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 * `define('DRAW', false)` (TODO!)
 * `define('DRAW_PARAMS', true)`
 * `define('SIZE', 24)` (?)
-* `define('SIZE_LIMIT', 96);
+* `define('SIZE_LIMIT', 96)`;
 * `define('FONT', 'Source Code Pro')`
 * `define('FONT_LIMIT', [ 'Candara', 'Open Sans', 'Source Code Pro' ])`
 
