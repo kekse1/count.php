@@ -1,6 +1,11 @@
 # count.php
 It's a universal counter script. Still beta (until **you** tested it ;)~ ... v2.5.7.
-It's based on the HTTP host (without any '?'-GET-parameters), on file each. :)~
+
+It's based on one file each HTTP host (without any GET('?')-parameters), with outputting
+the counted values as `Content-Type: text/plain;charset=UTF-8` (by default). So you can
+embed it via XMLHttpRequest() or the 'Fetch API', e.g.. mainly used in my **kekse.biz**
+library project, see [https://github.com/kekse1/kekse.biz/], and also for all my other
+websites, where no further configuration or copy of this script is necessary. ;)~
 
 ## TODO
 * going to remove any port for the value files, so it's host-only-defined..
