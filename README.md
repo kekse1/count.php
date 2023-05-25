@@ -54,9 +54,9 @@ They are located on top of the file.
 
 As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
 as argument to the 'php' executable: `php count.php`. The shebang isn't possible, as web servers
-running PHP scripts see them as begin of regular output! So (a) it's shown in the browser .. and
-(b) so the script can't send any `header()`! .. please, just call `php count.php` in the command
-line..
+running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
+(b) thus the script can't send any `header()` (necessary inter alia to define the content type,
+as defined in 'CONTENT' option)! .. so please, just type `php count.php` in your shell.
 
 #### The argument vector
 Just run it without parameters to see all possible argv[] options.
