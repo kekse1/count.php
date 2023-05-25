@@ -8,7 +8,7 @@ library project, see [https://github.com/kekse1/kekse.biz/], and also for all my
 websites, where no further configuration or copy of this script is necessary. ;)~
 
 ## TODO
-* going to remove any port for the value files, so it's host-only-defined..
+* **going to remove any port for the value files, so it's host-only-defined**..
 * the clean() routine is still TODO
 * Going to extend the CLI functionality! ;)~
 
