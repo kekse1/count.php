@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... **v_2.6.0_**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.6.0**!
 
 It's based on one file each HTTP host (without any GET('?')-parameters), with outputting
 the counted values as `Content-Type: text/plain;charset=UTF-8` (by default). So you can
