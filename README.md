@@ -95,7 +95,7 @@ Here's also the current list:
 |    -e | --errors    | Count error log lines, if existing..                |
 |    -u | --unlog     | Deletes the whole error log file, if already exists.|
 
-All of these functions which are still TODO are marked as it in the default 'syntax' output..
+All of these functions which are still TODO are marked in the default 'syntax' output..
 
 #### Default output
 Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
