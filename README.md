@@ -66,7 +66,7 @@ Here's also the current list:
 |    -h | --hashes    | Available algorithms for 'HASH' config.   |
 
 #### Default output
-Without parameter there WILL be a status output with all host's values and a output of all the
-IP/timestamp files of all available hosts - with a synchronization of these counted values,
-if they differ from the real `countFiles(..)` (but still TODO :)~ ...
+Without parameter there WILL be a status output with all host's values and the count of all the
+IP/timestamp files of all the available hosts (with a synchronization, if this cache differs from
+the real `countFiles(..)` (but still TODO :)~ ...
 
