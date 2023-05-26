@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.2**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.3**!
 
 ## TODO
 * MAYBE the ip-counter doesn't work correctly?? test even more, pls..
@@ -19,8 +19,10 @@ also with a limit in their amount - if you don't create the value files manually
 If a cookie (if actived 'CLIENT') already confirmed that the client connected within the
 'THRESHOLD' (3 hours atm), no 'SERVER' test will be done after this. And if a cookie doesn't
 work, there's still this IP test left. If privacy is one of your concerns, the IPs (in their
-own files with timestamps) can also be hashed, so noone can see them. Last feature will be
-a clean-up routine, but this is yet (the last) TODO.
+own files with timestamps) can also be hashed, so noone can see them.
+
+If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
+the CLI (cmd-line) mode).
 
 Last but not least: every error will be appended to the 'ERROR.log' file, so webmasters can
 directly see what's maybe going wrong.. ;)~
@@ -87,8 +89,6 @@ Here's also the current list:
 
 The optional [host,..] needs to be defined directly after the parameter, with optional multiples,
 separated by ',' (without any space or so).. if not specified, the default is to take *any* host.
-
-All of these functions which are still TODO are marked in the default 'syntax' output..
 
 #### Default output
 Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
