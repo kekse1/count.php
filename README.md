@@ -26,7 +26,8 @@ Last but not least: every error will be appended to the 'ERROR.log' file, so web
 directly see what's maybe going wrong.. ;)~
 
 Anything else to mention here? Yes, one point: by default the script generates a 'text/plain'
-output, so you can easily embed the counting value via 'XMLHttpRequest()' or the 'Fetch API'.
+output, so you can easily embed the counting value via 'XMLHttpRequest()' or the 'Fetch API';
+in the [near] future there'll be support for drawing `<img>` (so embedding would be even easier).
 
 ## Configuration
 
