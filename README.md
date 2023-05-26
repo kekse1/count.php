@@ -69,19 +69,22 @@ as defined in 'CONTENT' option)! .. so please, just type `php count.php` in your
 Just run it without parameters to see all possible argv[] options.
 Here's also the current list:
 
-| Short | Long        | Description                                         |
-| ----: | :---------- | :-------------------------------------------------: |
-|    -? | --help      | Mo' helping infoz, pls. (TODO)..                    |
-|    -V | --version   | Print current script's version.                     |
-|    -C | --copyright | Shows the author of this script. /me ..             |
-|    -h | --hashes    | Available algorithms for 'HASH' config.             |
-|    -t | --test      | Verify if current configuration is valid.           |
-|    -v | --values    | All runtime status infos. w/ cache synchronization. |
-|    -y | --sync      | Synchronize the cache with real counts (only)       |
-|    -l | --clean     | Clean all **outdated** (only!) ip/timestamp files.. |
-|    -p | --purge     | Delete any host's ip cache directory (w/ caches)!   |
-|    -e | --errors    | Count error log lines, if existing..                |
-|    -u | --unlog     | Deletes the whole error log file, if already exists.|
+| Short | Long               | Description                                         |
+| ----: | :----------------- | :-------------------------------------------------: |
+|    -? | --help             | Mo' helping infoz, pls. (TODO)..                    |
+|    -V | --version          | Print current script's version.                     |
+|    -C | --copyright        | Shows the author of this script. /me ..             |
+|    -h | --hashes           | Available algorithms for 'HASH' config.             |
+|    -t | --test             | Verify if current configuration is valid.           |
+|    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
+|    -y | --sync [host,..]   | Synchronize the cache with real counts (only)       |
+|    -l | --clean [host,..]  | Clean all **outdated** (only!) ip/timestamp files.. |
+|    -p | --purge [host,..]  | Delete any host's ip cache directory (w/ caches)!   |
+|    -e | --errors           | Count error log lines, if existing..                |
+|    -u | --unlog            | Deletes the whole error log file, if already exists.|
+
+The optional [host,..] needs to be defined directly after the parameter, with optional multiples,
+separated by ',' (without any space or so).. if not specified, the default is to take *any* host.
 
 All of these functions which are still TODO are marked in the default 'syntax' output..
 
