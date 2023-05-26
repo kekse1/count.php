@@ -17,7 +17,7 @@ the file system - one file for each host (secured auto-generation included, if y
 also with a limit in their amount - if you don't create the value files manually ;).
 
 If a cookie (if actived 'CLIENT') already confirmed that the client connected within the
-'THRESHOLD' (2 hours atm), no 'SERVER' test will be done after this. And if a cookie doesn't
+'THRESHOLD' (3 hours atm), no 'SERVER' test will be done after this. And if a cookie doesn't
 work, there's still this IP test left. If privacy is one of your concerns, the IPs (in their
 own files with timestamps) can also be hashed, so noone can see them. Last feature will be
 a clean-up routine, but this is yet (the last) TODO.
