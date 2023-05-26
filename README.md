@@ -1,22 +1,10 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.7.4**!
-
-It's based on one file each HTTP host (without any GET('?')-parameters), with outputting
-the counted values as `Content-Type: text/plain;charset=UTF-8` (by default). So you can
-embed it via XMLHttpRequest() or the 'Fetch API', e.g.. mainly used in my **kekse.biz**
-library project, see [https://github.com/kekse1/kekse.biz/], and also for all my other
-websites, where no further configuration or copy of this script is necessary. ;)~
-
-In the (near) future there will also be the option to DRAW an `<img>`, so embedding would
-be even easier. x)~
-
-## News
-* The 'clean(Files)()' routine is also ready to be used! Please set 'CLEAN' = (true) (vs. integer);
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.0**!
 
 ## TODO
 * MAYBE the ip-counter doesn't work correctly?? test even more, pls..
 * Still going to extend the CLI functionality. ;)~
-* To simply embed as `<img>` I'll implement some drawing routines for this.. it'd be great! ;)~
+* To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
