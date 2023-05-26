@@ -77,7 +77,7 @@ Here's also the current list:
 |    -h | --hashes    | Available algorithms for 'HASH' config.             |
 |    -t | --test      | Verify if current configuration is valid.           |
 |    -s | --stats     | All runtime status infos. w/ cache synchronization. |
-|    -S | --sync      | Synchronize the cache with real counts (only)       |
+|    -y | --sync      | Synchronize the cache with real counts (only)       |
 |    -l | --clean     | Clean all **outdated** (only!) ip/timestamp files.. |
 |    -p | --purge     | Delete any host's ip cache directory (w/ caches)!   |
 |    -e | --errors    | Count error log lines, if existing..                |
