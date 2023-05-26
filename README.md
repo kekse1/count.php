@@ -72,11 +72,11 @@ Here's also the current list:
 | Short | Long        | Description                                         |
 | ----: | :---------- | :-------------------------------------------------: |
 |    -? | --help      | Mo' helping infoz, pls. (TODO)..                    |
-|    -v | --version   | Print current script's version.                     |
+|    -V | --version   | Print current script's version.                     |
 |    -C | --copyright | Shows the author of this script. /me ..             |
 |    -h | --hashes    | Available algorithms for 'HASH' config.             |
 |    -t | --test      | Verify if current configuration is valid.           |
-|    -s | --stats     | All runtime status infos. w/ cache synchronization. |
+|    -v | --values    | All runtime status infos. w/ cache synchronization. |
 |    -y | --sync      | Synchronize the cache with real counts (only)       |
 |    -l | --clean     | Clean all **outdated** (only!) ip/timestamp files.. |
 |    -p | --purge     | Delete any host's ip cache directory (w/ caches)!   |
