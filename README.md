@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.3**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.4**!
 
 ## TODO
 * MAYBE the ip-counter doesn't work correctly?? test even more, pls..
