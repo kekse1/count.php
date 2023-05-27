@@ -8,7 +8,7 @@ It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
-`$_SERVER` variables are filtered, so no code injection is possible; etc.); ..
+`$_SERVER` variables are filtered, so no code injection or file hijacking is possible; etc.); ..
 
 Uses the file system to store timestamp files for the client IPs (if actived 'SERVER'); and
 counting this files (which is a security concern) is done cached via some special files (so
