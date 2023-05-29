@@ -1,11 +1,8 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.3**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.10.0**!
 
 ## TODO
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
-
-## Issues
-* `CLEAN=false` is atm the default setting - I've to fix one bug in the `clean_files()`!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
