@@ -1,12 +1,12 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.1**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.2**!
 
 ## TODO
 * Still going to extend the CLI functionality. ;)~
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
 
 ## Issues
-* MAYBE you should set CLEAN=false? Sometimes counted values get lost? Will rewrite `cleanFiles()`!
+* `CLEAN=false` is atm the only value possible, as I've got to fix one thing in the `clean_files()`!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -83,7 +83,7 @@ Here's also the current list:
 |    -h | --hashes           | Available algorithms for 'HASH' config.             |
 |    -t | --test             | Verify if current configuration is valid.           |
 |    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
-|    -y | --sync [host,..]   | Synchronize the cache with real counts (only)       |
+|    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
 |    -l | --clean [host,..]  | Clean all **outdated** (only!) ip/timestamp files.. |
 |    -p | --purge [host,..]  | Delete any host's ip cache directory (w/ caches)!   |
 |    -e | --errors           | Count error log lines, if existing..                |
