@@ -45,7 +45,7 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 * `define('HASH', 'sha3-256')`
 * `define('HASH_IP', true)`
 * `define('CONTENT', 'text/plain;charset=UTF-8')`
-* `define('CLEAN', true)`
+* `define('CLEAN', false)`
 * `define('LIMIT', 32768)`
 * `define('LOG', 'ERROR.log')`
 * `define('ERROR', '/')`
