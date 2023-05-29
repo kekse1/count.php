@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.0**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.1**!
 
 ## TODO
 * Still going to extend the CLI functionality. ;)~
@@ -90,7 +90,8 @@ Here's also the current list:
 |    -u | --unlog            | Deletes the whole error log file, if already exists.|
 
 The optional [host,..] needs to be defined directly after the parameter, with optional multiples,
-separated by ',' (without any space or so).. if not specified, the default is to take *any* host.
+separated by ',' (without any space or so).. and can thus hold many hosts in one argument, or you
+just use multiple argv[] (space divided). .. if not specified, the default is to take *any* host.
 
 #### Default output
 Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
