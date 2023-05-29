@@ -2,11 +2,10 @@
 It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.2**!
 
 ## TODO
-* Still going to extend the CLI functionality. ;)~
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
 
 ## Issues
-* `CLEAN=false` is atm the only value possible, as I've got to fix one thing in the `clean_files()`!
+* `CLEAN=false` is atm the default setting - I've to fix one bug in the `clean_files()`!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
