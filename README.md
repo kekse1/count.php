@@ -6,7 +6,7 @@ It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
 
 ## Issues
-* MAYBE you should set CLEAN=false? Sometimes the counted values are being reset'ed..!?
+* MAYBE you should set CLEAN=false? Sometimes counted values get lost? Will rewrite `cleanFiles()`!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the

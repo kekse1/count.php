@@ -1788,6 +1788,7 @@ function makeCookie()
 
 function cleanFiles($_dir = PATH_DIR, $_file = PATH_FILE)
 {
+die('FIXME (some values get lost?)');
 	if(CLEAN === null)
 	{
 		errorLog('Called function, but CLEAN === null', 'cleanFiles', '', false);
