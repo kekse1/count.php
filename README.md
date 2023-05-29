@@ -2,9 +2,11 @@
 It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.5**!
 
 ## TODO
-* MAYBE the ip-counter doesn't work correctly?? test even more, pls..
 * Still going to extend the CLI functionality. ;)~
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
+
+## Issues
+* MAYBE you should set CLEAN=false? Sometimes the counted values are being reset'ed..!?
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
