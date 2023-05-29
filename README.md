@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.8.5**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.9.0**!
 
 ## TODO
 * Still going to extend the CLI functionality. ;)~
@@ -19,7 +19,7 @@ the file system - one file for each host (secured auto-generation included, if y
 also with a limit in their amount - if you don't create the value files manually ;).
 
 If a cookie (if actived 'CLIENT') already confirmed that the client connected within the
-'THRESHOLD' (3 hours atm), no 'SERVER' test will be done after this. And if a cookie doesn't
+'THRESHOLD' (2 hours atm), no 'SERVER' test will be done after this. And if a cookie doesn't
 work, there's still this IP test left. If privacy is one of your concerns, the IPs (in their
 own files with timestamps) can also be hashed, so noone can see them.
 
@@ -38,7 +38,7 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 ### Configuration parameters
 
 * `define('AUTO', 32)`
-* `define('THRESHOLD', 10800)`
+* `define('THRESHOLD', 7200)`
 * `define('PATH', 'count')`
 * `define('CLIENT', true)`
 * `define('SERVER', true)`
