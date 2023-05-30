@@ -46,11 +46,10 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 * `define('LOG', 'ERROR.log')`
 * `define('ERROR', '/')`
 * `define('NONE', '/')`
-* `define('DRAW', false)` (TODO!)
-* `define('DRAW_OPTION', true)`
-* `define('SIZE', 24)` (?)
+* `define('DRAW', false)`
+* `define('SIZE', 24)`
 * `define('SIZE_LIMIT', 96)`;
-* `define('FONT', 'Source Code Pro')`
+* `define('FONT', 'SourceCodePro')`
 * `define('FONTS', 'fonts')`
 * `define('FG', 'rgba(0, 0, 0, 1)')`
 * `define('BG', 'rgba(255, 255, 255, 0)')`
