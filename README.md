@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.10.1**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.10.2**!
 
 ## TODO
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
