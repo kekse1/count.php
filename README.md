@@ -98,5 +98,5 @@ Without parameter, a helping 'syntax' output will be written to STDOUT. If you d
 please select only one in each call (otherwise any first occurence will select the called function).
 
 ### Drawing
-Will support <img> drawing instead of text/plain *very soon*.. I'm currently working on it! :-D
+Will support \<img\> drawing beneath regular text/plain *very soon*.. I'm currently working on it! :-D
 
