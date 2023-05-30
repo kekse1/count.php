@@ -93,3 +93,6 @@ just use multiple argv[] (space divided). .. if not specified, the default is to
 Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
 please select only one in each call (otherwise any first occurence will select the called function).
 
+### Drawing
+Will support <img> drawing instead of text/plain *very soon*! :-D
+
