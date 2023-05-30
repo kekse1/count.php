@@ -1,8 +1,8 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.11.1**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.11.2**!
 
 ## TODO
-* To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
+* I'm **currently** working on 'image/png' output, beneath regular text/plain! Easy embedding via \<img\>. ;)~
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -48,11 +48,15 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 * `define('NONE', '/')`
 * `define('DRAW', false)`
 * `define('SIZE', 24)`
-* `define('SIZE_LIMIT', 96)`;
+* `define('SIZE_LIMIT', 96)`
+* `define('SPACE', 32)`
+* `define('SPACE_LIMIT', 192)`
+* `define('PAD', 6)`
+* `define('PAD_LIMIT', 64)`
 * `define('FONT', 'SourceCodePro')`
 * `define('FONTS', 'fonts')`
-* `define('FG', 'rgba(0, 0, 0, 1)')`
-* `define('BG', 'rgba(255, 255, 255, 0)')`
+* `define('FG', '0, 0, 0, 1')`
+* `define('BG', '255, 255, 255, 0')`
 
 They are located on top of the file.
 
@@ -94,5 +98,5 @@ Without parameter, a helping 'syntax' output will be written to STDOUT. If you d
 please select only one in each call (otherwise any first occurence will select the called function).
 
 ### Drawing
-Will support <img> drawing instead of text/plain *very soon*! :-D
+Will support <img> drawing instead of text/plain *very soon*.. I'm currently working on it! :-D
 
