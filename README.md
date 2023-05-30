@@ -100,3 +100,7 @@ please select only one in each call (otherwise any first occurence will select t
 ### Drawing
 Will support \<img\> drawing beneath regular text/plain *very soon*.. I'm currently working on it! :-D
 
+### BTW..
+The **[original version](php/original.php)** was a very tiny script as lil' helper for my
+web projects. It rised a lot - see for yourself! :)~
+
