@@ -1,0 +1,57 @@
+function generateImage($text, $fontSize, $fontFile, $backgroundColor, $textColor) {
+    // Schriftgröße in Pixel umwandeln (aus Punktgröße)
+    $fontSizePx = $fontSize * 0.75;
+
+    // Breite des Textes ermitteln
+    $textWidth = imagettfbbox($fontSizePx, 0, $fontFile, $text);
+    $textWidth = $textWidth[2] - $textWidth[0];
+
+    // Bildbreite basierend auf der Textbreite festlegen
+    $width = $textWidth + 40; // Zusätzlicher Platz für den Text
+    // Bildhöhe
+    $height = $fontSizePx + 20;
+
+    // Bild erstellen
+    $image = imagecreatetruecolor($width, $height);
+
+    // Farben (ARGB) festlegen
+    $textColor = imagecolorallocatealpha($image, $textColor[0], $textColor[1], $textColor[2], $textColor[3]);
+    $backgroundColor = imagecolorallocatealpha($image, $backgroundColor[0], $backgroundColor[1], $backgroundColor[2], $backgroundColor[3]);
+    imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
+
+    // Text zentrieren
+    $x = ($width - $textWidth) / 2;
+    $y = ($height - $fontSizePx) / 2 + $fontSizePx;
+
+    // Text auf das Bild zeichnen
+    imagettftext($image, $fontSizePx, 0, $x, $y, $textColor, $fontFile, $text);
+
+    // Bild ausgeben
+    header("Content-Type: image/png");
+    imagepng($image);
+    imagedestroy($image);
+}
+
+// Parameter festlegen
+$text = 'Beispieltext';
+$width = 400;
+$height = 200;
+$fontSize = 24;
+$fontFile = 'fonts/your_font_file.woff2'; // Pfad zu deiner .woff2-Schriftartdatei
+$backgroundColor = [
+    'red' => 0,
+    'green' => 0,
+    'blue' => 0,
+    'alpha' => 127 // Transparenz (0 = vollständig transparent, 127 = halbtransparent, 255 = undurchsichtig)
+];
+$textColor = [
+    'red' => 255,
+    'green' => 255,
+    'blue' => 255,
+    'alpha' => 0 // Transparenz (0 = vollständig transparent, 127 = halbtransparent, 255 = undurchsichtig)
+];
+
+// Funktion aufrufen
+generateImageWithText($text, $width, $height, $fontSize, $fontFile, $backgroundColor, $textColor);
+?>
+

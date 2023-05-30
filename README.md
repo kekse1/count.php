@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.10.3**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.11.0**!
 
 ## TODO
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
@@ -51,9 +51,9 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 * `define('SIZE', 24)` (?)
 * `define('SIZE_LIMIT', 96)`;
 * `define('FONT', 'Source Code Pro')`
-* `define('FONT_LIMIT', [ 'Candara', 'Open Sans', 'Source Code Pro' ])`
-* `define('COLOR_FG', 'rgba(0, 0, 0, 1)')`
-* `define('COLOR_BG', 'rgba(255, 255, 255, 0)')`
+* `define('FONTS', 'fonts')`
+* `define('FG', 'rgba(0, 0, 0, 1)')`
+* `define('BG', 'rgba(255, 255, 255, 0)')`
 
 They are located on top of the file.
 
@@ -77,6 +77,7 @@ Here's also the current list:
 |    -V | --version          | Print current script's version.                     |
 |    -C | --copyright        | Shows the author of this script. /me ..             |
 |    -h | --hashes           | Available algorithms for 'HASH' config.             |
+|    -f | --fonts            | Available fonts for drawing \<img\>.                |
 |    -t | --test             | Verify if current configuration is valid.           |
 |    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
 |    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
