@@ -47,7 +47,7 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 * `define('ERROR', '/')`
 * `define('NONE', '/')`
 * `define('DRAW', false)` (TODO!)
-* `define('DRAW_PARAMS', true)`
+* `define('DRAW_OPTION', true)`
 * `define('SIZE', 24)` (?)
 * `define('SIZE_LIMIT', 96)`;
 * `define('FONT', 'Source Code Pro')`
