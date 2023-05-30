@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.10.2**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.10.3**!
 
 ## TODO
 * To simply embed as `<img>`, I'll implement some drawing routines for this.. it'd be great! ;)~
@@ -41,7 +41,7 @@ in the [near] future there'll be support for drawing `<img>` (so embedding would
 * `define('HASH', 'sha3-256')`
 * `define('HASH_IP', true)`
 * `define('CONTENT', 'text/plain;charset=UTF-8')`
-* `define('CLEAN', false)`
+* `define('CLEAN', true)`
 * `define('LIMIT', 32768)`
 * `define('LOG', 'ERROR.log')`
 * `define('ERROR', '/')`
