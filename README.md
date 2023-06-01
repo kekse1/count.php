@@ -1,8 +1,8 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.11.2**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.12.0**!
 
-## TODO
-* I'm **currently** working on 'image/png' output, beneath regular text/plain! Easy embedding via \<img\>. ;)~
+## News
+FINALLY FINISHED the script (as far as one can claim that for software ;-) ..!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -27,38 +27,43 @@ directly see what's maybe going wrong.. ;)~
 
 Anything else to mention here? Yes, one point: by default the script generates a 'text/plain'
 output, so you can easily embed the counting value via 'XMLHttpRequest()' or the 'Fetch API';
-in the [near] future there'll be support for drawing `<img>` (so embedding would be even easier).
+BUT I've finally managed now the \<img\> drawing facilities (see below!), so you can also embed
+it now as simple `<img src="..?draw[...]">`! :D~
 
 ## Configuration
 
 ### Configuration parameters
 
-* `define('AUTO', 32)`
-* `define('THRESHOLD', 7200)`
-* `define('PATH', 'count')`
-* `define('CLIENT', true)`
-* `define('SERVER', true)`
-* `define('HASH', 'sha3-256')`
-* `define('HASH_IP', true)`
-* `define('CONTENT', 'text/plain;charset=UTF-8')`
-* `define('CLEAN', true)`
-* `define('LIMIT', 32768)`
-* `define('LOG', 'ERROR.log')`
-* `define('ERROR', '/')`
-* `define('NONE', '/')`
-* `define('DRAW', false)`
-* `define('SIZE', 24)`
-* `define('SIZE_LIMIT', 96)`
-* `define('SPACE', 32)`
-* `define('SPACE_LIMIT', 192)`
-* `define('PAD', 6)`
-* `define('PAD_LIMIT', 64)`
-* `define('FONT', 'SourceCodePro')`
-* `define('FONTS', 'fonts')`
-* `define('FG', '0, 0, 0, 1')`
-* `define('BG', '255, 255, 255, 0')`
+* `define('AUTO', 32);`
+* `define('THRESHOLD', 7200);`
+* `define('PATH', 'count');`
+* `define('CLIENT', true);`
+* `define('SERVER', true);`
+* `define('HASH', 'sha3-256');`
+* `define('HASH_IP', true);`
+* `define('CONTENT', 'text/plain;charset=UTF-8');`
+* `define('CLEAN', true);`
+* `define('LIMIT', 32768);`
+* `define('LOG', 'ERROR.log');`
+* `define('ERROR', '/');`
+* `define('NONE', '/');`
+* `define('DRAW', false);`
+* `define('SIZE', 18);`
+* `define('SIZE_LIMIT', 384);`
+* `define('SPACE', 8);`
+* `define('SPACE_LIMIT', 192);`
+* `define('PAD', 4);`
+* `define('PAD_LIMIT', 192);`
+* `define('FONT', 'OpenSans');`
+* `define('FONTS', 'fonts');`
+* `define('FG', '0, 0, 0, 1');`
+* `define('BG', '255, 255, 255, 0');`
 
 They are located on top of the file.
+
+It'd be better to create a '.htaccess' file with at least `Deny from all` in your 'PATH' directory
+and maybe also in the 'FONTS' directory, to be absolutely sure. But consider that not every HTTPD
+supports such a file..
 
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
@@ -81,7 +86,7 @@ Here's also the current list:
 |    -C | --copyright        | Shows the author of this script. /me ..             |
 |    -h | --hashes           | Available algorithms for 'HASH' config.             |
 |    -f | --fonts            | Available fonts for drawing \<img\>.                |
-|    -t | --test             | Verify if current configuration is valid.           |
+|    -c | --config           | Verify if current configuration is valid.           |
 |    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
 |    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
 |    -l | --clean [host,..]  | Clean all **outdated** (only!) ip/timestamp files.. |
@@ -98,7 +103,35 @@ Without parameter, a helping 'syntax' output will be written to STDOUT. If you d
 please select only one in each call (otherwise any first occurence will select the called function).
 
 ### Drawing
-Will support \<img\> drawing beneath regular text/plain *very soon*.. I'm currently working on it! :-D
+Nearly finished the \<img\> drawing support! :-D
+
+#### Usage
+To use it, enable the 'DRAW' option and call script with (at least!) '?draw' GET parameter. The
+available GET parameters are:
+
+* `?draw`
+* `?size=(int)` [18]
+* `?space=(int)` [8]
+* `?pad=(int)` [4]
+* `?font=(string)` [SourceCodePro]
+* `?fg=(string)` [rgba(0, 0, 0, 1)]
+* `?bg=(string)` [rgba(255, 255, 255, 0)]
+
+#### Dependencies
+Important: the GD library has to be installed for this feature. If it isn't, you can only use the
+regular 'text/plain' output function of this count.php! AND the GD library also needs "FreeType"
+support, as we're drawing with True Type Fonts (this is **not** checked within '-c/--config', btw.).
+
+The '-c/--config' test will also check if this library is installed, but MAYBE it's installed, but not
+available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
+web server..
+
+Runned by a web server with enabled DRAW option and also aktived via '?draw' will only call this drawing
+mode if module is installed. If not, the regular (text/plain) output will nevertheless be used; to avoid
+error output (even though it's bad that you're using an \<img\> tag..... but error output wouldn\'t be
+visible in this case at all).
+
+The second dependency is a configured 'FONTS' directory with '.ttf' fonts installed in it! ..
 
 ### BTW..
 The **[original version](php/original.php)** was a very tiny script as lil' helper for my
