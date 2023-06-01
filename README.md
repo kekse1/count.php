@@ -49,13 +49,13 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('ERROR', '/');`
 * `define('NONE', '/');`
 * `define('DRAW', true);`
-* `define('SIZE', 18);`
+* `define('SIZE', 28);`
 * `define('SIZE_LIMIT', 384);`
-* `define('SPACE', 8);`
-* `define('SPACE_LIMIT', 192);`
-* `define('PAD', 4);`
+* `define('SPACE', 1);`
+* `define('SPACE_LIMIT', 256);`
+* `define('PAD', 1);`
 * `define('PAD_LIMIT', 192);`
-* `define('FONT', 'OpenSans');`
+* `define('FONT', 'SourceCodePro');`
 * `define('FONTS', 'fonts');`
 * `define('FG', '0, 0, 0, 1');`
 * `define('BG', '255, 255, 255, 0');`
