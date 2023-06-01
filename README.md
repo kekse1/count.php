@@ -48,7 +48,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('LOG', 'ERROR.log');`
 * `define('ERROR', '/');`
 * `define('NONE', '/');`
-* `define('DRAW', false);`
+* `define('DRAW', true);`
 * `define('SIZE', 18);`
 * `define('SIZE_LIMIT', 384);`
 * `define('SPACE', 8);`
@@ -104,7 +104,7 @@ Without parameter, a helping 'syntax' output will be written to STDOUT. If you d
 please select only one in each call (otherwise any first occurence will select the called function).
 
 ### Drawing
-Nearly finished the \<img\> drawing support! :-D
+Just finished the \<img\> drawing support (using here 'image/png' Content-Type)! :-D
 
 #### Usage
 To use it, enable the 'DRAW' option and call script with (at least!) '?draw' GET parameter. The
