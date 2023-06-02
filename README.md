@@ -7,7 +7,7 @@ FINALLY FINISHED the script (as far as one can claim that for software ;-) ..!
 Next point: the 'OVERRIDE' setting. So one can `?override=(host)` to (OPTIONALLY) count values
 also for external hosts, etc.. I don't really like this setting, but sometimes it makes sense.
 
-For this the AUTO setting is also used like 'false', so only configured hosts/files are allowed..
+For this (only!) the AUTO setting is used like (false), so only configured hosts/files are allowed.
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
