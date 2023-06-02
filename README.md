@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.4**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.5**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -36,7 +36,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 
 * `define('AUTO', 32);`
 * `define('THRESHOLD', 7200);`
-* `define('PATH', 'count');`
+* `define('DIR', 'count');`
 * `define('OVERRIDE', false);`
 * `define('CLIENT', true);`
 * `define('SERVER', true);`
@@ -64,9 +64,21 @@ it now as simple `<img src="..?draw[...]">`! :D~
 
 They are located on top of the file.
 
-It'd be better to create a '.htaccess' file with at least `Deny from all` in your 'PATH' directory
+It'd be better to create a '.htaccess' file with at least `Deny from all` in your 'DIR' directory
 and maybe also in the 'FONTS' directory, to be absolutely sure. But consider that not every HTTPD
 supports such a file..
+
+#### Relative and absolute paths
+Absolute paths _shoud_ work, but relative paths are used here in two ways; so there's a difference
+between 'count/' and './count': the first one is a relative path from the current working directory
+of the running `php` process.
+
+So, if you have './php/count.php', but call a symlink './count.php', the configured 'DIR' needs to
+be in e.g. './count/, **not** './php/count/' (where the .php _file_ itself is). But if you configure
+like the second version './count' (with './' start), then the script will resolve via `__DIR__`, so
+it's also a relative view, but from the directory the script is installed. .. so if you again call
+'./count.php' (the symlink to './php/count.php'), this time the 'count/' directory will be searched
+in the script's location, so './php/count/'!
 
 ### OVERRIDE
 If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
