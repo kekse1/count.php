@@ -22,8 +22,8 @@ own files with timestamps) can also be hashed, so noone can see them.
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
 the CLI (cmd-line) mode).
 
-Last but not least: every error will be appended to the 'ERROR.log' file, so webmasters can
-directly see what's maybe going wrong.. ;)~
+Last but not least: every error will be appended to the 'count.log' file (configurable), so
+webmasters can directly see what's maybe going wrong.. ;)~
 
 Anything else to mention here? Yes, one point: by default the script generates a 'text/plain'
 output, so you can easily embed the counting value via 'XMLHttpRequest()' or the 'Fetch API';
