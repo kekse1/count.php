@@ -154,7 +154,7 @@ available GET parameters are:
 * `?font=(string)` [SourceCodePro]
 * `?fg=(string)` [rgba(0, 0, 0, 1)]
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
-* `?x=(int)` [2]
+* `?x=(int)` [0]
 * `?y=(int)` [0]
 * `?aa=(1|0)` [1]
 
