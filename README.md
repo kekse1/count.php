@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.5**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.7**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -82,8 +82,9 @@ corresponding string!
 All `$_SERVER` and `$_GET` are filtered to reach more security.
 
 I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
-`get_param()`.. the `secure_host()` stayed, but it also uses the abstract `secure()`, with the difference
-of sending the result string through `strtolower()`.
+`get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()` does
+a `strtolower()` and the `secure_path()` also removes any starting '+', '-' and '~' (as special chars
+for the files in the 'COUNT' directory).
 
 So here you gotta know which characters you can pass (maximum string length is 255 characters, btw..):
 
@@ -93,8 +94,8 @@ So here you gotta know which characters you can pass (maximum string length is 2
 * . (limited)
 * ,
 * :
-* \-
-* \+
+* \- (partially)
+* \+ (partially)
 * (
 * )
 * / (limited)
