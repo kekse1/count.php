@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.7**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.0**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -60,6 +60,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('FG', '0, 0, 0, 1');`
 * `define('BG', '255, 255, 255, 0');`
 * `define('AA', true);`
+* `define('TYPE', 'png');`
 
 They are located on top of the file.
 
@@ -124,6 +125,7 @@ Here's also the current list:
 |    -C | --copyright        | Shows the author of this script. /me ..             |
 |    -h | --hashes           | Available algorithms for 'HASH' config.             |
 |    -f | --fonts            | Available fonts for drawing \<img\>.                |
+|    -t | --types            | Available image types for drawing output.           |
 |    -c | --config           | Verify if current configuration is valid.           |
 |    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
 |    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
@@ -157,14 +159,16 @@ available GET parameters are:
 * `?x=(int)` [0]
 * `?y=(int)` [0]
 * `?aa=(1|0)` [1]
+* `?type=(string)` [png]
 
 `x` and `y` are just moving the text along this both axis (in px).
 `fg` and `bg` can be 'rgb()', 'rgba()' or just the 3 bytes and optionally a floating point number
 between 0 and 1 for the alpha component.
 `pad` is the space above and below the text, `space` is to the left and the right.
 `size` is a font size in 'pt' or 'px' (ain't sure atm x)~, and the `font` needs to be installed in
-the 'FONTS' directory, as '.ttf'.
-The 'aa' parameter needs to be '0' or '1', to configure anti-aliased text.
+the 'FONTS' directory, as '.ttf'. The 'aa' parameter needs to be '0' or '1', to configure anti-aliased
+text. Last but not least, the '?type' can atm be set to 'png' and 'jpg', whereas 'png' is absolutely
+recommended! Example given: 'jpg' does not have the best alpha-channel (transparent colors) support..
 
 All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
 if allowed by 'DRAW' configuration).
