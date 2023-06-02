@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.7**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.8**!
 
 ## Index
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
@@ -208,8 +208,8 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 as defined in 'CONTENT' option)! .. so please, just type `php count.php` in your shell.
 
 ### The argument vector
-Just run it without parameters to see all possible argv[] options.
-Here's also the current list:
+Just run it without parameters to see all possible argv[] options. Here's the current list of
+supported 'functions' (in CLI just call the script without arguments to see this list):
 
 | Short | Long               | Description                                         |
 | ----: | :----------------- | :-------------------------------------------------: |
@@ -227,13 +227,15 @@ Here's also the current list:
 |    -e | --errors           | Count error log lines, if existing..                |
 |    -u | --unlog            | Deletes the whole error log file, if already exists.|
 
-The optional [host,..] needs to be defined directly after the parameter, with optional multiples,
-separated by ',' (without any space or so).. and can thus hold many hosts in one argument, or you
-just use multiple argv[] (space divided). .. if not specified, the default is to take *any* host.
+The optional [host,..] needs to be defined directly after the parameter; can be multiple arguments,
+by just appending them as new arguments (space divided). If not specified, the functions will take
+all available hosts.
 
-### Default output
-Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
-please select only one in each call (otherwise any first occurence will select the called function).
+### GLOB support
+This is yet partially done, and will be continued to all the \[-v,-n,-l,-p\] (and maybe more??). At
+the moment it's already integrated in '--values'. Worx so far..
+
+As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
 
 ## Original
 The **[original version](php/original.php)** was a very tiny script as lil' helper for my

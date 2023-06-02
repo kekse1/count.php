@@ -1,0 +1,16 @@
+Die Funktion glob() verwendet die folgenden Zeichen zur Markierung in Mustern:
+
+* (Sternchen): Steht für eine beliebige Zeichenkette, einschließlich einer leeren Zeichenkette. Es kann null oder mehr beliebige Zeichen in einem Datei- oder Verzeichnisnamen repräsentieren. Zum Beispiel passt das Muster "*.txt" auf alle Dateien mit der Erweiterung ".txt".
+
+? (Fragezeichen): Steht für ein einzelnes beliebiges Zeichen. Es kann jedes einzelne Zeichen in einem Datei- oder Verzeichnisnamen repräsentieren. Zum Beispiel passt das Muster "image?.jpg" auf Dateien wie "image1.jpg" oder "imageA.jpg", wobei das Fragezeichen für ein einzelnes Zeichen steht.
+
+[abc]: Steht für ein einzelnes Zeichen, das in der angegebenen Zeichenklasse enthalten ist. Es kann eines der angegebenen Zeichen repräsentieren. Zum Beispiel passt das Muster "file[123].txt" auf Dateien wie "file1.txt" oder "file2.txt".
+
+[!abc] oder [^abc]: Steht für ein einzelnes Zeichen, das nicht in der angegebenen Zeichenklasse enthalten ist. Es kann ein beliebiges Zeichen außer den angegebenen repräsentieren. Zum Beispiel passt das Muster "file[!123].txt" auf Dateien wie "fileA.txt" oder "fileX.txt", aber nicht auf "file1.txt" oder "file2.txt".
+
+{pattern1,pattern2,pattern3}: Steht für eine Gruppe von Mustern, von denen eines übereinstimmen kann. Es repräsentiert eine Alternative zwischen den angegebenen Mustern. Zum Beispiel passt das Muster "{*.jpg,*.png}" auf Dateien mit der Erweiterung ".jpg" oder ".png".
+
+- (Minuszeichen): Das Minuszeichen kann in einer Zeichenklasse innerhalb eckiger Klammern verwendet werden, um einen Zeichenbereich zu definieren. Zum Beispiel: "file[a-z].txt" würde auf Dateien wie "filea.txt", "fileb.txt" usw. passen.
+
+Diese Markierungsmuster können in beliebiger Kombination verwendet werden, um spezifische Suchmuster zu erstellen. Du kannst auch Verzeichnispfade und Dateinamen in den Mustern angeben, um die Suche auf bestimmte Verzeichnisse oder Dateien zu beschränken.
+
