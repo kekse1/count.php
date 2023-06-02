@@ -84,10 +84,11 @@ All `$_SERVER` and `$_GET` are filtered to reach more security.
 
 I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
 `get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()` does
-a `strtolower()` and the `secure_path()` also removes any starting '+', '-' and '~' (as special chars
-for the files in the 'COUNT' directory).
+a `strtolower()` and the `secure_path()` also removes any '+', '-' and '~' (special characters to
+mark file types ('~' are value files, '-' are cache counters .. for amount of ip/timestamp files in
+the '+' marked directories - all for hosts).
 
-So here you gotta know which characters you can pass (maximum string length is 255 characters, btw..):
+So here you gotta know which characters you can pass (maximum string length is 255 characters, btw.):
 
 * a-z
 * A-Z
@@ -158,7 +159,7 @@ available GET parameters are:
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
 * `?x=(int)` [0]
 * `?y=(int)` [0]
-* `?aa=(1|0)` [1]
+* `?aa=(1|0|y|n)` [true]
 * `?type=(string)` [png]
 
 `x` and `y` are just moving the text along this both axis (in px).
