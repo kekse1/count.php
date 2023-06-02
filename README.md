@@ -79,6 +79,18 @@ So here you gotta know which characters you can pass (maximum string length is 2
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
+### Refresh
+If you are able to reload the counter dynamically on your web sites, please do it.
+
+This would be great, because with every poll the timestamps get updated, so the 'THRESHOLD' setting,
+which gives you the logical, maximum time to refresh, btw., is not the only prevention against multiple
+countings: periodically polled it makes you some 'session' styles by adapting the timestamp, that will
+never get too old this way.
+
+So, if you're periodically polling this script (I'm doing it via XMLHttpRequest()), the client is not
+being counted again after the THRESHOLD time over this 'session'; until he disconnects. Then coming
+back again _after_ the two hours (by default) he will get counted again. Pretty easy?
+
 ### TODO
 ...
 
