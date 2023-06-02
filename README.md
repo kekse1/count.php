@@ -1,3 +1,5 @@
+<img src="https://kekse.biz/php/count.php?draw" />
+
 # count.php
 It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.0**!
 
