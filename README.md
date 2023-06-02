@@ -166,7 +166,8 @@ between 0 and 1 for the alpha component.
 the 'FONTS' directory, as '.ttf'.
 The 'aa' parameter needs to be '0' or '1', to configure anti-aliased text.
 
-All parameters are optional, but the `?draw` needs to be set if you want a graphical output.
+All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
+if allowed by 'DRAW' configuration).
 
 #### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
