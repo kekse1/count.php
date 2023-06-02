@@ -99,9 +99,7 @@ So here you gotta know which characters you can pass (maximum string length is 2
 * / (limited)
 * \\ (limited)
 
-That's also important for the `?override=` GET parameter.. and I left the `secure_host()` function existent,
-but internally it uses the new `secure()` function - the difference here is that the whole result string is
-also running through `strtolower()` (as hostnames are case-insensitive etc.).
+That's also important for the *optional* `?override=` GET parameter.
 
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
