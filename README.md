@@ -80,7 +80,9 @@ be in e.g. './count/, **not** './php/count/' (where the .php _file_ itself is).
 But if you configure it like the second version './count' (with './' start), then the script will
 resolve via `__DIR__` - so it's also a relative view, but from the directory the script is really
 installed in. .. so if you again call './count.php' (the symlink to './php/count.php'), this time
-the 'count/' directory will be searched in the script's location, so './php/count/'! :)~
+the 'count/' directory will be searched in the script's location, so './php/count/'!
+
+'../' is not affected by this. If you need a path above script's directory, use './../'! :)~
 
 ### OVERRIDE
 If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
