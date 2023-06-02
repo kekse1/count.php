@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.3**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.4**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -78,6 +78,11 @@ I don't really like it, but if you need this feature, just use it. Works great.
 Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
 arbitrary parameter (also important for security). Thus, you first have to create a value file to the
 corresponding string!
+
+### Readonly mode
+You can use the script regularily, but pass `?readonly=(1|y)`. That will only return/draw the current
+value without writing any files or cookies. The value is not changed then. So one can view it without
+access to the file system or the CLI mode.
 
 ### String filter
 All `$_SERVER` and `$_GET` are filtered to reach more security.
