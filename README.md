@@ -1,4 +1,4 @@
-<img src="https://kekse.biz/php/count.php?draw" />
+<img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&override=github" />
 
 # count.php
 It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.0**!
@@ -73,7 +73,7 @@ supports such a file..
 ### OVERRIDE
 If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
 `$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
-string (or just another host you define there), so REMOTE counting is possible with this setting..
+string (or just another host you define there).
 
 I don't really like it, but if you need this feature, just use it. Works great.
 
