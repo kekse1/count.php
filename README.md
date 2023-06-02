@@ -92,8 +92,8 @@ So here you gotta know which characters you can pass (maximum string length is 2
 * . (limited)
 * ,
 * :
-* -
-* +
+* \-
+* \+
 * (
 * )
 * / (limited)
