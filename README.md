@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.12.0**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.12.1**!
 
 ## News
 FINALLY FINISHED the script (as far as one can claim that for software ;-) ..!
