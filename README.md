@@ -69,16 +69,18 @@ and maybe also in the 'FONTS' directory, to be absolutely sure. But consider tha
 supports such a file..
 
 #### Relative and absolute paths
-Absolute paths _shoud_ work, but relative paths are used here in two ways; so there's a difference
-between 'count/' and './count': the first one is a relative path from the current working directory
-of the running `php` process.
+Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
+between 'count/' and './count'.
+
+The first one is a relative path from the current working directory of the running `php` process.
 
 So, if you have './php/count.php', but call a symlink './count.php', the configured 'DIR' needs to
-be in e.g. './count/, **not** './php/count/' (where the .php _file_ itself is). But if you configure
-like the second version './count' (with './' start), then the script will resolve via `__DIR__`, so
-it's also a relative view, but from the directory the script is installed. .. so if you again call
-'./count.php' (the symlink to './php/count.php'), this time the 'count/' directory will be searched
-in the script's location, so './php/count/'!
+be in e.g. './count/, **not** './php/count/' (where the .php _file_ itself is).
+
+But if you configure it like the second version './count' (with './' start), then the script will
+resolve via `__DIR__` - so it's also a relative view, but from the directory the script is really
+installed in. .. so if you again call './count.php' (the symlink to './php/count.php'), this time
+the 'count/' directory will be searched in the script's location, so './php/count/'! :)~
 
 ### OVERRIDE
 If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
