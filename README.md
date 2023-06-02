@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.8**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.9**!
 
 ## Index
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
@@ -236,6 +236,11 @@ This is yet partially done, and will be continued to all the \[-v,-n,-l,-p\] (an
 the moment it's already integrated in '--values'. Worx so far..
 
 As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
+
+After finishing this, I'll maybe start to implement `glob()` searches for IPs, to kinda manage them.
+Idea is to look at the intersect, which hosts were visited by one/some IP(s). .. **anyone other ideas??**
+.. `ban()`'d be real overload for a counter script.. but the nature of information says to me, there are
+other ways of managing ip addresses.. **please contact me with your ideas! :-)**
 
 ## Original
 The **[original version](php/original.php)** was a very tiny script as lil' helper for my
