@@ -37,6 +37,22 @@ output, so you can easily embed the counting value via 'XMLHttpRequest()' or the
 BUT I've finally managed now the \<img\> drawing facilities (see below!), so you can also embed
 it now as simple `<img src="..?draw[...]">`! :D~
 
+### Readonly mode
+You can use the script regularily, but pass `?readonly`. That will only return/draw the current
+value without writing any files or cookies. The value is not changed then. So one can view it without
+access to the file system or the CLI mode.
+
+### OVERRIDE
+If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
+`$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
+string (or just another host you define there).
+
+I don't really like it, but if you need this feature, just use it. Works great.
+
+Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
+arbitrary parameter (also important for security). Thus, you first have to create a value file to the
+corresponding string!
+
 ### String filter
 All `$_SERVER` and `$_GET` are filtered to reach more security.
 
@@ -61,25 +77,14 @@ So here you gotta know which characters you can pass (maximum string length is 2
 * / (limited)
 * \\ (limited)
 
-That's also important for the *optional* `?override=` GET parameter (see below).
+That's also important for the *optional* `?override=` GET parameter (see above).
 
-### Readonly mode
-You can use the script regularily, but pass `?readonly`. That will only return/draw the current
-value without writing any files or cookies. The value is not changed then. So one can view it without
-access to the file system or the CLI mode.
-
-### OVERRIDE
-If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
-`$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
-string (or just another host you define there).
-
-I don't really like it, but if you need this feature, just use it. Works great.
-
-Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
-arbitrary parameter (also important for security). Thus, you first have to create a value file to the
-corresponding string!
+### TODO
+...
 
 ## Configuration
+The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
+your own configuration (via `-c/--config`)!
 
 ### Configuration parameters
 
