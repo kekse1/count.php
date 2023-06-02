@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.2**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.4**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -59,6 +59,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('FONTS', 'fonts');`
 * `define('FG', '0, 0, 0, 1');`
 * `define('BG', '255, 255, 255, 0');`
+* `define('AA', true);`
 
 They are located on top of the file.
 
@@ -154,6 +155,7 @@ available GET parameters are:
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
 * `?x=(int)` [2]
 * `?y=(int)` [0]
+* `?aa=(1|0)` [1]
 
 `x` and `y` are just moving the text along this both axis (in px).
 `fg` and `bg` can be 'rgb()', 'rgba()' or just the 3 bytes and optionally a floating point number
@@ -161,6 +163,9 @@ between 0 and 1 for the alpha component.
 `pad` is the space above and below the text, `space` is to the left and the right.
 `size` is a font size in 'pt' or 'px' (ain't sure atm x)~, and the `font` needs to be installed in
 the 'FONTS' directory, as '.ttf'.
+The 'aa' parameter needs to be '0' or '1', to configure anti-aliased text.
+
+All parameters are optional, but the `?draw` needs to be set if you want a graphical output.
 
 #### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
