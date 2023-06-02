@@ -152,6 +152,15 @@ available GET parameters are:
 * `?font=(string)` [SourceCodePro]
 * `?fg=(string)` [rgba(0, 0, 0, 1)]
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
+* `?x=(int)` [2]
+* `?y=(int)` [0]
+
+`x` and `y` are just moving the text along this both axis (in px).
+`fg` and `bg` can be 'rgb()', 'rgba()' or just the 3 bytes and optionally a floating point number
+between 0 and 1 for the alpha component.
+`pad` is the space above and below the text, `space` is to the left and the right.
+`size` is a font size in 'pt' or 'px' (ain't sure atm x)~, and the `font` needs to be installed in
+the 'FONTS' directory, as '.ttf'.
 
 #### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
