@@ -80,7 +80,7 @@ arbitrary parameter (also important for security). Thus, you first have to creat
 corresponding string!
 
 ### Readonly mode
-You can use the script regularily, but pass `?readonly=(1|y)`. That will only return/draw the current
+You can use the script regularily, but pass `?readonly`. That will only return/draw the current
 value without writing any files or cookies. The value is not changed then. So one can view it without
 access to the file system or the CLI mode.
 
