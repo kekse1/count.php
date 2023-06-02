@@ -8,7 +8,7 @@ It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**
 * [Configuration](#configuration)
 * [Drawing](#drawing)
 * [CLI Mode](#cli-mode)
-* [BTW](#btw)
+* [Original](#original)
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -218,7 +218,7 @@ just use multiple argv[] (space divided). .. if not specified, the default is to
 Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
 please select only one in each call (otherwise any first occurence will select the called function).
 
-## BTW..
+## Original
 The **[original version](php/original.php)** was a very tiny script as lil' helper for my
 web projects. It rised a lot - see for yourself! :)~
 
