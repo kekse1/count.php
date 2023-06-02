@@ -1,5 +1,5 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.12.2**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.12.3**!
 
 ## News
 FINALLY FINISHED the script (as far as one can claim that for software ;-) ..!
@@ -60,7 +60,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('SPACE', 1);`
 * `define('SPACE_LIMIT', 256);`
 * `define('PAD', 1);`
-* `define('PAD_LIMIT', 192);`
+* `define('PAD_LIMIT', 256);`
 * `define('FONT', 'SourceCodePro');`
 * `define('FONTS', 'fonts');`
 * `define('FG', '0, 0, 0, 1');`
