@@ -1,11 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.1**!
-
-## News
-FINALLY FINISHED the script (as far as one can claim that for software..)! Last TODO items
-were: (a) the \<img\> drawing, .. (b) the 'OVERRIDE' setting. Both are working right now! :-D
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.2**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -80,6 +76,32 @@ I don't really like it, but if you need this feature, just use it. Works great.
 Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
 arbitrary parameter (also important for security). Thus, you first have to create a value file to the
 corresponding string!
+
+### String filter
+All `$_SERVER` and `$_GET` are filtered to reach more security.
+
+I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
+`get_param()`.. the `secure_host()` stayed, but it also uses the abstract `secure()`, with the difference
+of sending the result string through `strtolower()`.
+
+So here you gotta know which characters you can pass (maximum string length is 255 characters, btw..):
+
+* a-z
+* A-Z
+* 0-9
+* . (limited)
+* ,
+* :
+* -
+* +
+* (
+* )
+* / (limited)
+* \\ (limited)
+
+That's also important for the `?override=` GET parameter.. and I left the `secure_host()` function existent,
+but internally it uses the new `secure()` function - the difference here is that the whole result string is
+also running through `strtolower()` (as hostnames are case-insensitive etc.).
 
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
