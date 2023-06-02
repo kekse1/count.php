@@ -1,13 +1,9 @@
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.12.3**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.0**!
 
 ## News
-FINALLY FINISHED the script (as far as one can claim that for software ;-) ..!
-
-Next point: the 'OVERRIDE' setting. So one can `?override=(host)` to (OPTIONALLY) count values
-also for external hosts, etc.. I don't really like this setting, but sometimes it makes sense.
-
-For this (only!) the AUTO setting is used like (false), so only configured hosts/files are allowed.
+FINALLY FINISHED the script (as far as one can claim that for software..)! Last TODO items
+were: (a) the \<img\> drawing, .. (b) the 'OVERRIDE' setting. Both are working right now! :-D
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -43,7 +39,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('AUTO', 32);`
 * `define('THRESHOLD', 7200);`
 * `define('PATH', 'count');`
-* `define('OVERRIDE', false);` (TODO!)
+* `define('OVERRIDE', false);`
 * `define('CLIENT', true);`
 * `define('SERVER', true);`
 * `define('HASH', 'sha3-256');`
@@ -71,6 +67,17 @@ They are located on top of the file.
 It'd be better to create a '.htaccess' file with at least `Deny from all` in your 'PATH' directory
 and maybe also in the 'FONTS' directory, to be absolutely sure. But consider that not every HTTPD
 supports such a file..
+
+### OVERRIDE
+If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
+`$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
+string (or just another host you define there), so REMOTE counting is possible with this setting..
+
+I don't really like it, but if you need this feature, just use it. Works great.
+
+Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
+arbitrary parameter (also important for security). Thus, you first have to create a value file to the
+corresponding string!
 
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
