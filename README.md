@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
 
 # count.php
-It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.4**!
+It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.13.5**!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
