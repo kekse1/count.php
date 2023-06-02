@@ -45,7 +45,7 @@ it now as simple `<img src="..?draw[...]">`! :D~
 * `define('CONTENT', 'text/plain;charset=UTF-8');`
 * `define('CLEAN', true);`
 * `define('LIMIT', 32768);`
-* `define('LOG', 'ERROR.log');`
+* `define('LOG', 'count.log');`
 * `define('ERROR', '/');`
 * `define('NONE', '/');`
 * `define('DRAW', true);`
