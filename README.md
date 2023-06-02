@@ -3,6 +3,13 @@
 # count.php
 It's a universal counter script. Still beta (until **you** tested it ;)~ ... v**2.14.7**!
 
+## Index
+* [Functionality, Security & Efficiency](#functionality-security--efficiency)
+* [Configuration](#configuration)
+* [Drawing](#drawing)
+* [CLI Mode](#cli-mode)
+* [BTW](#btw)
+
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
 `$_SERVER` and `$_GET` variables are filtered, so no code injection or file hijacking is
@@ -29,6 +36,48 @@ Anything else to mention here? Yes, one point: by default the script generates a
 output, so you can easily embed the counting value via 'XMLHttpRequest()' or the 'Fetch API';
 BUT I've finally managed now the \<img\> drawing facilities (see below!), so you can also embed
 it now as simple `<img src="..?draw[...]">`! :D~
+
+### String filter
+All `$_SERVER` and `$_GET` are filtered to reach more security.
+
+I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
+`get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()` does
+a `strtolower()` and the `secure_path()` also removes any '+', '-' and '~' (special characters to
+mark file types ('~' are value files, '-' are cache counters .. for amount of ip/timestamp files in
+the '+' marked directories - all for hosts).
+
+So here you gotta know which characters you can pass (maximum string length is 255 characters, btw.):
+
+* a-z
+* A-Z
+* 0-9
+* . (limited)
+* ,
+* :
+* \- (partially)
+* \+ (partially)
+* (
+* )
+* / (limited)
+* \\ (limited)
+
+That's also important for the *optional* `?override=` GET parameter (see below).
+
+### Readonly mode
+You can use the script regularily, but pass `?readonly`. That will only return/draw the current
+value without writing any files or cookies. The value is not changed then. So one can view it without
+access to the file system or the CLI mode.
+
+### OVERRIDE
+If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
+`$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
+string (or just another host you define there).
+
+I don't really like it, but if you need this feature, just use it. Works great.
+
+Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
+arbitrary parameter (also important for security). Thus, you first have to create a value file to the
+corresponding string!
 
 ## Configuration
 
@@ -68,7 +117,7 @@ It'd be better to create a '.htaccess' file with at least `Deny from all` in you
 and maybe also in the 'FONTS' directory, to be absolutely sure. But consider that not every HTTPD
 supports such a file..
 
-#### Relative and absolute paths
+### Relative and absolute paths
 Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
 between 'count/' and './count'.
 
@@ -84,90 +133,10 @@ the 'count/' directory will be searched in the script's location, so './php/coun
 
 '../' is not affected by this. If you need a path above script's directory, use './../'! :)~
 
-### OVERRIDE
-If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
-`$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
-string (or just another host you define there).
-
-I don't really like it, but if you need this feature, just use it. Works great.
-
-Caution: the 'AUTO' setting is also overridden in this case, so it's not possible to always use any
-arbitrary parameter (also important for security). Thus, you first have to create a value file to the
-corresponding string!
-
-### Readonly mode
-You can use the script regularily, but pass `?readonly`. That will only return/draw the current
-value without writing any files or cookies. The value is not changed then. So one can view it without
-access to the file system or the CLI mode.
-
-### String filter
-All `$_SERVER` and `$_GET` are filtered to reach more security.
-
-I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
-`get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()` does
-a `strtolower()` and the `secure_path()` also removes any '+', '-' and '~' (special characters to
-mark file types ('~' are value files, '-' are cache counters .. for amount of ip/timestamp files in
-the '+' marked directories - all for hosts).
-
-So here you gotta know which characters you can pass (maximum string length is 255 characters, btw.):
-
-* a-z
-* A-Z
-* 0-9
-* . (limited)
-* ,
-* :
-* \- (partially)
-* \+ (partially)
-* (
-* )
-* / (limited)
-* \\ (limited)
-
-That's also important for the *optional* `?override=` GET parameter.
-
-### CLI mode
-**You can test your configuration's validity by running the script from command line (CLI mode)!**
-Just define the `--test/-t` (cmdline) parameter. ;)~
-
-As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
-as argument to the 'php' executable: `php count.php`. The shebang isn't possible, as web servers
-running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
-(b) thus the script can't send any `header()` (necessary inter alia to define the content type,
-as defined in 'CONTENT' option)! .. so please, just type `php count.php` in your shell.
-
-#### The argument vector
-Just run it without parameters to see all possible argv[] options.
-Here's also the current list:
-
-| Short | Long               | Description                                         |
-| ----: | :----------------- | :-------------------------------------------------: |
-|    -? | --help             | Mo' helping infoz, pls. (TODO)..                    |
-|    -V | --version          | Print current script's version.                     |
-|    -C | --copyright        | Shows the author of this script. /me ..             |
-|    -h | --hashes           | Available algorithms for 'HASH' config.             |
-|    -f | --fonts            | Available fonts for drawing \<img\>.                |
-|    -t | --types            | Available image types for drawing output.           |
-|    -c | --config           | Verify if current configuration is valid.           |
-|    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
-|    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
-|    -l | --clean [host,..]  | Clean all **outdated** (only!) ip/timestamp files.. |
-|    -p | --purge [host,..]  | Delete any host's ip cache directory (w/ caches)!   |
-|    -e | --errors           | Count error log lines, if existing..                |
-|    -u | --unlog            | Deletes the whole error log file, if already exists.|
-
-The optional [host,..] needs to be defined directly after the parameter, with optional multiples,
-separated by ',' (without any space or so).. and can thus hold many hosts in one argument, or you
-just use multiple argv[] (space divided). .. if not specified, the default is to take *any* host.
-
-#### Default output
-Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
-please select only one in each call (otherwise any first occurence will select the called function).
-
-### Drawing
+## Drawing
 Just finished the \<img\> drawing support (using here 'image/png' Content-Type)! :-D
 
-#### Usage
+### Usage
 To use it, enable the 'DRAW' option and call script with (at least!) '?draw' GET parameter. The
 available GET parameters are:
 
@@ -195,7 +164,7 @@ recommended! Example given: 'jpg' does not have the best alpha-channel (transpar
 All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
 if allowed by 'DRAW' configuration).
 
-#### Dependencies
+### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
 regular 'text/plain' output function of this count.php! AND the GD library also needs "FreeType"
 support, as we're drawing with True Type Fonts (this is **not** checked within '-c/--config', btw.).
@@ -211,7 +180,45 @@ visible in this case at all).
 
 The second dependency is a configured 'FONTS' directory with '.ttf' fonts installed in it! ..
 
-### BTW..
+## CLI Mode
+**You can test your configuration's validity by running the script from command line (CLI mode)!**
+Just define the `--test/-t` (cmdline) parameter. ;)~
+
+As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
+as argument to the 'php' executable: `php count.php`. The shebang isn't possible, as web servers
+running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
+(b) thus the script can't send any `header()` (necessary inter alia to define the content type,
+as defined in 'CONTENT' option)! .. so please, just type `php count.php` in your shell.
+
+### The argument vector
+Just run it without parameters to see all possible argv[] options.
+Here's also the current list:
+
+| Short | Long               | Description                                         |
+| ----: | :----------------- | :-------------------------------------------------: |
+|    -? | --help             | Mo' helping infoz, pls. (TODO)..                    |
+|    -V | --version          | Print current script's version.                     |
+|    -C | --copyright        | Shows the author of this script. /me ..             |
+|    -h | --hashes           | Available algorithms for 'HASH' config.             |
+|    -f | --fonts            | Available fonts for drawing \<img\>.                |
+|    -t | --types            | Available image types for drawing output.           |
+|    -c | --config           | Verify if current configuration is valid.           |
+|    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
+|    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
+|    -l | --clean [host,..]  | Clean all **outdated** (only!) ip/timestamp files.. |
+|    -p | --purge [host,..]  | Delete any host's ip cache directory (w/ caches)!   |
+|    -e | --errors           | Count error log lines, if existing..                |
+|    -u | --unlog            | Deletes the whole error log file, if already exists.|
+
+The optional [host,..] needs to be defined directly after the parameter, with optional multiples,
+separated by ',' (without any space or so).. and can thus hold many hosts in one argument, or you
+just use multiple argv[] (space divided). .. if not specified, the default is to take *any* host.
+
+### Default output
+Without parameter, a helping 'syntax' output will be written to STDOUT. If you define one of these,
+please select only one in each call (otherwise any first occurence will select the called function).
+
+## BTW..
 The **[original version](php/original.php)** was a very tiny script as lil' helper for my
 web projects. It rised a lot - see for yourself! :)~
 
