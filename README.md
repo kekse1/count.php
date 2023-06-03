@@ -76,18 +76,18 @@ for amount of ip/timestamp files in the `+` marked directories - all for hosts).
 
 So here you gotta know which characters you can pass (maximum string length is 255 characters, btw.):
 
-* a-z
-* A-Z
-* 0-9
-* . (limited)
-* ,
-* :
-* \- (partially)
-* \+ (partially)
-* (
-* )
-* / (limited)
-* \\ (limited)
+* `a-z`
+* `A-Z`
+* `0-9`
+* `.` (limited)
+* `,`
+* `:`
+* `-` (partially)
+* `+` (partially)
+* `(`
+* `)`
+* `/` (limited)
+* `\` (limited)
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
