@@ -137,12 +137,12 @@ They are located on top of the file.
 * `define('DRAWING', true);`
 * `define('SIZE', 24);`
 * `define('SIZE_LIMIT', 512);`
-* `define('SPACE', 1);`
-* `define('SPACE_LIMIT', 256);`
-* `define('PAD', 1);`
-* `define('PAD_LIMIT', 256);`
 * `define('FONT', 'SourceCodePro');`
 * `define('FONTS', 'fonts');`
+* `define('H', 1);`
+* `define('H_LIMIT', 256);`
+* `define('V', 1);`
+* `define('V_LIMIT', 256);`
 * `define('FG', '0, 0, 0, 1');`
 * `define('BG', '255, 255, 255, 0');`
 * `define('AA', true);`
