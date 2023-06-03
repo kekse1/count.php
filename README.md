@@ -232,15 +232,13 @@ appending them as new `$argc` (space divided). If not specified, the functions w
 available hosts.
 
 ### GLOB support
-This is yet partially done, and will be continued to all the \[-v,-n,-l,-p\] (and maybe more??). At
-the moment it's already integrated in `--values/-v`. Worx so far..
+This is yet partially done, and will be continued to all the \[`-v`,`-n`,`-l`,`-p`\] (maybe more??).
+At the moment it's already integrated in `--values/-v`. Worx so far..
 
 As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
 
 After finishing this, I'll maybe start to implement `glob()` searches for IPs, to kinda manage them.
 Idea is to look at the intersect, which hosts were visited by one/some IP(s). .. **anyone other ideas??**
-.. `ban()`'d be real overload for a counter script.. but the nature of information says to me, there are
-other ways of managing ip addresses.. **please contact me with your ideas! :-)**
 
 ## Original
 The **[original version](php/original.php)** was a very tiny script as little helping hand for my web
