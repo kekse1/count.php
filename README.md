@@ -50,7 +50,7 @@ This would be great, because with every poll the timestamps get updated, so the 
 countings; periodically polled it makes you some 'session' styles by adapting the timestamp, that will
 never get too old this way.
 
-So, if you're periodically polling this script (I'm doing it via XMLHttpRequest()), the client is not
+So, if you're periodically polling this script (I'm doing it via `XMLHttpRequest()`), the client is not
 being counted again after the THRESHOLD time over this 'session', until he disconnects. Then coming
 back again _after_ the two hours (by default) he will get counted again. Pretty easy?
 
