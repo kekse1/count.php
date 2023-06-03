@@ -55,7 +55,7 @@ being counted again after the THRESHOLD time over this 'session', until he disco
 back again _after_ the two hours (by default) he will get counted again. Pretty easy?
 
 ### Override
-If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
+If(`OVERRIDE === true`), one can call the script's URL with `?override=(string)`, so neither regular
 `$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
 string (or just another host you define there).
 
