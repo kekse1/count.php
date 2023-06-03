@@ -67,6 +67,8 @@ had.
 Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
 your `DIR` directory!
 
+**BTW**: you could just set `define('HIDE', (string)rand());`. ;]~
+
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
 a random integer value.
