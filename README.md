@@ -199,6 +199,9 @@ support..
 All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
 if allowed by `DRAWING` configuration).
 
+And just to mention it: take a look at `?zero` and maybe also the `HIDE` setting, described somewhere
+above. They are changing the way the output image looks like.
+
 #### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
 regular `text/plain` output function of this count.php! AND the GD library also needs "FreeType"
