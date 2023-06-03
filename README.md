@@ -213,21 +213,21 @@ supported 'functions' (in CLI just call the script without arguments to see this
 
 | Short | Long               | Description                                         |
 | ----: | :----------------- | :-------------------------------------------------: |
-|    -? | --help             | Mo' helping infoz, pls. (TODO)..                    |
-|    -V | --version          | Print current script's version.                     |
-|    -C | --copyright        | Shows the author of this script. /me ..             |
-|    -h | --hashes           | Available algorithms for `HASH` config.             |
-|    -f | --fonts            | Available fonts for drawing `<img>`.                |
-|    -t | --types            | Available image types for drawing output.           |
-|    -c | --config           | Verify if current configuration is valid.           |
-|    -v | --values [\*]      | All runtime status infos. w/ cache synchronization. |
-|    -n | --sync [\*]        | Synchronize the cache with real counts (only)       |
-|    -l | --clean [\*]       | Clean all **outdated** (only!) ip/timestamp files.. |
-|    -p | --purge [\*]       | Delete any host's ip cache directory (w/ caches)!   |
-|    -e | --errors           | Count error log lines, if existing..                |
-|    -u | --unlog            | Deletes the whole error log file, if already exists.|
+|    `-?` | `--help`             | Mo' helping infoz, pls. (TODO)..                    |
+|    `-V` | `--version`          | Print current script's version.                     |
+|    `-C` | `--copyright`        | Shows the author of this script. /me ..             |
+|    `-h` | `--hashes`           | Available algorithms for `HASH` config.             |
+|    `-f` | `--fonts`            | Available fonts for drawing `<img>`.                |
+|    `-t` | `--types`            | Available image types for drawing output.           |
+|    `-c` | `--config`           | Verify if current configuration is valid.           |
+|    `-v` | `--values [*]`       | All runtime status infos. w/ cache synchronization. |
+|    `-n` | `--sync [*]`         | Synchronize the cache with real counts (only)       |
+|    `-l` | `--clean [*]`        | Clean all **outdated** (only!) ip/timestamp files.. |
+|    `-p` | `--purge [*]`        | Delete any host's ip cache directory (w/ caches)!   |
+|    `-e` | `--errors`           | Count error log lines, if existing..                |
+|    `-u` | `--unlog`            | Deletes the whole error log file, if already exists.|
 
-The optional [\*] needs to be defined directly after the parameter; can be multiple arguments by
+The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
 available hosts.
 
