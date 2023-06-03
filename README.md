@@ -135,7 +135,7 @@ supports such a file..
 
 ### Relative and absolute paths
 Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
-between `count/` and `./count`.
+between `count` and `./count`.
 
 The first one is a relative path from the current working directory of the running `php` process.
 
