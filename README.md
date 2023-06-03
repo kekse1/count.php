@@ -34,7 +34,7 @@ path), so webmasters can directly see what's maybe going wrong.. ;)~
 
 Anything else to mention here? Yes, one point: by default the script generates a `text/plain`
 output, so you can easily embed the counting value via `XMLHttpRequest()` or the `Fetch API`;
-BUT I've finally managed now the \<img\> drawing facilities (see below!), so you can also embed
+BUT I've finally managed now the `<img>` drawing facilities (see below!), so you can also embed
 it now as simple `<img src="..?draw[...]">`! :D~
 
 ### Readonly mode
@@ -192,7 +192,7 @@ web server..
 
 Runned by a web server with enabled DRAW option and also aktived via `?draw` will only call this drawing
 mode if module is installed. If not, the regular (text/plain) output will nevertheless be used; to avoid
-error output (even though it's bad that you're using an \<img\> tag..... but error output wouldn't be
+error output (even though it's bad that you're using an `<img>` tag..... but error output wouldn't be
 visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
@@ -217,7 +217,7 @@ supported 'functions' (in CLI just call the script without arguments to see this
 |    -V | --version          | Print current script's version.                     |
 |    -C | --copyright        | Shows the author of this script. /me ..             |
 |    -h | --hashes           | Available algorithms for `HASH` config.             |
-|    -f | --fonts            | Available fonts for drawing \<img\>.                |
+|    -f | --fonts            | Available fonts for drawing `<img>`.                |
 |    -t | --types            | Available image types for drawing output.           |
 |    -c | --config           | Verify if current configuration is valid.           |
 |    -v | --values [\*]      | All runtime status infos. w/ cache synchronization. |
