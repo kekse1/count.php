@@ -150,7 +150,7 @@ the `count/` directory will be searched in the script's location, so `./php/coun
 `../` is not affected by this. If you need a path above script's directory, use `./../`! :)~
 
 ## Drawing
-Just finished the \<img\> drawing support. As follows..
+Just finished the `<img>` drawing support. As follows..
 
 ### Usage
 To use it, enable the `DRAW` option and call script with (at least!) `?draw` GET parameter. The
