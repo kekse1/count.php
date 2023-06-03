@@ -59,6 +59,14 @@ without access to the file system or the CLI mode.
 The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
 otherwise, it'll count invisible this way. :)~
 
+### Private ('hide') mode
+By setting `HIDE` from (null) to a string, this string will be shown instead of the real count value.
+This feature is there for private couting, without letting the users known how much visitors you already
+had.
+
+Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
+your `DIR` directory!
+
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
 a random integer value.
@@ -113,6 +121,7 @@ They are located on top of the file.
 * `define('AUTO', 32);`
 * `define('THRESHOLD', 7200);`
 * `define('DIR', 'count');`
+* `define('HIDE', null);`
 * `define('OVERRIDE', false);`
 * `define('CLIENT', true);`
 * `define('SERVER', true);`
