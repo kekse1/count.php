@@ -2,7 +2,7 @@
 <img src="https://kekse.biz/php/count.php?draw&test&fg=120,130,40&size=48" />
 
 # count.php
-It's a universal counter script. ... v**2.15.2**!
+It's a universal counter script. ... v**2.15.4**!
 
 ## Index
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
@@ -60,14 +60,14 @@ The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<im
 otherwise, it'll count invisible this way. :)~
 
 ### Private ('hide') mode
-By setting `HIDE` from (null) to a string, this string will be shown instead of the real count value.
+By setting `HIDE` to true or a string, this string will be shown instead of the real count value.
 This feature is there for private couting, without letting the users known how much visitors you already
 had.
 
 Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
 your `DIR` directory!
 
-**BTW**: you could just set `define('HIDE', (string)rand());`. ;]~
+**BTW**: if `HIDE` is not a string, but (true), ouput will be a random integer. :]~
 
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
@@ -123,7 +123,7 @@ They are located on top of the file.
 * `define('AUTO', 32);`
 * `define('THRESHOLD', 7200);`
 * `define('DIR', 'count');`
-* `define('HIDE', null);`
+* `define('HIDE', false);`
 * `define('OVERRIDE', false);`
 * `define('CLIENT', true);`
 * `define('SERVER', true);`
