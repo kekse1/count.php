@@ -178,11 +178,11 @@ available GET parameters are:
 
 * `?draw`
 * `?size=(int)` [18]
-* `?space=(int)` [8]
-* `?pad=(int)` [4]
 * `?font=(string)` [SourceCodePro]
 * `?fg=(string)` [rgba(0, 0, 0, 1)]
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
+* `?h=(int)` [1]
+* `?v=(int)` [1]
 * `?x=(int)` [0]
 * `?y=(int)` [0]
 * `?aa=(1|0|y|n)` [true]
@@ -191,7 +191,7 @@ available GET parameters are:
 `x` and `y` are just moving the text along this both axis (in px).
 `fg` and `bg` can be `rgb()`, `rgba()` or just the 3 bytes and optionally a floating point number
 between 0 and 1 for the alpha component.
-`pad` is the space above and below the text, `space` is to the left and the right.
+`v` is the space above and below the text, `h` is to the left and the right.
 `size` is a font size in 'pt' or 'px' (ain't sure atm x)~, and the `font` needs to be installed in
 the `FONTS` directory, as `.ttf`. The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure
  anti-aliased text. Last but not least, the `?type` can atm be set to 'png' and 'jpg', whereas 'png'
@@ -234,21 +234,21 @@ as defined in `CONTENT` option)! .. so please, just type `php count.php` in your
 Just run it without parameters to see all possible `argv[]` options. Here's the current list of
 supported 'functions' (in CLI just call the script without arguments to see this list):
 
-| Short | Long               | Description                                         |
-| ----: | :----------------- | :-------------------------------------------------: |
-|    `-?` | `--help`             | Mo' helping infoz, pls. (TODO)..                    |
-|    `-V` | `--version`          | Print current script's version.                     |
-|    `-C` | `--copyright`        | Shows the author of this script. /me ..             |
-|    `-h` | `--hashes`           | Available algorithms for `HASH` config.             |
-|    `-f` | `--fonts`            | Available fonts for drawing `<img>`.                |
-|    `-t` | `--types`            | Available image types for drawing output.           |
-|    `-c` | `--config`           | Verify if current configuration is valid.           |
-|    `-v` | `--values [*]`       | All runtime status infos. w/ cache synchronization. |
-|    `-n` | `--sync [*]`         | Synchronize the cache with real counts (only)       |
-|    `-l` | `--clean [*]`        | Clean all **outdated** (only!) ip/timestamp files.. |
-|    `-p` | `--purge [*]`        | Delete any host's ip cache directory (w/ caches)!   |
-|    `-e` | `--errors`           | Count error log lines, if existing..                |
-|    `-u` | `--unlog`            | Deletes the whole error log file, if already exists.|
+|   Short | Long               | Description                                          |
+| ------: | :----------------- | :--------------------------------------------------: |
+|    `-?` | `--help`           | Mo' helping infoz, pls. (TODO)..                     |
+|    `-V` | `--version`        | Print current script's version.                      |
+|    `-C` | `--copyright`      | Shows the author of this script. /me ..              |
+|    `-h` | `--hashes`         | Available algorithms for `HASH` config.              |
+|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                 |
+|    `-t` | `--types`          | Available image types for drawing output.            |
+|    `-c` | `--config`         | Verify if current configuration is valid.            |
+|    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.  |
+|    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)        |
+|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..  |
+|    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!    |
+|    `-e` | `--errors`         | Count error log lines, if existing..                 |
+|    `-u` | `--unlog`          | Deletes the whole error log file, if already exists. |
 
 The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
