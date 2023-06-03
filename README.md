@@ -1,7 +1,8 @@
-<img src="https://kekse.biz/php/count.php?draw&fg=120,130,40&size=48&override=github:count.php" />
+<img src="https://kekse.biz/php/count.php?zero&override=github:count.php" />
+<img src="https://kekse.biz/php/count.php?draw&test&fg=120,130,40&size=48" />
 
 # count.php
-It's a universal counter script. ... v**2.14.11**!
+It's a universal counter script. ... v**2.15.0**!
 
 ## Index
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
@@ -37,11 +38,6 @@ output, so you can easily embed the counting value via `XMLHttpRequest()` or the
 BUT I've finally managed now the `<img>` drawing facilities (see below!), so you can also embed
 it now as simple `<img src="..?draw[...]">`! :D~
 
-### Readonly mode
-You can use the script regularily, but pass `?readonly`. That will only return/draw the current
-value without writing any files or cookies. The value is not changed then. So one can view it without
-access to the file system or the CLI mode.
-
 ### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
 
@@ -53,6 +49,19 @@ never get too old this way.
 So, if you're periodically polling this script (I'm doing it via `XMLHttpRequest()`), the client is not
 being counted again after the THRESHOLD time over this 'session', until he disconnects. Then coming
 back again _after_ the two hours (by default) he will get counted again. Pretty easy?
+
+### Readonly mode
+You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
+current value without writing any files or cookies. The value is not changed then. So one can view it
+without access to the file system or the CLI mode.
+
+### Zero mode
+The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
+otherwise, it'll count invisible this way. :)~
+
+### Test mode
+With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
+a random integer value.
 
 ### Override
 If(`OVERRIDE === true`), one can call the script's URL with `?override=(string)`, so neither regular
@@ -115,7 +124,7 @@ They are located on top of the file.
 * `define('LOG', 'count.log');`
 * `define('ERROR', '/');`
 * `define('NONE', '/');`
-* `define('DRAW', true);`
+* `define('DRAWING', true);`
 * `define('SIZE', 24);`
 * `define('SIZE_LIMIT', 512);`
 * `define('SPACE', 1);`
@@ -153,7 +162,7 @@ the `count/` directory will be searched in the script's location, so `./php/coun
 Just finished the `<img>` drawing support. As follows..
 
 ### Usage
-To use it, enable the `DRAW` option and call script with (at least!) `?draw` GET parameter. The
+To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. The
 available GET parameters are:
 
 * `?draw`
@@ -179,7 +188,7 @@ is absolutely recommended! Example given: 'jpg' does not have the best alpha-cha
 support..
 
 All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
-if allowed by `DRAW` configuration).
+if allowed by `DRAWING` configuration).
 
 #### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
@@ -190,10 +199,10 @@ The `-c/--config` test will also check if this library is installed, but MAYBE i
 available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
 web server..
 
-Runned by a web server with enabled DRAW option and also aktived via `?draw` will only call this drawing
-mode if module is installed. If not, the regular (text/plain) output will nevertheless be used; to avoid
-error output (even though it's bad that you're using an `<img>` tag..... but error output wouldn't be
-visible in this case at all).
+Runned by a web server with enabled `DRAWING` option and also aktived via `?draw` will only call this
+drawing mode if module is installed. If not, the regular (text/plain) output will nevertheless be used;
+to avoid error output (even though it's bad that you're using an `<img>` tag..... but error output
+wouldn't be visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
 
