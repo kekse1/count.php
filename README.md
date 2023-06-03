@@ -208,7 +208,7 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 as defined in `CONTENT` option)! .. so please, just type `php count.php` in your shell.
 
 ### The argument vector
-Just run it without parameters to see all possible argv[] options. Here's the current list of
+Just run it without parameters to see all possible `argv[]` options. Here's the current list of
 supported 'functions' (in CLI just call the script without arguments to see this list):
 
 | Short | Long               | Description                                         |
@@ -228,7 +228,7 @@ supported 'functions' (in CLI just call the script without arguments to see this
 |    -u | --unlog            | Deletes the whole error log file, if already exists.|
 
 The optional [\*] needs to be defined directly after the parameter; can be multiple arguments by
-appending them as new $argc (space divided). If not specified, the functions will read in all
+appending them as new `$argc` (space divided). If not specified, the functions will read in all
 available hosts.
 
 ### GLOB support
