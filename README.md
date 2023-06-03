@@ -42,6 +42,18 @@ You can use the script regularily, but pass `?readonly`. That will only return/d
 value without writing any files or cookies. The value is not changed then. So one can view it without
 access to the file system or the CLI mode.
 
+### Refresh
+If you are able to reload the counter dynamically on your web sites, please do it.
+
+This would be great, because with every poll the timestamps get updated, so the 'THRESHOLD' setting
+(which gives you the logical, maximum time to refresh, btw.) is not the only prevention against multiple
+countings; periodically polled it makes you some 'session' styles by adapting the timestamp, that will
+never get too old this way.
+
+So, if you're periodically polling this script (I'm doing it via XMLHttpRequest()), the client is not
+being counted again after the THRESHOLD time over this 'session', until he disconnects. Then coming
+back again _after_ the two hours (by default) he will get counted again. Pretty easy?
+
 ### OVERRIDE
 If(OVERRIDE === true), one can call the script's URL with `?override=(string)`, so neither regular
 `$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
@@ -79,26 +91,15 @@ So here you gotta know which characters you can pass (maximum string length is 2
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
-### Refresh
-If you are able to reload the counter dynamically on your web sites, please do it.
-
-This would be great, because with every poll the timestamps get updated, so the 'THRESHOLD' setting
-(which gives you the logical, maximum time to refresh, btw.) is not the only prevention against multiple
-countings; periodically polled it makes you some 'session' styles by adapting the timestamp, that will
-never get too old this way.
-
-So, if you're periodically polling this script (I'm doing it via XMLHttpRequest()), the client is not
-being counted again after the THRESHOLD time over this 'session', until he disconnects. Then coming
-back again _after_ the two hours (by default) he will get counted again. Pretty easy?
-
-### TODO
-...
+### ...
+...TODO.
 
 ## Configuration
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
 your own configuration (via `-c/--config`)!
 
 ### Configuration parameters
+They are located on top of the file.
 
 * `define('AUTO', 32);`
 * `define('THRESHOLD', 7200);`
@@ -127,8 +128,6 @@ your own configuration (via `-c/--config`)!
 * `define('BG', '255, 255, 255, 0');`
 * `define('AA', true);`
 * `define('TYPE', 'png');`
-
-They are located on top of the file.
 
 It'd be better to create a '.htaccess' file with at least `Deny from all` in your 'DIR' directory
 and maybe also in the 'FONTS' directory, to be absolutely sure. But consider that not every HTTPD
@@ -220,16 +219,16 @@ supported 'functions' (in CLI just call the script without arguments to see this
 |    -f | --fonts            | Available fonts for drawing \<img\>.                |
 |    -t | --types            | Available image types for drawing output.           |
 |    -c | --config           | Verify if current configuration is valid.           |
-|    -v | --values [host,..] | All runtime status infos. w/ cache synchronization. |
-|    -n | --sync [host,..]   | Synchronize the cache with real counts (only)       |
-|    -l | --clean [host,..]  | Clean all **outdated** (only!) ip/timestamp files.. |
-|    -p | --purge [host,..]  | Delete any host's ip cache directory (w/ caches)!   |
+|    -v | --values [*]       | All runtime status infos. w/ cache synchronization. |
+|    -n | --sync [*]         | Synchronize the cache with real counts (only)       |
+|    -l | --clean [*]        | Clean all **outdated** (only!) ip/timestamp files.. |
+|    -p | --purge [*]        | Delete any host's ip cache directory (w/ caches)!   |
 |    -e | --errors           | Count error log lines, if existing..                |
 |    -u | --unlog            | Deletes the whole error log file, if already exists.|
 
-The optional [host,..] needs to be defined directly after the parameter; can be multiple arguments,
-by just appending them as new arguments (space divided). If not specified, the functions will take
-all available hosts.
+The optional [*] needs to be defined directly after the parameter; can be multiple arguments by
+appending them as new $argc (space divided). If not specified, the functions will read in all
+available hosts.
 
 ### GLOB support
 This is yet partially done, and will be continued to all the \[-v,-n,-l,-p\] (and maybe more??). At
