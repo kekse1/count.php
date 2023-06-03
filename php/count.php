@@ -2,19 +2,11 @@
 
 /*
  * Copyright (c) Sebastian Kucharczyk <kuchen@kekse.biz>
-<<<<<<< HEAD
- * v2.14.10
- */
-
-//
-define('VERSION', '2.14.10');
-=======
  * v2.14.11
  */
 
 //
 define('VERSION', '2.14.11');
->>>>>>> 3672d7aba7a0e872ad2076bb255ff1eecff3fccb
 define('COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 
 //
