@@ -150,7 +150,7 @@ the 'count/' directory will be searched in the script's location, so './php/coun
 '../' is not affected by this. If you need a path above script's directory, use './../'! :)~
 
 ## Drawing
-Just finished the \<img\> drawing support (using here 'image/png' Content-Type)! :-D
+Just finished the \<img\> drawing support. As follows..
 
 ### Usage
 To use it, enable the 'DRAW' option and call script with (at least!) '?draw' GET parameter. The
@@ -180,7 +180,7 @@ recommended! Example given: 'jpg' does not have the best alpha-channel (transpar
 All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
 if allowed by 'DRAW' configuration).
 
-### Dependencies
+#### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
 regular 'text/plain' output function of this count.php! AND the GD library also needs "FreeType"
 support, as we're drawing with True Type Fonts (this is **not** checked within '-c/--config', btw.).
