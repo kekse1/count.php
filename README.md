@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.15.6**!
+It's a universal counter script. ... v**2.15.7**!
 
 ## Index
 * [News](#news)
@@ -239,7 +239,7 @@ supported 'functions' (in CLI just call the script without arguments to see this
 
 |   Short | Long               | Description                                          |
 | ------: | :----------------- | :--------------------------------------------------: |
-|    `-?` | `--help`           | Mo' helping infoz, pls. (TODO)..                     |
+|    `-?` | `--help`           | Shows the link to this website..                     |
 |    `-V` | `--version`        | Print current script's version.                      |
 |    `-C` | `--copyright`      | Shows the author of this script. /me ..              |
 |    `-h` | `--hashes`         | Available algorithms for `HASH` config.              |
