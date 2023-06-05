@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.15.8**!
+It's a universal counter script. ... v**2.15.9**!
 
 ## Index
 * [News](#news)
@@ -13,6 +13,7 @@ It's a universal counter script. ... v**2.15.8**!
 
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased. :-D
+* And some minor performance upgrades are also in progress.. and a bit more!
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
