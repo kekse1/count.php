@@ -4,11 +4,15 @@
 It's a universal counter script. ... v**2.15.5**!
 
 ## Index
+* [News](#news)
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
 * [Configuration](#configuration)
 * [Drawing](#drawing)
 * [CLI Mode](#cli-mode)
 * [Original](#original)
+
+## News
+* Currently working on some last CLI functions. After that, the major version can be increased. :-D
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
