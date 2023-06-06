@@ -1,10 +1,11 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.16.4**!
+It's a universal counter script. ... v**2.16.6**!
 
 ## Index
 * [News](#news)
+* [Issues](#issues)
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
 * [Configuration](#configuration)
 * [Drawing](#drawing)
@@ -14,6 +15,10 @@ It's a universal counter script. ... v**2.16.4**!
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased. :-D
 * And some minor performance upgrades are also in progress.. and a bit more!
+
+## Issues
+* I think Windows is not yet supported (because I'm using `/` as path delimiter **atm**). But it's TODO!
+* And I didn't test against PHP **v8** support (also TODO)..
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
