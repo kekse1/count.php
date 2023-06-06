@@ -155,9 +155,9 @@ They are located on top of the file.
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory
 and maybe also in the `FONTS` directory, to be absolutely sure. But consider that not every HTTPD
-supports such a file..
+supports such a file.
 
-### Relative and absolute paths
+### Relative paths
 Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
 between `count` and `./count`.
 
