@@ -107,15 +107,14 @@ So here you gotta know which characters you can pass (maximum string length is 2
 * `a-z`
 * `A-Z`
 * `0-9`
+* `/` (limited)
 * `.` (limited)
-* `,`
-* `:`
 * `-` (partially)
 * `+` (partially)
+* `,`
+* `:`
 * `(`
 * `)`
-* `/` (limited)
-* `\` (limited)
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
