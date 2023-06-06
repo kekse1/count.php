@@ -1,7 +1,11 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
+<<<<<<< HEAD
 It's a universal counter script. ... v**2.16.6**!
+=======
+It's a universal counter script. ... v**2.16.5**!
+>>>>>>> 6a9b89185fc8cfc5831c19b215c4d7a1a9e9dc98
 
 ## Index
 * [News](#news)
@@ -160,9 +164,9 @@ They are located on top of the file.
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory
 and maybe also in the `FONTS` directory, to be absolutely sure. But consider that not every HTTPD
-supports such a file..
+supports such a file.
 
-### Relative and absolute paths
+### Relative paths
 Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
 between `count` and `./count`.
 
