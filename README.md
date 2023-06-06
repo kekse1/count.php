@@ -132,11 +132,11 @@ They are located on top of the file.
 * `define('THRESHOLD', 7200);`
 * `define('DIR', 'count');`
 * `define('HIDE', false);`
-* `define('OVERRIDE', false);`
 * `define('CLIENT', true);`
 * `define('SERVER', true);`
+* `define('OVERRIDE', false);`
 * `define('HASH', 'sha3-256');`
-* `define('HASH_IP', true);`
+* `define('HASH_IP', false);`
 * `define('CONTENT', 'text/plain;charset=UTF-8');`
 * `define('CLEAN', true);`
 * `define('LIMIT', 32768);`
