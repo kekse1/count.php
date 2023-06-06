@@ -1,11 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-<<<<<<< HEAD
 It's a universal counter script. ... v**2.16.6**!
-=======
-It's a universal counter script. ... v**2.16.5**!
->>>>>>> 6a9b89185fc8cfc5831c19b215c4d7a1a9e9dc98
 
 ## Index
 * [News](#news)
