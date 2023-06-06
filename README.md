@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.16.6**!
+It's a universal counter script. ... v**2.16.7**!
 
 ## Index
 * [News](#news)
@@ -17,8 +17,8 @@ It's a universal counter script. ... v**2.16.6**!
 * And some minor performance upgrades are also in progress.. and a bit more!
 
 ## Issues
-* I think Windows is not yet supported (because I'm using `/` as path delimiter **atm**). But it's TODO!
-* And I didn't test against PHP **v8** support (also TODO)..
+* I didn't test against PHP **v8** support (also TODO)..
+* **You** should also test this script, including it's security.. thx.
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
