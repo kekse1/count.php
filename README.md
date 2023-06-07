@@ -17,7 +17,7 @@ It's a universal counter script. ... v**2.18.4**!
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased.
 * And some minor performance and security upgrades are also in progress.. and a bit more!
-* Everything is not in the `namespace counter`, so all the functions are not defined globally!
+* Everything is in the `namespace counter` now (so all the functions are not defined globally)!
 
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
