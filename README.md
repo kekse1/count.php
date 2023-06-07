@@ -343,7 +343,7 @@ drawing mode if module is installed. If not, the regular (text/plain) output wil
 to avoid error output (even though it's bad that you're using an `<img>` tag..... but error output
 wouldn't be visible in this case at all).
 
-The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
+The second dependency is a configured `FONTS` directory with `.ttf` fonts installed in it! ..
 
 ## Configuration
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
