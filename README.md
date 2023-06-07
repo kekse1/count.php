@@ -50,7 +50,7 @@ script. And using only one file and parse/render it by myself is not recommended
 inefficient.. the file system should be a great choice (and is only being used if `SERVER` is
 set to `(true)`! :)~
 
-### Server and Client modes
+### Server and/or Client
 If a cookie (if actived `CLIENT`) already confirmed that the client connected within the
 `THRESHOLD` (2 hours by default), no `SERVER` test will be done after this. And if a cookie
 doesn't work, there's still this IP test left (if `SERVER` enabled).
