@@ -66,8 +66,8 @@ the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have b
 than `THRESHOLD` (by default 2 hours) seconds before).
 
 ### Logging
-Last but not least: every error will be appended to the `count.log` file (configurable in it's
-path), so webmasters can directly see what's maybe going wrong.. ;)~
+Most errors will be appended to the `count.log` file (configurable via `LOG`), so webmasters
+etc. can directly see what's maybe going wrong.
 
 Due to security, not everything is being logged. Especially where one could define own $_GET[*] or
 so, which could end up in floating the log file..
