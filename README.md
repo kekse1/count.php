@@ -62,7 +62,7 @@ The possible, possibly complex rest is described in the [Configuration section](
 ### Dependencies
 **NO** dependencies.
 
-Except if you're enabling the `DRAWING` configuration. In this case it's the
+**Except** if you're enabling the `DRAWING` configuration. In this case it's the
 '[**GD Library**](https://www.php.net/manual/en/book.image.php)'. More infos below, in the
 [Drawing section](#drawing) and it's [`DRAWING dependencies`](#drawing-dependencies) sub section.
 
@@ -328,9 +328,11 @@ and maybe also the `HIDE` setting, described somewhere above.. They are changing
 output image looks like.
 
 ### `DRAWING` dependencies
-Important: the GD library has to be installed for this feature. If it isn't, you can only use the
-regular `text/plain` output function of this count.php! AND the GD library also needs "FreeType"
-support, as we're drawing with True Type Fonts (this is **not** checked within `-c/--config`, btw.).
+Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
+for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
+
+AND the GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this
+is **not** checked within `-c/--config`, btw.).
 
 The `-c/--config` test will also check if this library is installed, but MAYBE it's installed, but not
 available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
