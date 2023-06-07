@@ -407,8 +407,10 @@ reason to change this: the constants are in the global namespace, that's bad.. b
 I'm 'upgrading' to classes, so the config could be defined in there.
 
 Alternatively I'm thinking about a `COUNT_` prefix for all these constants, as they're defined in the
-global scope.. and btw.: usually I've used a `config.inc.php`, but as it's such a 'tiny' script, I
-decided to put everything down into just one `.php` file..!
+global scope..
+
+And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny' script, I decided to
+put everything down into just one `.php` file..!
 
 ##### * Why not a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
