@@ -203,6 +203,9 @@ need to set this argument to a host string, which will overwrite the regular `HO
 If called w/ `$_readonly = false` and in RAW mode, every call of `counter()` will increase the counter
 value, without `THRESHOLD` testing, etc. (as there's neither cookies available, nor an IP address).
 
+And btw: I'll extend it this way, that in `RAW` mode any `die()` are going to be replaced by `throw`
+(which is easily managed in my abstract function(s) for this).
+
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
 Just define the `--test/-t` (cmdline) parameter. ;)~
