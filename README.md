@@ -3,7 +3,7 @@
 # count.php
 It's a universal counter script. ... v**2.17.1**!
 
-The Copyright is [(c) Sebastian Kucharczyk \<kuchen@kekse.biz\>](./COPYRIGHT.txt),
+The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
 and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' license).
 
 ## Index
