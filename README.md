@@ -3,9 +3,6 @@
 # count.php
 It's a universal counter script. ... v**2.17.1**!
 
-<span style="font-size: 85%;">The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
-and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' license).</span>
-
 ## Index
 * [News](#news)
 * [Issues](#issues)
@@ -13,7 +10,7 @@ and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' lic
 * [Configuration](#configuration)
 * [Drawing](#drawing)
 * [CLI Mode](#cli-mode)
-* [Original](#original)
+* [Original Version](#original)
 
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased. :-D
@@ -276,7 +273,10 @@ As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
 After finishing this, I'll maybe start to implement `glob()` searches for IPs, to kinda manage them.
 Idea is to look at the intersect, which hosts were visited by one/some IP(s). .. **anyone other ideas??**
 
-## Original
+## Original version
 The **[original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
 
+## Copyright and License
+The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
+and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' license).
