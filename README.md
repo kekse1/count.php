@@ -58,8 +58,8 @@ all! :)~
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
 ## Dependencies
-**NO** dependencies, except if you're setting the `DRAWING` (and use `?draw` or `?zero`). In this
-case it's the 'GD Library'.
+**NO** dependencies, except if you're enabling the `DRAWING` configuration. In this case it's the
+'[**GD Library**](https://www.php.net/manual/en/book.image.php)'.
 
 ### Output
 By default the script generates a `text/plain` output, so you can easily embed the counting value
