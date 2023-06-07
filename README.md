@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
-# count.php
+# [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**2.18.6**!
 
 ## Index
