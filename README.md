@@ -8,6 +8,7 @@ It's a universal counter script. ... v**2.18.5**!
 2. [Issues](#issues)
 4. [Description](#description)
 	* [Installation](#installation)
+	* [Dependencies](#dependencies)
 	* [Output](#output)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
@@ -50,14 +51,14 @@ It's a universal counter script. ... v**2.18.5**!
 `$_SERVER` and `$_GET` variables are filtered, so no code injection or file hijacking is
 possible; etc.); .. see also the '[String filter](#string-filter)' sub section below. :)~
 
-## Installation
+### Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
 in your web root, create a 'count/' directory in the same path (with `chmod 1777` maybe), and that's
 all! :)~
 
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
-## Dependencies
+### Dependencies
 **NO** dependencies, except if you're enabling the `DRAWING` configuration. In this case it's the
 '[**GD Library**](https://www.php.net/manual/en/book.image.php)'.
 
