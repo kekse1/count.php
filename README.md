@@ -7,10 +7,10 @@ It's a universal counter script. ... v**2.18.2**!
 * [News](#news)
 * [Issues](#issues)
 * [Description](#description)
-* [Configuration](#configuration)
 * [Modes](#modes)
 * [Drawing](#drawing)
-* [Original Version](#original)
+* [Configuration](#configuration)
+* [The original Version](#the-original-version)
 * [Copyright and License](#copyright-and-license)
 
 ## News
@@ -136,59 +136,8 @@ couting is not disturbed (otherwise it would end up in another file for w/ and w
 ### ...
 ...TODO.
 
-## Configuration
-The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
-your own configuration (via `-c/--config`)!
-
-### Configuration parameters
-They are located on top of the file.
-
-* `define('RAW', false);`
-* `define('AUTO', 32);`
-* `define('THRESHOLD', 7200);`
-* `define('DIR', 'count');`
-* `define('HIDE', false);`
-* `define('CLIENT', true);`
-* `define('SERVER', true);`
-* `define('OVERRIDE', false);`
-* `define('HASH', 'sha3-256');`
-* `define('HASH_IP', false);`
-* `define('CONTENT', 'text/plain;charset=UTF-8');`
-* `define('CLEAN', true);`
-* `define('LIMIT', 32768);`
-* `define('LOG', 'count.log');`
-* `define('ERROR', '/');`
-* `define('NONE', '/');`
-* `define('DRAWING', true);`
-* `define('SIZE', 24);`
-* `define('SIZE_LIMIT', 512);`
-* `define('FONT', 'SourceCodePro');`
-* `define('FONTS', 'fonts');`
-* `define('H', 0);`
-* `define('H_LIMIT', 256);`
-* `define('V', 0);`
-* `define('V_LIMIT', 256);`
-* `define('FG', '0, 0, 0, 1');`
-* `define('BG', '255, 255, 255, 0');`
-* `define('AA', true);`
-* `define('TYPE', 'png');`
-
-It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory
-and maybe also in the `FONTS` directory, to be absolutely sure. But consider that not every HTTPD
-supports such a file.
-
-### Relative paths
-Absolute paths work as usual. But relative paths are used here in two ways.
-
-If you define your `DIR`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
-be resolved from the location of your `count.php` script (using `__DIR__`). But to define this relative
-to your current working directory, you've to define those paths with starting `./` (it's where the script
-gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
-
-But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
-directory, please use `./../`..
-
 ## Modes
+Some of the modes are as follows.
 
 ### Readonly mode
 You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
@@ -339,8 +288,60 @@ wouldn't be visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
 
-## Original version
-The **[original version](php/original.php)** was a very tiny script as little helping hand for my web
+## Configuration
+The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
+your own configuration (via `-c/--config`)!
+
+### Configuration parameters
+They are located on top of the file.
+
+* `define('RAW', false);`
+* `define('AUTO', 32);`
+* `define('THRESHOLD', 7200);`
+* `define('DIR', 'count');`
+* `define('HIDE', false);`
+* `define('CLIENT', true);`
+* `define('SERVER', true);`
+* `define('OVERRIDE', false);`
+* `define('HASH', 'sha3-256');`
+* `define('HASH_IP', false);`
+* `define('CONTENT', 'text/plain;charset=UTF-8');`
+* `define('CLEAN', true);`
+* `define('LIMIT', 32768);`
+* `define('LOG', 'count.log');`
+* `define('ERROR', '/');`
+* `define('NONE', '/');`
+* `define('DRAWING', true);`
+* `define('SIZE', 24);`
+* `define('SIZE_LIMIT', 512);`
+* `define('FONT', 'SourceCodePro');`
+* `define('FONTS', 'fonts');`
+* `define('H', 0);`
+* `define('H_LIMIT', 256);`
+* `define('V', 0);`
+* `define('V_LIMIT', 256);`
+* `define('FG', '0, 0, 0, 1');`
+* `define('BG', '255, 255, 255, 0');`
+* `define('AA', true);`
+* `define('TYPE', 'png');`
+
+It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory
+and maybe also in the `FONTS` directory, to be absolutely sure. But consider that not every HTTPD
+supports such a file.
+
+### Relative paths
+Absolute paths work as usual. But relative paths are used here in two ways.
+
+If you define your `DIR`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
+be resolved from the location of your `count.php` script (using `__DIR__`). But to define this relative
+to your current working directory, you've to define those paths with starting `./` (it's where the script
+gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
+
+But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
+directory, please use `./../`..
+
+## The original version
+**[The original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
 
 ## Copyright and License
