@@ -11,6 +11,7 @@ It's a universal counter script. ... v**2.17.1**!
 * [Drawing](#drawing)
 * [CLI Mode](#cli-mode)
 * [Original Version](#original)
+* [Copyright and License](#copyright-and-license)
 
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased. :-D
