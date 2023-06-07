@@ -127,9 +127,9 @@ They are located on top of the file.
 * `define('SIZE_LIMIT', 512);`
 * `define('FONT', 'SourceCodePro');`
 * `define('FONTS', 'fonts');`
-* `define('H', 1);`
+* `define('H', 0);`
 * `define('H_LIMIT', 256);`
-* `define('V', 1);`
+* `define('V', 0);`
 * `define('V_LIMIT', 256);`
 * `define('FG', '0, 0, 0, 1');`
 * `define('BG', '255, 255, 255, 0');`
