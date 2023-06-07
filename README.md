@@ -179,7 +179,7 @@ couting is not disturbed (otherwise it would end up in another file for w/ and w
 ...
 
 ## Modes
-Some of the modes are as follows.
+Some of the modes are as follows. And they can **partially** be combined as well!
 
 ### Readonly mode
 You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
