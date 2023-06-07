@@ -52,19 +52,19 @@ set to `(true)`! :)~
 
 ### Server and Client modes
 If a cookie (if actived `CLIENT`) already confirmed that the client connected within the
-`THRESHOLD` (2 hours atm), no `SERVER` test will be done after this. And if a cookie doesn't
-work, there's still this IP test left (if `SERVER` enabled).
+`THRESHOLD` (2 hours by default), no `SERVER` test will be done after this. And if a cookie
+doesn't work, there's still this IP test left (if `SERVER` enabled).
 
-#### More privacy
+### More privacy
 And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
 also be hashed, so noone can see them.
 
-#### Cleaning
+### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
 the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have been written more
 than `THRESHOLD` (by default 2 hours) seconds before).
 
-#### Logging
+### Logging
 Last but not least: every error will be appended to the `count.log` file (configurable in it's
 path), so webmasters can directly see what's maybe going wrong.. ;)~
 
@@ -127,7 +127,7 @@ So here you gotta know which characters you can pass (maximum string length is 2
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
-### **FQDN**'s
+#### **FQDN**'s
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
  web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
 couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
