@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.18.1**!
+It's a universal counter script. ... v**2.18.2**!
 
 ## Index
 * [News](#news)
@@ -145,21 +145,15 @@ and maybe also in the `FONTS` directory, to be absolutely sure. But consider tha
 supports such a file.
 
 ### Relative paths
-Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
-between `count` and `./count`. The first one is a relative path from the current working directory
-of the running `php` process, the second version resolves the path from the directory of your `count.php`.
+Absolute paths work as usual. But relative paths are used here in two ways.
 
-**Question**: Should I swap these both? Not so sure atm..
+If you define your `DIR`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
+be resolved from the location of your `count.php` script (using `__DIR__`). But to define this relative
+to your current working directory (where the script get's called, mostly as symbolic link), you've to
+define the paths with starting `./`.
 
-So, if you have `./php/count.php`, but call a symlink `./count.php`, the configured `DIR` needs to
-be in e.g. `./count/`, **not** `./php/count/` (where the .php _file_ itself is).
-
-But if you configure it like the second version `./count` (with `./` start), then the script will
-resolve via `__DIR__` - so it's also a relative view, but from the directory the script is really
-installed in. .. so if you again call `./count.php` (the symlink to `./php/count.php`), this time
-the `count/` directory will be searched in the script's location, so `./php/count/`!
-
-`../` is not affected by this. If you need a path above script's directory, use `./../`! :)~
+But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
+directory, please use `./../`..
 
 ## Modes
 
