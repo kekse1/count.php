@@ -10,6 +10,8 @@ It's a universal counter script. ... v**2.18.2**!
 * [Modes](#modes)
 * [Drawing](#drawing)
 * [Configuration](#configuration)
+* [F.A.Q.](#faq)
+* [Reviews & Comments](#reviews-comments)
 * [The original version](#the-original-version)
 * [Copyright and License](#copyright-and-license)
 
@@ -339,6 +341,12 @@ gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/co
 
 But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
 directory, please use `./../`..
+
+## FAQ
+//**TODO**//
+
+## Reviews & Comments
+I got some comments, and I'm going to place them here (**TODO**!).
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
