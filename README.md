@@ -414,9 +414,9 @@ put everything down into just one `.php` file..!
 
 ##### * Why not a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
-I've just set a `namespace`, so everything is not in the global namespace. That should be enough..?
+I've just set a `namespace`, so everything is no longer in the global namespace.. maybe that's enough.
 
-##### * '[Composer](https://getcomposer.org/)' to 'install' this script?
+##### * Installation via '[Composer](https://getcomposer.org/)'?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
 dependencies** which the 'Composer' would need to install.
 
