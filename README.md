@@ -347,11 +347,9 @@ directory, please use `./../`..
 This section grew as I got comments on my code. And I'm inviting you to do a review, too! :)~
 
 ##### `define` for the configuration/settings?
-Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later.
-But maybe it will change, if I'm going to use a `class` l8rs..
-
-The only reason to change this: the constants are in the global namespace, that's bad.. but as I said:
-maybe I'm 'upgrading' to classes, so the config could be defined in there.
+Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later. The only
+reason to change this: the constants are in the global namespace, that's bad.. but as I said: maybe
+I'm 'upgrading' to classes, so the config could be defined in there.
 
 PS: Usually I've used a `config.inc.php`, but as it's such a 'tiny' script, I decided to put everything
 down into just one `.php` file..!
