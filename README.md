@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.18.2**!
+It's a universal counter script. ... v**2.18.3**!
 
 ## Index
 * [News](#news)
@@ -10,18 +10,19 @@ It's a universal counter script. ... v**2.18.2**!
 * [Modes](#modes)
 * [Drawing](#drawing)
 * [Configuration](#configuration)
-* [F.A.Q.](#faq)
-* [Reviews and Comments](#reviews-and-comments)
+* [FAQ, Reviews and Comments](#reviews-and-comments)
 * [The original version](#the-original-version)
 * [Copyright and License](#copyright-and-license)
 
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased.
 * And some minor performance and security upgrades are also in progress.. and a bit more!
+* Everything is not in the `namespace counter`, so all the functions are not defined globally!
 
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
+* After the `namespace` I'm thinking about using a `class` - but not sure if this is necessary...
 
 ## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -342,11 +343,16 @@ gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/co
 But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
 directory, please use `./../`..
 
-## FAQ
-//**TODO**//
+## FAQ, Reviews and Comments
+This section grew as I got comments on my code. And I'm inviting you to do a review, too! :)~
 
-## Reviews and Comments
-I got some comments, and I'm going to place them here (**TODO**!).
+### `define` for the configuration/settings?
+Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later.
+But maybe it will change, if I'm going to use a `class` l8rs..
+
+### Why not a `class`?
+Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
+I've just set a `namespace`, so everything is not in the global namespace. That should be enough..?
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
