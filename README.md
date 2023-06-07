@@ -28,7 +28,7 @@ It's a universal counter script. ... v**2.18.6**!
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
 6. [Drawing](#drawing)
-	* [Usage and parameters](#usage-and-parameters)
+	* [Parameters](#parameters)
 	* [Dependencies](#dependencies)
 8. [Configuration](#configuration)
 	* [Constants](#constants)
@@ -283,7 +283,7 @@ Idea is to look at the intersect, which hosts were visited by one/some IP(s). ..
 The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
 but I've also implemented some drawing routines, to embed the counter value as `<img>`. As follows..
 
-### Usage and parameters
+### Parameters
 To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. More
 isn't necessary, but there also also some GET parameters to adapt the drawing; as follows:
 
