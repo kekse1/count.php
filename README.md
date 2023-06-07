@@ -110,8 +110,8 @@ the `LIMIT` is exceeded..!
 Most errors will be appended to the `count.log` file (configurable via `LOG`), so webmasters
 etc. can directly see what's maybe going wrong.
 
-Due to security, not everything is being logged. Especially where one could define own $_GET[*] or
-so, which could end up in floating the log file..
+Due to security, not everything is being logged. Especially where one could define own `$_GET[*]`
+or so, which could end up in floating the log file..
 
 ### Errors
 _TODO_: In RAW mode errors **will** be thrown via `throw`, never `die()` or so.
