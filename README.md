@@ -1,16 +1,15 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.18.0**!
+It's a universal counter script. ... v**2.18.1**!
 
 ## Index
 * [News](#news)
 * [Issues](#issues)
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
 * [Configuration](#configuration)
+* [Modes](#modes)
 * [Drawing](#drawing)
-* [RAW mode](#raw-mode)
-* [CLI mode](#cli-mode)
 * [Original Version](#original)
 * [Copyright and License](#copyright-and-license)
 
@@ -60,29 +59,6 @@ never get too old this way.
 So, if you're periodically polling this script (I'm doing it via `XMLHttpRequest()`), the client is not
 being counted again after the THRESHOLD time over this 'session', until he disconnects. Then coming
 back again _after_ the two hours (by default) he will get counted again. Pretty easy?
-
-### Readonly mode
-You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
-current value without writing any files or cookies. The value is not changed then. So one can view it
-without access to the file system or the CLI mode.
-
-### Zero mode
-The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
-otherwise, it'll count invisible this way. :)~
-
-### Private ('hide') mode
-By setting `HIDE` to true or a string, this string will be shown instead of the real count value.
-This feature is there for private couting, without letting the users known how much visitors you already
-had.
-
-Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
-your `DIR` directory!
-
-**BTW**: if `HIDE` is not a string, but (true), ouput will be a random integer. :]~
-
-### Test mode
-With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
-a random integer value.
 
 ### Override
 If(`OVERRIDE === true`), one can call the script's URL with `?override=(string)`, so neither regular
@@ -181,6 +157,92 @@ the `count/` directory will be searched in the script's location, so `./php/coun
 
 `../` is not affected by this. If you need a path above script's directory, use `./../`! :)~
 
+## Modes
+
+### Readonly mode
+You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
+current value without writing any files or cookies. The value is not changed then. So one can view it
+without access to the file system or the CLI mode.
+
+### Zero mode
+The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
+otherwise, it'll count invisible this way. :)~
+
+### Private ('hide') mode
+By setting `HIDE` to true or a string, this string will be shown instead of the real count value.
+This feature is there for private couting, without letting the users known how much visitors you already
+had.
+
+Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
+your `DIR` directory!
+
+**BTW**: if `HIDE` is not a string, but (true), ouput will be a random integer. :]~
+
+### Test mode
+With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
+a random integer value.
+
+### RAW mode
+This mode is not tested very well yet, could you do it for me, please?
+
+By defining `RAW = true` the base counting function won't be called automatically, so that you've the
+chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
+nor graphical), and you just get the current value returned by the `counter()` function.
+
+The function to call from your scripts (after `require_once('count.php')` or so) is:
+
+`function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
+
+If you set the second argument of `counter()` to true, the value is also being increased etc., as usual.
+The first argument is (null) by default - but in RAW mode, where no `$_SERVER` is available, you really
+need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
+
+If called w/ `$_readonly = false` and in RAW mode, every call of `counter()` will increase the counter
+value, without `THRESHOLD` testing, etc. (as there's neither cookies available, nor an IP address).
+
+### CLI mode
+**You can test your configuration's validity by running the script from command line (CLI mode)!**
+Just define the `--test/-t` (cmdline) parameter. ;)~
+
+As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
+as argument to the `php` executable: `php count.php`. The shebang isn't possible, as web servers
+running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
+(b) thus the script can't send any `header()` (necessary inter alia to define the content type,
+as defined in `CONTENT` option)! .. so please, just type `php count.php` in your shell.
+
+#### The argument vector
+Just run it without parameters to see all possible `argv[]` options. Here's the current list of
+supported 'functions' (in CLI just call the script without arguments to see this list):
+
+|   Short | Long               | Description                                          |
+| ------: | :----------------- | :--------------------------------------------------: |
+|    `-?` | `--help`           | Shows the link to this website..                     |
+|    `-V` | `--version`        | Print current script's version.                      |
+|    `-C` | `--copyright`      | Shows the author of this script. /me ..              |
+|    `-h` | `--hashes`         | Available algorithms for `HASH` config.              |
+|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                 |
+|    `-t` | `--types`          | Available image types for drawing output.            |
+|    `-c` | `--config`         | Verify if current configuration is valid.            |
+|    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.  |
+|    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)        |
+|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..  |
+|    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!    |
+|    `-e` | `--errors`         | Count error log lines, if existing..                 |
+|    `-u` | `--unlog`          | Deletes the whole error log file, if already exists. |
+
+The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
+appending them as new `$argc` (space divided). If not specified, the functions will read in all
+available hosts.
+
+#### GLOB support
+This is yet partially done, and will be continued to all the \[`-v`,`-n`,`-l`,`-p`\] (maybe more??).
+At the moment it's already integrated in `--values/-v`. Worx so far..
+
+As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
+
+After finishing this, I'll maybe start to implement `glob()` searches for IPs, to kinda manage them.
+Idea is to look at the intersect, which hosts were visited by one/some IP(s). .. **anyone other ideas??**
+
 ## Drawing
 The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
 but I've also implemented some drawing routines, to embed the counter value as `<img>`. As follows..
@@ -232,62 +294,6 @@ to avoid error output (even though it's bad that you're using an `<img>` tag....
 wouldn't be visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
-
-## RAW mode
-By defining `RAW = true` the base counting function won't be called automatically, so that you've the
-chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
-nor graphical), and you just get the current value returned by the `counter()` function.
-
-The function to call from your scripts (after `require_once('count.php')` or so) is:
-
-`function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
-
-If you set the second argument of `counter()` to true, the value is also being increased etc., as usual.
-The first argument is (null) by default - but in RAW mode, where no $_SERVER is available, you  really
-need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
-
-## CLI mode
-**You can test your configuration's validity by running the script from command line (CLI mode)!**
-Just define the `--test/-t` (cmdline) parameter. ;)~
-
-As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
-as argument to the `php` executable: `php count.php`. The shebang isn't possible, as web servers
-running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
-(b) thus the script can't send any `header()` (necessary inter alia to define the content type,
-as defined in `CONTENT` option)! .. so please, just type `php count.php` in your shell.
-
-### The argument vector
-Just run it without parameters to see all possible `argv[]` options. Here's the current list of
-supported 'functions' (in CLI just call the script without arguments to see this list):
-
-|   Short | Long               | Description                                          |
-| ------: | :----------------- | :--------------------------------------------------: |
-|    `-?` | `--help`           | Shows the link to this website..                     |
-|    `-V` | `--version`        | Print current script's version.                      |
-|    `-C` | `--copyright`      | Shows the author of this script. /me ..              |
-|    `-h` | `--hashes`         | Available algorithms for `HASH` config.              |
-|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                 |
-|    `-t` | `--types`          | Available image types for drawing output.            |
-|    `-c` | `--config`         | Verify if current configuration is valid.            |
-|    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.  |
-|    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)        |
-|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..  |
-|    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!    |
-|    `-e` | `--errors`         | Count error log lines, if existing..                 |
-|    `-u` | `--unlog`          | Deletes the whole error log file, if already exists. |
-
-The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
-appending them as new `$argc` (space divided). If not specified, the functions will read in all
-available hosts.
-
-### GLOB support
-This is yet partially done, and will be continued to all the \[`-v`,`-n`,`-l`,`-p`\] (maybe more??).
-At the moment it's already integrated in `--values/-v`. Worx so far..
-
-As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
-
-After finishing this, I'll maybe start to implement `glob()` searches for IPs, to kinda manage them.
-Idea is to look at the intersect, which hosts were visited by one/some IP(s). .. **anyone other ideas??**
 
 ## Original version
 The **[original version](php/original.php)** was a very tiny script as little helping hand for my web
