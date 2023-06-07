@@ -163,9 +163,10 @@ supports such a file.
 
 ### Relative paths
 Absolute paths work as usual, but relative paths are used here in two ways; so there's a difference
-between `count` and `./count`.
+between `count` and `./count`. The first one is a relative path from the current working directory
+of the running `php` process, the second version resolves the path from the directory of your `count.php`.
 
-The first one is a relative path from the current working directory of the running `php` process.
+**Question**: Should I swap these both? Not so sure atm..
 
 So, if you have `./php/count.php`, but call a symlink `./count.php`, the configured `DIR` needs to
 be in e.g. `./count/`, **not** `./php/count/` (where the .php _file_ itself is).
