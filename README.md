@@ -4,17 +4,36 @@
 It's a universal counter script. ... v**2.18.5**!
 
 ## Index
-* [News](#news)
-* [Issues](#issues)
-* [Installation](#installation)
-* [Description](#description)
-* [Modes](#modes)
-* [Drawing](#drawing)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [FAQ, Reviews and Comments](#faq-reviews-and-comments)
-* [The original version](#the-original-version)
-* [Copyright and License](#copyright-and-license)
+1. [News](#news)
+2. [Issues](#issues)
+4. [Description](#description)
+	* [Installation](#installation)
+	* [Output](#output)
+	* [Storage](#storage)
+	* [Server and/or Client](#server-andor-client)
+	* [More privacy](#more-privacy)
+	* [Cleaning](#cleaning)
+	* [Logging](#logging)
+	* [Errors](#errors)
+	* [Refresh](#refresh)
+	* [Override](#override)
+	* [String filter](#string-filter)
+5. [Modes](#modes)
+	* [Readonly mode](#readonly-mode)
+	* [Zero mode](#zero-mode)
+	* [Hide mode](#hide-mode)
+	* [Test mode](#test-mode)
+	* [RAW mode](#raw-mode)
+	* [CLI mode](#cli-mode)
+6. [Drawing](#drawing)
+	* [Usage and parameters](#usage-and-parameters)
+	* [Dependencies](#dependencies)
+8. [Configuration](#configuration)
+	* [Constants](#constants)
+	* [Relative paths](#relative-paths)
+9. [FAQ](#faq)
+10. [The original version](#the-original-version)
+11. [Copyright and License](#copyright-and-license)
 
 ## News
 * Currently working on some last CLI functions. After that, the major version can be increased.
@@ -26,6 +45,11 @@ It's a universal counter script. ... v**2.18.5**!
 * **You** should also test this script, including it's security.. **thx**.
 * After the `namespace` I'm thinking about using a `class` - but not sure if this is necessary...
 
+## Description
+**It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
+`$_SERVER` and `$_GET` variables are filtered, so no code injection or file hijacking is
+possible; etc.); .. see also the '[String filter](#string-filter)' sub section below. :)~
+
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
 in your web root, create a 'count/' directory in the same path (with `chmod 1777` maybe), and that's
@@ -33,10 +57,9 @@ all! :)~
 
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
-## Description
-**It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
-`$_SERVER` and `$_GET` variables are filtered, so no code injection or file hijacking is
-possible; etc.); ..
+## Dependencies
+**NO** dependencies, except if you're setting the `DRAWING` (and use `?draw` or `?zero`). In this
+case it's the 'GD Library'.
 
 ### Output
 By default the script generates a `text/plain` output, so you can easily embed the counting value
@@ -305,7 +328,7 @@ The second dependency is a configured `FONTS` directory with '.ttf' fonts instal
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
 your own configuration (via `-c/--config`)!
 
-### Configuration parameters
+### Constants
 They are located on top of the file.
 
 * `define('RAW', false);`
@@ -354,9 +377,10 @@ But `../` is relative to the `__DIR__` - if you also want to make this relative 
 directory, please use `./../`..
 
 ## FAQ, Reviews and Comments
-This section grew as I got comments on my code. And I'm inviting you to do a review, too! :)~
+This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
+if you would like to review my code. I don't bite, promised! xD~
 
-##### `define` for the configuration/settings?
+##### * `define` for the configuration/settings?
 Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later. The only
 reason to change this: the constants are in the global namespace, that's bad.. but as I said: maybe
 I'm 'upgrading' to classes, so the config could be defined in there.
@@ -365,11 +389,11 @@ Alternatively I'm thinking about a `COUNT_` prefix for all these constants, as t
 global scope.. and btw.: usually I've used a `config.inc.php`, but as it's such a 'tiny' script, I
 decided to put everything down into just one `.php` file..!
 
-##### Why not a `class`?
+##### * Why not a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
 I've just set a `namespace`, so everything is not in the global namespace. That should be enough..?
 
-##### '[Composer](https://getcomposer.org/)' to 'install' this script?
+##### * '[Composer](https://getcomposer.org/)' to 'install' this script?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
 dependencies** which the 'Composer' would need to install.
 
