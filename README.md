@@ -239,7 +239,7 @@ To use it, enable the `DRAWING` option and call script with (at least!) `?draw` 
 isn't necessary, but there also also some GET parameters to adapt the drawing; as follows:
 
 * `?draw`
-* `?size=(int)` [18]
+* `?size=(int)` [24]
 * `?font=(string)` [SourceCodePro]
 * `?fg=(string)` [rgba(0, 0, 0, 1)]
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
