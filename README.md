@@ -401,7 +401,7 @@ directory, please use `./../`..
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
 if you would like to review my code. I don't bite, promised! xD~
 
-##### * `define` for the configuration/settings?
+##### * `define()` for the configuration/settings?
 Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later. The only
 reason to change this: the constants are in the global namespace, that's bad.. but as I said: maybe
 I'm 'upgrading' to classes, so the config could be defined in there.
