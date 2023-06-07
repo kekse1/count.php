@@ -281,7 +281,10 @@ Idea is to look at the intersect, which hosts were visited by one/some IP(s). ..
 
 ## Drawing
 The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
-but I've also implemented some drawing routines, to embed the counter value as `<img>`. As follows..
+but I've also implemented some drawing routines, to embed the counter value as `<img>`.
+
+If allowed by `DRAWING` setting, just use either `?draw` for all possible options, or just `?zero` to
+draw a (nearly) empty output image (hidden counter, e.g. .. whereas there's also the `HIDE` setting!).
 
 ### Parameters
 To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. More
