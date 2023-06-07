@@ -346,13 +346,20 @@ directory, please use `./../`..
 ## FAQ, Reviews and Comments
 This section grew as I got comments on my code. And I'm inviting you to do a review, too! :)~
 
-### `define` for the configuration/settings?
+##### `define` for the configuration/settings?
 Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later.
 But maybe it will change, if I'm going to use a `class` l8rs..
 
-### Why not a `class`?
+##### Why not a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
 I've just set a `namespace`, so everything is not in the global namespace. That should be enough..?
+
+##### '[Composer](https://getcomposer.org/)' to 'install' this script?
+I'm pretty sure there's no real 'installation' necessary here (just a few steps one can read in here);
+additionally, there are also **no real dependencies** which the 'Composer' needs to install.
+
+As a minimum installation: just copy this script to your web path, create a 'count' directory below (with
+`chmod 1777` maybe), and it'll work! ;)~
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
