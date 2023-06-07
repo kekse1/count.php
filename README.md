@@ -14,12 +14,12 @@ It's a universal counter script. ... v**2.18.1**!
 * [Copyright and License](#copyright-and-license)
 
 ## News
-* Currently working on some last CLI functions. After that, the major version can be increased. :-D
-* And some minor performance upgrades are also in progress.. and a bit more!
+* Currently working on some last CLI functions. After that, the major version can be increased.
+* And some minor performance and security upgrades are also in progress.. and a bit more!
 
 ## Issues
-* I didn't test against PHP **v8** support (also TODO)..
-* **You** should also test this script, including it's security.. thx.
+* Didn't test against PHP **v8** support (TODO);
+* **You** should also test this script, including it's security.. **thx**.
 
 ## Functionality, Security & Efficiency
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
