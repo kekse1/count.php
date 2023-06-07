@@ -284,14 +284,15 @@ negative values - as long as the resulting image won't rest up with size <1.. in
 be an error.
 
 `size` is a font size in 'pt' or 'px' (ain't sure atm x)~
+And the `font` needs to be installed in the `FONTS` directory, as `.ttf`.
 
-And the `font` needs to be installed in the `FONTS` directory, as `.ttf`. The `aa` parameter needs
-to be `0`, `1`, `y` or `n` to configure anti-aliased text. Last but not least, the `?type` can atm
- be set to `png` and `jpg`, whereas `png` is absolutely recommended! Example given: `jpg` does not
- have the best alpha-channel (transparency) support..
+The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased text.
 
-All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
-if allowed by `DRAWING` configuration).
+Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely
+preferred (example given: `jpg` does not have the best alpha-channel (transparency) support)!
+
+**All parameters are optional**, but the `?draw` needs to be set if you want a graphical output
+(only if allowed by `DRAWING` configuration).
 
 And just to mention it: take a look at `?zero` and maybe also the `HIDE` setting, described somewhere
 above. They are changing the way the output image looks like.
