@@ -6,7 +6,7 @@ It's a universal counter script. ... v**2.18.2**!
 ## Index
 * [News](#news)
 * [Issues](#issues)
-* [Functionality, Security & Efficiency](#functionality-security--efficiency)
+* [Description](#description)
 * [Configuration](#configuration)
 * [Modes](#modes)
 * [Drawing](#drawing)
@@ -21,32 +21,62 @@ It's a universal counter script. ... v**2.18.2**!
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
 
-## Functionality, Security & Efficiency
+## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
 `$_SERVER` and `$_GET` variables are filtered, so no code injection or file hijacking is
 possible; etc.); ..
 
+### Output
+By default the script generates a `text/plain` output, so you can easily embed the counting value
+via `XMLHttpRequest()` or the `Fetch API`. The real (HTTP-)`Content-Type` is configurable via the
+`CONTENT` setting (on top of the file - see the 'Configuration' section, below).
+
+BUT I've finally also managed the `<img>` drawing facilities (see below!), so you can also embed it
+now as simple `<img src="..?draw[...]">`!
+
+Only in the RAW mode (described somewhere below) there'll be no real output, so you can integrate this
+script in your own PHP projects; just use the `counter()` function (also described below).
+
+### Storage
 Uses the file system to store timestamp files for the client IPs (if actived `SERVER`); and
 counting this files (which is a security concern) is done cached via some special files (so
 no 'inefficient' `scandir()` is always necessary ;). The values itself are also located in
 the file system - one file for each host (secured auto-generation included, if you wish, and
 also with a limit in their amount - if you don't create the value files manually ;).
 
+The file system is usually top in performance. A real database would be overload for such a
+script. And using only one file and parse/render it by myself is not recommended, as it's very
+inefficient.. the file system should be a great choice (and is only being used if `SERVER` is
+set to (true))! :)~
+
+### Server and Client modes
 If a cookie (if actived `CLIENT`) already confirmed that the client connected within the
 `THRESHOLD` (2 hours atm), no `SERVER` test will be done after this. And if a cookie doesn't
-work, there's still this IP test left. If privacy is one of your concerns, the IPs (in their
-own files with timestamps) can also be hashed, so noone can see them.
+work, there's still this IP test left (if `SERVER` enabled).
 
+#### More privacy
+And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
+also be hashed, so noone can see them.
+
+#### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
-the CLI (cmd-line) mode).
+the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have been written more
+than `THRESHOLD` (by default 2 hours) seconds before).
 
+#### Logging
 Last but not least: every error will be appended to the `count.log` file (configurable in it's
 path), so webmasters can directly see what's maybe going wrong.. ;)~
 
-Anything else to mention here? Yes, one point: by default the script generates a `text/plain`
-output, so you can easily embed the counting value via `XMLHttpRequest()` or the `Fetch API`;
-BUT I've finally managed now the `<img>` drawing facilities (see below!), so you can also embed
-it now as simple `<img src="..?draw[...]">`! :D~
+Due to security, not everything is being logged. Especially where one could define own $_GET[*] or
+so, which could end up in floating the log file..
+
+### Errors
+_TODO_: In RAW mode errors **will** be thrown via `throw`, never `die()` or so.
+
+//**TODO**/describe `ERROR` and `NONE` settings.
+//**TODO**/describe sending headers, etc.
+//**TODO**/all in one my three error functions!
+//**TODO**/there was even more..
 
 ### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
