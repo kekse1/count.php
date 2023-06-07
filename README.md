@@ -178,11 +178,12 @@ the `count/` directory will be searched in the script's location, so `./php/coun
 `../` is not affected by this. If you need a path above script's directory, use `./../`! :)~
 
 ## Drawing
-Just finished the `<img>` drawing support. As follows..
+The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
+but I've also implemented some drawing routines, to embed the counter value as `<img>`. As follows..
 
 ### Usage
-To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. The
-available GET parameters are:
+To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. More
+isn't necessary, but there also also some GET parameters to adapt the drawing; as follows:
 
 * `?draw`
 * `?size=(int)` [18]
