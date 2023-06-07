@@ -130,6 +130,7 @@ your own configuration (via `-c/--config`)!
 ### Configuration parameters
 They are located on top of the file.
 
+* `define('RAW', false);`
 * `define('AUTO', 32);`
 * `define('THRESHOLD', 7200);`
 * `define('DIR', 'count');`
