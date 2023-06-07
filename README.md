@@ -6,6 +6,7 @@ It's a universal counter script. ... v**2.18.4**!
 ## Index
 * [News](#news)
 * [Issues](#issues)
+* [Installation](#installation)
 * [Description](#description)
 * [Modes](#modes)
 * [Drawing](#drawing)
@@ -24,6 +25,13 @@ It's a universal counter script. ... v**2.18.4**!
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
 * After the `namespace` I'm thinking about using a `class` - but not sure if this is necessary...
+
+## Installation
+The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
+in your web root, create a 'count/' directory in the same path (with `chmod 1777` maybe), and that's
+all! :)~
+
+The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
 ## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -291,13 +299,6 @@ to avoid error output (even though it's bad that you're using an `<img>` tag....
 wouldn't be visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
-
-## Installation
-The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
-in your web root, create a 'count/' directory in the same path (with `chmod 1777` maybe), and that's
-all! :)~
-
-The possible rest is described below, in the [Configuration section](#configuration).
 
 ## Configuration
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
