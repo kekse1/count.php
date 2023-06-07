@@ -18,3 +18,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 
+
+The copyright notices belong to Sebastian Kucharczyk kuchen@kekse.biz, and
+this project is licensed under the MIT License. The complete text version
+of the license, respective it's current version, is shown above.
+
+To check for the latest version of the MIT License, please visit the
+official website of the Open Source Initiative.
+
+https://opensource.org/licenses/MIT
+
