@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.18.5**!
+It's a universal counter script. ... v**2.18.6**!
 
 ## Index
 1. [News](#news)
@@ -21,6 +21,7 @@ It's a universal counter script. ... v**2.18.5**!
 	* [String filter](#string-filter)
 5. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
+	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
 	* [Hide mode](#hide-mode)
 	* [Test mode](#test-mode)
@@ -184,6 +185,12 @@ Some of the modes are as follows.
 You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
 current value without writing any files or cookies. The value is not changed then. So one can view it
 without access to the file system or the CLI mode.
+
+### Drawing mode
+By using `?draw`, if `DRAWING` setting is enabled, the output will not be `text/plain` (or whatever you
+define in `CONTENT`), but `image/png` or `image/jpeg`, so you can embed the counted value in `<img>`.
+
+Please take a look at the [Drawing section](#drawing).
 
 ### Zero mode
 The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
