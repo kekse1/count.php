@@ -29,7 +29,7 @@ It's a universal counter script. ... v**2.18.6**!
 	* [CLI mode](#cli-mode)
 6. [Drawing](#drawing)
 	* [Parameters](#parameters)
-	* [Dependencies](#dependencies)
+	* [`DRAWING` dependencies](#drawing-dependencies)
 8. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
@@ -60,8 +60,11 @@ all! :)~
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
 ### Dependencies
-**NO** dependencies, except if you're enabling the `DRAWING` configuration. In this case it's the
-'[**GD Library**](https://www.php.net/manual/en/book.image.php)'.
+**NO** dependencies.
+
+Except if you're enabling the `DRAWING` configuration. In this case it's the
+'[**GD Library**](https://www.php.net/manual/en/book.image.php)'. More infos below, in the
+[Drawing section](#drawing) and it's [`DRAWING dependencies`](#drawing-dependencies) sub section.
 
 ### Output
 By default the script generates a `text/plain` output, so you can easily embed the counting value
@@ -324,7 +327,7 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 and maybe also the `HIDE` setting, described somewhere above.. They are changing the way the
 output image looks like.
 
-### `DRAWING` Dependencies
+### `DRAWING` dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
 regular `text/plain` output function of this count.php! AND the GD library also needs "FreeType"
 support, as we're drawing with True Type Fonts (this is **not** checked within `-c/--config`, btw.).
