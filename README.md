@@ -10,7 +10,7 @@ It's a universal counter script. ... v**2.18.2**!
 * [Modes](#modes)
 * [Drawing](#drawing)
 * [Configuration](#configuration)
-* [The original Version](#the-original-version)
+* [The original version](#the-original-version)
 * [Copyright and License](#copyright-and-license)
 
 ## News
