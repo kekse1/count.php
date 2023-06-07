@@ -370,7 +370,7 @@ I've just set a `namespace`, so everything is not in the global namespace. That 
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
 dependencies** which the 'Composer' would need to install.
 
-A **minimum installation** is described above, in the [Installation Section](#installation), jfyi!
+A **minimum installation** is described above, in the [Installation section](#installation), jfyi!
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
