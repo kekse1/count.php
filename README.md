@@ -101,6 +101,11 @@ If configured, out-dated ip/timestamp files will be deleted (this and more is al
 the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have been written more
 than `THRESHOLD` (by default 2 hours) seconds before).
 
+If you `define('CLEAN', (integer))`, the cache will be cleared only if there are more files than
+the (integer) existing. And if you set it to `(null)`, every cleaning is **forbidden**, if you
+want to collect all the IPs or so.. `(false)` would also never call the clean routine, except if
+the `LIMIT` is exceeded..!
+
 ### Logging
 Most errors will be appended to the `count.log` file (configurable via `LOG`), so webmasters
 etc. can directly see what's maybe going wrong.
