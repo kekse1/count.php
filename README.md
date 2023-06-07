@@ -314,7 +314,7 @@ They are located on top of the file.
 * `define('LOG', 'count.log');`
 * `define('ERROR', '/');`
 * `define('NONE', '/');`
-* `define('DRAWING', true);`
+* `define('DRAWING', false);`
 * `define('SIZE', 24);`
 * `define('SIZE_LIMIT', 512);`
 * `define('FONT', 'SourceCodePro');`
@@ -359,8 +359,8 @@ Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
 I've just set a `namespace`, so everything is not in the global namespace. That should be enough..?
 
 ##### '[Composer](https://getcomposer.org/)' to 'install' this script?
-I'm pretty sure there's no real 'installation' necessary here (just a few steps one can read in here);
-additionally, there are also **no real dependencies** which the 'Composer' needs to install.
+I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
+dependencies** which the 'Composer' would need to install.
 
 As a minimum installation: just copy this script to your web path, create a 'count' directory below (with
 `chmod 1777` maybe), and it'll work! ;)~
