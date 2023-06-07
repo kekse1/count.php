@@ -9,6 +9,7 @@ It's a universal counter script. ... v**2.18.4**!
 * [Description](#description)
 * [Modes](#modes)
 * [Drawing](#drawing)
+* [Installation](#installation)
 * [Configuration](#configuration)
 * [FAQ, Reviews and Comments](#faq-reviews-and-comments)
 * [The original version](#the-original-version)
@@ -291,6 +292,13 @@ wouldn't be visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
 
+## Installation
+The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
+in your web root, create a 'count/' directory in the same path (with `chmod 1777` maybe), and that's
+all! :)~
+
+The possible rest is described below, in the [Configuration section](#configuration).
+
 ## Configuration
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
 your own configuration (via `-c/--config`)!
@@ -362,8 +370,7 @@ I've just set a `namespace`, so everything is not in the global namespace. That 
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
 dependencies** which the 'Composer' would need to install.
 
-As a minimum installation: just copy this script to your web path, create a 'count' directory below (with
-`chmod 1777` maybe), and it'll work! ;)~
+A **minimum installation** is described above, in the [Installation Section](#installation), jfyi!
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
