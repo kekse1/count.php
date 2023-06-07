@@ -234,11 +234,9 @@ wouldn't be visible in this case at all).
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
 
 ## RAW mode
-By defining `RAW = true` the base counting function won't automatically be called, so that you've the
-chance of doing it in your PHP scripts manually.
-
-This way there'll be no real output (neither text nor as graphic), and you just get the current value
-returned by the `counter()` function.
+By defining `RAW = true` the base counting function won't be called automatically, so that you've the
+chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
+nor graphical), and you just get the current value returned by the `counter()` function.
 
 The function to call from your scripts (after `require_once('count.php')` or so) is:
 `function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
