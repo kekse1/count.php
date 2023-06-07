@@ -258,7 +258,7 @@ Idea is to look at the intersect, which hosts were visited by one/some IP(s). ..
 The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
 but I've also implemented some drawing routines, to embed the counter value as `<img>`. As follows..
 
-### Usage
+### Usage and parameters
 To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. More
 isn't necessary, but there also also some GET parameters to adapt the drawing; as follows:
 
@@ -296,7 +296,7 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 and maybe also the `HIDE` setting, described somewhere above.. They are changing the way the
 output image looks like.
 
-#### Dependencies
+### Dependencies
 Important: the GD library has to be installed for this feature. If it isn't, you can only use the
 regular `text/plain` output function of this count.php! AND the GD library also needs "FreeType"
 support, as we're drawing with True Type Fonts (this is **not** checked within `-c/--config`, btw.).
