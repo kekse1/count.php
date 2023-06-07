@@ -149,8 +149,8 @@ Absolute paths work as usual. But relative paths are used here in two ways.
 
 If you define your `DIR`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
 be resolved from the location of your `count.php` script (using `__DIR__`). But to define this relative
-to your current working directory (where the script get's called, mostly as symbolic link), you've to
-define the paths with starting `./`.
+to your current working directory, you've to define those paths with starting `./` (it's where the script
+gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
 
 But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
 directory, please use `./../`..
