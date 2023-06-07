@@ -9,7 +9,8 @@ It's a universal counter script. ... v**2.18.0**!
 * [Functionality, Security & Efficiency](#functionality-security--efficiency)
 * [Configuration](#configuration)
 * [Drawing](#drawing)
-* [CLI Mode](#cli-mode)
+* [RAW mode](#raw-mode)
+* [CLI mode](#cli-mode)
 * [Original Version](#original)
 * [Copyright and License](#copyright-and-license)
 
@@ -231,7 +232,21 @@ wouldn't be visible in this case at all).
 
 The second dependency is a configured `FONTS` directory with '.ttf' fonts installed in it! ..
 
-## CLI Mode
+## RAW mode
+By defining `RAW = true` the base counting function won't automatically be called, so that you've the
+chance of doing it in your PHP scripts manually.
+
+This way there'll be no real output (neither text nor as graphic), and you just get the current value
+returned by the `counter()` function.
+
+The function to call from your scripts (after `require_once('count.php')` or so) is:
+`function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
+
+If you set the second argument of `counter()` to true, the value is also being increased etc., as usual.
+The first argument is (null) by default - but in RAW and CLI mode, where no $_SERVER is available, you
+really need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
+
+## CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
 Just define the `--test/-t` (cmdline) parameter. ;)~
 
