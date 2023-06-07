@@ -11,7 +11,7 @@ It's a universal counter script. ... v**2.18.2**!
 * [Drawing](#drawing)
 * [Configuration](#configuration)
 * [F.A.Q.](#faq)
-* [Reviews & Comments](#reviews-comments)
+* [Reviews & Comments](#reviews--comments)
 * [The original version](#the-original-version)
 * [Copyright and License](#copyright-and-license)
 
