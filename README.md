@@ -96,9 +96,10 @@ So here you gotta know which characters you can pass (maximum string length is 2
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
-BTW: It also removes any trailing `.`, so e.g. if you call from a web browser with a hostname plus
-trailing dot `.`, which is a FQDN, it'll be removed, so the couting is not disturbed (otherwise it
-would end up in another file for w/ and w/o `.`. ;-)
+### **FQDN**'s
+The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
+ web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
+couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
 
 ### ...
 ...TODO.
