@@ -397,7 +397,7 @@ gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/co
 But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
 directory, please use `./../`..
 
-## FAQ, Reviews and Comments
+## FAQ
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
 if you would like to review my code. I don't bite, promised! xD~
 
