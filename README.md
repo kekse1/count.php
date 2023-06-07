@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # count.php
-It's a universal counter script. ... v**2.18.4**!
+It's a universal counter script. ... v**2.18.5**!
 
 ## Index
 * [News](#news)
@@ -360,8 +360,9 @@ Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this const
 reason to change this: the constants are in the global namespace, that's bad.. but as I said: maybe
 I'm 'upgrading' to classes, so the config could be defined in there.
 
-PS: Usually I've used a `config.inc.php`, but as it's such a 'tiny' script, I decided to put everything
-down into just one `.php` file..!
+Alternatively I'm thinking about a `COUNT_` prefix for all these constants, as they're defined in the
+global scope.. and btw.: usually I've used a `config.inc.php`, but as it's such a 'tiny' script, I
+decided to put everything down into just one `.php` file..!
 
 ##### Why not a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
