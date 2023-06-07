@@ -145,8 +145,8 @@ The string filter (above) also removes any trailing `.` from the hostnames; so i
  web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
 couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
 
-### ...
-...TODO.
+### (TODO)
+...
 
 ## Modes
 Some of the modes are as follows.
@@ -208,21 +208,22 @@ as defined in `CONTENT` option)! .. so please, just type `php count.php` in your
 Just run it without parameters to see all possible `argv[]` options. Here's the current list of
 supported 'functions' (in CLI just call the script without arguments to see this list):
 
-|   Short | Long               | Description                                          |
-| ------: | :----------------- | :--------------------------------------------------: |
-|    `-?` | `--help`           | Shows the link to this website..                     |
-|    `-V` | `--version`        | Print current script's version.                      |
-|    `-C` | `--copyright`      | Shows the author of this script. /me ..              |
-|    `-h` | `--hashes`         | Available algorithms for `HASH` config.              |
-|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                 |
-|    `-t` | `--types`          | Available image types for drawing output.            |
-|    `-c` | `--config`         | Verify if current configuration is valid.            |
-|    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.  |
-|    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)        |
-|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..  |
-|    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!    |
-|    `-e` | `--errors`         | Count error log lines, if existing..                 |
-|    `-u` | `--unlog`          | Deletes the whole error log file, if already exists. |
+|   Short | Long               | Description                                             |
+| ------: | :----------------- | :-----------------------------------------------------: |
+|    `-?` | `--help`           | Shows the link to this website..                        |
+|    `-V` | `--version`        | Print current script's version.                         |
+|    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
+|    `-c` | `--config`         | Verify if current configuration is valid.               |
+|    `-h` | `--hashes`         | Available algorithms for `HASH` config.                 |
+|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                    |
+|    `-t` | `--types`          | Available image types for drawing output.               |
+|    `-s` | `--set (... TODO)` | Initialize a value file, or set a specific value (TODO) |
+|    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.     |
+|    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)           |
+|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..     |
+|    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!       |
+|    `-e` | `--errors`         | Count error log lines, if existing..                    |
+|    `-u` | `--unlog`          | Deletes the whole error log file, if already exists.    |
 
 The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
