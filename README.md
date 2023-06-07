@@ -239,11 +239,12 @@ chance of doing this in your PHP scripts manually. This way there'll be no real 
 nor graphical), and you just get the current value returned by the `counter()` function.
 
 The function to call from your scripts (after `require_once('count.php')` or so) is:
+
 `function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
 
 If you set the second argument of `counter()` to true, the value is also being increased etc., as usual.
-The first argument is (null) by default - but in RAW and CLI mode, where no $_SERVER is available, you
-really need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
+The first argument is (null) by default - but in RAW mode, where no $_SERVER is available, you  really
+need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
 
 ## CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
