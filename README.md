@@ -57,7 +57,8 @@ doesn't work, there's still this IP test left (if `SERVER` enabled).
 
 ### More privacy
 And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
-also be hashed, so noone can see them.
+also be hashed, so noone can see them (including yourself, or the webmaster(s), .. even with
+access to the file system).
 
 ### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
