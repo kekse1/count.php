@@ -240,6 +240,11 @@ The optional `[*]` needs to be defined directly after the parameter; can be mult
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
 available hosts.
 
+#### Prompts
+As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
+to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
+just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
+
 #### GLOB support
 This is yet partially done, and will be continued to all the \[`-v`,`-n`,`-l`,`-p`\] (maybe more??).
 At the moment it's already integrated in `--values/-v`. Worx so far..
@@ -262,22 +267,28 @@ isn't necessary, but there also also some GET parameters to adapt the drawing; a
 * `?font=(string)` [SourceCodePro]
 * `?fg=(string)` [rgba(0, 0, 0, 1)]
 * `?bg=(string)` [rgba(255, 255, 255, 0)]
-* `?h=(int)` [1]
-* `?v=(int)` [1]
+* `?h=(int)` [0]
+* `?v=(int)` [0]
 * `?x=(int)` [0]
 * `?y=(int)` [0]
 * `?aa=(1|0|y|n)` [true]
 * `?type=(string)` [png]
 
 `x` and `y` are just moving the text along this both axis (in px).
+
 `fg` and `bg` can be `rgb()`, `rgba()` or just the 3 bytes and optionally a floating point number
 between 0 and 1 for the alpha component.
-`v` is the space above and below the text, `h` is to the left and the right.
-`size` is a font size in 'pt' or 'px' (ain't sure atm x)~, and the `font` needs to be installed in
-the `FONTS` directory, as `.ttf`. The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure
- anti-aliased text. Last but not least, the `?type` can atm be set to 'png' and 'jpg', whereas 'png'
-is absolutely recommended! Example given: 'jpg' does not have the best alpha-channel (transparency)
-support..
+
+`v` is the space above and below the text, `h` is to the left and the right. They both can also be
+negative values - as long as the resulting image won't rest up with size <1.. in this case there'll
+be an error.
+
+`size` is a font size in 'pt' or 'px' (ain't sure atm x)~
+
+And the `font` needs to be installed in the `FONTS` directory, as `.ttf`. The `aa` parameter needs
+to be `0`, `1`, `y` or `n` to configure anti-aliased text. Last but not least, the `?type` can atm
+ be set to `png` and `jpg`, whereas `png` is absolutely recommended! Example given: `jpg` does not
+ have the best alpha-channel (transparency) support..
 
 All parameters are optional, but the `?draw` needs to be set if you want a graphical output (only
 if allowed by `DRAWING` configuration).
