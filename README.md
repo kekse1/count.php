@@ -29,25 +29,26 @@ possible; etc.); ..
 ### Output
 By default the script generates a `text/plain` output, so you can easily embed the counting value
 via `XMLHttpRequest()` or the `Fetch API`. The real (HTTP-)`Content-Type` is configurable via the
-`CONTENT` setting (on top of the file - see the 'Configuration' section, below).
+`CONTENT` setting (on top of the file - see the '[Configuration](#configuration)' section).
 
 BUT I've finally also managed the `<img>` drawing facilities (see below!), so you can also embed it
-now as simple `<img src="..?draw[...]">`!
+now as simple `<img src="..?draw[...]">`! See the '[Drawing](#drawing)' section.
 
-Only in the RAW mode (described somewhere below) there'll be no real output, so you can integrate this
-script in your own PHP projects; just use the `counter()` function (also described below).
+Only in 'RAW mode' (see the '[Modes](#modes)' section) there'll be no real output, so that you can
+integrate this script in your own PHP projects; just use the `counter()` function.
 
 ### Storage
 Uses the file system to store timestamp files for the client IPs (if actived `SERVER`); and
 counting this files (which is a security concern) is done cached via some special files (so
-no 'inefficient' `scandir()` is always necessary ;). The values itself are also located in
+no 'inefficient' `opendir()` etc. is always necessary ;). The values itself are also located in
 the file system - one file for each host (secured auto-generation included, if you wish, and
-also with a limit in their amount - if you don't create the value files manually ;).
+also with a limit in their amount - if you don't create the value files manually; see `AUTO`
+setting).
 
 The file system is usually top in performance. A real database would be overload for such a
 script. And using only one file and parse/render it by myself is not recommended, as it's very
 inefficient.. the file system should be a great choice (and is only being used if `SERVER` is
-set to (true))! :)~
+set to `(true)`! :)~
 
 ### Server and Client modes
 If a cookie (if actived `CLIENT`) already confirmed that the client connected within the
