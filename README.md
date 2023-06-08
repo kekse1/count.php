@@ -45,7 +45,7 @@ It's a universal counter script. ... v**2.18.7**!
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
-* After the `namespace` I'm thinking about using a `class` - but not sure if this is necessary...
+* After the `namespace` I'm thinking about using a `class` - but I think this ain't necessary..
 
 ## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
