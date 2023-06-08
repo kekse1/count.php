@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.18.6**!
+It's a universal counter script. ... v**2.18.7**!
 
 ## Index
 1. [News](#news)
@@ -422,7 +422,7 @@ dependencies** which the 'Composer' would need to install.
 
 A **minimum installation** is described above, in the [Installation section](#installation), jfyi!
 
-### # Isn't this script a little big (with **>4500 lines of code in v2.18.6**)?
+### # Isn't this script a little big (with **>4300 lines of code in v2.18.7**)?
 At least I've heard this from a reviewer..
 
 **Don't panic!** The runtime will never use nor even define all the functions etc.. their existence
