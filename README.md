@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.19.1**!
+It's a universal counter script. ... v**2.19.2**!
 
 ## Index
 1. [News](#news)
@@ -45,7 +45,6 @@ It's a universal counter script. ... v**2.19.1**!
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
-* **I can\'t see a `mkdir()` for the '+' directories!? How did it work until now!? _TODO_!!!**
 
 ## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
