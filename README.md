@@ -185,15 +185,15 @@ There is the pure `counter()` function available (`kekse\counter()`), and there 
 helper functions in this namespace (which you could also use in other projects):
 
 * **normalize**($_string)
-* `timestamp($_diff = null)`
-* `join_path(... $_args)`
-* `secure($_string)`
-* `secure_host($_string)`
-* `secure_path($_string)`
-* `remove($_path, $_recursive = false)`
-* `get_param($_key, $_numeric = false, $_float = true)`
-* `ends_with($_haystack, $_needle, $_case_sensitive = true)`
-* `starts_with($_haystack, $_needle, $_case_sensitive = true)`
+* **timestamp**($_diff = null)
+* **join_path**(... $_args)
+* **secure**($_string)
+* **secure_host**($_string)
+* **secure_path**($_string)
+* **remove**($_path, $_recursive = false)
+* **get_param**($_key, $_numeric = false, $_float = true)
+* **ends_with**($_haystack, $_needle, $_case_sensitive = true)
+* **starts_with**($_haystack, $_needle, $_case_sensitive = true)
 
 ### (TODO)
 ...
