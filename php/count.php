@@ -5,7 +5,11 @@ namespace kekse;
 //
 define('COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('HELP', 'https://github.com/kekse1/count.php/');
+<<<<<<< HEAD
 define('VERSION', '2.20.0');
+=======
+define('VERSION', '2.19.4');
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 
 //
 define('RAW', false);
@@ -39,7 +43,26 @@ define('AA', true);
 define('TYPE', 'png');
 
 //
+<<<<<<< HEAD
 function normalize($_string)
+=======
+define('COOKIE_PATH', '/');
+define('COOKIE_SAME_SITE', 'Strict');
+define('COOKIE_SECURE', false);//(!empty($_SERVER['HTTPS']));
+define('COOKIE_HTTP_ONLY', true);
+
+//
+define('CLI', (php_sapi_name() === 'cli'));
+
+//
+define('TEST', (CLI ? null : (isset($_GET['test']))));
+define('RO', (CLI ? null : (TEST || (isset($_GET['readonly']) || isset($_GET['ro'])))));
+define('ZERO', (CLI ? null : (DRAWING && isset($_GET['zero']) && extension_loaded('gd'))));
+define('DRAW', (CLI ? null : (ZERO || (DRAWING && isset($_GET['draw']) && extension_loaded('gd')))));
+
+//
+function normalize($_string, $_die = !RAW)
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 {
 	if(gettype($_string) !== 'string')
 	{
@@ -760,7 +783,11 @@ function counter($_host = null, $_read_only = RAW, $_die = !RAW)
 		die($_reason);
 	}
 
+<<<<<<< HEAD
 	function log_error($_reason, $_source = '', $_path = '', $_die = !RAW)
+=======
+	function get_list($_index)
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 	{
 		$noLog = false;
 		$data = null;
@@ -859,9 +886,15 @@ function counter($_host = null, $_read_only = RAW, $_die = !RAW)
 				return null;
 			}
 			
+<<<<<<< HEAD
 			$result = get($_string, $_return);
 			
 			if(gettype($result) === 'string')
+=======
+			closedir($handle);
+
+			if($found === 0)
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 			{
 				return $result;
 			}
@@ -897,7 +930,11 @@ function counter($_host = null, $_read_only = RAW, $_die = !RAW)
 			
 			$result = array();
 
+<<<<<<< HEAD
 			for($i = $_index + 1, $j = 0; $i < ARGC; ++$i)
+=======
+			if($found === 0)
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 			{
 				if(strlen(ARGV[$i]) === 0)
 				{
@@ -1058,6 +1095,7 @@ function counter($_host = null, $_read_only = RAW, $_die = !RAW)
 					$result = null;
 				}
 			}
+<<<<<<< HEAD
 			else
 			{
 				$len = count($list);
@@ -1080,6 +1118,9 @@ function counter($_host = null, $_read_only = RAW, $_die = !RAW)
 						++$found;
 					}
 				}
+=======
+		}
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 
 				if($found === 0)
 				{
@@ -2009,8 +2050,48 @@ function counter($_host = null, $_read_only = RAW, $_die = !RAW)
 		{
 			return values($_index, true, true);
 		}
+<<<<<<< HEAD
 		
 		function purge($_index = -1)
+=======
+
+		fprintf(STDERR, ' >> So you\'ve to fix %d errors (and %d warnings) now.' . PHP_EOL, $errors, $warnings);
+		exit(1);
+	}
+	
+	function set($_index = -1)
+	{
+		//by default set (0)
+		//either for a specified host, or to all which match a *glob*..
+		//also to init a host, if !AUTO!
+		//and use 'prompt()' if file was not already existing!
+die('TODO: set()');
+	}
+
+	function sync($_index = -1)
+	{
+		return values($_index, true, true);
+	}
+	
+	function purge($_index = -1)
+	{
+		return values($_index, true, false);
+	}
+	
+	function clean($_index = -1)
+	{
+		return values($_index, false, true);
+	}
+	
+	// @ $removed[]: [ 1 = +host/file, 2 = +host/dir, 4 = +host/, 8 = -host ];
+	function values($_index = -1, $_purge = false, $_clean = false)
+	{
+die('TODO');//and don't forget 'prompt()'!!
+		//
+		$list = get_list($_index);
+
+		if($list === null)
+>>>>>>> 111d17071548723d9f8f96624a942c8e972c8794
 		{
 			return values($_index, true, false);
 		}
