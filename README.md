@@ -3,6 +3,9 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**2.20.0**!
 
+**No way.. I'm going to design a `class` for this! The problem is the namespace
+and the functions which are all exported there.. and the configuration! So: TODO!**
+
 ## Index
 1. [News](#news)
 2. [Issues](#issues)
