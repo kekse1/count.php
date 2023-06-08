@@ -181,7 +181,7 @@ couting is not disturbed (otherwise it would end up in another file for w/ and w
 ### Namespace
 The namespace is `kekse`.
 
-There is the pure `counter()` function available (`kekse/counter()`), and there are some kinda useful
+There is the pure `counter()` function available (`kekse\counter()`), and there are some kinda useful
 helper functions in this namespace (which you could also use in other projects):
 
 * `normalize($_string)`
