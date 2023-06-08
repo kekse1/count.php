@@ -2064,6 +2064,7 @@ die('TODO: set()');
 	// @ $removed[]: [ 1 = +host/file, 2 = +host/dir, 4 = +host/, 8 = -host ];
 	function values($_index = -1, $_purge = false, $_clean = false)
 	{
+die('TODO');//and don't forget 'prompt()'!!
 		//
 		$list = get_list($_index);
 
