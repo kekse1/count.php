@@ -435,6 +435,9 @@ consumes not *that* much cpu time or memory..
 
 And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)
 
+BTW: the version mentioned above also contains some more lines commented out, as I'm currently rewriting
+some CLI functions.. so this value **>4500** is not really *all that*.. even if I avoid comments generally. xD~
+
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
