@@ -430,9 +430,9 @@ is reduced by some `if()` and as some are **sub**-functions of other functions. 
 
 I promise not to bloat everything too much; it's just a matter of fact that this script has many
 features and is highly configurable! Nevertheless there are some optimizations etc., so it really
-consumes not *that* much cpu time (or memory)..
+consumes not *that* much cpu time or memory..
 
-If you find more optimizations or so, don't be shy and contact me! I'd be really happy. :-)
+And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
