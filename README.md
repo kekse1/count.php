@@ -410,7 +410,7 @@ Alternatively I'm thinking about a `COUNT_` prefix for all these constants, as t
 global scope..
 
 And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny' script, I decided to
-put everything down into just one `.php` file..!
+put everything down into just one `.php` file..
 
 ### # Why not using a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
