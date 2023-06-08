@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.18.7**!
+It's a universal counter script. ... v**2.19.0**!
 
 ## Index
 1. [News](#news)
@@ -38,14 +38,13 @@ It's a universal counter script. ... v**2.18.7**!
 11. [Copyright and License](#copyright-and-license)
 
 ## News
-* Currently working on some last CLI functions. After that, the major version can be increased.
-* And some minor performance and security upgrades are also in progress.. and a bit more!
-* Everything is in the `namespace counter` now (so all the functions are not defined globally)!
+* Working on some CLI functions. After that, the major version can be increased. **Nearly ready already!**
+* Additionally some minor performance and security upgrades are in progress, too.. and a bit more..
+* Everything is in the `namespace counter` now (so all the functions are not defined globally)! TODO also @ constants maybe..
 
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
-* After the `namespace` I'm thinking about using a `class` - but I think this ain't necessary..
 
 ## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
@@ -252,15 +251,15 @@ supported 'functions' (in CLI just call the script without arguments to see this
 |    `-?` | `--help`           | Shows the link to this website..                        |
 |    `-V` | `--version`        | Print current script's version.                         |
 |    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
-|    `-c` | `--config`         | Verify if current configuration is valid.               |
-|    `-h` | `--hashes`         | Available algorithms for `HASH` config.                 |
-|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                    |
-|    `-t` | `--types`          | Available image types for drawing output.               |
 |    `-s` | `--set (... TODO)` | Initialize a value file, or set a specific value (TODO) |
 |    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.     |
 |    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)           |
 |    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..     |
 |    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!       |
+|    `-c` | `--check`          | Verify if current configuration is valid.               |
+|    `-h` | `--hashes`         | Available algorithms for `HASH` config.                 |
+|    `-f` | `--fonts`          | Available fonts for drawing `<img>`.                    |
+|    `-t` | `--types`          | Available image types for drawing output.               |
 |    `-e` | `--errors`         | Count error log lines, if existing..                    |
 |    `-u` | `--unlog`          | Deletes the whole error log file, if already exists.    |
 
@@ -402,19 +401,17 @@ This section grew as I got comments on my code. And I hope for your reviews, rea
 if you would like to review my code. I don't bite, promised! xD~
 
 ### # `define()` for the configuration/settings?
-Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later. The only
-reason to change this: the constants are in the global namespace, that's bad.. but as I said: maybe
-I'm 'upgrading' to classes, so the config could be defined in there.
-
-Alternatively I'm thinking about a `COUNT_` prefix for all these constants, as they're defined in the
-global scope..
+Yes.. it's not necessary to adapt this constants later. The only reason to change this: the constants
+are in the global namespace, that's bad.. but alternatively I'm thinking about a `COUNT_` prefix for
+the constants (or just a random value).
 
 And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny' script, I decided to
-put everything down into just one `.php` file..
+put everything down into just one `.php` file.. that's better here.
 
 ### # Why not using a `class`?
-Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
-I've just set a `namespace`, so everything is no longer in the global namespace.. maybe that's enough.
+Just because it ain't necessary. I've just set a `namespace`, so everything is no longer in the global
+namespace.. that should be enough. It even could really be, that using classes would even end up in more
+resource consumption.. so, I think it's O.K. as it is now. :)~
 
 ### # Installation via '[Composer](https://getcomposer.org/)'?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
@@ -422,7 +419,7 @@ dependencies** which the 'Composer' would need to install.
 
 A **minimum installation** is described above, in the [Installation section](#installation), jfyi!
 
-### # Isn't this script a little big (with **>4300 lines of code in v2.18.7**)?
+### # Isn't this all a little big for such a script?
 At least I've heard this from a reviewer..
 
 **Don't panic!** The runtime will never use nor even define all the functions etc.. their existence
@@ -435,9 +432,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-BTW: the version mentioned above also contains some more lines commented out, as I'm currently rewriting
-some CLI functions.. so this value **>4500** is not really *all that*.. even if I avoid comments
-in general.. xD~
+**NEWS**: after cleaning up a bit with my commented out, original CLI functions (not yet finished, btw.)
+the line count shrank a lot.. with v**2.19.0** there are only **3760 code lines** left. :)~
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
