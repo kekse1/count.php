@@ -29,7 +29,7 @@ It's a universal counter script. ... v**2.18.6**!
 	* [CLI mode](#cli-mode)
 6. [Drawing](#drawing)
 	* [Parameters](#parameters)
-	* [`DRAWING` dependencies](#drawing-dependencies)
+	* [Dependencies](#drawing-dependencies)
 8. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
