@@ -430,10 +430,10 @@ is reduced by some `if()` and as some are **sub**-functions of other functions, 
 a minimum first, to maybe return earlier; etc..
 
 I promise not to bloat everything too much; it's just a matter of fact that this script has many
-features and is highly configurable! Nevertheless there are some optimizations etc., so it really
-consumes not *that* much cpu time or memory..
+features and is highly configurable.. nevertheless there are some optimizations etc., so it really
+doesn't consume *that* much cpu time or memory.
 
-And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)
+*And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 BTW: the version mentioned above also contains some more lines commented out, as I'm currently rewriting
 some CLI functions.. so this value **>4500** is not really *all that*.. even if I avoid comments
