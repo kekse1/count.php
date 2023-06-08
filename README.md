@@ -45,6 +45,7 @@ It's a universal counter script. ... v**2.19.1**!
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
 * **You** should also test this script, including it's security.. **thx**.
+* **I can\'t see a `mkdir()` for the '+' directories!? How did it work until now!? _TODO_!!!**
 
 ## Description
 **It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
