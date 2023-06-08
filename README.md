@@ -422,6 +422,18 @@ dependencies** which the 'Composer' would need to install.
 
 A **minimum installation** is described above, in the [Installation section](#installation), jfyi!
 
+#### * Isn't this script a little big (with **>4500 lines of code in v2.18.6**)?
+At least I've heard this from a reviewer..
+
+**Don't panic!** The runtime will never use nor even define all the functions etc.. their existence
+is reduced by some `if()` and as some are **sub**-functions of other functions. etc..
+
+I promise not to bloat everything too much, it's just a matter of fact that this script has many
+features and is highly configurable! Nevertheless there are many optimizations etc., so it really
+consumes not *that* much cpu time (or memory)..
+
+If you find more optimizations or so, don't be shy and contact me! I'd be really happy. :-)
+
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
