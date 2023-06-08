@@ -184,7 +184,7 @@ The namespace is `kekse`.
 There is the pure `counter()` function available (`kekse\counter()`), and there are some kinda useful
 helper functions in this namespace (which you could also use in other projects):
 
-* `**normalize**($_string)`
+* **normalize**($_string)
 * `timestamp($_diff = null)`
 * `join_path(... $_args)`
 * `secure($_string)`
