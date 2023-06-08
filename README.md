@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.19.0**!
+It's a universal counter script. ... v**2.20.0**!
 
 ## Index
 1. [News](#news)
@@ -19,6 +19,7 @@ It's a universal counter script. ... v**2.19.0**!
 	* [Refresh](#refresh)
 	* [Override](#override)
 	* [String filter](#string-filter)
+	* [Namespace](#namespace)
 5. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
@@ -176,6 +177,23 @@ That's also important for the *optional* `?override=` GET parameter (see above).
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
  web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
 couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
+
+### Namespace
+The namespace is `kekse`.
+
+There is the pure `counter()` function available (`kekse/counter()`), and there are some kinda useful
+helper functions in this namespace (which you could also use in other projects):
+
+* `normalize($_string)`
+* `timestamp($_diff = null)`
+* `join_path(... $_args)`
+* `secure($_string)`
+* `secure_host($_string)`
+* `secure_path($_string)`
+* `remove($_path, $_recursive = false)`
+* `get_param($_key, $_numeric = false, $_float = true)`
+* `ends_with($_haystack, $_needle, $_case_sensitive = true)`
+* `starts_with($_haystack, $_needle, $_case_sensitive = true)`
 
 ### (TODO)
 ...
