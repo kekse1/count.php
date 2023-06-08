@@ -401,7 +401,7 @@ directory, please use `./../`..
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
 if you would like to review my code. I don't bite, promised! xD~
 
-##### # `define()` for the configuration/settings?
+#### # `define()` for the configuration/settings?
 Yes.. **if I don't upgrade to a `class`** it's not necessary to adapt this constants later. The only
 reason to change this: the constants are in the global namespace, that's bad.. but as I said: maybe
 I'm 'upgrading' to classes, so the config could be defined in there.
@@ -412,17 +412,17 @@ global scope..
 And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny' script, I decided to
 put everything down into just one `.php` file..!
 
-##### # Why not a `class`?
+#### # Why not a `class`?
 Just because it ain't necessary. But **maybe** I'll upgrade.. not sure atm.
 I've just set a `namespace`, so everything is no longer in the global namespace.. maybe that's enough.
 
-##### # Installation via '[Composer](https://getcomposer.org/)'?
+#### # Installation via '[Composer](https://getcomposer.org/)'?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
 dependencies** which the 'Composer' would need to install.
 
 A **minimum installation** is described above, in the [Installation section](#installation), jfyi!
 
-##### # Isn't this script a little big (with **>4500 lines of code in v2.18.6**)?
+#### # Isn't this script a little big (with **>4500 lines of code in v2.18.6**)?
 At least I've heard this from a reviewer..
 
 **Don't panic!** The runtime will never use nor even define all the functions etc.. their existence
