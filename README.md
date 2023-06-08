@@ -426,7 +426,8 @@ A **minimum installation** is described above, in the [Installation section](#in
 At least I've heard this from a reviewer..
 
 **Don't panic!** The runtime will never use nor even define all the functions etc.. their existence
-is reduced by some `if()` and as some are **sub**-functions of other functions. etc..
+is reduced by some `if()` and as some are **sub**-functions of other functions, and also by evaluating
+a minimum first, to maybe return earlier; etc..
 
 I promise not to bloat everything too much; it's just a matter of fact that this script has many
 features and is highly configurable! Nevertheless there are some optimizations etc., so it really
