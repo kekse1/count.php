@@ -3,9 +3,10 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**2.20.0**!
 
-**No way.. I'm going to design a `class` for this! The problem is the namespace
-and the functions which are all exported there.. and the configuration! So: TODO**
-(but the script itself works great atm!);
+## No way...
+No way.. I'm going to design a `class` for this! The problem is the namespace
+and the functions which are all exported there.. and the configuration! So: TODO;
+even though the script itself works great atm!
 
 ## Index
 1. [News](#news)
@@ -23,7 +24,6 @@ and the functions which are all exported there.. and the configuration! So: TODO
 	* [Refresh](#refresh)
 	* [Override](#override)
 	* [String filter](#string-filter)
-	* [Namespace](#namespace)
 5. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
@@ -181,26 +181,6 @@ That's also important for the *optional* `?override=` GET parameter (see above).
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
  web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
 couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
-
-### Namespace
-The namespace is `kekse`.
-
-There is the pure `counter()` function available (`kekse\counter()`), and there are some kinda useful
-helper functions in this namespace (which you could also use in other projects):
-
-* **normalize**($_string)
-* **timestamp**($_diff = null)
-* **join_path**(... $_args)
-* **secure**($_string)
-* **secure_host**($_string)
-* **secure_path**($_string)
-* **remove**($_path, $_recursive = false)
-* **get_param**($_key, $_numeric = false, $_float = true)
-* **ends_with**($_haystack, $_needle, $_case_sensitive = true)
-* **starts_with**($_haystack, $_needle, $_case_sensitive = true)
-
-### (TODO)
-...
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
