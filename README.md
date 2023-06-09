@@ -45,7 +45,7 @@ and the functions which are all exported there.. and the configuration! So: TODO
 ## News
 * Working on some CLI functions. After that, the major version can be increased. **Nearly ready already!**
 * Additionally some minor performance and security upgrades are in progress, too.. and a bit more..
-* Everything is in the `namespace counter` now (so all the functions are not defined globally)! TODO also @ constants maybe..
+* Everything is in the `namespace kekse/counter` now (so all the functions are not defined globally)! TODO also @ constants maybe..
 
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
