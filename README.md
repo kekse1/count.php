@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.20.3**!
+It's a universal counter script. ... v**2.20.4**!
 
 ## Index
 1. [News](#news)
@@ -146,6 +146,11 @@ I don't really like it, but if you need this feature, just use it. Works great.
 Caution: the `AUTO` setting is also overridden in this case, so it's not possible to always use any
 arbitrary parameter (also important for security). Thus, you first have to create a value file to the
 corresponding string!
+
+_**NEW** (since v**2.20.4**)_: `OVERRIDE` can also be a (non-empty) String, to define just one fixed
+host(name) to use. Last possible to override it is the `counter()` function itself (first argument);
+the string is always filtered (`secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
+*PS: untested atm.*
 
 ### String filter
 All `$_SERVER` and `$_GET` are filtered to reach more security.
