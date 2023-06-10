@@ -406,7 +406,7 @@ And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny'
 put everything down into just one `.php` file.. that's better here.
 
 **EDIT**: Someone gave me this tip, which I'm going to follow (very soon):
-[https://stackoverflow.com/questions/18247726/php-define-constants-inside-namespace-clarification/]
+https://stackoverflow.com/questions/18247726/php-define-constants-inside-namespace-clarification/
 
 ### # Why not using a `class`?
 Just because it ain't necessary. I've just set a `namespace`, so everything is no longer in the global
