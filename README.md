@@ -40,7 +40,7 @@ It's a universal counter script. ... v**2.20.1**!
 ## News
 * Working on some CLI functions. After that, the major version can be increased. **Nearly ready already!**
 * Additionally some minor performance and security upgrades are in progress, too.. and a bit more..
-* Everything is in the `namespace kekse/counter` now (so all the functions are not defined globally)! TODO also @ constants maybe..
+* Added **new *default* font [`Intel One Mono`](https://github.com/intel/intel-one-mono/)**. :-)
 
 ## Issues
 * Didn't test against PHP **v8** support (TODO);
@@ -368,7 +368,7 @@ They are located on top of the file.
 * `define('DRAWING', false);`
 * `define('SIZE', 24);`
 * `define('SIZE_LIMIT', 512);`
-* `define('FONT', 'SourceCodePro');`
+* `define('FONT', 'IntelOneMono');`
 * `define('FONTS', 'fonts');`
 * `define('H', 0);`
 * `define('H_LIMIT', 256);`
