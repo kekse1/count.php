@@ -117,7 +117,7 @@ Due to security, not everything is being logged. Especially where one could defi
 or so, which could end up in floating the log file..
 
 ### Errors
-_TODO_: In RAW mode errors **will** be thrown via `throw`, never `die()` or so.
+In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
 
 //**TODO**/describe `ERROR` and `NONE` settings.
 //**TODO**/describe sending headers, etc.
@@ -220,10 +220,10 @@ The function to call from your scripts (after `require_once('count.php')` or so)
 
 `function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
 
-The first argument is (null) by default - but in RAW AND CLI mode, where no `$_SERVER` is available,
+The first argument is (null) by default - but in `RAW` _plus_ `CLI` mode, where no `$_SERVER` is available,
 you really need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
 
-If called w/ `$_readonly = false` and in RAW AND CLI mode, every call of `counter()` will increase
+If called w/ `$_readonly = false` and in `RAW` _plus_ `CLI` mode, every call of `counter()` will increase
 the counter value, without `THRESHOLD` testing, etc. (as there's neither cookies available, nor an
 IP address).
 
