@@ -114,7 +114,7 @@ Most errors will be appended to the `count.log` file (configurable via `LOG`), s
 etc. can directly see what's maybe going wrong.
 
 Due to security, not everything is being logged. Especially where one could define own `$_GET[*]`
-or so, which could end up in floating the log file..
+or so, which could end up in flooding the log file..
 
 ### Errors
 In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
