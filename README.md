@@ -74,7 +74,7 @@ BUT I've finally also managed the `<img>` drawing facilities (see below!), so yo
 now as simple `<img src="..?draw[...]">`! See the '[Drawing](#drawing)' section.
 
 Only in 'RAW mode' (see the '[Modes](#modes)' section) there'll be no real output, so that you can
-integrate this script in your own PHP projects; just use the `counter()` function.
+integrate this script in your own PHP projects; just use the `kekse\counter\counter()` function.
 
 ### Storage
 Uses the file system to store timestamp files for the client IPs (if actived `SERVER`); and
