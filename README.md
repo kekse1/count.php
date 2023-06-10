@@ -148,9 +148,9 @@ arbitrary parameter (also important for security). Thus, you first have to creat
 corresponding string!
 
 _**NEW** (since v**2.20.4**)_: `OVERRIDE` can also be a (non-empty) String, to define just one fixed
-host(name) to use. Last possibility to override it is the `counter()` function itself (first argument);
-the string is always filtered (`secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
-*PS: untested atm.*
+host(name) to use. Last possibility to override is the `counter()` function itself (first argument);
+the strings are always filtered (by `secure_host()`), and every of these overrides sets
+`OVERRIDDEN = true`. *PS: untested atm.*
 
 ### String filter
 All `$_SERVER` and `$_GET` are filtered to reach more security.
