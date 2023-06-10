@@ -3,11 +3,6 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**2.20.0**!
 
-## No way...
-No way.. I'm going to design a `class` for this! The problem is the namespace
-and the functions which are all exported there.. and the configuration! So: TODO;
-even though the script itself works great atm!
-
 ## Index
 1. [News](#news)
 2. [Issues](#issues)
@@ -409,6 +404,9 @@ the constants (or just a random value).
 
 And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny' script, I decided to
 put everything down into just one `.php` file.. that's better here.
+
+**EDIT**: Someone gave me this tip, which I'm going to follow (very soon):
+[https://stackoverflow.com/questions/18247726/php-define-constants-inside-namespace-clarification/]
 
 ### # Why not using a `class`?
 Just because it ain't necessary. I've just set a `namespace`, so everything is no longer in the global
