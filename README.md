@@ -37,7 +37,7 @@ It's a universal counter script. ... v**2.20.7**!
 
 ## News
 * Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
-* Added **new *default* font [`Intel One Mono`](https://github.com/intel/intel-one-mono/)**. Looks great (see the graphic on top)! :-)
+* Added **new *default* font [`IntelOne Mono`](https://github.com/intel/intel-one-mono/)**. Looks great (see the graphic on top)! :-)
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
