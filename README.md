@@ -189,8 +189,8 @@ So here you gotta know which characters you can pass, while the maximum length i
 That's also important for the *optional* `?override=` GET parameter (see above), e.g., as hosts (etc.)
 also won't ever be accepted 'as is'.
 
-So I'm also securing the used `$_SERVER` variables, as e.g. via `Hostname: ...` in HTTP the host could
-be poisoned this way as well!
+So I'm also securing the used `$_SERVER` variables, as e.g. via `Hostname: ...` in the HTTP header the
+host could be poisoned as well!
 
 #### **FQDN**'s
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
