@@ -43,8 +43,9 @@ It's a universal counter script. ... v**2.20.7**!
 * Didn't test against PHP **v8** support (*TODO*)!
 * As already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace the `define()`. Soon..
 
-**Please** _report any problems_ to me! Either by contacting me via E-Mail (see the [Copyright](COPYRIGHT.txt)), or use the
-[Issues](https://github.com/kekse1/count.php/issues) function of this github web site.. **Thank you**! :)~
+**Please** _report any problems_ to me! Either by contacting me via E-Mail (see the
+[Copyright and License](#copyright-and-license) section), or use the [Issues](https://github.com/kekse1/count.php/issues)
+function of this github web site.. **Thank you**! :)~
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
