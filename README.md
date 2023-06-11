@@ -146,32 +146,30 @@ Most errors will be appended to the `count.log` file (configurable via `LOG`), s
 directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
 where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
 
-The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative Paths](#relative-paths).
+The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative Paths](#relative-paths)).
 
 #### Details
 In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
 
-But normally you won't use this mode. In this case errors are stopping the execution via `die()` (but
-it's an abstracted function to manage the defails better). So if an error would be shown to the user
+But normally you won't use this mode. So normally errors are stopping the execution via `die()` (but
+it's an abstracted function to manage exceptions better). So if an error would be shown to the user
 who called this script, it's either the `ERROR` string, if set: just looks better and safes space on
 the web site, and the user mostly won't need to see the detailed error message.. by default they'll
-just see `/` (instead of a numeric counter value).
+just see `/` (kinda variant of the numeric value).
 
-Otherwise, without `ERROR` setting, they'll see the error message itself. .. When sending an error,
-and if not already send, the defined `CONTENT` header will be sent - also on drawing errors.. otherwise
-it'll be finally set when printing the value or drawing the image.
+Otherwise, without `ERROR` setting, they'll see the error message itself (in shortened form, so clients
+won't see file paths). .. When sending an error, the defined `CONTENT` header will be sent; also on drawing
+errors.. so the image will break.
 
-I used three functions for this. For you developers: please use them, and please **never** regular `die()`
-nor `throw new Exception(..)`. These functions make it easier: `error()`, `log_error()`, `draw_error()`.
+BTW @ developers: I'm using three functions for this. Please use them, and **never** a regular `die()`
+nor `throw new Exception(..)`. These functions handle it better: `error()`/`log_error()`/`draw_error()`.
 
 ### String filter
-_All `$_SERVER` and `$_GET` are filtered to reach more security._
+_All `$_SERVER` and `$_GET` are filtered to reach security_ (please don't ever trust any [user] input!).
 
-I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
-`get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()` does
-a `strtolower()` and the `secure_path()` also removes the `+`, `-` and `~` from the beginning of the
-path string (these special characters to mark file types: `~` are value files, `-` are cache counters;
-for amount of ip/timestamp files in the `+` marked directories - all for hosts).
+I just abstracted both functions `secure_{host,path}()` to only one function, which is partially also
+used by the `get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()`
+additionally does a `strtolower()`.
 
 So here you gotta know which characters you can pass, while the maximum length is 255 characters, btw.
 (as good as I remember here - please feel free to look in the code for yourself):
@@ -189,7 +187,10 @@ So here you gotta know which characters you can pass, while the maximum length i
 * `+` (limited)
 
 That's also important for the *optional* `?override=` GET parameter (see above), e.g., as hosts (etc.)
-won't be accepted 'as is' (see below at the [**FQDN**](#fqdns))..
+also won't ever be accepted 'as is'.
+
+So I'm also securing the used `$_SERVER` variables, as e.g. via `Hostname: ...` in HTTP the host could
+be poisoned this way as well!
 
 #### **FQDN**'s
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
