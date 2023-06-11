@@ -162,7 +162,7 @@ and if not already send, the defined `CONTENT` header will be sent - also on dra
 it'll be finally set when printing the value or drawing the image.
 
 I used three functions for this. For you developers: please use them, and please **never** regular `die()`
-or `throw new Exception(..)`. These functions make it easier: `error()`, `log_error()`, `draw_error()`.
+nor `throw new Exception(..)`. These functions make it easier: `error()`, `log_error()`, `draw_error()`.
 
 ### String filter
 _All `$_SERVER` and `$_GET` are filtered to reach more security._
