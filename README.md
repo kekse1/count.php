@@ -29,7 +29,7 @@ It's a universal counter script. ... v**2.20.7**!
 	* [CLI mode](#cli-mode)
 6. [Drawing](#drawing)
 	* [Parameters](#parameters)
-	* [Dependencies](#drawing-dependencies)
+	* [Dependencies](#dependencies-1)
 8. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
@@ -63,7 +63,7 @@ The possible, possibly complex rest is described in the [Configuration section](
 
 **Except** if you're enabling the `DRAWING` configuration. In this case it's the
 '[**GD Library**](https://www.php.net/manual/en/book.image.php)'. More infos below, in the
-[Drawing section](#drawing) and it's [`DRAWING dependencies`](#drawing-dependencies) sub section.
+[Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ### Output
 By default the script generates a `text/plain` output, so you can easily embed the counting value
@@ -334,9 +334,9 @@ Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' 
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
 AND the GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this
-is **not** checked within `-c/--config`, btw.).
+is **not** checked within `-c/--check`, btw.).
 
-The `-c/--config` test will also check if this library is installed, but MAYBE it's installed, but not
+The `-c/--check` test will also check if this library is installed, but MAYBE it's installed, but not
 available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
 web server..
 
@@ -349,7 +349,7 @@ The **second dependency** is a configured `FONTS` directory with `.ttf` font(s) 
 
 ## Configuration
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
-your own configuration (via `-c/--config`)!
+your own configuration (via `-c/--check`)!
 
 ### Constants
 They are located on top of the file.
