@@ -438,9 +438,9 @@ put everything down into just one `.php` file.. that's better here.
 https://stackoverflow.com/questions/18247726/php-define-constants-inside-namespace-clarification/
 
 ### # Why not using a `class`?
-Just because it ain't necessary. I've just set a `namespace`, so everything is no longer in the global
-namespace.. that should be enough. It even could really be, that using classes would even end up in more
-resource consumption.. so, I think it's O.K. as it is now. :)~
+Just because it ain't necessary. I've just set a `namespace kekse\counter`, so everything is no longer
+in the global namespace.. that should be enough. It could even really be, that using classes would even
+end up in more resource consumption.. so, I think it's O.K. as it is now.. 'old skewl'! :)~
 
 ### # Installation via '[Composer](https://getcomposer.org/)'?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
