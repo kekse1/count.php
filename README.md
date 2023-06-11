@@ -329,7 +329,7 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 and maybe also the `HIDE` setting, described somewhere above.. They are changing the way the
 output image looks like.
 
-### `DRAWING` dependencies
+### Dependencies
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
