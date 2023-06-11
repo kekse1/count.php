@@ -6,30 +6,31 @@ It's a universal counter script. ... v**2.20.7**!
 ## Index
 1. [News](#news)
 2. [Issues](#issues)
-4. [Description](#description)
+4. [About](#about)
 	* [Installation](#installation)
 	* [Dependencies](#dependencies)
-	* [Output](#output)
-	* [Storage](#storage)
-	* [Server and/or Client](#server-andor-client)
-	* [More privacy](#more-privacy)
-	* [Cleaning](#cleaning)
-	* [Logging](#logging)
-	* [Errors](#errors)
-	* [Refresh](#refresh)
-	* [Override](#override)
-	* [String filter](#string-filter)
-5. [Modes](#modes)
-	* [Readonly mode](#readonly-mode)
-	* [Drawing mode](#drawing-mode)
-	* [Zero mode](#zero-mode)
-	* [Hide mode](#hide-mode)
-	* [Test mode](#test-mode)
-	* [RAW mode](#raw-mode)
-	* [CLI mode](#cli-mode)
-6. [Drawing](#drawing)
-	* [Parameters](#parameters)
-	* [Dependencies](#dependencies-1)
+	* [Details](#details)
+		* [Output](#output)
+		* [Storage](#storage)
+		* [Server and/or Client](#server-andor-client)
+		* [More privacy](#more-privacy)
+		* [Cleaning](#cleaning)
+		* [Logging](#logging)
+		* [Errors](#errors)
+		* [Refresh](#refresh)
+		* [Override](#override)
+		* [String filter](#string-filter)
+	* [Modes](#modes)
+		* [Readonly mode](#readonly-mode)
+		* [Drawing mode](#drawing-mode)
+		* [Zero mode](#zero-mode)
+		* [Hide mode](#hide-mode)
+		* [Test mode](#test-mode)
+		* [RAW mode](#raw-mode)
+		* [CLI mode](#cli-mode)
+	6. [Drawing](#drawing)
+		* [Parameters](#parameters)
+		* [Dependencies](#dependencies-1)
 8. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
@@ -38,25 +39,31 @@ It's a universal counter script. ... v**2.20.7**!
 11. [Copyright and License](#copyright-and-license)
 
 ## News
-* Working on some CLI functions. After that, the major version can be increased. **Nearly ready already!**
-* Additionally some minor performance and security upgrades are in progress, too.. and a bit more..
-* Added **new *default* font [`Intel One Mono`](https://github.com/intel/intel-one-mono/)**. :-)
+* Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
+* Added **new *default* font [`Intel One Mono`](https://github.com/intel/intel-one-mono/)**. Looks great (see the graphic on top)! :-)
 
 ## Issues
-* Didn't test against PHP **v8** support (TODO);
-* **You** should also test this script, including it's security.. **thx**.
+* Didn't test against PHP **v8** support (*TODO*)!
+* As already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace the `define()`. Soon..
 
-## Description
-**It should be _really_ maximum secure now** (as everyhing got it's own limit, and all the
-`$_SERVER` and `$_GET` variables are filtered, so no code injection or file hijacking is
-possible; etc.); .. see also the '[String filter](#string-filter)' sub section below. :)~
+**Please** _report any problems_ to me! Either by contacting me via E-Mail (see the [Copyright](COPYRIGHT.txt)), or use the
+[Issues](https://github.com/kekse1/count.php/issues) function of this github web site.. **Thank you**! :)~
+
+## About
+**It should be _really_ maximum secure now**!
 
 ### Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
-in your web root, create a 'count/' directory in the same path (with `chmod 1777` maybe), and that's
-all! :)~
+in your web root, create a `count/` directory in the same path (with `chmod 1777` maybe - or just make sure that your web server can
+access the file system). **That's all!** :)~
 
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
+
+As an important example, since there is another file system change necessary: if you want to enable the `DRAWING` routines. Then the
+HTTPD needs access to a sub directory `fonts/`, with at least one installed `.ttf`(!) font in it (which you need to set as the _default
+font_ in the `FONT` setting).
+
+Now, **that's** all. :D~
 
 ### Dependencies
 **NO** dependencies.
@@ -65,7 +72,9 @@ The possible, possibly complex rest is described in the [Configuration section](
 '[**GD Library**](https://www.php.net/manual/en/book.image.php)'. More infos below, in the
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
-### Output
+### Details
+
+#### Output
 By default the script generates a `text/plain` output, so you can easily embed the counting value
 via `XMLHttpRequest()` or the `Fetch API`. The real (HTTP-)`Content-Type` is configurable via the
 `CONTENT` setting (on top of the file - see the '[Configuration](#configuration)' section).
@@ -76,7 +85,7 @@ now as simple `<img src="..?draw[...]">`! See the '[Drawing](#drawing)' section.
 Only in 'RAW mode' (see the '[Modes](#modes)' section) there'll be no real output, so that you can
 integrate this script in your own PHP projects; just use the `kekse\counter\counter()` function.
 
-### Storage
+#### Storage
 Uses the file system to store timestamp files for the client IPs (if actived `SERVER`); and
 counting this files (which is a security concern) is done cached via some special files (so
 no 'inefficient' `opendir()` etc. is always necessary ;). The values itself are also located in
@@ -89,42 +98,12 @@ script. And using only one file and parse/render it by myself is not recommended
 inefficient.. the file system should be a great choice (and is only being used if `SERVER` is
 set to `(true)`! :)~
 
-### Server and/or Client
+#### Server and/or Client
 If a cookie (if actived `CLIENT`) already confirmed that the client connected within the
 `THRESHOLD` (2 hours by default), no `SERVER` test will be done after this. And if a cookie
 doesn't work, there's still this IP test left (if `SERVER` enabled).
 
-### More privacy
-And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
-also be hashed, so noone can see them (including yourself, or the webmaster(s), .. even with
-access to the file system).
-
-### Cleaning
-If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
-the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have been written more
-than `THRESHOLD` (by default 2 hours) seconds before).
-
-If you define an `(integer)`, the cache will be cleared only if there are more files existing
-than the (integer). And if you set it to `(null)`, every cleaning is **forbidden**, if you
-want to collect all the IPs or so.. `(false)` would also never call the clean routine, except if
-the `LIMIT` is exceeded..!
-
-### Logging
-Most errors will be appended to the `count.log` file (configurable via `LOG`), so webmasters
-etc. can directly see what's maybe going wrong.
-
-Due to security, not everything is being logged. Especially where one could define own `$_GET[*]`
-or so, which could end up in flooding the log file..
-
-### Errors
-In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
-
-//**TODO**/describe `ERROR` and `NONE` settings.
-//**TODO**/describe sending headers, etc.
-//**TODO**/all in one my three error functions!
-//**TODO**/there was even more..
-
-### Refresh
+#### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
 
 This would be great, because with every poll the timestamps get updated, so the **`THRESHOLD`** setting
@@ -136,7 +115,7 @@ So, if you're periodically polling this script (I'm doing it via `XMLHttpRequest
 being counted again after the THRESHOLD time over this 'session', until he disconnects. Then coming
 back again _after_ the two hours (by default) he will get counted again. Pretty easy?
 
-### Override
+#### Override
 If(`OVERRIDE === true`), one can call the script's URL with `?override=(string)`, so neither regular
 `$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
 string (or just another host you define there).
@@ -152,7 +131,47 @@ host(name) to use. Last possibility to override is the `counter()` function itse
 the strings are always filtered (by `secure_host()`), and every of these overrides sets
 `OVERRIDDEN = true`. *PS: untested atm.*
 
-### String filter
+#### Cleaning
+If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
+the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have been written more
+than `THRESHOLD` (by default 2 hours) seconds before).
+
+If you define an `(integer)`, the cache will be cleared only if there are more files existing
+than the (integer). And if you set it to `(null)`, every cleaning is **forbidden**, if you
+want to collect all the IPs or so.. `(false)` would also never call the clean routine, except if
+the `LIMIT` is exceeded..!
+
+#### More privacy
+And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
+also be hashed, so noone can see them (including yourself, or the webmaster(s), .. even with
+access to the file system).
+
+#### Errors
+##### Logging
+Most errors will be appended to the `count.log` file (configurable via `LOG`), so webmasters etc. can
+directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
+where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
+
+The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative Paths](#relative-paths).
+
+##### Details
+In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
+
+But normally you won't use this mode. In this case errors are stopping the execution via `die()` (but
+it's an abstracted function to manage the defails better). So if an error would be shown to the user
+who called this script, it's either the `ERROR` string, if set: just looks better and safes space on
+the web site, and the user mostly won't need to see the detailed error message.. by default they'll
+just see `/` (instead of a numeric counter value).
+
+Otherwise, without `ERROR` setting, they'll see the error message itself. .. When sending an error,
+and if not already send, the defined `CONTENT` header will be sent - also on drawing errors.. otherwise
+it'll be finally set when printing the value or drawing the image.
+
+##### Functions
+I used three functions for this. For you developers: please use them, and please **never** regular `die()`
+or `throw new Exception(..)`. These functions make it easier: `error()`, `log_error()`, `draw_error()`.
+
+#### String filter
 All `$_SERVER` and `$_GET` are filtered to reach more security.
 
 I just abstracted both functions `secure_{host,path}()` to only one function, which is also used by
@@ -177,30 +196,34 @@ So here you gotta know which characters you can pass (maximum string length is 2
 
 That's also important for the *optional* `?override=` GET parameter (see above).
 
-#### **FQDN**'s
+##### **FQDN**'s
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
  web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
 couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
 
-## Modes
+#### Namespace
+To hide my own functions, I've got my own namespace `kekse\counter` defined. Should be a useful info
+if you'd like to use this script in the [`RAW` mode](#raw-mode). ^\_^
+
+### Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
 
-### Readonly mode
+#### Readonly mode
 You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
 current value without writing any files or cookies. The value is not changed then. So one can view it
 without access to the file system or the CLI mode.
 
-### Drawing mode
+#### Drawing mode
 By using `?draw`, if `DRAWING` setting is enabled, the output will not be `text/plain` (or whatever you
 define in `CONTENT`), but `image/png` or `image/jpeg`, so you can embed the counted value in `<img>`.
 
 Please take a look at the [Drawing section](#drawing).
 
-### Zero mode
+#### Zero mode
 The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
 otherwise, it'll count invisible this way. :)~
 
-### Hide mode
+#### Hide mode
 By setting `HIDE` to true or a string, this string will be shown instead of the real count value.
 This feature is there for private couting, without letting the users known how much visitors you already
 had.
@@ -210,11 +233,11 @@ your `DIR` directory!
 
 **BTW**: if `HIDE` is not a string, but (true), ouput will be a random integer. :]~
 
-### Test mode
+#### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
 a random integer value.
 
-### RAW mode
+#### RAW mode
 This mode is not tested very well yet, could you do it for me, please?
 
 By defining `RAW = true` the base counting function won't be called automatically, so that you've the
@@ -235,7 +258,9 @@ IP address).
 Last but not least: now in RAW mode every error won't be logged nor ends with `die()`, it's replaced
 by a `throw new Exception(..)`! :)~
 
-### CLI mode
+*PS: Not tested very well atm.. could you do it for me (as you maybe implement own PHP code which would use this)?*
+
+#### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
 Just define the `--test/-t` (cmdline) parameter. ;)~
 
@@ -245,7 +270,7 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
 as defined in `CONTENT` option)! .. so please, just type `php count.php` in your shell.
 
-#### The argument vector
+##### The argument vector
 Just run it without parameters to see all possible `argv[]` options. Here's the current list of
 supported 'functions' (in CLI just call the script without arguments to see this list):
 
@@ -270,29 +295,27 @@ The optional `[*]` needs to be defined directly after the parameter; can be mult
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
 available hosts.
 
-#### Prompts
+##### Prompts
 As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
 to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
 just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
 
-#### GLOB support
-This is yet partially done, and will be continued to all the \[`-v`,`-n`,`-l`,`-p`\] (maybe more??).
-At the moment it's already integrated in `--values/-v`. Worx so far..
+##### GLOB support
+As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
 
-As hint for myself there's the [glob.txt](./docs/glob.txt), JFMY.
+When _really_ finished this, I'm thinking about managing the IP addresses (if you don't configured to hide them)
+this way, in some way.. First idea is to look at their intersect (which hosts were visited by one/some IP(s)) ..
+*has anyone other ideas??*
 
-After finishing this, I'll maybe start to implement `glob()` searches for IPs, to kinda manage them.
-Idea is to look at the intersect, which hosts were visited by one/some IP(s). .. **anyone other ideas??**
-
-## Drawing
+### Drawing
 The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
 but I've also implemented some drawing routines, to embed the counter value as `<img>`.
 
 If allowed by `DRAWING` setting, just use either `?draw` for all possible options, or just `?zero` to
 draw a (nearly) empty output image (hidden counter, e.g. .. whereas there's also the `HIDE` setting!).
 
-### Parameters
-To use it, enable the `DRAWING` option and call script with (at least!) `?draw` GET parameter. More
+#### Parameters
+To use it, enable the `DRAWING` option and call script with (at least!) `?draw` (GET) parameter. More
 isn't necessary, but there also also some GET parameters to adapt the drawing; as follows:
 
 * `?draw`
@@ -324,12 +347,12 @@ The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased te
 Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely
 preferred (example given: `jpg` does not have the best alpha-channel (transparency) support)!
 
-**All parameters are optional**, but the `?draw` needs to be set if you want a graphical output
-(only if allowed by `DRAWING` configuration). And just to mention it: take a look at `?zero`
-and maybe also the `HIDE` setting, described somewhere above.. They are changing the way the
-output image looks like.
+**All parameters are optional**, but only the `?draw` isn't, and needs to be set if you want a graphical
+output (only if allowed by `DRAWING` configuration). And just to mention it: take a look at `?zero` and
+maybe also the `HIDE` setting, described somewhere above.. They are changing the way the output image looks
+like.
 
-### Dependencies
+#### Dependencies
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
@@ -345,7 +368,8 @@ drawing mode if module is installed. If not, the regular (text/plain) output wil
 to avoid error output (even though it's bad that you're using an `<img>` tag..... but error output
 wouldn't be visible in this case at all).
 
-The **second dependency** is a configured `FONTS` directory with `.ttf` font(s) installed in it! ..
+The **second dependency** is a configured `FONTS` directory with `.ttf`(!) font(s) installed in it (and
+if you don't specify this via `?font` it really *needs* to be pre-set via `FONT` setting); ...
 
 ## Configuration
 The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
@@ -353,6 +377,9 @@ your own configuration (via `-c/--check`)!
 
 ### Constants
 They are located on top of the file.
+
+And, as already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace
+these `define()`, very soon.. we don't like that they're being defined in the global namespace this way.
 
 * `define('RAW', false);`
 * `define('AUTO', 32);`
@@ -388,7 +415,7 @@ It'd be better to create a `.htaccess` file with at least `Deny from all` in you
 and maybe also in the `FONTS` directory, to be absolutely sure. But consider that not every HTTPD
 supports such a file.
 
-### Relative paths
+#### Relative paths
 Absolute paths work as usual. But relative paths are used here in two ways.
 
 If you define your `DIR`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
@@ -439,7 +466,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 **NEWS**: after cleaning up a bit with my commented out, original CLI functions (not yet finished, btw.)
-the line count shrank a lot.. with v**2.19.0** there are only **3760 code lines** left. :)~
+the line count shrank a lot.. with v**2.20.7** there are only **3632 code lines** left. :)~
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
