@@ -13,13 +13,13 @@ It's a universal counter script. ... v**2.20.7**!
 		* [Output](#output)
 		* [Storage](#storage)
 		* [Server and/or Client](#server-andor-client)
-		* [More privacy](#more-privacy)
-		* [Cleaning](#cleaning)
-		* [Logging](#logging)
-		* [Errors](#errors)
 		* [Refresh](#refresh)
 		* [Override](#override)
+		* [Cleaning](#cleaning)
+		* [More privacy](#more-privacy)
+		* [Errors](#errors)
 		* [String filter](#string-filter)
+		* [Namespace](#namespace)
 	* [Modes](#modes)
 		* [Readonly mode](#readonly-mode)
 		* [Drawing mode](#drawing-mode)
@@ -147,7 +147,8 @@ also be hashed, so noone can see them (including yourself, or the webmaster(s), 
 access to the file system).
 
 #### Errors
-##### Logging
+
+##### Log file
 Most errors will be appended to the `count.log` file (configurable via `LOG`), so webmasters etc. can
 directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
 where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
