@@ -138,6 +138,8 @@ And if privacy is one of your concerns, the IPs (in their own files with their t
 also be hashed, so noone can see them (including yourself, or the webmaster(s), .. even with
 access to the file system).
 
+Just enable the `PRIVACY` setting.
+
 ### Errors
 
 #### Log file
@@ -295,7 +297,7 @@ Until then the following list is the current state (I'll also re-order them a bi
 * define(`V_LIMIT`, **256**);
 * define(`AA`, **true**);
 * define(`TYPE`, '**png**');
-* define(`HASH_IP`, **false**);
+* define(`PRIVACY`, **false**);
 * define(`HASH`, '**sha3-256**');
 * define(`ERROR`, '**/**');
 * define(`NONE`, '**/**');
