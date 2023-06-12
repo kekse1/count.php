@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.20.9**!
+It's a universal counter script. ... v**2.20.10**!
 
 ## Index
 1. [News](#news)
@@ -37,7 +37,8 @@ It's a universal counter script. ... v**2.20.9**!
 
 ## News
 * Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
-* .. so, the `--values/-v` is working again again! More (CLI) updates in some days..
+* .. so, the `--values/-v` is working again! _Partially_: The **old** `--sync/-n` will be there, too!
+* ... and `--purge/-p` does also work now again.
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
@@ -395,7 +396,6 @@ supported 'functions'.
 |    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
 |    `-s` | `--set (... TODO)` | Initialize a value file, or set a specific value (TODO) |
 |    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.     |
-|    `-n` | `--sync [*]`       | Synchronize the cache with real counts (only)           |
 |    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..     |
 |    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!       |
 |    `-c` | `--check`          | Verify if current configuration is valid.               |
