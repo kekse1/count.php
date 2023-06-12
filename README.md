@@ -36,7 +36,7 @@ It's a universal counter script. ... v**2.20.13**!
 10. [Copyright and License](#copyright-and-license)
 
 ## News
-* The `--values/-v` is finished (now additionally with _**old**_ `--sync/-n` functionality).
+* The `--values/-v` is finished (now w/ _**old**_ `--sync/-n` functionality).
 * Only left now: `--clean/-c` and `--set/-s` (if no more are coming).
 
 ## Issues
