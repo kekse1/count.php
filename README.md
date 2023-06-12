@@ -37,7 +37,7 @@ It's a universal counter script. ... v**2.20.13**!
 
 ## News
 * Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
-* The `--values/-v` is finished (and the new successor of *old* `--sync/-n`). :)~
+* The `--values/-v` is finished (and now additionally implements **old** `--sync/-n`).
 * Now only left: `--clean/-c` and `--set/-s` (if no more are comming).
 
 ## Issues
