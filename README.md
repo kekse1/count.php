@@ -463,8 +463,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit with my commented out, original CLI functions (not yet finished, btw.)
-the line count shrank a lot.. with v**3.0.0** there are only **_3693_ code lines** left. :)~
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_3693_ code lines**
+left (v**3.0.0**)! :-)
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
