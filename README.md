@@ -271,35 +271,35 @@ these `define()`, very soon.. we don't like that they're being defined in the gl
 
 Until then the following list is the current state (I'll also re-order them a bit, btw.):
 
-* `define('RAW', false);`
-* `define('AUTO', 32);`
-* `define('THRESHOLD', 7200);`
-* `define('DIR', 'count');`
-* `define('HIDE', false);`
-* `define('CLIENT', true);`
-* `define('SERVER', true);`
-* `define('OVERRIDE', false);`
-* `define('HASH', 'sha3-256');`
-* `define('HASH_IP', false);`
-* `define('CONTENT', 'text/plain;charset=UTF-8');`
-* `define('CLEAN', true);`
-* `define('LIMIT', 32768);`
-* `define('LOG', 'count.log');`
-* `define('ERROR', '/');`
-* `define('NONE', '/');`
-* `define('DRAWING', false);`
-* `define('SIZE', 24);`
-* `define('SIZE_LIMIT', 512);`
-* `define('FONT', 'IntelOneMono');`
-* `define('FONTS', 'fonts');`
-* `define('H', 0);`
-* `define('H_LIMIT', 256);`
-* `define('V', 0);`
-* `define('V_LIMIT', 256);`
-* `define('FG', '0, 0, 0, 1');`
-* `define('BG', '255, 255, 255, 0');`
-* `define('AA', true);`
-* `define('TYPE', 'png');`
+* define(`DIR`, '**count/**');
+* define(`LOG`, '**count.log**');
+* define(`THRESHOLD`, **7200**);
+* define(`AUTO`, **32**);
+* define(`HIDE`, **false**);
+* define(`CLIENT`, **true**);
+* define(`SERVER`, **true**);
+* define(`DRAWING`, **false**);
+* define(`OVERRIDE`, **false**);
+* define(`CONTENT`, '**text/plain;charset=UTF-8**');
+* define(`CLEAN`, **true**);
+* define(`LIMIT`, **32768**);
+* define(`FONTS`, '**fonts/**');
+* define(`FONT`, '**IntelOneMono**');
+* define(`SIZE`, **24**);
+* define(`SIZE_LIMIT`, **512**);
+* define(`FG`, '**0, 0, 0, 1**');
+* define(`BG`, '**255, 255, 255, 0**');
+* define(`H`, **0**);
+* define(`V`, **0**);
+* define(`H_LIMIT`, **256**);
+* define(`V_LIMIT`, **256**);
+* define(`AA`, **true**);
+* define(`TYPE`, '**png**');
+* define(`HASH_IP`, **false**);
+* define(`HASH`, '**sha3-256**');
+* define(`ERROR`, '**/**');
+* define(`NONE`, '**/**');
+* define(`RAW`, **false**);
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory.
 But consider that not every HTTPD (web server) does support such a file (e.g. `lighttpd`)!
