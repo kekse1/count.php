@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.20.11**!
+It's a universal counter script. ... v**2.20.12**!
 
 ## Index
 1. [News](#news)
@@ -39,6 +39,7 @@ It's a universal counter script. ... v**2.20.11**!
 * Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
 * .. so, the `--values/-v` is working again! _Partially_: The **old** `--sync/-n` will be there, too!
 * ... and `--purge/-p` does also work now again.
+* .. last fix: `get_info()` should be a big performance update (in CLI, if one cares).
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
