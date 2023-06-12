@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.0.0**!
+It's a universal counter script. ... v**3.0.1**!
 
 ## Index
 1. [News](#news)
@@ -173,8 +173,7 @@ I just abstracted both functions `secure_{host,path}()` to only one function, wh
 used by the `get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()`
 additionally does a `strtolower()`.
 
-So here you gotta know which characters you can pass, while the maximum length is 255 characters, btw.
-(as good as I remember here - please feel free to look in the code for yourself):
+So here you gotta know which characters you can pass, while the maximum length is 224 characters (by default), btw.
 
 * `a-z`
 * `A-Z`
