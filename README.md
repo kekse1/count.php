@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.20.8**!
+It's a universal counter script. ... v**2.20.9**!
 
 ## Index
 1. [News](#news)
@@ -37,7 +37,7 @@ It's a universal counter script. ... v**2.20.8**!
 
 ## News
 * Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
-* Added **new *default* font [`IntelOne Mono`](https://github.com/intel/intel-one-mono/)**. Looks great (see the graphic on top)! :-)
+* .. so, the `--values/-v` is working again again! More (CLI) updates in some days..
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
@@ -416,6 +416,9 @@ just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's qu
 
 #### GLOB support
 As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
+
+**For your info**: when using globs in a shell, it's sometimes important to escape parts of it, or just
+write them in quotes (mostly `'`). Otherwise the shell would try to resolve them.
 
 When _really_ finished this, I'm thinking about managing the IP addresses (if you don't configured to hide them)
 this way, in some way.. First idea is to look at their intersect (which hosts were visited by one/some IP(s)) ..
