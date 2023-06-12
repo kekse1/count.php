@@ -14,7 +14,7 @@ It's a universal counter script. ... v**2.20.10**!
 	* [Refresh](#refresh)
 	* [Override](#override)
 	* [Cleaning](#cleaning)
-	* [More privacy](#more-privacy)
+	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
 5. [Drawing](#drawing)
@@ -135,7 +135,7 @@ than the (integer). And if you set it to `(null)`, every cleaning is **forbidden
 want to collect all the IPs or so.. `(false)` would also never call the clean routine, except if
 the `LIMIT` is exceeded..!
 
-### More privacy
+### Privacy
 And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
 also be hashed, so noone can see them (including yourself, or the webmaster(s), .. even with
 access to the file system).
@@ -147,7 +147,7 @@ Most errors will be appended to the `count.log` file (configurable via `LOG`), s
 directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
 where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
 
-The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative Paths](#relative-paths)).
+The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative Paths](#relative-paths)), and also encodes timestamps, in the first column (in seconds, unix epoch (January 1st, 1970)).
 
 #### Details
 In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
@@ -395,15 +395,15 @@ supported 'functions'.
 |    `-V` | `--version`        | Print current script's version.                         |
 |    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
 |    `-s` | `--set (... TODO)` | Initialize a value file, or set a specific value (TODO) |
-|    `-v` | `--values [*]`     | All runtime status infos. w/ cache synchronization.     |
-|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) ip/timestamp files..     |
-|    `-p` | `--purge [*]`      | Delete any host's ip cache directory (w/ caches)!       |
-|    `-c` | `--check`          | Verify if current configuration is valid.               |
+|    `-v` | `--values [*]`     | Shows all vales and more. With cache synchronization.   |
+|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) cache files.             |
+|    `-p` | `--purge [*]`      | Delete the cache(s) for all or specified hosts.         |
+|    `-c` | `--check`          | Verifies if the current configuration is valid.         |
 |    `-h` | `--hashes`         | Available algorithms for `HASH` config.                 |
-|    `-f` | `--fonts [*]`      | Available fonts for drawing `<img>`.                    |
+|    `-f` | `--fonts [*]`      | Available fonts for drawing `<img>`. Globs allowed.     |
 |    `-t` | `--types`          | Available image types for drawing output.               |
-|    `-e` | `--errors`         | Count error log lines, if existing..                    |
-|    `-u` | `--unlog`          | Deletes the whole error log file, if already exists.    |
+|    `-e` | `--errors`         | Counts the error log lines.                             |
+|    `-u` | `--unlog`          | Deletes the whole error log file.                       |
 
 The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
