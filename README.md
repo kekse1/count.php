@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.20.7**!
+It's a universal counter script. ... v**2.20.8**!
 
 ## Index
 1. [News](#news)
@@ -161,8 +161,9 @@ Otherwise, without `ERROR` setting, they'll see the error message itself (in sho
 won't see file paths). .. When sending an error, the defined `CONTENT` header will be sent; also on drawing
 errors.. so the image will break.
 
-BTW @ developers: I'm using three functions for this. Please use them, and **never** a regular `die()`
-nor `throw new Exception(..)`. These functions handle it better: `error()`/`log_error()`/`draw_error()`.
+BTW @ developers: I'm using two functions for this. Please use them, **never** a regular `die()` nor a
+`throw new Exception(..)`. These functions handle it better: `error()`/`log_error()`. Please _log_ errors
+only in safe situations, so no client is able to flood the log file..!
 
 ### String filter
 _All `$_SERVER` and `$_GET` are filtered to reach security_ (please don't ever trust any [user] input!).
@@ -366,10 +367,7 @@ If called w/ `$_readonly = false` and in `RAW` _plus_ `CLI` mode, every call of 
 the counter value, without `THRESHOLD` testing, etc. (as there's neither cookies available, nor an
 IP address).
 
-Last but not least: now in RAW mode every error won't be logged nor ends with `die()`, it's replaced
-by a `throw new Exception(..)`! :)~
-
-*PS: Not tested very well atm.. could you do it for me (as you maybe implement own PHP code which would use this)?*
+Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
