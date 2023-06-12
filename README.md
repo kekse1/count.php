@@ -36,8 +36,8 @@ It's a universal counter script. ... v**2.20.13**!
 10. [Copyright and License](#copyright-and-license)
 
 ## News
-* The `--values/-v` is finished (and now additionally implements **old** `--sync/-n`).
-* Now only left: `--clean/-c` and `--set/-s` (if no more are comming).
+* The `--values/-v` is finished (and now additionally implements _old_ `--sync/-n` functionality).
+* Only left new: `--clean/-c` and `--set/-s` (if no more are coming).
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
