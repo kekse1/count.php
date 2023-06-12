@@ -37,9 +37,8 @@ It's a universal counter script. ... v**2.20.12**!
 
 ## News
 * Working on some CLI functions. After that, the major version can be increased (**nearly done!**); ...
-* .. so, the `--values/-v` is working again! _Partially_: The **old** `--sync/-n` will be there, too!
-* ... and `--purge/-p` does also work now again.
-* .. last fix: `get_info()` should be a big performance update (in CLI, if one cares).
+* .. so, the `--values/-v` is working again (.._partially_: The **old** `--sync/-n` will now be integrated there, too)!
+* .. last fix: `get_info()` should be a big performance update (in CLI, if one cares); and `--purge/-p` is also working again now.
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
