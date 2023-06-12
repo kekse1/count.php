@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**2.20.14**!
+It's a universal counter script. ... v**3.0.0**!
 
 ## Index
 1. [News](#news)
@@ -36,8 +36,7 @@ It's a universal counter script. ... v**2.20.14**!
 10. [Copyright and License](#copyright-and-license)
 
 ## News
-* The `--values/-v` is finished (now w/ _**old**_ `--sync/-n` functionality).
-* Only left now: `--clean/-c` and `--set/-s` (if no more are coming).
+* **The `CLI` functions are ready now!** ... reached v**3.0.0**. :-D
 
 ## Issues
 * Didn't test against PHP **v8** support (*TODO*)!
@@ -393,8 +392,8 @@ supported 'functions'.
 |    `-?` | `--help`           | Shows the link to this website..                        |
 |    `-V` | `--version`        | Print current script's version.                         |
 |    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
-|    `-s` | `--set (... TODO)` | Initialize a value file, or set a specific value (TODO) |
 |    `-v` | `--values [*]`     | Shows all vales and more. With cache synchronization.   |
+|    `-s` | `--sync [*]`       | Same as above, but with cache synchronization..         |
 |    `-l` | `--clean [*]`      | Clean all **outdated** (only!) cache files.             |
 |    `-p` | `--purge [*]`      | Delete the cache(s) for all or specified hosts.         |
 |    `-c` | `--check`          | Verifies if the current configuration is valid.         |
@@ -463,7 +462,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 **NEWS**: after cleaning up a bit with my commented out, original CLI functions (not yet finished, btw.)
-the line count shrank a lot.. with v**2.20.14** there are only **3532 code lines** left. :)~
+the line count shrank a lot.. with v**3.0.0** there are only **3708 code lines** left. :)~
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
