@@ -4,11 +4,9 @@
 It's a universal counter script. ... v**3.0.2**!
 
 ## Index
-1. [News](#news)
-2. [Issues](#issues)
-3. [Installation](#installation)
+1. [Installation](#installation)
 	* [Dependencies](#dependencies)
-4. [Details](#details)
+2. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -17,13 +15,13 @@ It's a universal counter script. ... v**3.0.2**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-5. [Drawing](#drawing)
+3. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-6. [Configuration](#configuration)
+4. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
-7. [Modes](#modes)
+5. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -31,20 +29,9 @@ It's a universal counter script. ... v**3.0.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-8. [FAQ](#faq)
-9. [The original version](#the-original-version)
-10. [Copyright and License](#copyright-and-license)
-
-## News
-* **The `CLI` functions are ready now!** ... reached v**3.0.0**. :-D
-
-## Issues
-* Didn't test against PHP **v8** support (*TODO*)!
-* As already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace the `define()`. Soon..
-
-**Please** _report any problems_ to me! Either by contacting me via E-Mail (see the
-[Copyright and License](#copyright-and-license) section), or use the [Issues](https://github.com/kekse1/count.php/issues)
-function of this github web site.. **Thank you**! :)~
+6. [FAQ](#faq)
+7. [The original version](#the-original-version)
+8. [Copyright and License](#copyright-and-license)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
