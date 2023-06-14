@@ -380,7 +380,7 @@ supported 'functions'.
 |    `-?` | `--help`           | Shows the link to this website..                        |
 |    `-V` | `--version`        | Print current script's version.                         |
 |    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
-|    `-v` | `--values [*]`     | Shows all vales and more. With cache synchronization.   |
+|    `-v` | `--values [*]`     | Shows all vales and more.                               |
 |    `-s` | `--sync [*]`       | Same as above, but with cache synchronization..         |
 |    `-l` | `--clean [*]`      | Clean all **outdated** (only!) cache files.             |
 |    `-p` | `--purge [*]`      | Delete the cache(s) for all or specified hosts.         |
