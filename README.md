@@ -9,11 +9,16 @@ It's a universal counter script. ... v**3.1.2**!
 * This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
 * And new `--sanitize/-z` parameter added (in [CLI mode](#cli-mode)).
 
+## Issues
+* [Very important question from me to you all](https://github.com/kekse1/count.php/issues/3); ...
+Feel free to use the [Issues](https://github.com/kekse1/count.php/issues) function of this [github.com](https://github.com/kekse1/count.php/). :)~
+
 ## Index
 1. [News](#news)
-2. [Installation](#installation)
+2. [Issues](#issues)
+3. [Installation](#installation)
 	* [Dependencies](#dependencies)
-3. [Details](#details)
+4. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -22,13 +27,13 @@ It's a universal counter script. ... v**3.1.2**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-4. [Drawing](#drawing)
+5. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-5. [Configuration](#configuration)
+6. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
-6. [Modes](#modes)
+7. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -36,9 +41,9 @@ It's a universal counter script. ... v**3.1.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-7. [FAQ](#faq)
-8. [The original version](#the-original-version)
-9. [Copyright and License](#copyright-and-license)
+8. [FAQ](#faq)
+9. [The original version](#the-original-version)
+10. [Copyright and License](#copyright-and-license)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
