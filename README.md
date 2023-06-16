@@ -231,12 +231,12 @@ need a prefix, which is either `?` for the first parameter, and `&` for any foll
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
-`x` and `y` are just moving the text along these both axis (in px). 
+`x` and `y` are just moving the text along these both axis (in px).
+`v` is the space above and below the text, `h` is to the left and the right. They both can also be negative
+values.
 
-`v` is the space above and below the text, `h` is to the left and the right. They both can also be negative values.
-
-`size` is a font size (in 'pt' or 'px' - not sure atm).. and the `font` needs to be installed in the
- `FONTS` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but CAN be so, too..
+`size` is a font size (in `pt` or `px`? ..not sure atm). And the selected `font` needs to be installed in
+the `FONTS` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but CAN be so, too..
 
 The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased text.
 
