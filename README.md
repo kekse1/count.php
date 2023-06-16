@@ -237,8 +237,8 @@ need a prefix, which is either `?` for the first parameter, and `&` for any foll
 negative values - as long as the resulting image won't rest up with size <1.. in this case there'll
 be an error.
 
-`size` is a font size in 'pt' or 'px' (ain't sure atm x)~
-And the `font` needs to be installed in the `FONTS` directory, as `.ttf`.
+`size` is a font size (in 'pt' or 'px' - not sure atm).. and the `font` needs to be installed in the
+ `FONTS` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but CAN be so, too..
 
 The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased text.
 
