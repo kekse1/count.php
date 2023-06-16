@@ -3,6 +3,11 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**3.1.0**!
 
+## News
+* Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
+* Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
+* This `README.md` has also changed.. better table formatting, and even **now w/ whole configuration w/ description/comments**! :-D
+
 ## Index
 1. [News](#news)
 2. [Installation](#installation)
@@ -33,11 +38,6 @@ It's a universal counter script. ... v**3.1.0**!
 7. [FAQ](#faq)
 8. [The original version](#the-original-version)
 9. [Copyright and License](#copyright-and-license)
-
-## News
-* Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
-* Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
-* This `README.md` has also changed.. better table formatting, and even **now w/ whole configuration w/ description/comments**! :-D
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
