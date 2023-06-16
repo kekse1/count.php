@@ -216,8 +216,8 @@ need a prefix, which is either `?` for the first parameter, and `&` for any foll
 
 | Variable | Default [Configuration](#constants) \[= Value\] | Type         | Description / Comment(s) |
 | -------: | :---------------------------------------------- | -----------: | -----------------------: |
-| `draw`   | (`DRAWING` needs to be enabled!) = `false`      | **No value** |                          |
-| `zero`   | (`DRAWING` again) (overrides the options below) | **No value** | Alternative to `?draw`   |
+| `draw`   | (`DRAWING` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>  |
+| `zero`   | (`DRAWING` again) (overrides the options below) | **No value** | _Alternative_ to `?draw` |
 | `size`   | `SIZE` = `24`                                   | **Integer**  | Also see `SIZE_LIMIT`    |
 | `font`   | `FONT` = `'IntelOneMono'`                       | **String**   | Also see `FONTS`         |
 | `fg`     | `FG` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)    |
@@ -226,7 +226,7 @@ need a prefix, which is either `?` for the first parameter, and `&` for any foll
 | `v`      | `V` = `0`                                       | **Integer**  | Also see `V_LIMIT`       |
 | `x`      | `X` = `0`                                       | **Integer**  | >= -512 and <= 512       |
 | `y`      | `Y` = `0`                                       | **Integer**  | >= -512 and <= 512       |
-| `aa`     | `AA` = `true`                                   | **Boolean**  |                          |
+| `aa`     | `AA` = `true`                                   | **Boolean**  | Anti Aliasing..          |
 | `type`   | `TYPE` = `'png'`                                | **String**   | See `--types/-t`         |
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
