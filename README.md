@@ -11,7 +11,8 @@ It's a universal counter script. ... v**3.1.2**!
 
 ## Issues
 * [Very important question from me to you all](https://github.com/kekse1/count.php/issues/3); ...
-Feel free to use the [Issues](https://github.com/kekse1/count.php/issues) function of this [github.com](https://github.com/kekse1/count.php/). :)~
+
+And please feel free to use the [Issues](https://github.com/kekse1/count.php/issues) function of this [github.com](https://github.com/kekse1/count.php/). :)~
 
 ## Index
 1. [News](#news)
