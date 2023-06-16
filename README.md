@@ -63,7 +63,7 @@ as the default font, btw.. looks great - see the random value on top of this `RE
 Now, **that's** all. :D~
 
 _And if you want to edit the default configuration_, see the [Configuration section](#configuration). And to make sure your settings are valid,
-you can call this script like this: `php count.php --check/-c`), which will check your own configuration (if it's (mostly syntactical) correct).
+you can call this script like this: `php count.php --check/-c`), which will check your own configuration, if it's (mostly syntactical) correct.
 
 ### Dependencies
 **NO** dependencies.
