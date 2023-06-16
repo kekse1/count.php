@@ -490,7 +490,7 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_4284_ code lines**
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_4285_ code lines**
 left (at v**3.1.2**)! :-)
 
 ## The original version
