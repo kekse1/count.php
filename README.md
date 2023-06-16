@@ -36,9 +36,8 @@ It's a universal counter script. ... v**3.1.0**!
 
 ## News
 * Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
-* Now also supports various 'radix' or 'base' for the (string) output of the counted values.. See the [Radix](#radix) sub section.
-* This `README.md` has also changed.. better table formatting instead of lists (and, of course, more infos about changes).
-* AND this `README.md` has also description/comments to my whole [Configuration](#configuration)! ;-D
+* Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
+* This `README.md` has also changed.. better table formatting, and even **now w/ whole configuration w/ description/comments**! :-D
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
