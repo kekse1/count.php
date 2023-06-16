@@ -338,7 +338,7 @@ Supported formats are:
 ### Radix
 The `RADIX` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
 
-But it's worth mentioning that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
+But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
 Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `RADIX` setting mentioned here above).
 
 ## Modes
