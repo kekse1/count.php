@@ -275,7 +275,7 @@ your own configuration (via `-c/--check`)!
 As already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace
 these `define()`, very soon.. we don't like that they're being defined in the global namespace this way.
 
-Here are the current _default_ settings, including the possible types (as `--check/-c` validates them):
+Here are the current _default_ settings, including the possible types (and `--check/-c` @ CLI validates them):
 
 | Name         | Default value                | Possible types/values                     | Description / Comment(s)                    |
 | -----------: | :--------------------------- | ----------------------------------------: | :-----------------------------------------: |
