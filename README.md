@@ -6,7 +6,7 @@ It's a universal counter script. ... v**3.1.0**!
 ## News
 * Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
 * Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
-* This `README.md` has also changed.. better table formatting, and now the **whole configuration w/ description**! :-D
+* This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
 
 ## Index
 1. [News](#news)
