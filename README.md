@@ -1,12 +1,13 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.0.3**!
+It's a universal counter script. ... v**3.1.0**!
 
 ## Index
-1. [Installation](#installation)
+1. [News](#news)
+2. [Installation](#installation)
 	* [Dependencies](#dependencies)
-2. [Details](#details)
+3. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -15,13 +16,13 @@ It's a universal counter script. ... v**3.0.3**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-3. [Drawing](#drawing)
+4. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-4. [Configuration](#configuration)
+5. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
-5. [Modes](#modes)
+6. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -29,9 +30,14 @@ It's a universal counter script. ... v**3.0.3**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-6. [FAQ](#faq)
-7. [The original version](#the-original-version)
-8. [Copyright and License](#copyright-and-license)
+7. [FAQ](#faq)
+8. [The original version](#the-original-version)
+9. [Copyright and License](#copyright-and-license)
+
+## News
+* Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
+* Now also supports various 'radix' or 'base' for the (string) output of the counted values.. See the [Radix](#radix) sub section.
+* This `README.md` has also changed.. better table formatting instead of lists (and, of course, more infos about changes).
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
@@ -45,6 +51,9 @@ HTTPD needs access to a sub directory `fonts/`, with at least one installed `.tt
 font_ in the `FONT` setting).
 
 Now, **that's** all. :D~
+
+If you want to edit the default configuration, see the [Configuration section](#configuration). And to make sure your settings are valid,
+you can call this script like this: `php count.php --check` (or `-c`), which will check your own configuration (if it's syntactical correct).
 
 ### Dependencies
 **NO** dependencies.
@@ -82,6 +91,9 @@ If a cookie (if actived `CLIENT`) already confirmed that the client connected wi
 `THRESHOLD` (2 hours by default), no `SERVER` test will be done after this. And if a cookie
 doesn't work, there's still this IP test left (if `SERVER` enabled).
 
+If `THRESHOLD <= 0` or `THRESHOLD === null`, both `SERVER` and `CLIENT` will be overridden (to
+`false`); as this seems you don't need a `THRESHOLD` time.
+
 ### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
 
@@ -108,7 +120,10 @@ corresponding string!
 _**NEW** (since v**2.20.4**)_: `OVERRIDE` can also be a (non-empty) String, to define just one fixed
 host(name) to use. Last possibility to override is the `counter()` function itself (first argument);
 the strings are always filtered (by `secure_host()`), and every of these overrides sets
-`OVERRIDDEN = true`. *PS: untested atm.*
+`OVERRIDDEN = true`.
+
+*PS: untested atm.*.. AND **JFYI**: If `gettype(OVERRIDE) === 'string'`, then the 'AUTO' is also being
+overridden as above, but like the `(true)` state (so the value file will always be created automatically).
 
 ### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
@@ -160,11 +175,13 @@ I just abstracted both functions `secure_{host,path}()` to only one function, wh
 used by the `get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()`
 additionally does a `strtolower()`.
 
-So here you gotta know which characters you can pass, while the maximum length is 224 characters (by default), btw.
+So here you gotta know which characters you can pass, while the maximum length is 224 characters (by default;
+look at the `MAX` constant), btw.
 
 * `a-z`
 * `A-Z`
 * `0-9`
+* `#`
 * `,`
 * `:`
 * `(`
@@ -194,24 +211,26 @@ draw a (nearly) empty output image (hidden counter, e.g. .. whereas there's also
 
 ### Parameters
 To use it, enable the `DRAWING` option and call script with (at least!) `?draw` (GET) parameter. More
-isn't necessary, but there also also some GET parameters to adapt the drawing; as follows:
+isn't necessary, but there also also some GET parameters to adapt the drawing; as follows (whereas they
+need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
-* `?draw`
-* `?size=(int)` [24]
-* `?font=(string)` [SourceCodePro]
-* `?fg=(string)` [rgba(0, 0, 0, 1)]
-* `?bg=(string)` [rgba(255, 255, 255, 0)]
-* `?h=(int)` [0]
-* `?v=(int)` [0]
-* `?x=(int)` [0]
-* `?y=(int)` [0]
-* `?aa=(1|0|y|n)` [true]
-* `?type=(string)` [png]
+| Variable | Default [Configuration](#constants) \[= Value\] | Type         | Description / Comment(s) |
+| -------: | :---------------------------------------------- | -----------: | -----------------------: |
+| `draw`   | (`DRAWING` needs to be enabled!) = `false`      | **No value** |                          |
+| `size`   | `SIZE` = `24`                                   | **Integer**  | Also see `SIZE_LIMIT`    |
+| `font`   | `FONT` = `'IntelOneMono'`                       | **String**   | Also see `FONTS`         |
+| `fg`     | `FG` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)    |
+| `bg`     | `BG` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)    |
+| `h`      | `H` = `0`                                       | **Integer**  | Also see `H_LIMIT`       |
+| `v`      | `V` = `0`                                       | **Integer**  | Also see `V_LIMIT`       |
+| `x`      | `X` = `0`                                       | **Integer**  | >= -512 and <= 512       |
+| `y`      | `Y` = `0`                                       | **Integer**  | >= -512 and <= 512       |
+| `aa`     | `AA` = `true`                                   | **Boolean**  |                          |
+| `type`   | `TYPE` = `'png'`                                | **String**   | See `--types/-t`         |
 
-`x` and `y` are just moving the text along this both axis (in px).
+`fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
-`fg` and `bg` can be `rgb()`, `rgba()` or just the 3 bytes and optionally a floating point number
-between 0 and 1 for the alpha component.
+`x` and `y` are just moving the text along this both axis (in px). 
 
 `v` is the space above and below the text, `h` is to the left and the right. They both can also be
 negative values - as long as the resulting image won't rest up with size <1.. in this case there'll
@@ -257,37 +276,42 @@ your own configuration (via `-c/--check`)!
 As already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace
 these `define()`, very soon.. we don't like that they're being defined in the global namespace this way.
 
-Until then the following list is the current state (I'll also re-order them a bit, btw.):
+Here are the current _default_ settings, including the possible types (as `--check/-c` validates them):
 
-* define(`DIR`, '**count/**');
-* define(`LOG`, '**count.log**');
-* define(`THRESHOLD`, **7200**);
-* define(`AUTO`, **32**);
-* define(`HIDE`, **false**);
-* define(`CLIENT`, **true**);
-* define(`SERVER`, **true**);
-* define(`DRAWING`, **false**);
-* define(`OVERRIDE`, **false**);
-* define(`CONTENT`, '**text/plain;charset=UTF-8**');
-* define(`CLEAN`, **true**);
-* define(`LIMIT`, **32768**);
-* define(`FONTS`, '**fonts/**');
-* define(`FONT`, '**IntelOneMono**');
-* define(`SIZE`, **24**);
-* define(`SIZE_LIMIT`, **512**);
-* define(`FG`, '**0, 0, 0, 1**');
-* define(`BG`, '**255, 255, 255, 0**');
-* define(`H`, **0**);
-* define(`V`, **0**);
-* define(`H_LIMIT`, **256**);
-* define(`V_LIMIT`, **256**);
-* define(`AA`, **true**);
-* define(`TYPE`, '**png**');
-* define(`PRIVACY`, **false**);
-* define(`HASH`, '**sha3-256**');
-* define(`ERROR`, '**/**');
-* define(`NONE`, '**/**');
-* define(`RAW`, **false**);
+| Name         | Default value                | Possible types/values                     | Description / Comment(s)                    |
+| -----------: | :--------------------------- | ----------------------------------------: | :-----------------------------------------: |
+| `DIR`        | `'count/'`                   | String (non-empty)                        | See [Relative paths](#relative-paths) below |
+| `LOG`        | `'count.log'`                | String (non-empty)                        | (...)                                       |
+| `THRESHOLD`  | `7200`                       | Integer (>= 0)                            | (...)                                       |
+| `AUTO`       | `32`                         | Boolean or Integer (>0)                   | (...)                                       |
+| `HIDE`       | `false`                      | Boolean or String                         | (...)                                       |
+| `CLIENT`     | `true`                       | Boolean                                   | (...)                                       |
+| `SERVER`     | `true`                       | Boolean                                   | (...)                                       |
+| `DRAWING`    | `false`                      | Boolean                                   | (...)                                       |
+| `OVERRIDE`   | `false`                      | Boolean or String (non-empty)             | (...)                                       |
+| `CONTENT`    | `'text/plain;charset=UTF-8'` | String (non-empty)                        | (...)                                       |
+| `CLEAN`      | `true`                       | Null, Boolean or Integer (>0)             | (...)                                       |
+| `LIMIT`      | `32768`                      | Integer (>=0)                             | (...)                                       |
+| `FONTS`      | `'fonts/'`                   | String (non-empty)                        | (...)                                       |
+| `FONT`       | `'IntelOneMono'`             | String (non-empty) \[see `--fonts/-f`\]   | (...)                                       |
+| `SIZE`       | `24`                         | Integer (>=4, and w/in SIZE_LIMIT)        | (...)                                       |
+| `SIZE_LIMIT` | `512`                        | Integer (>=4 and <=512)                   | (...)                                       |
+| `FG`         | `'rgb(0, 0, 0)'`             | String (non-empty)                        | See [Colors](#colors) below                 |
+| `BG`         | `'rgba(255, 255, 255, 0)'`   | String (non-empty)                        | See [Colors](#colors) below                 |
+| `X`          | `0`                          | Integer (<=512 and >=-512)                | (...)                                       |
+| `Y`          | `0`                          | Integer (<=512 and >=-512)                | (...)                                       |
+| `H`          | `0`                          | Integer (<=H_LIMIT and >=(-)H_LIMIT)      | (...)                                       |
+| `V`          | `0`                          | Integer (<=V_LIMIT and >=(-)V_LIMIT)      | (...)                                       |
+| `H_LIMIT`    | `256`                        | Integer (>= 0 and <= 512)                 | (...)                                       |
+| `V_LIMIT`    | `256`                        | Integer (>= 0 and <= 512)                 | (...)                                       |
+| `AA`         | `true`                       | Boolean                                   | (...)                                       |
+| `TYPE`       | `'png'`                      | String (non-empty) \[see `--types/-t`\]   | (...)                                       |
+| `PRIVACY`    | `false`                      | Boolean                                   | (...)                                       |
+| `HASH`       | `'sha3-256'`                 | String (non-empty) \[see `--hashes/-h`\]  | (...)                                       |
+| `ERROR`      | `'/'`                        | Null or String                            | (...)                                       |
+| `NONE`       | `'/'`                        | String                                    | (...)                                       |
+| `RAW`        | `false`                      | Boolean                                   | (...)                                       |
+| `RADIX`      | `10`                         | Integer                                   | See [Radix](#radix) below                   |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory.
 But consider that not every HTTPD (web server) does support such a file (e.g. `lighttpd`)!
@@ -302,6 +326,20 @@ gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/co
 
 But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
 directory, please use `./../`..
+
+### Colors
+Supported formats are:
+
+* `argb()` (with 3x (0-255) and 1x (0.0-1.0))
+* `rgb()` (with 3x (0-255))
+* `(comma separated list) (of 3x (0-255) and optionally 1x (0.0-1.0))
+* `#` hex color strings (w/ and w/o `#` prefix, within a length of [ 3, 4, 6, 8 ])
+
+### Radix
+The `RADIX` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
+
+But it's worth mentioning that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
+Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `RADIX` setting mentioned here above).
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
@@ -366,14 +404,17 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
 as defined in `CONTENT` option)! .. so please, just type `php count.php` in your shell.
 
-**BTW**: With enabled `RAW` setting this command line interface won't be shown (as this mode is for using
-the script within other PHP scripts).
+**BTW**: With enabled `RAW` setting this command line interface won't be shown (because this mode is
+for using the script within other PHP scripts) - unless you define one of the parameters shown below!
+
+_**NEW** since v**3.0.3**:_ the default action has changed - from showing to `--help/-h` to directly
+show the `--values/-v`! If you need help, you should choose `--help/-?` now! ;)~
 
 ##### The argument vector
 **Update**: The following list will change a bit soon, as I'm currently extending the `CLI` mode!
 
-Just run the script without parameters to see all possible `argv[]` options. Here's the current list of
-supported 'functions'.
+Just run the script without parameters to see all possible `argv[]` options. Here's the current list
+of supported 'functions'.
 
 |   Short | Long               | Description                                             |
 | ------: | :----------------- | :-----------------------------------------------------: |
@@ -395,20 +436,19 @@ The optional `[*]` needs to be defined directly after the parameter; can be mult
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
 available hosts.
 
+As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
+
+**For your info**: when using globs in a shell, it's sometimes important to escape parts of it, or just
+write them in quotes (mostly `'`), or escape the special chars.. otherwise the shell would try to resolve
+them.
+
+_TODO:_ only the `--set/-s` is missing yet.. I thought about leaving it as is, but sometimes it could be
+important; e.g. if you migrate, or for initialization (atm you have to edit the `~` files manually).
+
 #### Prompts
 As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
 to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
 just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
-
-#### GLOB support
-As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
-
-**For your info**: when using globs in a shell, it's sometimes important to escape parts of it, or just
-write them in quotes (mostly `'`). Otherwise the shell would try to resolve them.
-
-When _really_ finished this, I'm thinking about managing the IP addresses (if you don't configured to hide them)
-this way, in some way.. First idea is to look at their intersect (which hosts were visited by one/some IP(s)) ..
-*has anyone other ideas??*
 
 ## FAQ
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
