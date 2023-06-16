@@ -233,9 +233,7 @@ need a prefix, which is either `?` for the first parameter, and `&` for any foll
 
 `x` and `y` are just moving the text along this both axis (in px). 
 
-`v` is the space above and below the text, `h` is to the left and the right. They both can also be
-negative values - as long as the resulting image won't rest up with size <1.. in this case there'll
-be an error.
+`v` is the space above and below the text, `h` is to the left and the right. They both can also be negative values.
 
 `size` is a font size (in 'pt' or 'px' - not sure atm).. and the `font` needs to be installed in the
  `FONTS` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but CAN be so, too..
