@@ -10,7 +10,7 @@ It's a universal counter script. ... v**3.1.2**!
 * And new `--sanitize/-z` parameter added (in [CLI mode](#cli-mode)).
 
 ## Issues
-* [Very important question from me to you all](https://github.com/kekse1/count.php/issues/3); ...
+* [Very important question from me to you all](https://github.com/kekse1/count.php/issues/3), regarding the configuration..
 
 And please feel free to use the [Issues](https://github.com/kekse1/count.php/issues) function of this [github.com](https://github.com/kekse1/count.php/). :)~
 
