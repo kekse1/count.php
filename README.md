@@ -210,9 +210,9 @@ If allowed by `DRAWING` setting, just use either `?draw` for all possible option
 draw a (nearly) empty output image (hidden counter, e.g. .. whereas there's also the `HIDE` setting!).
 
 ### Parameters
-To use it, enable the `DRAWING` option and call script with (at least!) `?draw` (GET) parameter. More
-isn't necessary, but there also also some GET parameters to adapt the drawing; as follows (whereas they
-need a prefix, which is either `?` for the first parameter, and `&` for any following):
+To use it, enable the `DRAWING` option and call script with (at least!) `?draw` \[or `?zero`\] (GET)
+parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
+follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
 | Variable | Default [Configuration](#constants) \[= Value\] | Type         | Description / Comment(s) |
 | -------: | :---------------------------------------------- | -----------: | -----------------------: |
