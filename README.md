@@ -53,7 +53,7 @@ access the file system). **That's all!** :)~
 
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
-As an important example, since there is another file system change necessary: if you want to enable the `DRAWING` routines. Then the
+As an important example, hence here's another file system change necessary: if you want to enable the `DRAWING` routines. Then the
 HTTPD needs access to a sub directory `fonts/`, with at least one installed `.ttf`(!) font in it (which you need to set as the _default
 font_ in the `FONT` setting).
 
