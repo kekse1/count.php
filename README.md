@@ -231,7 +231,7 @@ need a prefix, which is either `?` for the first parameter, and `&` for any foll
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
-`x` and `y` are just moving the text along this both axis (in px). 
+`x` and `y` are just moving the text along these both axis (in px). 
 
 `v` is the space above and below the text, `h` is to the left and the right. They both can also be negative values.
 
