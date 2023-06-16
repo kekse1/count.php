@@ -59,7 +59,7 @@ font_ in the `FONT` setting).
 
 Now, **that's** all. :D~
 
-BTW: You can just use the [`fonts/`](fonts/) folder shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
+BTW: You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
 as the default font, btw.. looks great - see the random value on top of this `EADME.md`.
 
 And if you want to edit the default configuration, see the [Configuration section](#configuration). And to make sure your settings are valid,
