@@ -407,8 +407,8 @@ as defined in `CONTENT` option)! .. so please, just type `php count.php` in your
 **BTW**: With enabled `RAW` setting this command line interface won't be shown (because this mode is
 for using the script within other PHP scripts) - unless you define one of the parameters shown below!
 
-_**NEW** since v**3.0.3**:_ the default action has changed - from showing to `--help/-h` to directly
-show the `--values/-v`! If you need help, you should choose `--help/-?` now! ;)~
+_**NEW** since v**3.0.3**:_ the default action has changed - from showing the syntax to directly call
+like `--values/-v`. The syntax is now shown via `--help/-?`. :)~
 
 ##### The argument vector
 **Update**: The following list will change a bit soon, as I'm currently extending the `CLI` mode!
