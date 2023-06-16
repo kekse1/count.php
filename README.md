@@ -38,6 +38,7 @@ It's a universal counter script. ... v**3.1.0**!
 * Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
 * Now also supports various 'radix' or 'base' for the (string) output of the counted values.. See the [Radix](#radix) sub section.
 * This `README.md` has also changed.. better table formatting instead of lists (and, of course, more infos about changes).
+* AND this `README.md` has also description/comments to my whole [Configuration](#configuration)! ;-D
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
@@ -277,40 +278,40 @@ these `define()`, very soon.. we don't like that they're being defined in the gl
 
 Here are the current _default_ settings, including the possible types (and `--check/-c` @ CLI validates them):
 
-| Name         | Default value                | Possible types/values                     | Description / Comment(s)                    |
-| -----------: | :--------------------------- | ----------------------------------------: | :-----------------------------------------: |
-| `DIR`        | `'count/'`                   | String (non-empty)                        | See [Relative paths](#relative-paths) below |
-| `LOG`        | `'count.log'`                | String (non-empty)                        | (...)                                       |
-| `THRESHOLD`  | `7200`                       | Integer (>= 0)                            | (...)                                       |
-| `AUTO`       | `32`                         | Boolean or Integer (>0)                   | (...)                                       |
-| `HIDE`       | `false`                      | Boolean or String                         | (...)                                       |
-| `CLIENT`     | `true`                       | Boolean                                   | (...)                                       |
-| `SERVER`     | `true`                       | Boolean                                   | (...)                                       |
-| `DRAWING`    | `false`                      | Boolean                                   | (...)                                       |
-| `OVERRIDE`   | `false`                      | Boolean or String (non-empty)             | (...)                                       |
-| `CONTENT`    | `'text/plain;charset=UTF-8'` | String (non-empty)                        | (...)                                       |
-| `CLEAN`      | `true`                       | Null, Boolean or Integer (>0)             | (...)                                       |
-| `LIMIT`      | `32768`                      | Integer (>=0)                             | (...)                                       |
-| `FONTS`      | `'fonts/'`                   | String (non-empty)                        | (...)                                       |
-| `FONT`       | `'IntelOneMono'`             | String (non-empty) \[see `--fonts/-f`\]   | (...)                                       |
-| `SIZE`       | `24`                         | Integer (>=4, and w/in SIZE_LIMIT)        | (...)                                       |
-| `SIZE_LIMIT` | `512`                        | Integer (>=4 and <=512)                   | (...)                                       |
-| `FG`         | `'rgb(0, 0, 0)'`             | String (non-empty)                        | See [Colors](#colors) below                 |
-| `BG`         | `'rgba(255, 255, 255, 0)'`   | String (non-empty)                        | See [Colors](#colors) below                 |
-| `X`          | `0`                          | Integer (<=512 and >=-512)                | (...)                                       |
-| `Y`          | `0`                          | Integer (<=512 and >=-512)                | (...)                                       |
-| `H`          | `0`                          | Integer (<=H_LIMIT and >=(-)H_LIMIT)      | (...)                                       |
-| `V`          | `0`                          | Integer (<=V_LIMIT and >=(-)V_LIMIT)      | (...)                                       |
-| `H_LIMIT`    | `256`                        | Integer (>= 0 and <= 512)                 | (...)                                       |
-| `V_LIMIT`    | `256`                        | Integer (>= 0 and <= 512)                 | (...)                                       |
-| `AA`         | `true`                       | Boolean                                   | (...)                                       |
-| `TYPE`       | `'png'`                      | String (non-empty) \[see `--types/-t`\]   | (...)                                       |
-| `PRIVACY`    | `false`                      | Boolean                                   | (...)                                       |
-| `HASH`       | `'sha3-256'`                 | String (non-empty) \[see `--hashes/-h`\]  | (...)                                       |
-| `ERROR`      | `'/'`                        | Null or String                            | (...)                                       |
-| `NONE`       | `'/'`                        | String                                    | (...)                                       |
-| `RAW`        | `false`                      | Boolean                                   | (...)                                       |
-| `RADIX`      | `10`                         | Integer                                   | See [Radix](#radix) below                   |
+| Name         | Default value                | Possible types/values                     | Description / Comment(s)                          |
+| -----------: | :--------------------------- | ----------------------------------------: | :-----------------------------------------------: |
+| `DIR`        | `'count/'`                   | String (non-empty)                        | See [Relative paths](#relative-paths) below       |
+| `LOG`        | `'count.log'`                | String (non-empty)                        | File to log errors to (also see link above)       |
+| `THRESHOLD`  | `7200`                       | Integer (>= 0) or Null                    | How long does it take till counting again?        |
+| `AUTO`       | `32`                         | Boolean or Integer (>0)                   | Create count value files automatically?           |
+| `HIDE`       | `false`                      | Boolean or String                         | Show the counted value or hide it?                |
+| `CLIENT`     | `true`                       | Boolean or Null                           | Enables Cookies against re-counting               |
+| `SERVER`     | `true`                       | Boolean                                   | Enables cache/ip/timestamp files, like above      |
+| `DRAWING`    | `false`                      | Boolean                                   | Essential if using `?draw` or `?zero`!            |
+| `OVERRIDE`   | `false`                      | Boolean or String (non-empty)             | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| `CONTENT`    | `'text/plain;charset=UTF-8'` | String (non-empty)                        | Non-graphical mode produces only value output     |
+| `CLEAN`      | `true`                       | Null, Boolean or Integer (>0)             | Clean outdated cache files and the FS things?     |
+| `LIMIT`      | `32768`                      | Integer (>=0)                             | Maximum number of cache files                     |
+| `FONTS`      | `'fonts/'`                   | String (non-empty)                        | Directory with installed '.ttf' fonts @ path      |
+| `FONT`       | `'IntelOneMono'`             | String (non-empty) \[see `--fonts/-f`\]   | Default font to use                               |
+| `SIZE`       | `24`                         | Integer (>=4, and w/in SIZE_LIMIT)        | Font size (`px` or `pt`, not sure atm)            |
+| `SIZE_LIMIT` | `512`                        | Integer (>=4 and <=512)                   | Limit for this size (@ traffic and resources)     |
+| `FG`         | `'rgb(0, 0, 0)'`             | String (non-empty)                        | See [Colors](#colors) below                       |
+| `BG`         | `'rgba(255, 255, 255, 0)'`   | String (non-empty)                        | See [Colors](#colors) below                       |
+| `X`          | `0`                          | Integer (<=512 and >=-512)                | Movement of drawed text left/right                |
+| `Y`          | `0`                          | Integer (<=512 and >=-512)                | Same as above, but for up/down                    |
+| `H`          | `0`                          | Integer (<=H_LIMIT and >=(-)H_LIMIT)      | Horizontal space from text to end of image        |
+| `V`          | `0`                          | Integer (<=V_LIMIT and >=(-)V_LIMIT)      | Vertical space, like above                        |
+| `H_LIMIT`    | `256`                        | Integer (>= 0 and <= 512)                 | Limited due to performance and traffic usage      |
+| `V_LIMIT`    | `256`                        | Integer (>= 0 and <= 512)                 | Same as above, but vertical, not horizontal       |
+| `AA`         | `true`                       | Boolean                                   | Anti Aliasing looks better, but it's optional     |
+| `TYPE`       | `'png'`                      | String (non-empty) \[see `--types/-t`\]   | Only `png` and `jpg` supported 'atm' (are best!)  |
+| `PRIVACY`    | `false`                      | Boolean                                   | Also hashes the IPs stored if `SERVER` is enabled |
+| `HASH`       | `'sha3-256'`                 | String (non-empty) \[see `--hashes/-h`\]  | This is the hash algorithm. Used for Cookies, too |
+| `ERROR`      | `'/'`                        | Null or String                            | If not (null), it will be shown on **any** error  |
+| `NONE`       | `'/'`                        | String                                    | And this is shown when `!AUTO` w/o value file..   |
+| `RAW`        | `false`                      | Boolean                                   | See the [RAW mode](#raw-mode) section. _Untested_ |
+| `RADIX`      | `10`                         | Integer                                   | See [Radix](#radix) below .. change the output(s) |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory.
 But consider that not every HTTPD (web server) does support such a file (e.g. `lighttpd`)!
