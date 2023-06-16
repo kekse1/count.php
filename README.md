@@ -57,12 +57,12 @@ As an important example, hence here's another file system change necessary: if y
 HTTPD needs access to a sub directory `fonts/`, with at least one installed `.ttf`(!) font in it (which you need to set as the _default
 font_ in the `FONT` setting).
 
+BTW: You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
+as the default font, btw.. looks great - see the random value on top of this `README.md` (it's random due to `HIDE = true` config).
+
 Now, **that's** all. :D~
 
-BTW: You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
-as the default font, btw.. looks great - see the random value on top of this `README.md` (random one due to `HIDE = true` config).
-
-And if you want to edit the default configuration, see the [Configuration section](#configuration). And to make sure your settings are valid,
+_And if you want to edit the default configuration_, see the [Configuration section](#configuration). And to make sure your settings are valid,
 you can call this script like this: `php count.php --check/-c`), which will check your own configuration (if it's (mostly syntactical) correct).
 
 ### Dependencies
