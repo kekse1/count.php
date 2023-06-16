@@ -123,7 +123,7 @@ the strings are always filtered (by `secure_host()`), and every of these overrid
 `OVERRIDDEN = true`.
 
 *PS: untested atm.*.. AND **JFYI**: If `gettype(OVERRIDE) === 'string'`, then the 'AUTO' is also being
-overridden as above, but like the `(true)` state (so the value file will always be created automatically).
+overridden as above, but to the `(true)` state (so the value file will always be created automatically).
 
 ### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
