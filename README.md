@@ -305,7 +305,7 @@ Here are the current _default_ settings, including the possible types (and `--ch
 | `V_LIMIT`    | `256`                        | **Integer** (>= 0 and <= 512)                | Same as above, but vertical, not horizontal       |
 | `AA`         | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
 | `TYPE`       | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
-| `PRIVACY`    | `false`                      | **Boolean**                                  | Also hashes the IPs stored if `SERVER` is enabled |
+| `PRIVACY`    | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `SERVER` is enabled)    |
 | `HASH`       | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
 | `ERROR`      | `'/'`                        | **Null** or **String**                       | If not (null), it will be shown on **any** error  |
 | `NONE`       | `'/'`                        | **String**                                   | And this is shown when `!AUTO` w/o value file..   |
