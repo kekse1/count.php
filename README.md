@@ -7,7 +7,7 @@ It's a universal counter script. ... v**3.1.2**!
 * Even more changes.. check the diff(s) after v**3.0.3**. :)~
 * Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
 * This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
-* And new `--sanitize/-z` parameter added (in CLI mode).
+* And new `--sanitize/-z` parameter added (in [CLI mode](#cli-mode)).
 
 ## Index
 1. [News](#news)
