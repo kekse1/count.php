@@ -1,10 +1,10 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.1.0**!
+It's a universal counter script. ... v**3.1.1**!
 
 ## News
-* Even more changes.. check the diff between v**3.0.3** and this new v**3.1.0**! :)~
+* Even more changes.. check the diff between v**3.0.3** and this new v**3.1..**! :)~
 * Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
 * This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
 
