@@ -1,12 +1,13 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.1.1**!
+It's a universal counter script. ... v**3.1.2**!
 
 ## News
-* Even more changes.. check the diff between v**3.0.3** and this new v**3.1..**! :)~
+* Even more changes.. check the diff(s) after v**3.0.3**. :)~
 * Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
 * This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
+* And new `--sanitize/-z` parameter added (in CLI mode).
 
 ## Index
 1. [News](#news)
@@ -415,21 +416,22 @@ show the `--values/-v`! If you need help, you should choose `--help/-?` now! ;)~
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
 of supported 'functions'.
 
-|   Short | Long               | Description                                             |
-| ------: | :----------------- | :-----------------------------------------------------: |
-|    `-?` | `--help`           | Shows the link to this website..                        |
-|    `-V` | `--version`        | Print current script's version.                         |
-|    `-C` | `--copyright`      | Shows the author of this script. /me ..                 |
-|    `-v` | `--values [*]`     | Shows all vales and more.                               |
-|    `-s` | `--sync [*]`       | Same as above, but with cache synchronization..         |
-|    `-l` | `--clean [*]`      | Clean all **outdated** (only!) cache files.             |
-|    `-p` | `--purge [*]`      | Delete the cache(s) for all or specified hosts.         |
-|    `-c` | `--check`          | Verifies if the current configuration is valid.         |
-|    `-h` | `--hashes`         | Available algorithms for `HASH` config.                 |
-|    `-f` | `--fonts [*]`      | Available fonts for drawing `<img>`. Globs allowed.     |
-|    `-t` | `--types`          | Available image types for drawing output.               |
-|    `-e` | `--errors`         | Counts the error log lines.                             |
-|    `-u` | `--unlog`          | Deletes the whole error log file.                       |
+|   Short | Long                 | Description                                             |
+| ------: | :------------------- | :-----------------------------------------------------: |
+|    `-?` | `--help`             | Shows the link to this website..                        |
+|    `-V` | `--version`          | Print current script's version.                         |
+|    `-C` | `--copyright`        | Shows the author of this script. /me ..                 |
+|    `-c` | `--check`            | Verifies if the current configuration is valid.         |
+|    `-v` | `--values [*]`       | Shows all vales and more.                               |
+|    `-s` | `--sync [*]`         | Same as above, but with cache synchronization..         |
+|    `-l` | `--clean [*]`        | Clean all **outdated** (only!) cache files.             |
+|    `-p` | `--purge [*]`        | Delete the cache(s) for all or specified hosts.         |
+|    `-z` | `--sanitize [-w]`    | Delete file rests.. with `--allow-without-values/-w`..  |
+|    `-f` | `--fonts [*]`        | Available fonts for drawing `<img>`. Globs allowed.     |
+|    `-t` | `--types`            | Available image types for drawing output.               |
+|    `-h` | `--hashes`           | Available algorithms for `HASH` config.                 |
+|    `-e` | `--errors`           | Counts the error log lines.                             |
+|    `-u` | `--unlog`            | Deletes the whole error log file.                       |
 
 The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
 appending them as new `$argc` (space divided). If not specified, the functions will read in all
@@ -488,8 +490,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_3693_ code lines**
-left (v**3.0.0**)! :-)
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_4284_ code lines**
+left (at v**3.1.2**)! :-)
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
