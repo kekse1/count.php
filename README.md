@@ -23,7 +23,7 @@ It's a universal counter script. ... v**3.2.0**!
 	* [No more constants.](#no-more-constants)
 	* [Relative Paths](#relative-paths)
 	* [Colors](#colors)
-	* [Radix/Base](#radix-base)
+	* [Radix/Base](#radixbase)
 	* [`AUTO`](#auto)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
 6. [Modes](#modes)
@@ -293,8 +293,8 @@ items to be applied, if such host is selected. They reside in the regular `PATH`
 if such a host is being selected.
 
 ### No more constants.
-Here are the current _default_ settings, including the possible types (and `--check/-c [*]` @ [CLI Mode](#cli-mode)) (whereas
-every variable with `!` before it is _**never** allowed_ to be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)').
+Here are the current _default_ settings, including the possible types (whereas every variable with bold `!` before may
+_**never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)').
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
@@ -361,14 +361,14 @@ The `RADIX` configuration should be an **Integer** between **2** and **36**. Def
 But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
 Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `RADIX` setting mentioned here above).
 
-### `AUTO`
+### 'AUTO'
 By default up to `32` value files will automatically be created, if not existing for a host. With overridden
-host this setting is also overwritten: `true` if `OVERRIDE` setting or `$_host’ is a String, and `false` in
+host this setting is also overwritten: `true` if `OVERRIDE` setting or `$_host` is a String, and `false` in
 all other cases.
 
 If amount of value files exceeds limit, or if set to `false`, you can easily initialize (or change..) these
-files via the `--set/-t` parameter in [CLI mode](#cli-mode), with _optional_ value (integer). If unspecified,
-the value defaults to zero (`0`).
+files via the `--set/-t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
+If unspecified, the value defaults to (`0`).
 
 ### Per-host config overwrite
 The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
