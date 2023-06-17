@@ -1,12 +1,35 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
+<<<<<<< HEAD
 It's a universal counter script. ... v**3.2.0**!
 
 ## Index
 1. [Installation](#installation)
 	* [Dependencies](#dependencies)
 2. [Details](#details)
+=======
+It's a universal counter script. ... v**3.1.2**!
+
+## News
+**HUGE** updates are coming (maybe tomorrow)!!
+
+* Many, many changes..
+* Configuration w/o any `define()`, plus **loadable** *per-host overwrites*!! :D~
+* And (nearly) no `define()` in the global namespace. :)~
+* More and better [CLI](#cli-mode) functions.
+* Support for (various) `#` hexadecimal color strings (beneath old `rgb(a)`)
+* Better error handling, also w/ more checks, ..
+* Conversion to various radix/bases.
+* *Maybe* even improved drawing and size measuring/aligning/..
+* Maybe even more (don't know what else I've changed since latest v**3.0.0**)...
+
+## Index
+1. [News](#news)
+2. [Installation](#installation)
+	* [Dependencies](#dependencies)
+3. [Details](#details)
+>>>>>>> d71679ebef93008c340ca0fcd54c8013fcde1050
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -16,6 +39,7 @@ It's a universal counter script. ... v**3.2.0**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
+<<<<<<< HEAD
 3. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
@@ -24,6 +48,15 @@ It's a universal counter script. ... v**3.2.0**!
 	* [Relative paths](#relative-paths)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
 5. [Modes](#modes)
+=======
+4. [Drawing](#drawing)
+	* [Parameters](#parameters)
+	* [Dependencies](#dependencies-1)
+5. [Configuration](#configuration)
+	* [Constants](#constants)
+	* [Relative paths](#relative-paths)
+6. [Modes](#modes)
+>>>>>>> d71679ebef93008c340ca0fcd54c8013fcde1050
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -31,9 +64,15 @@ It's a universal counter script. ... v**3.2.0**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
+<<<<<<< HEAD
 6. [FAQ](#faq)
 7. [The original version](#the-original-version)
 8. [Copyright and License](#copyright-and-license)
+=======
+7. [FAQ](#faq)
+8. [The original version](#the-original-version)
+9. [Copyright and License](#copyright-and-license)
+>>>>>>> d71679ebef93008c340ca0fcd54c8013fcde1050
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
