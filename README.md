@@ -460,8 +460,6 @@ _**NEW** since v**3.0.3**:_ the default action has changed - from showing the sy
 like `--values/-v`. The syntax is now shown via `--help/-?`. :)~
 
 ##### The argument vector
-**Update**: The following list will change a bit soon, as I'm currently extending the `CLI` mode!
-
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
 of supported 'functions'.
 
@@ -495,7 +493,7 @@ original glob is being encoded 'as is').
 As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
 
 **NEW** (since v**3.1.3**): the `--check/-c [*]` can get *optional* `host` arguments, to not check the
-default/global configuration, but the overrided one, from a [per-host config overwrite](#per-host-config-overwrite).
+default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
 #### Prompts
 As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
