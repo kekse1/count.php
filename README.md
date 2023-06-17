@@ -11,7 +11,7 @@ It's a universal counter script. ... v**3.2.0**!
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
 	* [Override](#override)
-	* [Configuration (differences) overwrites](#configuration-differences-overwrites)
+	* [Overwrites](#overwrites)
 	* [Cleaning](#cleaning)
 	* [Privacy](#privacy)
 	* [Errors](#errors)
@@ -127,9 +127,9 @@ the strings are always filtered (by `secure_host()`), and every of these overrid
 *PS: untested atm.*.. AND **JFYI**: If `gettype(OVERRIDE) === 'string'`, then the 'AUTO' is also being
 overridden as above, but to the `(true)` state (so the value file will always be created automatically).
 
-### Configuration (differences) overwrites
-Beneath the default configuration, any host (within the file system, as desribed [above](#storage)) can
-have it's own configuration (difference) file, to apply these only to these hosts itself. This is really
+### Overwrites
+Beneath the default configuration, any host (within the file system, as desribed above at [Storage](#storage))
+can have it's own configuration (difference) file, to apply these only to these hosts itself. This is really
 _optional_, but could maybe be very useful sometimes.
 
 It came up since in earlier versions I defined the whole configuration via `define()`, which ends up in
