@@ -1,40 +1,29 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.1.2**!
-
-## News
-* Even more changes.. check the diff(s) after v**3.0.3**. :)~
-* Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
-* This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
-* And new `--sanitize/-z` parameter added (in [CLI mode](#cli-mode)).
-
-## Issues
-* [Very important question from me to you all](https://github.com/kekse1/count.php/issues/3), regarding the configuration..
-
-And please feel free to use the [Issues](https://github.com/kekse1/count.php/issues) function of this [github.com](https://github.com/kekse1/count.php/). :)~
+It's a universal counter script. ... v**3.2.0**!
 
 ## Index
-1. [News](#news)
-2. [Issues](#issues)
-3. [Installation](#installation)
+1. [Installation](#installation)
 	* [Dependencies](#dependencies)
-4. [Details](#details)
+2. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
 	* [Override](#override)
+	* [Per-host config override](#per-host-config-overwrite)
 	* [Cleaning](#cleaning)
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-5. [Drawing](#drawing)
+3. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-6. [Configuration](#configuration)
-	* [Constants](#constants)
+4. [Configuration](#configuration)
+	* [Settings](#settings)
 	* [Relative paths](#relative-paths)
-7. [Modes](#modes)
+	* [Per-host config overwrite](#per-host-config-overwrite-1)
+5. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -42,9 +31,9 @@ And please feel free to use the [Issues](https://github.com/kekse1/count.php/iss
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-8. [FAQ](#faq)
-9. [The original version](#the-original-version)
-10. [Copyright and License](#copyright-and-license)
+6. [FAQ](#faq)
+7. [The original version](#the-original-version)
+8. [Copyright and License](#copyright-and-license)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
@@ -135,6 +124,18 @@ the strings are always filtered (by `secure_host()`), and every of these overrid
 *PS: untested atm.*.. AND **JFYI**: If `gettype(OVERRIDE) === 'string'`, then the 'AUTO' is also being
 overridden as above, but to the `(true)` state (so the value file will always be created automatically).
 
+### Per-host config override
+Beneath the default configuration, any host (within the file system, as desribed [above](#storage)) can
+have it's own configuration (difference) file, to apply these only to these hosts itself. This is really
+_optional_, but could maybe be very useful sometimes.
+
+It came up since in earlier versions I defined the whole configuration via `define()`, which ends up in
+globally defined 'variables' (not in the namespace I'm using). BAD.. now everything works even better than
+before this way (and nearly **no** `define()` are used now).
+
+For more infos, see the [Per-host config overwrite](#per-host-config-overwrite-1) sub section (of the
+[Configuration](#configuration) section. :-)
+
 ### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
 the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have been written more
@@ -159,7 +160,7 @@ Most errors will be appended to the `count.log` file (configurable via `LOG`), s
 directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
 where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
 
-The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative Paths](#relative-paths)), and also encodes timestamps, in the first column (in seconds, unix epoch (January 1st, 1970)).
+The file is configured via the `LOG` setting (and follows the rule(s) shown in [Relative paths](#relative-paths)), and also encodes timestamps, in the first column (in seconds, unix epoch (January 1st, 1970)).
 
 #### Details
 In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
@@ -224,7 +225,7 @@ To use it, enable the `DRAWING` option and call script with (at least!) `?draw` 
 parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
 follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
-| Variable | Default [Configuration](#constants) \[= Value\] | Type         | Description / Comment(s) |
+| Variable | Default [Settings](#settings) \[= (value)\]     | Type         | Description / Comment(s) |
 | -------: | :---------------------------------------------- | -----------: | -----------------------: |
 | `draw`   | (`DRAWING` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>  |
 | `zero`   | (`DRAWING` again) (overrides the options below) | **No value** | _Alternative_ to `?draw` |
@@ -278,57 +279,64 @@ The **second dependency** is a configured `FONTS` directory with `.ttf`(!) font(
 if you don't specify this via `?font` it really *needs* to be pre-set via `FONT` setting); ...
 
 ## Configuration
-The configuration is just a set of constants. Look below at "CLI Mode" to get to know how to verify
-your own configuration (via `-c/--check`)!
+The configuration is an associative array of various settings.
 
-### Constants
-As already mentioned in it's [FAQ entry](#-define-for-the-configurationsettings), I'm going to replace
-these `define()`, very soon.. we don't like that they're being defined in the global namespace this way.
+Look below at "CLI Mode" to get to know how to verify your own configuration, via `-c/--check [*]`. It's
+able to read _optional_ arguments, to also verify concrete [per-host config overwrite](#per-host-config-overwrite).
 
-Here are the current _default_ settings, including the possible types (and `--check/-c` @ CLI validates them):
+The [per-host config overwrite](#per-host-config-overwrite)s do allow a subset/difference of the whole configuration
+items to be applied, if such host is selected. They reside in the regular `PATH` directory, prefixed by a single `%`
+(hash sign), and are encoded in [JSON format](https://www.json.org/). And they'll be loaded automatically if existing,
+if such a host is being selected.
 
-| Name         | Default value                | Possible types/values                        | Description / Comment(s)                          |
-| -----------: | :--------------------------- | -------------------------------------------: | :-----------------------------------------------: |
-| `DIR`        | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
-| `LOG`        | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
-| `THRESHOLD`  | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
-| `AUTO`       | `32`                         | **Boolean** or **Integer** (>0)              | Create count value files automatically?           |
-| `HIDE`       | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
-| `CLIENT`     | `true`                       | **Boolean** or **Null**                      | Enables Cookies against re-counting               |
-| `SERVER`     | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
-| `DRAWING`    | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
-| `OVERRIDE`   | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
-| `CONTENT`    | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
-| `CLEAN`      | `true`                       | **Null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
-| `LIMIT`      | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
-| `FONTS`      | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
-| `FONT`       | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| `SIZE`       | `24`                         | **Integer** (>=4, and w/in SIZE_LIMIT)       | Font size (`px` or `pt`, not sure atm)            |
-| `SIZE_LIMIT` | `512`                        | **Integer** (>=4 and <=512)                  | Limit for this size (@ traffic and resources)     |
-| `FG`         | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
-| `BG`         | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
-| `X`          | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
-| `Y`          | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
-| `H`          | `0`                          | **Integer** (<=H_LIMIT and >=(-)H_LIMIT)     | Horizontal space from text to end of image        |
-| `V`          | `0`                          | **Integer** (<=V_LIMIT and >=(-)V_LIMIT)     | Vertical space, like above                        |
-| `H_LIMIT`    | `256`                        | **Integer** (>= 0 and <= 512)                | Limited due to performance and traffic usage      |
-| `V_LIMIT`    | `256`                        | **Integer** (>= 0 and <= 512)                | Same as above, but vertical, not horizontal       |
-| `AA`         | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
-| `TYPE`       | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
-| `PRIVACY`    | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `SERVER` is enabled)    |
-| `HASH`       | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
-| `ERROR`      | `'/'`                        | **Null** or **String**                       | If not (null), it will be shown on **any** error  |
-| `NONE`       | `'/'`                        | **String**                                   | And this is shown when `!AUTO` w/o value file..   |
-| `RAW`        | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
-| `RADIX`      | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
+### No more constants.
+Here are the current _default_ settings, including the possible types (and `--check/-c [*]` @ [CLI Mode](#cli-mode)) (whereas
+every variable with `!` before it is _**never** allowed_ to be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)').
 
-It'd be better to create a `.htaccess` file with at least `Deny from all` in your `DIR` directory.
-But consider that not every HTTPD (web server) does support such a file (e.g. `lighttpd`)!
+This `DEFAULTS` are stored in the script file itself, in a `const` array.
+
+| Name            | Default value                | Possible types/values                        | Description / Comment(s)                          |
+| --------------: | :--------------------------- | -------------------------------------------: | :-----------------------------------------------: |
+| **!**`PATH`     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
+| `LOG`           | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
+| `THRESHOLD`     | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
+| **!**`AUTO`     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
+| `HIDE`          | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
+| `CLIENT`        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
+| `SERVER`        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
+| `DRAWING`       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
+| **!**`OVERRIDE` | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| `CONTENT`       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
+| `RADIX`         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
+| `CLEAN`         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
+| `LIMIT`         | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
+| `FONTS`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
+| `FONT`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
+| `SIZE`          | `24`                         | **Integer** (>=4, and w/in SIZE_LIMIT)       | Font size (`px` or `pt`, not sure atm)            |
+| `SIZE_LIMIT`    | `768`                        | **Integer** (>=4 and <=512)                  | Limit for this size (@ traffic and resources)     |
+| `FG`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
+| `BG`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
+| `X`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
+| `Y`             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
+| `H`             | `0`                          | **Integer** (<=`H_LIMIT` and >=`(-)H_LIMIT`) | Horizontal space from text to end of image        |
+| `V`             | `0`                          | **Integer** (<=`V_LIMIT` and >=`(-)V_LIMIT`) | Vertical space, like above                        |
+| `H_LIMIT`       | `256`                        | **Integer** (>= 0 and <= 512)                | Limited due to performance and traffic usage      |
+| `V_LIMIT`       | `256`                        | **Integer** (>= 0 and <= 512)                | Same as above, but vertical, not horizontal       |
+| `AA`            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
+| `TYPE`          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
+| `PRIVACY`       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `SERVER` is enabled)    |
+| **!**`HASH`     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
+| `ERROR`         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
+| `NONE`          | `'/'`                        | **String**                                   | And this is shown when `!AUTO` w/o value file..   |
+| **!**`RAW`      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
+
+It'd be better to create a `.htaccess` file with at least `Deny from all` in your `PATH` directory. But consider that not every HTTPD (web server)
+supports such a file (e.g. `lighttpd`..)!
 
 ### Relative paths
 Absolute paths work as usual. But relative paths are used here in two ways.
 
-If you define your `DIR`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
+If you define your `PATH`, `LOG` or `FONTS` as simple directory name like `count` or `count/`, it'll
 be resolved from the location of your `count.php` script (using `__DIR__`). But to define this relative
 to your current working directory, you've to define those paths with starting `./` (it's where the script
 gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
@@ -339,16 +347,45 @@ directory, please use `./../`..
 ### Colors
 Supported formats are:
 
-* `argb()` (with 3x (0-255) and 1x (0.0-1.0))
-* `rgb()` (with 3x (0-255))
-* `(comma separated list) (of 3x (0-255) and optionally 1x (0.0-1.0))
-* `#` hex color strings (w/ and w/o `#` prefix, within a length of [ 3, 4, 6, 8 ])
+* `argb()` (with 3x (0-255) and 1x (0.0-1.0));
+* `rgb()` (with 3x (0-255));
+* `(comma separated list) (of 3x (0-255) and optionally 1x (0.0-1.0));
+* `#` hex color strings (w/ and w/o `#` prefix, within a length of [ 3, 4, 6, 8 ]);
 
 ### Radix
 The `RADIX` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
 
 But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
 Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `RADIX` setting mentioned here above).
+
+### `AUTO`
+By default up to `32` value files will automatically be created, if not existing for a host. With overridden
+host this setting is also overwritten: `true` if `OVERRIDE` setting or `$_host’ is a String, and `false` in
+all other cases.
+
+If amount of value files exceeds limit, or if set to `false`, you can easily initialize (or change..) these
+files via the `--set/-t` parameter in [CLI mode](#cli-mode), with _optional_ value (integer). If unspecified,
+the value defaults to zero (`0`).
+
+### Per-host config overwrite
+The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
+the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
+easy to unloaded again. So, they are **differences** to apply if this host with the `%` file is selected.
+
+They get automatically loaded (if the file exists - usually a `%`-prefixed JSON object{} in the `PATH` directory,
+beneath the other host files/directories).
+
+Hosts with their own configuration overwrites are marked with an integer on the right of the `--values/-v` table in
+[CLI](#cli-mode), which indicates how many settings are being overwritten by this file, per host (checked before).
+If it's not prefixed by a `%` and instead of the value there's an `@`, the config file couldn't be read in or parsed
+to an (associative) array.. in this case please check the file for this host!
+
+JFYI: maybe in `RAW` mode you eventually will use some functions etc. multiple times (before exit). If you would call
+the `make_config()` function (or within multiple `counter()` calls it's also used), and set the `$_reload = null` (instead
+of a `Boolean` type), the per-host config file will only be reloaded if the file hash changed (they're stored when loaded)..
+
+So, **BTW**: the configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
+set of configuration items..)! :)~
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
@@ -374,7 +411,7 @@ This feature is there for private couting, without letting the users known how m
 had.
 
 Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
-your `DIR` directory!
+your `PATH` directory!
 
 **BTW**: if `HIDE` is not a string, but (true), ouput will be a random integer. :]~
 
@@ -405,7 +442,7 @@ Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 
 ### CLI mode
 **You can test your configuration's validity by running the script from command line (CLI mode)!**
-Just define the `--test/-t` (cmdline) parameter. ;)~
+Just define the `--check/-c [*]` (cmdline) parameter. ;)~
 
 As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
 as argument to the `php` executable: `php count.php`. The shebang isn't possible, as web servers
@@ -425,35 +462,37 @@ like `--values/-v`. The syntax is now shown via `--help/-?`. :)~
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
 of supported 'functions'.
 
-|   Short | Long                 | Description                                             |
-| ------: | :------------------- | :-----------------------------------------------------: |
-|    `-?` | `--help`             | Shows the link to this website..                        |
-|    `-V` | `--version`          | Print current script's version.                         |
-|    `-C` | `--copyright`        | Shows the author of this script. /me ..                 |
-|    `-c` | `--check`            | Verifies if the current configuration is valid.         |
-|    `-v` | `--values [*]`       | Shows all vales and more.                               |
-|    `-s` | `--sync [*]`         | Same as above, but with cache synchronization..         |
-|    `-l` | `--clean [*]`        | Clean all **outdated** (only!) cache files.             |
-|    `-p` | `--purge [*]`        | Delete the cache(s) for all or specified hosts.         |
-|    `-z` | `--sanitize [-w]`    | Delete file rests.. with `--allow-without-values/-w`..  |
-|    `-f` | `--fonts [*]`        | Available fonts for drawing `<img>`. Globs allowed.     |
-|    `-t` | `--types`            | Available image types for drawing output.               |
-|    `-h` | `--hashes`           | Available algorithms for `HASH` config.                 |
-|    `-e` | `--errors`           | Counts the error log lines.                             |
-|    `-u` | `--unlog`            | Deletes the whole error log file.                       |
+| Short | Long                     | Description                                               |
+| ------: | :--------------------- | :-------------------------------------------------------: |
+|  `-?` | `--help`                 | Shows the link to this website..                          |
+|  `-V` | `--version`              | Print current script's version.                           |
+|  `-C` | `--copyright`            | Shows the author of this script. /me ..                   |
+|  `-c` | `--check [*]`            | Verify DEFAULT or, by arguments, per-user configurations  |
+|  `-v` | `--values [*]`           | Shows all vales and more.                                 |
+|  `-s` | `--sync [*]`             | Same as above, but with cache synchronization..           |
+|  `-l` | `--clean [*]`            | Clean all **outdated** (only!) cache files.               |
+|  `-p` | `--purge [*]`            | Delete the cache(s) for all or specified hosts.           |
+|  `-z` | `--sanitize [-w]`        | Delete file rests.. with `--allow-without-values/-w`..    |
+|  `-d` | `--delete [*]`           | Totally remove any host (all, or by arguments)            |
+|  `-t` | `--set (host) [value=0]` | Sets the (optional) value for the defined host (only one) |
+|  `-f` | `--fonts [*]`            | Available fonts for drawing `<img>`. Globs allowed.       |
+|  `-y` | `--types`                | Available image types for drawing output.                 |
+|  `-h` | `--hashes`               | Available algorithms for `HASH` config.                   |
+|  `-e` | `--errors`               | Counts the error log lines.                               |
+|  `-u` | `--unlog`                | Deletes the whole error log file.                         |
 
-The optional `[*]` needs to be defined directly after the parameter; can be multiple arguments by
-appending them as new `$argc` (space divided). If not specified, the functions will read in all
-available hosts.
+Additional arguments within '[]' are optional (and mostly support GLOBs), and those within '()' are
+_required_ ones. Most `*` arguments can be defined multiple times, so most times as multiple globs,
+to match the hosts (separated by spaces, each as another argv/argc).
+
+**Hint:** using globs requires quoting or escaping most times, as most shells will try to directly
+resolve them.. if it works sometimes, it's just because the shell didn't find any match (then the
+original glob is being encoded 'as is').
 
 As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
 
-**For your info**: when using globs in a shell, it's sometimes important to escape parts of it, or just
-write them in quotes (mostly `'`), or escape the special chars.. otherwise the shell would try to resolve
-them.
-
-_TODO:_ only the `--set/-s` is missing yet.. I thought about leaving it as is, but sometimes it could be
-important; e.g. if you migrate, or for initialization (atm you have to edit the `~` files manually).
+**NEW** (since v**3.1.3**): the `--check/-c [*]` can get *optional* `host` arguments, to not check the
+default/global configuration, but the overrided one, from a [per-host config overwrite](#per-host-config-overwrite).
 
 #### Prompts
 As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
@@ -464,21 +503,15 @@ just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's qu
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
 if you would like to review my code. I don't bite, promised! xD~
 
-### # `define()` for the configuration/settings?
-Yes.. it's not necessary to adapt this constants later. The only reason to change this: the constants
-are in the global namespace, that's bad.. but alternatively I'm thinking about a `COUNT_` prefix for
-the constants (or just a random value).
-
-And btw.. usually I've always used a `config.inc.php`, but as it's such a 'tiny' script, I decided to
-put everything down into just one `.php` file.. that's better here.
-
-**EDIT**: Someone gave me this tip, which I'm going to follow (very soon):
-https://stackoverflow.com/questions/18247726/php-define-constants-inside-namespace-clarification/
-
 ### # Why not using a `class`?
 Just because it ain't necessary. I've just set a `namespace kekse\counter`, so everything is no longer
 in the global namespace.. that should be enough. It could even really be, that using classes would even
 end up in more resource consumption.. so, I think it's O.K. as it is now.. 'old skewl'! :)~
+
+bedenke.. why should I just create a `Counter` class instance, where no real member variables are given
+(as all are stored on the disk), and to only call a function `count()`, just to let her directly return
+a value (and/or print/draw it), and then, directly after this, the instance would get destroyed again!?
+... just my two cents. :)~
 
 ### # Installation via '[Composer](https://getcomposer.org/)'?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
@@ -499,8 +532,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_4285_ code lines**
-left (at v**3.1.2**)! :-)
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5174_ code lines** left
+as of v**3.2.0**! ^\_^
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
