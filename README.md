@@ -7,14 +7,14 @@ It's a universal counter script. ... v**3.1.2**!
 **HUGE** updates are coming (maybe tomorrow)!!
 
 * Many, many changes..
-* Config etc. w/o `define()`, plus **loadable** *per-host overwrites*!! :D~
+* Configuration w/o any `define()`, plus **loadable** *per-host overwrites*!! :D~
 * And (nearly) no `define()` in the global namespace. :)~
 * More and better [CLI](#cli-mode) functions.
-* Support for (various) `#` hexadecimal color string (@ `DRAWING`)
+* Support for (various) `#` hexadecimal color strings (beneath old `rgb(a)`)
 * Better error handling, also w/ more checks, ..
 * Conversion to various radix/bases.
 * *Maybe* even improved drawing and size measuring/aligning/..
-* Maybe even more (don't know what else I've changed since latedt v**3.0.0**)...
+* Maybe even more (don't know what else I've changed since latest v**3.0.0**)...
 
 ## Index
 1. [News](#news)
