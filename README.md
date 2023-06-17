@@ -4,22 +4,23 @@
 It's a universal counter script. ... v**3.1.2**!
 
 ## News
-* Even more changes.. check the diff(s) after v**3.0.3**. :)~
-* Now also supports `radix`/`base` for the resulting counted values.. See the [Radix](#radix) sub section.
-* This `README.md` has also changed.. better table formatting, and now the **whole [configuration](#configuration) w/ description**! :-D
-* And new `--sanitize/-z` parameter added (in [CLI mode](#cli-mode)).
+**HUGE** updates are coming (maybe tomorrow)!!
 
-## Issues
-* [Very important question from me to you all](https://github.com/kekse1/count.php/issues/3), regarding the configuration..
-
-And please feel free to use the [Issues](https://github.com/kekse1/count.php/issues) function of this [github.com](https://github.com/kekse1/count.php/). :)~
+* Many, many changes..
+* Config etc. w/o `define()`, plus **loadable** *per-host overwrites*!! :D~
+* And (nearly) no `define()` in the global namespace. :)~
+* More and better [CLI](#cli-mode) functions.
+* Support for (various) `#` hexadecimal color string (@ `DRAWING`)
+* Better error handling, also w/ more checks, ..
+* Conversion to various radix/bases.
+* *Maybe* even improved drawing and size measuring/aligning/..
+* Maybe even more (don't know what else I've changed since latedt v**3.0.0**)...
 
 ## Index
 1. [News](#news)
-2. [Issues](#issues)
-3. [Installation](#installation)
+2. [Installation](#installation)
 	* [Dependencies](#dependencies)
-4. [Details](#details)
+3. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -28,13 +29,13 @@ And please feel free to use the [Issues](https://github.com/kekse1/count.php/iss
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-5. [Drawing](#drawing)
+4. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-6. [Configuration](#configuration)
+5. [Configuration](#configuration)
 	* [Constants](#constants)
 	* [Relative paths](#relative-paths)
-7. [Modes](#modes)
+6. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -42,9 +43,9 @@ And please feel free to use the [Issues](https://github.com/kekse1/count.php/iss
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-8. [FAQ](#faq)
-9. [The original version](#the-original-version)
-10. [Copyright and License](#copyright-and-license)
+7. [FAQ](#faq)
+8. [The original version](#the-original-version)
+9. [Copyright and License](#copyright-and-license)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
