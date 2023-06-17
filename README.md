@@ -1,62 +1,32 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-<<<<<<< HEAD
 It's a universal counter script. ... v**3.2.0**!
 
 ## Index
 1. [Installation](#installation)
 	* [Dependencies](#dependencies)
 2. [Details](#details)
-=======
-It's a universal counter script. ... v**3.1.2**!
-
-## News
-**HUGE** updates are coming (maybe tomorrow)!!
-
-* Many, many changes..
-* Configuration w/o any `define()`, plus **loadable** *per-host overwrites*!! :D~
-* And (nearly) no `define()` in the global namespace. :)~
-* More and better [CLI](#cli-mode) functions.
-* Support for (various) `#` hexadecimal color strings (beneath old `rgb(a)`)
-* Better error handling, also w/ more checks, ..
-* Conversion to various radix/bases.
-* *Maybe* even improved drawing and size measuring/aligning/..
-* Maybe even more (don't know what else I've changed since latest v**3.0.0**)...
-
-## Index
-1. [News](#news)
-2. [Installation](#installation)
-	* [Dependencies](#dependencies)
-3. [Details](#details)
->>>>>>> d71679ebef93008c340ca0fcd54c8013fcde1050
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
 	* [Override](#override)
-	* [Per-host config override](#per-host-config-overwrite)
+	* [Configuration (differences) overwrites](#configuration-differences-overwrites)
 	* [Cleaning](#cleaning)
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-<<<<<<< HEAD
 3. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
 4. [Configuration](#configuration)
-	* [Settings](#settings)
-	* [Relative paths](#relative-paths)
+	* [No more constants.](#no-more-constants)
+	* [Relative Paths](#relative-paths)
+	* [Colors](#colors)
+	* [Radix/Base](#radix-base)
+	* [`AUTO`](#auto)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
-5. [Modes](#modes)
-=======
-4. [Drawing](#drawing)
-	* [Parameters](#parameters)
-	* [Dependencies](#dependencies-1)
-5. [Configuration](#configuration)
-	* [Constants](#constants)
-	* [Relative paths](#relative-paths)
 6. [Modes](#modes)
->>>>>>> d71679ebef93008c340ca0fcd54c8013fcde1050
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -64,15 +34,9 @@ It's a universal counter script. ... v**3.1.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-<<<<<<< HEAD
 6. [FAQ](#faq)
 7. [The original version](#the-original-version)
 8. [Copyright and License](#copyright-and-license)
-=======
-7. [FAQ](#faq)
-8. [The original version](#the-original-version)
-9. [Copyright and License](#copyright-and-license)
->>>>>>> d71679ebef93008c340ca0fcd54c8013fcde1050
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
@@ -163,7 +127,7 @@ the strings are always filtered (by `secure_host()`), and every of these overrid
 *PS: untested atm.*.. AND **JFYI**: If `gettype(OVERRIDE) === 'string'`, then the 'AUTO' is also being
 overridden as above, but to the `(true)` state (so the value file will always be created automatically).
 
-### Per-host config override
+### Configuration (differences) overwrites
 Beneath the default configuration, any host (within the file system, as desribed [above](#storage)) can
 have it's own configuration (difference) file, to apply these only to these hosts itself. This is really
 _optional_, but could maybe be very useful sometimes.
@@ -172,7 +136,7 @@ It came up since in earlier versions I defined the whole configuration via `defi
 globally defined 'variables' (not in the namespace I'm using). BAD.. now everything works even better than
 before this way (and nearly **no** `define()` are used now).
 
-For more infos, see the [Per-host config overwrite](#per-host-config-overwrite-1) sub section (of the
+For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section (of the
 [Configuration](#configuration) section. :-)
 
 ### Cleaning
@@ -391,7 +355,7 @@ Supported formats are:
 * `(comma separated list) (of 3x (0-255) and optionally 1x (0.0-1.0));
 * `#` hex color strings (w/ and w/o `#` prefix, within a length of [ 3, 4, 6, 8 ]);
 
-### Radix
+### Radix/Base
 The `RADIX` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
 
 But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
