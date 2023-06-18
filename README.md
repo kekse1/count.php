@@ -72,8 +72,9 @@ via `XMLHttpRequest()` or the `Fetch API`. The real (HTTP-)`Content-Type` is con
 BUT I've finally also managed the `<img>` drawing facilities (see below!), so you can also embed it
 now as simple `<img src="..?draw[...]">`! See the '[Drawing](#drawing)' section.
 
-Only in 'RAW mode' (see the '[Modes](#modes)' section) there'll be no real output, so that you can
-integrate this script in your own PHP projects; just use the `kekse\counter\counter()` function.
+Only in [RAW mode](#raw-mode) (also see '[Modes](#modes)' section) there'll be no real output, so
+that you can integrate this script in your own PHP projects; just use the `kekse\counter\counter()`
+function (*not very well tested atm*).
 
 ### Storage
 Uses the file system to store timestamp files for the client IPs (if actived `server`); and
@@ -167,7 +168,7 @@ The file is configured via the `log` setting (and follows the rule(s) shown in [
 and also encodes timestamps, in the first column (in seconds, unix epoch (January 1st, 1970)).
 
 #### Details
-In `RAW` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
+In `raw` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
 
 But normally you won't use this mode. So normally errors are stopping the execution via `die()` (but
 it's an abstracted function to manage exceptions better). So if an error would be shown to the user
@@ -330,7 +331,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **!**`hash`     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
 | `error`         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
 | `none`          | `'/'`                        | **String**                                   | And this is shown when `!auto` w/o value file..   |
-| **!**`RAW`      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
+| **!**`raw`      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
@@ -421,18 +422,18 @@ a random integer value.
 This mode is not tested very well yet, could you do it for me, please? **Just for your info**: I used
 `namespace kekse\counter`!
 
-By defining `RAW = true` the base counting function won't be called automatically, so that you've the
+By defining `raw = true` the base counting function won't be called automatically, so that you've the
 chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
 nor graphical), and you just get the current value returned by the `counter()` function.
 
 The function to call from your scripts (after `require_once('count.php')` or so) is:
 
-`function counter($_host = null, $_read_only = RAW, $_die = !RAW)`.
+`function counter($_host = null, $_read_only = null)`
 
-The first argument is (null) by default - but in `RAW` _plus_ `CLI` mode, where no `$_SERVER` is available,
+The first argument is (null) by default - but in `raw` _plus_ `CLI` mode, where no `$_SERVER` is available,
 you really need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
 
-If called w/ `$_readonly = false` and in `RAW` _plus_ `CLI` mode, every call of `counter()` will increase
+If called w/ `$_readonly = false` and in `raw` _plus_ `CLI` mode, every call of `counter()` will increase
 the counter value, without `threshold` testing, etc. (as there's neither cookies available, nor an
 IP address).
 
@@ -448,7 +449,7 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
 as defined in `content` option)! .. so please, just type `php count.php` in your shell.
 
-**BTW**: With enabled `RAW` setting this command line interface won't be shown (because this mode is
+**BTW**: With enabled `raw` setting this command line interface won't be shown (because this mode is
 for using the script within other PHP scripts) - unless you define one of the parameters shown below!
 
 _**NEW** since v**3.0.3**:_ the default action has changed - from showing the syntax to directly call
