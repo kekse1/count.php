@@ -1,9 +1,13 @@
-<img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
+<img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&px=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.4**!
+It's a universal counter script. ... v**3.2.5**!
+
+## News
+* *BIG improvement* in the _drawing function(s)_, finally!! .. w/ *new feature/option*: the **[Preference](#preference)**. **:)~**
 
 ## Index
+0. [News](#news)
 1. [Installation](#installation)
 	* [Dependencies](#dependencies)
 2. [Details](#details)
@@ -18,6 +22,7 @@ It's a universal counter script. ... v**3.2.4**!
 	* [String filter](#string-filter)
 3. [Drawing](#drawing)
 	* [Parameters](#parameters)
+	* [Preference](#preference)
 	* [Dependencies](#dependencies-1)
 4. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
@@ -231,20 +236,21 @@ To use it, enable the `drawing` option and call script with (at least!) `?draw` 
 parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
 follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
-| Variable | Default [Settings](#settings) \[= (value)\]     | Type         | Description / Comment(s) |
-| -------: | :---------------------------------------------- | -----------: | -----------------------: |
-| `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>  |
-| `zero`   | (`drawing` again) (overrides the options below) | **No value** | _Alternative_ to `?draw` |
-| `size`   | `size` = `24`                                   | **Integer**  | >= 4 and <= 512          |
-| `font`   | `font` = `'IntelOneMono'`                       | **String**   | Also see `fonts`         |
-| `fg`     | `fg` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)    |
-| `bg`     | `bg` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)    |
-| `h`      | `h` = `0`                                       | **Integer**  | >= -512 and <= 512       |
-| `v`      | `v` = `0`                                       | **Integer**  | >= -512 and <= 512       |
-| `x`      | `x` = `0`                                       | **Integer**  | >= -512 and <= 512       |
-| `y`      | `y` = `0`                                       | **Integer**  | >= -512 and <= 512       |
-| `aa`     | `aa` = `true`                                   | **Boolean**  | Anti Aliasing..          |
-| `type`   | `type` = `'png'`                                | **String**   | See `--types/-t`         |
+| Variable | Default [Settings](#settings) \[= (value)\]     | Type         | Description / Comment(s)      |
+| -------: | :---------------------------------------------- | -----------: | ----------------------------: |
+| `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>       |
+| `zero`   | (`drawing` again) (overrides the options below) | **No value** | _Alternative_ to `?draw`      |
+| `px`     | `px` = `24`                                     | **Integer**  | >= 4 and <= 512               |
+| `prefer` | `prefer` = `true`                               | **Boolean**  | See [Preference](#preference) |
+| `font`   | `font` = `'IntelOneMono'`                       | **String**   | Also see `fonts`              |
+| `fg`     | `fg` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)         |
+| `bg`     | `bg` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)         |
+| `h`      | `h` = `0`                                       | **Integer**  | >= -512 and <= 512            |
+| `v`      | `v` = `0`                                       | **Integer**  | >= -512 and <= 512            |
+| `x`      | `x` = `0`                                       | **Integer**  | >= -512 and <= 512            |
+| `y`      | `y` = `0`                                       | **Integer**  | >= -512 and <= 512            |
+| `aa`     | `aa` = `true`                                   | **Boolean**  | Anti Aliasing..               |
+| `type`   | `type` = `'png'`                                | **String**   | See `--types/-t`              |
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
@@ -252,7 +258,7 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 `v` is the space above and below the text, `h` is to the left and the right. They both can also be negative
 values.
 
-`size` is a font size (in `pt` or `px`? ..not sure atm). And the selected `font` needs to be installed in
+`px` is the target height (`pt` font size is, btw, `px/0.75`). The selected `font` needs to be installed in
 the `fonts` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but CAN be so, too..
 
 The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased text.
@@ -264,6 +270,20 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 output (only if allowed by `drawing` configuration). And just to mention it: take a look at `?zero` and
 maybe also the `hide` setting, described somewhere above.. They are changing the way the output image looks
 like.
+
+### Preference
+If `prefer` or `$_GET['prefer']` is `true`, the text size is adapted if high characters, e.g., need more space;
+whereas `false` will change the image's height!
+
+I prefer the font size change, because many times we need a fixed size/height image (to fit into the web design);
+but sometimes, when the size doesn't matter, it's better to see a clear design, so the font always looks the same;
+e.g. when you embed the image into a document style view, just floating beneath the texts, etc.
+
+Your choice! :)~
+
+**BTW**: This came up when I saw that some fonts are being drawed above the corner(s), which happens when symbols
+are bigger than the baseline(?).. so characters like 'y' or 'j' (going more to the bottom..) couldn't be completely
+drawn. So I fixed the alignment, etc. (inter alia..). :D~
 
 ### Dependencies
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
@@ -318,7 +338,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
 | `fonts`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
 | `font`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| `size`          | `24`                         | **Integer** (>=4 and <=512)                  | Font size (`px` or `pt`, not sure atm)            |
+| `px`            | `24`                         | **Integer** (>=4 and <=512)                  | Height of image (`pt` font size is `px/0.75`)     |
 | `fg`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `bg`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `x`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
@@ -550,7 +570,7 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5167_ code lines** left
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5263_ code lines** left
 as of v**3.2.4**! ^\_^
 
 ## The original version
