@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.2**!
+It's a universal counter script. ... v**3.2.4**!
 
 ## Index
 1. [Installation](#installation)
@@ -26,7 +26,7 @@ It's a universal counter script. ... v**3.2.2**!
 	* [Radix/Base](#radixbase)
 	* ['auto'](#auto)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
-6. [Modes](#modes)
+5. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -34,9 +34,10 @@ It's a universal counter script. ... v**3.2.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-6. [FAQ](#faq)
-7. [The original version](#the-original-version)
-8. [Copyright and License](#copyright-and-license)
+6. [Exports](#exports)
+7. [FAQ](#faq)
+8. [The original version](#the-original-version)
+9. [Copyright and License](#copyright-and-license)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
@@ -495,6 +496,27 @@ As some operations are somewhat 'dangerous', especially at deletion of files, th
 to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
 just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
 
+## Exports
+For the **count(er)** implementation itself I'm using the namespace `kekse\counter`. **BUT** _my common
+functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported in my
+own `kekse` namespace. They could really be handy, so I decided to export them in my `kekse` namespace:
+
+| Function                | Arguments                                                           | Description                                                                                  |
+| ----------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
+| `prompt()`              | `$_string`, `$_return = false`, `$_repeat = true`                   | Until a question is confirmed via `y[es]` or `n[o]`, it'll repeat the question (CLI mode!)   |
+| `get_param()`           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
+| `starts_with()`         | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
+| `ends_with()`           | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
+| `normalize()`           | `$_path`                                                            | Implementation of **path** normalization (works)                                             |
+| `join_path()`           | `... $_args`                                                        | Combines multiple path components to a whole path string **(variadic function)**             |
+| `delete()`              | `$_path`, `$_depth = 0`                                             | One function for deletion of files and directories (optionally recursive)                    |
+| `remove_white_spaces()` | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
+| `timestamp()`           | `$_diff`                                                            | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp   |
+| `limit()`               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
+| `secure()`              | `$_string`                                                          | _Base_ function: a **String filter**, to avoid code injection or smth. similar               |
+| `secure_host()`         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
+| `secure_path()`         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
+
 ## FAQ
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
 if you would like to review my code. I don't bite, promised! xD~
@@ -528,8 +550,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5162_ code lines** left
-as of v**3.2.2**! ^\_^
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5167_ code lines** left
+as of v**3.2.4**! ^\_^
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
