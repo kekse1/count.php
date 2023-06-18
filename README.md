@@ -513,7 +513,7 @@ own `kekse` namespace. They could really be handy, so I decided to export them i
 | `remove_white_spaces()` | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
 | `timestamp()`           | `$_diff = null`                                                     | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp   |
 | `limit()`               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
-| `secure()`              | `$_string`                                                          | _Base_ function: a **String filter**, to avoid code injection or smth. similar               |
+| `secure()`              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
 | `secure_host()`         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
 | `secure_path()`         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
 
