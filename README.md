@@ -236,8 +236,8 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 | `font`   | `FONT` = `'IntelOneMono'`                       | **String**   | Also see `FONTS`         |
 | `fg`     | `FG` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)    |
 | `bg`     | `BG` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)    |
-| `h`      | `H` = `0`                                       | **Integer**  | Also see `H_LIMIT`       |
-| `v`      | `V` = `0`                                       | **Integer**  | Also see `V_LIMIT`       |
+| `h`      | `H` = `0`                                       | **Integer**  | >= -512 and <= 512       |
+| `v`      | `V` = `0`                                       | **Integer**  | >= -512 and <= 512       |
 | `x`      | `X` = `0`                                       | **Integer**  | >= -512 and <= 512       |
 | `y`      | `Y` = `0`                                       | **Integer**  | >= -512 and <= 512       |
 | `aa`     | `AA` = `true`                                   | **Boolean**  | Anti Aliasing..          |
@@ -321,10 +321,8 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | `BG`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `X`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
 | `Y`             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
-| `H`             | `0`                          | **Integer** (<=`H_LIMIT` and >=`(-)H_LIMIT`) | Horizontal space from text to end of image        |
-| `V`             | `0`                          | **Integer** (<=`V_LIMIT` and >=`(-)V_LIMIT`) | Vertical space, like above                        |
-| `H_LIMIT`       | `256`                        | **Integer** (>= 0 and <= 512)                | Limited due to performance and traffic usage      |
-| `V_LIMIT`       | `256`                        | **Integer** (>= 0 and <= 512)                | Same as above, but vertical, not horizontal       |
+| `H`             | `0`                          | **Integer** (<=512 and >=-512)               | Horizontal space from text to end of image        |
+| `V`             | `0`                          | **Integer** (<=512 and >=-512)               | Vertical space, like above                        |
 | `AA`            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
 | `TYPE`          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
 | `PRIVACY`       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `SERVER` is enabled)    |
