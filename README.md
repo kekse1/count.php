@@ -4,8 +4,8 @@
 It's a universal counter script. ... v**3.2.5**!
 
 ## News
-* *BIG improvement* in the _drawing function(s)_, finally!! .. w/ *new feature/option*: the **[Preference](#preference)**. **:)~**
-* I already told you about the whole **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~*
+* **BIG improvement** in the *drawing function(s)*, _finally_!! .. w/ *new feature/option*: the **[Preference](#preference)**. **:)~**
+* I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~*
 
 ## Index
 0. [News](#news)
