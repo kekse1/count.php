@@ -7,6 +7,7 @@ It's a universal counter script. ... v**3.2.7**!
 * **BIG improvement** in the *drawing function(s)*, _finally_!! .. w/ *new feature/option*: the **[Preference](#preference)**. **:)~**
 * I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
 * .. and, as usual, more improvements and fixes. :-)
+* _Next:_ ANSI Escape Sequences @ [CLI](#cli-mode)!? **^\_^**
 
 ## Index
 0. [News](#news)
