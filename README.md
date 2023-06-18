@@ -402,7 +402,7 @@ beneath the other host files/directories).
 
 Hosts with their own configuration overwrites are marked with an integer on the right of the `--values/-v` table in
 [CLI](#cli-mode), which indicates how many settings are being overwritten by this file, per host (checked before).
-If it's not prefixed by a `%` and instead of the value there's an `@`, the config file couldn't be read in or parsed
+If it's not prefixed by a `+` and instead theres a single `x`, the config file couldn't be read in or parsed
 to an (associative) array.. in this case please check the file for this host!
 
 **BTW**: the configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
