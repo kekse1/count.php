@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.0**!
+It's a universal counter script. ... v**3.2.1**!
 
 ## Index
 1. [Installation](#installation)
@@ -529,8 +529,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5174_ code lines** left
-as of v**3.2.0**! ^\_^
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5164_ code lines** left
+as of v**3.2.1**! ^\_^
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
