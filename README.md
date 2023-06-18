@@ -1,11 +1,12 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.6**!
+It's a universal counter script. ... v**3.2.7**!
 
 ## News
 * **BIG improvement** in the *drawing function(s)*, _finally_!! .. w/ *new feature/option*: the **[Preference](#preference)**. **:)~**
 * I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
+* .. and, as usual, more improvements and fixes. :-)
 
 ## Index
 0. [News](#news)
@@ -571,8 +572,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5256_ code lines** left
-as of v**3.2.6**! ^\_^
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5251_ code lines** left
+as of v**3.2.7**! **xD~**
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
