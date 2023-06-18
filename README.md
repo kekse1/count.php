@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php&fg=120,130,40&size=48&v=16" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.1**!
+It's a universal counter script. ... v**3.2.2**!
 
 ## Index
 1. [Installation](#installation)
@@ -234,7 +234,7 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 | -------: | :---------------------------------------------- | -----------: | -----------------------: |
 | `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>  |
 | `zero`   | (`drawing` again) (overrides the options below) | **No value** | _Alternative_ to `?draw` |
-| `size`   | `size` = `24`                                   | **Integer**  | Also see `size_limit`    |
+| `size`   | `size` = `24`                                   | **Integer**  | >= 4 and <= 512          |
 | `font`   | `font` = `'IntelOneMono'`                       | **String**   | Also see `fonts`         |
 | `fg`     | `fg` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)    |
 | `bg`     | `bg` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)    |
@@ -317,8 +317,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
 | `fonts`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
 | `font`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| `size`          | `24`                         | **Integer** (>=4, and w/in size\_limit)      | Font size (`px` or `pt`, not sure atm)            |
-| `size_limit`    | `768`                        | **Integer** (>=4 and <=512)                  | Limit for this size (@ traffic and resources)     |
+| `size`          | `24`                         | **Integer** (>=4 and <=512)                  | Font size (`px` or `pt`, not sure atm)            |
 | `fg`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `bg`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `x`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
@@ -529,8 +528,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5164_ code lines** left
-as of v**3.2.1**! ^\_^
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5162_ code lines** left
+as of v**3.2.2**! ^\_^
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
