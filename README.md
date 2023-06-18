@@ -9,6 +9,7 @@ It's a universal counter script. ... v**3.2.7**!
 * And, as usual, more improvements and fixes. :-)
 * _Next:_ ANSI Escape Sequences @ [CLI](#cli-mode)!?
 * .. and new [Exports](#exports) and a better namespace hierarchie in general!
+# ... plus **fixed** [RAW mode](#raw-mode)!!
 
 ## Index
 0. [News](#news)
