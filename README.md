@@ -373,7 +373,7 @@ If unspecified, the value defaults to (`0`).
 ### Per-host config overwrite
 The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
 the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
-easy to unloaded again. So, they are **differences** to apply if this host with the `%` file is selected.
+easy to unload again. So, they are **differences** to apply if this host with the `%` file is selected.
 
 They get automatically loaded (if the file exists - usually a `%`-prefixed JSON object{} in the `PATH` directory,
 beneath the other host files/directories).
@@ -383,12 +383,8 @@ Hosts with their own configuration overwrites are marked with an integer on the 
 If it's not prefixed by a `%` and instead of the value there's an `@`, the config file couldn't be read in or parsed
 to an (associative) array.. in this case please check the file for this host!
 
-JFYI: maybe in `RAW` mode you eventually will use some functions etc. multiple times (before exit). If you would call
-the `make_config()` function (or within multiple `counter()` calls it's also used), and set the `$_reload = null` (instead
-of a `Boolean` type), the per-host config file will only be reloaded if the file hash changed (they're stored when loaded)..
-
-So, **BTW**: the configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
-set of configuration items..)! :)~
+**BTW**: the configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
+set of available configuration items)!
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
