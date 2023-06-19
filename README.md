@@ -4,7 +4,7 @@
 It's a universal counter script. ... v**3.2.8**!
 
 ## News
-* **BIG improvement** in the *drawing function(s)*, _finally_!! .. w/ *new feature/option*: the **[Scaling](#scaling)**. **:)~**
+* **BIG improvement** in the *drawing function(s)*, _finally_!!
 * I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
 * And, as usual, more improvements and fixes. :-)
 * _Next:_ ANSI Escape Sequences @ [CLI](#cli-mode)!?
@@ -27,7 +27,6 @@ It's a universal counter script. ... v**3.2.8**!
 	* [String filter](#string-filter)
 3. [Drawing](#drawing)
 	* [Parameters](#parameters)
-	* [Scaling](#scaling)
 	* [Dependencies](#dependencies-1)
 4. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
@@ -241,32 +240,30 @@ To use it, enable the `drawing` option and call script with (at least!) `?draw` 
 parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
 follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
-| Variable | Default [Settings](#settings) \[= (value)\]     | Type         | Description / Comment(s)      |
-| -------: | :---------------------------------------------- | -----------: | ----------------------------: |
-| `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>       |
-| `zero`   | (`drawing` again) (overrides the options below) | **No value** | _Alternative_ to `?draw`      |
-| `fit`    | `fit` = `true`                                  | **Boolean**  | See [Scaling](#scaling)       |
-| `size`   | `size` = `64px`                                 | **String**   | >= 4 and <= 512               |
-| `font`   | `font` = `'IntelOneMono'`                       | **String**   | Also see `fonts`              |
-| `fg`     | `fg` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)         |
-| `bg`     | `bg` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)         |
-| `h`      | `h` = `0`                                       | **Integer**  | >= -512 and <= 512            |
-| `v`      | `v` = `0`                                       | **Integer**  | >= -512 and <= 512            |
-| `x`      | `x` = `0`                                       | **Integer**  | >= -512 and <= 512            |
-| `y`      | `y` = `0`                                       | **Integer**  | >= -512 and <= 512            |
-| `aa`     | `aa` = `true`                                   | **Boolean**  | Anti Aliasing..               |
-| `type`   | `type` = `'png'`                                | **String**   | See `--types/-t`              |
+| Variable | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)        |
+| -------: | :---------------------------------------------- | -----------------: | ------------------------------: |
+| `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>         |
+| `zero`   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`        |
+| `size`   | `size` = `64`                                   | **String/Integer** | >= 3 and <= 512, `32px`, `24pt` |
+| `unit`   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_|
+| `font`   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                |
+| `fg`     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)           |
+| `bg`     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)           |
+| `h`      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| `v`      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| `x`      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| `y`      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| `aa`     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                 |
+| `type`   | `type` = `'png'`                                | **String**         | See `--types/-t`                |
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
 `x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
 `h` is to the left and the right. They both can also be negative values.
 
-`fit` is important (but optional as parameter here, as all the others) for best measuring the text. See the
-[Scaling](#scaling) sub section, here below this one.
-
-`size` needs to be a string, because you also need to specify the **unit** there! Allowed are only `px` and `pt`;
-the difference between them is described in the [Scaling](#scaling) sub section, here below (maybe important)!
+`size` is either an Integer. In this case the optional `unit` is considered (also in the configuration). Or it can also
+be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used if `size` is
+already with (valid) suffix!
 
 The selected `font` needs to be installed in the `fonts` directory, as `.ttf`. The parameter is normally without
 '.ttf' extension, but this doesn't matter at all.
@@ -280,22 +277,6 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 output (only if allowed by `drawing` configuration). And just to mention it: take a look at `?zero` and
 maybe also the `hide` setting, described somewhere above.. They are changing the way the output image looks
 like.
-
-### Scaling
-Either you want a fixed image height, so the text is scaled into it. Or you want a fixed text size, then the whole
-image height is adapted/scaled.
-
-I'm thinking about floating your counter image inside a web page within text, etc.: in this case you'd like to fix
-the font size, so it always looks all the same.. in contrast to this the embedding into a specific layout, e.g. if
-you have some 'bar' on top/bottom or so, where the image height needs to fit into it.
-
-The reason for this: many/some fonts have symbols which stretch to the bottom, other to the top. As an example, the
-symbols for 'y' or 'j' are very large on the bottom.. etc. That's why I needed to adjust/scale/align text drawings.
-
-Your choice! :)~
-
-**BTW**, _very important_: this is the reason why the `size` (in parameters and the config(s)) needs a **unit suffix**.
-The `pt` describes a fixed font size, whereas `px` stands for the fixed image height (so the font is scaled)!!
 
 ### Dependencies
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
@@ -350,7 +331,8 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
 | `fonts`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
 | `font`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| `size`          | `64px`                       | **String** (>=4 and <=512)                   | Height of image/font (@ [Scaling](#scaling)**!**!)|
+| `size`          | `64`                         | **String** or **Integer** (>=3 and <=512)    | Either Integer, w/ `unit`, or String `pt` or `px` |
+| `unit`          | `px`                         | **String** [ `pt`, `px` ]                    | Will be used if the `size` is just an Integer.    |
 | `fg`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `bg`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `x`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
