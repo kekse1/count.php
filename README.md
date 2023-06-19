@@ -1,15 +1,15 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.7**!
+It's a universal counter script. ... v**3.2.8**!
 
 ## News
-* **BIG improvement** in the *drawing function(s)*, _finally_!! .. w/ *new feature/option*: the **[Preference](#preference)**. **:)~**
+* **BIG improvement** in the *drawing function(s)*, _finally_!! .. w/ *new feature/option*: the **[Scaling](#scaling)**. **:)~**
 * I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
 * And, as usual, more improvements and fixes. :-)
 * _Next:_ ANSI Escape Sequences @ [CLI](#cli-mode)!?
 * .. and new [Exports](#exports) and a better namespace hierarchie in general!
-# ... plus **fixed** [RAW mode](#raw-mode)!!
+* ... plus **fixed** [RAW mode](#raw-mode)!!
 
 ## Index
 0. [News](#news)
@@ -27,7 +27,7 @@ It's a universal counter script. ... v**3.2.7**!
 	* [String filter](#string-filter)
 3. [Drawing](#drawing)
 	* [Parameters](#parameters)
-	* [Preference](#preference)
+	* [Scaling](#scaling)
 	* [Dependencies](#dependencies-1)
 4. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
@@ -245,8 +245,8 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 | -------: | :---------------------------------------------- | -----------: | ----------------------------: |
 | `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value** | By default _no_ \<img\>       |
 | `zero`   | (`drawing` again) (overrides the options below) | **No value** | _Alternative_ to `?draw`      |
-| `px`     | `px` = `24`                                     | **Integer**  | >= 4 and <= 512               |
-| `prefer` | `prefer` = `true`                               | **Boolean**  | See [Preference](#preference) |
+| `fit`    | `fit` = `true`                                  | **Boolean**  | See [Scaling](#scaling)       |
+| `size`   | `size` = `64px`                                 | **String**   | >= 4 and <= 512               |
 | `font`   | `font` = `'IntelOneMono'`                       | **String**   | Also see `fonts`              |
 | `fg`     | `fg` = `'0,0,0,1'`                              | **String**   | See [Colors](#colors)         |
 | `bg`     | `bg` = `'255,255,255,0'`                        | **String**   | See [Colors](#colors)         |
@@ -259,12 +259,17 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
-`x` and `y` are just moving the text along these both axis (in px).
-`v` is the space above and below the text, `h` is to the left and the right. They both can also be negative
-values.
+`x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
+`h` is to the left and the right. They both can also be negative values.
 
-`px` is the target height (`pt` font size is, btw, `px/0.75`). The selected `font` needs to be installed in
-the `fonts` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but CAN be so, too..
+`fit` is important (but optional as parameter here, as all the others) for best measuring the text. See the
+[Scaling](#scaling) sub section, here below this one.
+
+`size` needs to be a string, because you also need to specify the **unit** there! Allowed are only `px` and `pt`;
+the difference between them is described in the [Scaling](#scaling) sub section, here below (maybe important)!
+
+The selected `font` needs to be installed in the `fonts` directory, as `.ttf`. The parameter is normally without
+'.ttf' extension, but this doesn't matter at all.
 
 The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased text.
 
@@ -276,19 +281,21 @@ output (only if allowed by `drawing` configuration). And just to mention it: tak
 maybe also the `hide` setting, described somewhere above.. They are changing the way the output image looks
 like.
 
-### Preference
-If `prefer` or `$_GET['prefer']` is `true`, the text size is adapted if high characters, e.g., need more space;
-whereas `false` will change the image's height!
+### Scaling
+Either you want a fixed image height, so the text is scaled into it. Or you want a fixed text size, then the whole
+image height is adapted/scaled.
 
-I prefer the font size change, because many times we need a fixed size/height image (to fit into the web design);
-but sometimes, when the size doesn't matter, it's better to see a clear design, so the font always looks the same;
-e.g. when you embed the image into a document style view, just floating beneath the texts, etc.
+I'm thinking about floating your counter image inside a web page within text, etc.: in this case you'd like to fix
+the font size, so it always looks all the same.. in contrast to this the embedding into a specific layout, e.g. if
+you have some 'bar' on top/bottom or so, where the image height needs to fit into it.
+
+The reason for this: many/some fonts have symbols which stretch to the bottom, other to the top. As an example, the
+symbols for 'y' or 'j' are very large on the bottom.. etc. That's why I needed to adjust/scale/align text drawings.
 
 Your choice! :)~
 
-**BTW**: This came up when I saw that some fonts are being drawed above the corner(s), which happens when symbols
-are bigger than the baseline(?).. so characters like 'y' or 'j' (going more to the bottom..) couldn't be completely
-drawn. So I fixed the alignment, etc. (inter alia..). :D~
+**BTW**, _very important_: this is the reason why the `size` (in parameters and the config(s)) needs a **unit suffix**.
+The `pt` describes a fixed font size, whereas `px` stands for the fixed image height (so the font is scaled)!!
 
 ### Dependencies
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
@@ -343,7 +350,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
 | `fonts`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
 | `font`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| `px`            | `24`                         | **Integer** (>=4 and <=512)                  | Height of image (`pt` font size is `px/0.75`)     |
+| `size`          | `64px`                       | **String** (>=4 and <=512)                   | Height of image/font (@ [Scaling](#scaling)**!**!)|
 | `fg`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `bg`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `x`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
@@ -575,8 +582,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5251_ code lines** left
-as of v**3.2.7**! **xD~**
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5534_ code lines** left
+as of v**3.2.8**! **xD~**
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
