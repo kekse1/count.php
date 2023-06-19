@@ -1,21 +1,21 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.3.2**!
+It's a universal counter script. ... v**3.4.0**!
 
 ## News
-* **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! Plus `pt` vs. `px`!
+* **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
 * I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
-* And, as usual, more improvements and fixes. :-)
-* _Next:_ ANSI Escape Sequences @ [CLI](#cli-mode)!?
-* .. and new [Exports](#exports) and a better namespace hierarchie in general!
-* ... plus **fixed** [RAW mode](#raw-mode)!!
+* Preparations for new exports/namespaces (with nice features) are in progress!
+* `RAW mode` should needs some fixes, too (problem is atm: multiple declaration errors.. so closures or a better system for such cases?); ...
+* _**IN PROGRESS**_! **^\_^**
 
 ## Index
-0. [News](#news)
-1. [Installation](#installation)
+1. [News](#news)
+2. [Example](#example)
+3. [Installation](#installation)
 	* [Dependencies](#dependencies)
-2. [Details](#details)
+4. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -25,17 +25,17 @@ It's a universal counter script. ... v**3.3.2**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-3. [Drawing](#drawing)
+5. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-4. [Configuration](#configuration)
+6. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
 	* [Relative Paths](#relative-paths)
 	* [Colors](#colors)
 	* [Radix/Base](#radixbase)
 	* ['auto'](#auto)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
-5. [Modes](#modes)
+7. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -43,10 +43,13 @@ It's a universal counter script. ... v**3.3.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-6. [Exports](#exports)
-7. [FAQ](#faq)
-8. [The original version](#the-original-version)
-9. [Copyright and License](#copyright-and-license)
+8. [Exports](#exports)
+9. [FAQ](#faq)
+10. [The original version](#the-original-version)
+11. [Copyright and License](#copyright-and-license)
+
+## Example
+![Example (screenshot)](docs/example.png)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
@@ -564,8 +567,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5.734_ code lines**,
-as of v**3.3.2**! **xD~**
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5.795_ code lines**,
+as of v**3.4.0**! **xD~**
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
