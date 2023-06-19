@@ -49,7 +49,7 @@ It's a universal counter script. ... v**3.4.0**!
 11. [Copyright and License](#copyright-and-license)
 
 ## Example
-![Example (screenshot)](docs/screenshot.png)
+![\<img'>](docs/image.png)
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
