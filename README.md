@@ -1,10 +1,10 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.2.9**!
+It's a universal counter script. ... v**3.3.0**!
 
 ## News
-* **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!!
+* **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! Plus `pt` vs. `px`!
 * I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
 * And, as usual, more improvements and fixes. :-)
 * _Next:_ ANSI Escape Sequences @ [CLI](#cli-mode)!?
@@ -564,8 +564,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5538_ code lines** left
-as of v**3.2.9**! **xD~**
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5.539_ code lines**,
+as of v**3.3.0**! **xD~**
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
