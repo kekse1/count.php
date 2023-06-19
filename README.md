@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.4.1**!
+It's a universal counter script. ... v**3.4.2**!
 
 ## News
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
@@ -10,6 +10,7 @@ It's a universal counter script. ... v**3.4.1**!
 * `RAW mode` should needs some fixes, too (problem is atm: multiple declaration errors.. so closures or a better system for such cases?); ...
 * Already _planned_: **modules** should be supported.
 * _**IN PROGRESS**_! **^\_^**
+* *Yet finished*: best configuration testing.. (just missing one or two specific test routines; just a penny..)!! **:D~**
 
 ## Index
 1. [News](#news)
@@ -568,8 +569,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_5.819_ code lines**,
-as of v**3.4.1**! **xD~**
+**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_6.076_ code lines**,
+as of v**3.4.2**! **xD~**
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
