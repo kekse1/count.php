@@ -331,7 +331,8 @@ a host is being selected.
 
 ### No more constants.
 Here are the current _default_ settings, including the possible types (whereas every variable with bold '**!**'
-before it's name may _**never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)').
+before it's name may _**never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)',
+which will be checked anyway..).
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
