@@ -9,7 +9,7 @@ It's a universal counter script. ... v**3.5.0**!
 * Completely _new **configuration system**_ .. see [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). As requested by a reviewer. **;)~**
 * Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites..
 * To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
-* And, as usual, more bugfix and improvements.. ^\_^
+* And, as usual, more bugfixes and improvements.. ^\_^
 
 ## Index
 1. [News](#news)
