@@ -47,7 +47,7 @@ It's a universal counter script. ... v**3.5.1**!
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
 9. [Namespaces and exports](#namespaces-and-exports)
-10. [Modules](#modules);
+10. [Modules](#modules)
 11. [FAQ](#faq)
 12. [The original version](#the-original-version)
 13. [Copyright and License](#copyright-and-license)
