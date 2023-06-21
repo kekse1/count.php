@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.5.1**!
+It's a universal counter script. ... v**3.5.2**!
 
 ## News
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
@@ -54,8 +54,7 @@ It's a universal counter script. ... v**3.5.1**!
 
 ## TODO
 * Just preparing better `RAW` support and more [namespaces and exports](#namespaces-and-exports) \[prob is atm. partial 'multi-declaration'..\];
-* _maybe_ better support for symbolic links!?
-* using `chmod()` (and `touch()` or `mkdir()`) 'everywhere'.
+* Using `check_file()` function; and reduce many further file checks this way.. plus always **maximum security** by using `chmod()` each time! ;)~
 * Already planned, but will take a bit longer: **_Module_ support**..
 
 ## Example
@@ -609,7 +608,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-After cleaning up a bit, removing comments, etc. there are **_6.384_ code lines** left, as of v**3.5.1**!
+After cleaning up a bit, removing comments, etc. there are **_6.499_ code lines** left, as of v**3.5.2**!
+_**INFO**_: some lines will be removed soon, because of a new function to handle them better.. ;)~
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
