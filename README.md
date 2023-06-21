@@ -276,9 +276,10 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
 `x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
-`h` is to the left and the right. They both can also be negative values. `angle` will rotate the whole image
-anticlockwise - or just use negative values! Supported are either Integer values (as 'degrees'), and Strings with
-the unit as suffix, whereas only `deg` and `rad` is allowed (e.g. `45deg` or `0.7854rad`).
+`h` is to the left and the right. They both can also be negative values.
+
+`angle` will rotate the whole image anticlockwise (or just use negative values! ;-) .. supported are either integer
+values (assumed as being in 'degrees'), and Strings with a unit [ 'deg', 'rad' ] as suffix.
 
 `size` is either an Integer. In this case the optional `unit` is considered (also in the configuration). Or it can also
 be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used if `size` is
