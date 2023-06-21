@@ -47,9 +47,10 @@ It's a universal counter script. ... v**3.5.0**!
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
 9. [Namespaces and exports](#namespaces-and-exports)
-10. [FAQ](#faq)
-11. [The original version](#the-original-version)
-12. [Copyright and License](#copyright-and-license)
+10. [Modules](#modules);
+11. [FAQ](#faq)
+12. [The original version](#the-original-version)
+13. [Copyright and License](#copyright-and-license)
 
 ## TODO
 * Just preparing better `RAW` support and more [namespaces and exports](#namespaces-and-exports) \[prob is atm. partial 'multi-declaration'..\];
@@ -572,6 +573,9 @@ Namespaces used, in general (you really don't need them, everything 'important' 
 * `kekse\counter`
 * `kekse\color`
 * `kekse\console`
+
+## Modules
+*TODO*!
 
 ## FAQ
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
