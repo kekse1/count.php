@@ -325,7 +325,7 @@ Look below at "CLI Mode" to get to know how to verify your own configuration, vi
 able to read _optional_ arguments, to also verify concrete [per-host config overwrite](#per-host-config-overwrite).
 
 The [per-host config overwrite](#per-host-config-overwrite)s do allow a subset/difference of the whole configuration
-items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `$`,
+items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `@`,
 and are encoded in [JSON format](https://www.json.org/). And they'll be loaded automatically if existing, if such
 a host is being selected.
 
@@ -413,9 +413,9 @@ _Hint_: to (temporarily) disable the whole counting unit, just set `auto = null`
 ### Per-host config overwrite
 The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
 the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
-easy to unload again. So, they are **differences** to apply if this host with the `$` file is selected.
+easy to unload again. So, they are **differences** to apply if this host with the `@` file is selected.
 
-They get automatically loaded (if the file exists - usually a `$`-prefixed JSON object{} in the `path` directory,
+They get automatically loaded (if the file exists - usually a `@`-prefixed JSON object{} in the `path` directory,
 beneath the other host files/directories).
 
 Hosts with their own configuration overwrites are marked with an integer on the right of the `--values/-v` table in
