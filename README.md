@@ -55,6 +55,7 @@ It's a universal counter script. ... v**3.5.1**!
 ## TODO
 * Just preparing better `RAW` support and more [namespaces and exports](#namespaces-and-exports) \[prob is atm. partial 'multi-declaration'..\];
 * _maybe_ better support for symbolic links!?
+* using `chmod()` (and `touch()` or `mkdir()`) 'everywhere'.
 * Already planned, but will take a bit longer: **_Module_ support**..
 
 ## Example
