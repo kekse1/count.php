@@ -5,7 +5,7 @@ It's a universal counter script. ... v**3.5.1**!
 
 ## News
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
-* Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, ... both degrees and radians.
+* Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
 * Completely _new **configuration system**_ .. see [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). As requested by a reviewer. **;)~**
 * Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites..
 * To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
