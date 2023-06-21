@@ -141,13 +141,12 @@ Caution: the `auto` setting is also overridden in this case, so it's not possibl
 arbitrary parameter (also important for security). Thus, you first have to create a value file to the
 corresponding string!
 
-_**NEW** (since v**2.20.4**)_: `override` can also be a (non-empty) String, to define just one fixed
-host(name) to use. Last possibility to override is the `counter()` function itself (first argument);
-the strings are always filtered (by `secure_host()`), and every of these overrides sets
-`OVERRIDDEN = true`.
+And now the `override` setting can also be a (non-empty) String, to define just one fixed host(name)
+to use. Last possibility for an `override` is the `counter()` function itself (in it's first argument);
+but all the strings are always filtered (by `secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
 
-*PS: untested atm.*.. AND **JFYI**: If `override` is a `string`, then the `auto` is also being
-overridden as above, but to the `(true)` state (so the value file will always be created automatically).
+*PS*: If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but
+to the `(true)` state (so the value file will always be created automatically).
 
 ### Overwrites
 Beneath the default configuration, any host (within the file system, as desribed above at [Storage](#storage))
@@ -493,8 +492,7 @@ as defined in `content` option)! .. so please, just type `php count.php` in your
 **BTW**: With enabled `raw` setting this command line interface won't be shown (because this mode is
 for using the script within other PHP scripts) - unless you define one of the parameters shown below!
 
-_**NEW** since v**3.0.3**:_ the default action has changed - from showing the syntax to directly call
-like `--values/-v`. The syntax is now shown via `--help/-?`. :)~
+The default action is (like) `--values/v`, whereas the `--help/-?` output needs to be called exactly.
 
 ##### The argument vector
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
@@ -529,7 +527,7 @@ original glob is being encoded 'as is').
 
 As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
 
-**NEW** (since v**3.1.3**): the `--check/-c [*]` can get *optional* `host` arguments, to not check the
+The `--check/-c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
 default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
 #### Prompts
@@ -609,8 +607,7 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are '_only_' **_6.384_ code lines**,
-as of v**3.5.1**! **xD~**
+After cleaning up a bit, removing comments, etc. there are **_6.384_ code lines** left, as of v**3.5.1**!
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
