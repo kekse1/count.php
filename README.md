@@ -541,8 +541,6 @@ For the **count(er)** implementation itself I'm using the namespace `kekse\count
 functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported in my
 own `kekse` namespace, including more sub namespaces (for even more functions ;-). They could be really handy!
 
-_**.. TODO!! (are currently being extended, and documentation is missing yet...!)**_
-
 | Function                | Arguments                                                           | Description                                                                                  |
 | ----------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
 | `is_number()`           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
