@@ -27,6 +27,7 @@ It's a universal counter script. ... v**3.4.2**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
+    * [Management](#management)
 5. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
@@ -232,6 +233,12 @@ host could be poisoned as well!
 The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
  web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
 couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
+
+### Management
+You can easily manage all the values etc. via command line. Like just viewing the values, delete them,
+(re-)set them, and much more.
+
+See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
 The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
