@@ -322,7 +322,7 @@ if you don't specify this via `?font` it really *needs* to be pre-set via `font`
 The configuration is an associative array of various settings.
 
 Look below at "CLI Mode" to get to know how to verify your own configuration, via `-c/--check [*]`. It's
-able to read _optional_ arguments, to also verify concrete [per-host config overwrite](#per-host-config-overwrite).
+able to read _optional_ arguments, to also verify concrete [per-host config overwrite](#per-host-config-overwrite)s.
 
 The [per-host config overwrite](#per-host-config-overwrite)s do allow a subset/difference of the whole configuration
 items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `@`,
