@@ -1,23 +1,23 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.4.2**!
+It's a universal counter script. ... v**3.5.0**!
 
 ## News
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
-* I already told you about my **new configuration system**? See [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). **:)~**
-* Preparations for new exports/namespaces (with nice features) are in progress!
-* `RAW mode` should needs some fixes, too (problem is atm: multiple declaration errors.. so closures or a better system for such cases?); ...
-* Already _planned_: **modules** should be supported.
-* _**IN PROGRESS**_! **^\_^**
-* *Yet finished*: best configuration testing.. (just missing one or two specific test routines; just a penny..)!! **:D~**
+* Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, ...
+* Completely _new **configuration system**_ .. see [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). As requested by a reviewer. **;)~**
+* Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites..
+* To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
+* And, as usual, more bugfix and improvements.. ^\_^
 
 ## Index
 1. [News](#news)
-2. [Example](#example)
-3. [Installation](#installation)
+2. [TODO](#todo)
+3. [Example](#example)
+4. [Installation](#installation)
 	* [Dependencies](#dependencies)
-4. [Details](#details)
+5. [Details](#details)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -28,17 +28,17 @@ It's a universal counter script. ... v**3.4.2**!
 	* [Errors](#errors)
 	* [String filter](#string-filter)
     * [Management](#management)
-5. [Drawing](#drawing)
+6. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-6. [Configuration](#configuration)
+7. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
 	* [Relative Paths](#relative-paths)
 	* [Colors](#colors)
 	* [Radix/Base](#radixbase)
 	* ['auto'](#auto)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
-7. [Modes](#modes)
+8. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -46,10 +46,14 @@ It's a universal counter script. ... v**3.4.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-8. [Exports](#exports)
-9. [FAQ](#faq)
-10. [The original version](#the-original-version)
-11. [Copyright and License](#copyright-and-license)
+9. [Namespaces and exports](#namespaces-and-exports)
+10. [FAQ](#faq)
+11. [The original version](#the-original-version)
+12. [Copyright and License](#copyright-and-license)
+
+## TODO
+* Just preparing better `RAW` support and more [namespaces and exports](#namespaces-and-exports) \[prob is atm. partial 'multi-declaration'..\];
+* Already planned, but will take a bit longer: **_Module_ support**..
 
 ## Example
 ![\<img'>](docs/image.png)
@@ -98,7 +102,7 @@ counting this files (which is a security concern) is done cached via some specia
 no 'inefficient' `opendir()` etc. is always necessary ;). The values itself are also located in
 the file system - one file for each host (secured auto-generation included, if you wish, and
 also with a limit in their amount - if you don't create the value files manually; see `auto`
-setting).
+setting.. _plus_ 'hard' limit, see `limit` setting).
 
 The file system is usually top in performance. A real database would be overload for such a
 script. And using only one file and parse/render it by myself is not recommended, as it's very
@@ -261,6 +265,7 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 | `font`   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                |
 | `fg`     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)           |
 | `bg`     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)           |
+| `angle`  | `angle` = `0`                                   | **Integer/String** | Anticlockwise; [ 'deg', 'rad' ] |
 | `h`      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512              |
 | `v`      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512              |
 | `x`      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512              |
@@ -271,7 +276,9 @@ follows (whereas they need a prefix, which is either `?` for the first parameter
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
 `x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
-`h` is to the left and the right. They both can also be negative values.
+`h` is to the left and the right. They both can also be negative values. `angle` will rotate the whole image
+anticlockwise - or just use negative values! Supported are either Integer values (as 'degrees'), and Strings with
+the unit as suffix, whereas only `deg` and `rad` is allowed (e.g. `45deg` or `0.7854rad`).
 
 `size` is either an Integer. In this case the optional `unit` is considered (also in the configuration). Or it can also
 be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used if `size` is
@@ -316,9 +323,9 @@ Look below at "CLI Mode" to get to know how to verify your own configuration, vi
 able to read _optional_ arguments, to also verify concrete [per-host config overwrite](#per-host-config-overwrite).
 
 The [per-host config overwrite](#per-host-config-overwrite)s do allow a subset/difference of the whole configuration
-items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `%`
-(hash sign), and are encoded in [JSON format](https://www.json.org/). And they'll be loaded automatically if existing,
-if such a host is being selected.
+items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `$`,
+and are encoded in [JSON format](https://www.json.org/). And they'll be loaded automatically if existing, if such
+a host is being selected.
 
 ### No more constants.
 Here are the current _default_ settings, including the possible types (whereas every variable with bold `!` before may
@@ -340,13 +347,14 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | `content`       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
 | `radix`         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
 | `clean`         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
-| `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of cache files                     |
+| `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of files, in base dir and sub dir! |
 | `fonts`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
 | `font`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
 | `size`          | `64`                         | **String** or **Integer** (>=3 and <=512)    | Either Integer, w/ `unit`, or String `pt` or `px` |
 | `unit`          | `px`                         | **String** [ `pt`, `px` ]                    | Will be used if the `size` is just an Integer.    |
 | `fg`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
 | `bg`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
+| `angle`         | `0`                          | **Integer/String**                           | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
 | `x`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
 | `y`             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
 | `h`             | `0`                          | **Integer** (<=512 and >=-512)               | Horizontal space from text to end of image        |
@@ -377,15 +385,15 @@ directory, please use `./../`..
 Supported formats are:
 
 * `argb()` (with 3x (0-255) and 1x (0.0-1.0));
-* `rgb()` (with 3x (0-255));
+* `rgb()` (with 3x (0-255))
 * `(comma separated list) (of 3x (0-255) and optionally 1x (0.0-1.0));
-* `#` hex color strings (w/ and w/o `#` prefix, within a length of [ 3, 4, 6, 8 ]);
+* `#` hex color strings (w/ and w/o `#` prefix, with a length of one of: [ 3, 4, 6, 8 ]);
 
 ### Radix/Base
 The `radix` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
 
-But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be called.
-Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `radix` setting mentioned here above).
+But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be
+called. Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `radix` setting mentioned here above).
 
 ### 'auto'
 By default up to `32` value files will automatically be created, if not existing for a host. With overridden
@@ -396,12 +404,16 @@ If amount of value files exceeds limit, or if set to `false`, you can easily ini
 files via the `--set/-t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
 If unspecified, the value defaults to (`0`).
 
+Additionally, the `limit` setting is also used for a 'hard' maximum, even if 'auto' integer is greater or without real (int) limit!
+
+_Hint_: to (temporarily) disable the whole counting unit, just set `auto = null`. ;)~
+
 ### Per-host config overwrite
 The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
 the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
-easy to unload again. So, they are **differences** to apply if this host with the `%` file is selected.
+easy to unload again. So, they are **differences** to apply if this host with the `$` file is selected.
 
-They get automatically loaded (if the file exists - usually a `%`-prefixed JSON object{} in the `path` directory,
+They get automatically loaded (if the file exists - usually a `$`-prefixed JSON object{} in the `path` directory,
 beneath the other host files/directories).
 
 Hosts with their own configuration overwrites are marked with an integer on the right of the `--values/-v` table in
@@ -495,7 +507,7 @@ of supported 'functions'.
 |  `-s` | `--sync [*]`             | Same as above, but with cache synchronization..           |
 |  `-l` | `--clean [*]`            | Clean all **outdated** (only!) cache files.               |
 |  `-p` | `--purge [*]`            | Delete the cache(s) for all or specified hosts.           |
-|  `-z` | `--sanitize [-w]`        | Delete file rests.. with `--allow-without-values/-w`..    |
+|  `-z` | `--sanitize [-w/-d]`     | Delete file rests, w/ `--allow-without-values/--dot-files`|
 |  `-d` | `--delete [*]`           | Totally remove any host (all, or by arguments)            |
 |  `-t` | `--set (host) [value=0]` | Sets the (optional) value for the defined host (only one) |
 |  `-f` | `--fonts [*]`            | Available fonts for drawing `<img>`. Globs allowed.       |
@@ -522,26 +534,43 @@ As some operations are somewhat 'dangerous', especially at deletion of files, th
 to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
 just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
 
-## Exports
-For the **count(er)** implementation itself I'm using the namespace `kekse\counter`. **BUT** _my common
+## Namespaces and exports
+For the **count(er)** implementation itself I'm using the namespace `kekse\counter`. **BUT** my _common
 functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported in my
-own `kekse` namespace. They could really be handy, so I decided to export them in my `kekse` namespace:
+own `kekse` namespace, including more sub namespaces (for even more functions ;-). They could be really handy!
+
+_**.. TODO!! (are currently being extended, and documentation is missing yet...!)**_
 
 | Function                | Arguments                                                           | Description                                                                                  |
 | ----------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
-| `prompt()`              | `$_string`, `$_return = false`, `$_repeat = true`                   | Until a question is confirmed via `y[es]` or `n[o]`, it'll repeat the question (CLI mode!)   |
-| `get_param()`           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
-| `starts_with()`         | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
+| `is_number()`           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
+| `files()`               | (...)                                                               | As I manually use `opendir()` etc. usually, this is just being used in `check_config_item()` |
+| `limit()`               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
 | `ends_with()`           | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
+| `starts_with()`         | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
 | `normalize()`           | `$_path`                                                            | Implementation of **path** normalization (works)                                             |
 | `join_path()`           | `... $_args`                                                        | Combines multiple path components to a whole path string **(variadic function)**             |
-| `delete()`              | `$_path`, `$_depth = 0`                                             | One function for deletion of files and directories (optionally recursive)                    |
-| `remove_white_spaces()` | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
 | `timestamp()`           | `$_diff = null`                                                     | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp   |
-| `limit()`               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
+| `remove_white_spaces()` | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
 | `secure()`              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
 | `secure_host()`         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
 | `secure_path()`         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
+| `delete()`              | `$_path`, `$_depth = 0`                                             | One function for deletion of files and directories (optionally recursive)                    |
+| `get_param()`           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
+| `unit()`                | `$_string`, `$_float = false`, `$_null = true`                      | Splits into value and unit components, which so can be defined in one string only.           |
+| `color()`               | `$_string`, `$_gd = null`                                           | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool) |
+| `prompt()`              | `$_string`, `$_return = false`, `$_repeat = true`                   | Until a question is confirmed via `y[es]` or `n[o]`, it'll repeat the question (CLI mode!)   |
+| `log()`                 | (...)                                                               | (CLI feature)                                                                                |
+| `info()`                | (...)                                                               | (CLI feature)                                                                                |
+| `error()`               | (...)                                                               | (CLI feature)                                                                                |
+| `warn()`                | (...)                                                               | (CLI feature)                                                                                |
+| `debug()`               | (...)                                                               | (CLI feature)                                                                                |
+
+Namespaces used, in general (you really don't need them, everything 'important' is available in the `kekse` namespace (mostyle as relay function); it's just for your info..):
+* `kekse`
+* `kekse\counter`
+* `kekse\color`
+* `kekse\console`
 
 ## FAQ
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
@@ -576,8 +605,8 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**NEWS**: after cleaning up a bit, removing comments, etc. there are _only_ **_6.076_ code lines**,
-as of v**3.4.2**! **xD~**
+**NEWS**: after cleaning up a bit, removing comments, etc. there are '_only_' **_6.531_ code lines**,
+as of v**3.5.0**! **xD~**
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
@@ -586,3 +615,4 @@ projects. It rised a lot - see for yourself! :)~
 ## Copyright and License
 The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
 and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' license).
+
