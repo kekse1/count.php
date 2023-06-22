@@ -76,7 +76,7 @@ As an important example, hence here's another file system change necessary: if y
 HTTPD needs access to a sub directory `fonts/`, with at least one installed `.ttf`(!) font in it (which you need to set as the _default
 font_ in the `font` setting).
 
-**Note**
+> **Note**
 > You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
 > as the default font, btw.. looks great - see the random value on top of this `README.md` (it's random due to `hide == true` config).
 
@@ -125,7 +125,7 @@ _never_ delete any such file, to protocol the IP's, e.g.).
 These IP files (with timestamps in it) will also use own cache files, one per host, where the amount of them is managed. So if their amount
 is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
 
-**Note**
+> **Note**
 > **All files got limits** .. for sure (maybe hard and soft ones). And also a limit for auto-creating these files (if at all).
 
 ### Server and/or Client
@@ -162,7 +162,7 @@ And now the `override` setting can also be a (non-empty) String, to define just 
 to use. Last possibility for an `override` is the `counter()` function itself (in it's first argument);
 but all the strings are always filtered (by `secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
 
-**Note**
+> **Note**
 > If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but to the
 > `(true)` state (so the value file will always be created automatically).
 
@@ -175,7 +175,7 @@ It came up since in earlier versions I defined the whole configuration via `defi
 globally defined 'variables' (not in the namespace I'm using). BAD.. now everything works even better than
 before this way (and nearly **no** `define()` are used now).
 
-**Note**
+> **Note**
 > For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section (of the
 > [Configuration](#configuration) section)!
 
@@ -217,7 +217,7 @@ Otherwise, without `error` setting, they'll see the error message itself (in sho
 won't see file paths). .. When sending an error, the defined `content` header will be sent; also on drawing
 errors.. so the image will break.
 
-**Warning**
+> **Warning**
 > I'm using two functions for this. Please use them, **never** a regular `die()` nor a `throw new Exception(..)`.
 > These functions handle it better: `error()`/`log_error()`. Please _log_ errors only in safe situations, so no
 > client is able to flood the log file..!
@@ -260,7 +260,7 @@ couting is not disturbed (otherwise it would end up in another file for w/ and w
 You can easily manage all the values etc. via command line. Like just viewing the values, delete them,
 (re-)set them, and much more.
 
-**Note**
+> **Note**
 > See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
@@ -321,7 +321,7 @@ like.
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
-**Note**
+> **Note**
 > The GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this is
 > **not** checked within `-c/--check`, btw.).
 
@@ -352,7 +352,7 @@ a host is being selected.
 ### No more constants.
 Here are the current _default_ settings, including the possible types
 
-**Note**
+> **Note**
 > Every variable with a big, bold ⚠️ may **never** be overwritten by any [per-host config overwrite](#per-host-config-overwrite).
 > But this will always be checked (injection not possible).
 
@@ -403,7 +403,7 @@ be resolved from the location of your `count.php` script (using `__DIR__`). But 
 to your current working directory, you've to define those paths with starting `./` (it's where the script
 gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
 
-**Note**
+> **Note**
 > `../` is relative to the `__DIR__`, unlike `./`..
 > If you also want to make this relative to the current working directory (`$PWD`), please use `./../`.
 
@@ -414,6 +414,11 @@ Supported formats are:
 * **`rgb()`** (with 3x (0-255));
 * **`(comma separated)`** (list of 3x (0-255) and optionally 1x (0.0-1.0));
 * **`#`** hex color strings (w/ and w/o `#` prefix, with a length of one of: [ 3, 4, 6, 8 ]);
+
+> **Note**
+> Above formats don't need extended definition by their names or the `#` hex char.
+> (Mostly) the lengths are enough to determine which type it is.
+> So just set a list of numbers or any hexadecimal notation.
 
 ### Radix/Base
 The `radix` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
@@ -432,7 +437,8 @@ If unspecified, the value defaults to (`0`).
 
 Additionally, the `limit` setting is also used for a 'hard' maximum, even if 'auto' integer is greater or without real (int) limit!
 
-_Hint_: to (temporarily) disable the whole counting unit, just set `auto = null`. ;)~
+> **Warning**
+> To (temporarily) **disable** the _whole counting unit_, set `auto = null`. ;)~
 
 ### Per-host config overwrite
 The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
@@ -447,7 +453,7 @@ Hosts with their own configuration overwrites are marked with an integer on the 
 If it's not prefixed by a `+` and instead theres a single `x`, the config file couldn't be read in or parsed
 to an (associative) array.. in this case please check the file for this host!
 
-**Warning**
+> **Warning**
 > The configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
 > set of available configuration items)!
 
@@ -477,7 +483,7 @@ had.
 Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
 your `path` directory!
 
-**Note**
+> **Note**
 > If `hide` is `true` (instead of a string), ouput will be a random integer. :]~
 
 ### Test mode
@@ -485,7 +491,7 @@ With `?test` there will nothing be counted, and the output (can also be combined
 a random integer value.
 
 ### RAW mode
-**Note**
+> **Note**
 > My namespace is `kekse`.
 
 By defining `raw = true` the base counting function won't be called automatically, so that you've the
@@ -515,11 +521,11 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
 as defined in `content` option)! .. so please, just type `php count.php` in your shell.
 
-**Note**
+> **Note**
 > With enabled `raw` setting this command line interface won't be shown (because this mode is
 > for using the script within other PHP scripts) - unless you define a parameter in the cmd line.
 
-**Note**
+> **Note**
 > The default action is (like) `--values/v`, whereas the `--help/-?` output needs to be called exactly.
 
 ##### The argument vector
@@ -549,14 +555,17 @@ Additional arguments within '[]' are optional (and mostly support GLOBs), and th
 _required_ ones. Most `*` arguments can be defined multiple times, so most times as multiple globs,
 to match the hosts (separated by spaces, each as another argv/argc).
 
-**Hint:** using globs requires quoting or escaping most times, as most shells will try to directly
-resolve them.. if it works sometimes, it's just because the shell didn't find any match (then the
-original glob is being encoded 'as is').
+> **Warning**
+> Using globs requires quoting or escaping most times, as most shells will try to directly
+> resolve them.. if it works sometimes, it's just because the shell didn't find any match (then the
+> original glob is being encoded 'as is').
 
-As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
+> **Note**
+> As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
 
-The `--check/-c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
-default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
+> **Note**
+> The `--check/-c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
+> default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
 #### Prompts
 As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
@@ -623,12 +632,12 @@ Anyway, I implemented it this way because of two reasons:
 
 So, that's for your info. :)~
 
-**Note**
+> **Note**
 > I just added some code to return an integer type, if no rest is given. So it's enough now (instead
 > of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully deleted if `is_int()`!
 
 #### Modulo
-**Warning**
+> **Warning**
 > In PHP and this case the `%` modulo operator isn't the right thing, because it'll return only integers.
 > What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function!
 
@@ -681,10 +690,10 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-**Note**
+> **Note**
 > After cleaning up a bit, removing comments, etc. there are **_6.630_ code lines** left, as of v**3.6.3**!
 
-**Warning**
+> **Warning**
 > Some lines will be removed soon, because of a new function to handle them better.. ;)~
 
 ## The original version
