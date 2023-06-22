@@ -404,8 +404,8 @@ to your current working directory, you've to define those paths with starting `.
 gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
 
 **Note**
-> `../` is relative to the `__DIR__` - if you also want to make this relative to the current
-> working directory (`$PWD`), just use `./../`.
+> `../` is relative to the `__DIR__`, unlike `./`..
+> If you also want to make this relative to the current working directory (`$PWD`), please use `./../`.
 
 ### Colors
 Supported formats are:
