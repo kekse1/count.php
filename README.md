@@ -214,8 +214,8 @@ Most errors will be appended to the `count.log` file (configurable via `log`), s
 directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
 where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
 
-The file is configured via the `log` setting (and follows the rule(s) shown in [Relative paths](#relative-paths)),
-and also encodes timestamps, in the first column (in seconds, unix epoch (January 1st, 1970)).
+> **Note**
+> Logging with timestamps: seconds since the _UNIX epoch_ (the January 1st, 1970).
 
 #### Details
 In `raw` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
