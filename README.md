@@ -613,7 +613,7 @@ be deleted and how much failed.
 
 But you can instead sum up:
 * **(a)** the integer components, to see how many files could be deleted.
-* **(b)** the `%`/`fmod(*, 1)` float components, _AND_ divide them afterwards by the number of items.
+* **(b)** the `%`/`fmod(*, 1)` float components, _AND_ divide them _afterwards_ by the number of items.
 
 The second **(b)** is the **average**! Example given, if you'd like to show a percentage (and/or such
 a progress bar), just use the second **(b)** calculation, and then as usual the 'proportional reasoning'
