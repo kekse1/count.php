@@ -230,7 +230,7 @@ Otherwise, without `error` setting, they'll see the error message itself (in sho
 won't see file paths). .. When sending an error, the defined `content` header will be sent; also on drawing
 errors.. so the image will break.
 
-> **Warning**
+> **Note**
 > I'm using two functions for this. Please use them, **never** a regular `die()` nor a `throw new Exception(..)`.
 > These functions handle it better: `error()`/`log_error()`. Please _log_ errors only in safe situations, so no
 > client is able to flood the log file..!
@@ -265,9 +265,10 @@ So I'm also securing the used `$_SERVER` variables, as e.g. via `Hostname: ...` 
 host could be poisoned as well!
 
 #### **FQDN**'s
-The string filter (above) also removes any trailing `.` from the hostnames; so if you call from a
- web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so the
-couting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`. ;-)
+> **Note**
+> The string filter (above) also removes any trailing `.` from the hostnames; so if you call from
+> a web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so
+> the counting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`)!
 
 ### Management
 You can easily manage all the values etc. via command line. Like just viewing the values, delete them,
