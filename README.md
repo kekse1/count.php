@@ -1,12 +1,13 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.3**!
+It's a universal counter script. ... v**3.6.4**!
 
 ## Issues
 - [x] Great improvement for my [`delete()` function](#deletion): **floating point results**!
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`;
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible;
+- [x] **Fixed** the _blurred images_ when rotating [ 90, 180, 270 ] degrees..!! :-D
 - [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s..!
 - [x] Much better **`--check/-c [*]`**. No more manual checking, but using a *vector*. **And** [per-host-config](#per-host-config-overwrite) **check** is also better now;
 - [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code);
@@ -297,7 +298,6 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | **`v`**      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
 | **`x`**      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
 | **`y`**      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
-| **`aa`**     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                    |
 | **`type`**   | `type` = `'png'`                                | **String**         | See `--types/-t`                   |
 
 #### Explaination
@@ -315,8 +315,6 @@ already with (valid) suffix!
 
 The selected `font` needs to be installed in the `fonts` directory, as `.ttf`. The parameter is normally without
 '.ttf' extension, but this doesn't matter at all.
-
-The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased text.
 
 Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely
 preferred (example given: `jpg` does not have the best alpha-channel (transparency) support)!
@@ -389,7 +387,6 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **`y`**             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
 | **`h`**             | `0`                          | **Integer** (<=512 and >=-512)               | Horizontal space from text to end of image        |
 | **`v`**             | `0`                          | **Integer** (<=512 and >=-512)               | Vertical space, like above                        |
-| **`aa`**            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
 | **`type`**          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
 | **`privacy`**       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `server` is enabled)    |
 | ⚠️ **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
@@ -694,7 +691,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 > **Note**
-> After cleaning up a bit, removing comments, etc. there are **_6.630_ code lines** left, as of v**3.6.3**!
+> After cleaning up a bit, removing comments, etc. there are **_6.706_ code lines** left, as of v**3.6.4**!
 
 > **Warning**
 > Some lines will be removed soon, because of a new function to handle them better.. ;)~
