@@ -110,6 +110,9 @@ The other way is to embed the counter as (_server-side drawn_) `<img>` (`png` an
 and that's a lot easier! Especially on a site like this one ([github.com](https://github.com/kekse1/)), where you can't
 just script anything.. e.g.
 
+> **Warning**
+> For this you need to **enable** the `drawing` configuration (which is _enabled by default_, btw.).
+
 > **Note**
 > On top of this `README.md` I included my (private) counter via HTML `<img>` tag. .. *worx!*
 
