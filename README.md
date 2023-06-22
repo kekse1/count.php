@@ -342,23 +342,23 @@ and are encoded in [JSON format](https://www.json.org/). And they'll be loaded a
 a host is being selected.
 
 ### No more constants.
-Here are the current _default_ settings, including the possible types (whereas every variable with big, bold
-<span style="color: red; font-size: 1.6em; font-weight: 600;">⚠️</span> before it's name may **never** be
-overwritten by any '[per-host config overwrite](#per-host-config-overwrite)' (which is always checked, btw.).
+Here are the current _default_ settings, including the possible types (whereas every variable with big, bold ⚠️ before
+it's name may **never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)' (which is
+always checked, btw.).
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
 | Name            | Default value                | Possible types/values                        | Description / Comment(s)                          |
 | --------------: | :--------------------------- | -------------------------------------------: | :-----------------------------------------------: |
-| <span style="color: red; font-size: 1.6em; font-weight: 600;">⚠️</span> **`path`**     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
+| ⚠️ **`path`**     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
 | **`log`**           | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
 | **`threshold`**     | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
-| <span style="color: red; font-size: 1.6em; font-weight: 600;">⚠️</span> **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
+| ⚠️ **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
 | **`hide`**          | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
 | **`client`**        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
 | **`server`**        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
 | **`drawing`**       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
-| <span style="color: red; font-size: 1.6em; font-weight: 600;">⚠️</span> **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| ⚠️ **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
 | **`content`**       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
 | **`radix`**         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
 | **`clean`**         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
@@ -377,10 +377,10 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **`aa`**            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
 | **`type`**          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
 | **`privacy`**       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `server` is enabled)    |
-| <span style="color: red; font-size: 1.6em; font-weight: 600;">⚠️</span> **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
+| ⚠️ **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
 | **`error`**         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
 | **`none`**          | `'/'`                        | **String**                                   | And this is shown when `!auto` w/o value file..   |
-| <span style="color: red; font-size: 1.6em; font-weight: 600;">⚠️</span> **`raw`**      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
+| ⚠️ **`raw`**      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
