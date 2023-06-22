@@ -107,11 +107,12 @@ This is preferred if you'd like to fit the counter's style exactly to your websi
 
 #### Image
 The other way is to embed the counter as (_server-side drawn_) `<img>` (`png` and `jpg` types supported). That's also good,
-and that's a lot easier! Especially on a site like this one ([github.com](https://github.com/kekse1/)), where you can't
-just script anything.. e.g.
+and a lot easier to embed (for the most)!
+
+Especially useful on a site like this one ([github.com](https://github.com/kekse1/)), where you can't just script anything..
 
 > **Warning**
-> For this you need to **enable** the `drawing` configuration (which is _enabled by default_, btw.).
+> For this to work the `drawing` configuration needs to be **enabled** (_is the default_). But then fonts must be installed!
 
 > **Note**
 > On top of this `README.md` I included my (private) counter via HTML `<img>` tag. .. *worx!*
