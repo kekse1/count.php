@@ -358,7 +358,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **`client`**        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
 | **`server`**        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
 | **`drawing`**       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
-| ⚠️**`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| ⚠️ **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
 | **`content`**       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
 | **`radix`**         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
 | **`clean`**         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
