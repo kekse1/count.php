@@ -165,13 +165,13 @@ string (or just another host you define there).
 
 I don't really like it, but if you need this feature, just use it. Works great.
 
-Caution: the `auto` setting is also overridden in this case, so it's not possible to always use any
-arbitrary parameter (also important for security). Thus, you first have to create a value file to the
-corresponding string!
+> **Warning**
+> The `auto` setting is also overridden in this case, so it's not possible to always use any arbitrary parameter
+> (also important for security). Thus, you first have to create a value file to the corresponding string!
 
-And now the `override` setting can also be a (non-empty) String, to define just one fixed host(name)
-to use. Last possibility for an `override` is the `counter()` function itself (in it's first argument);
-but all the strings are always filtered (by `secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
+And now the `override` setting can also be a (non-empty) String, to define just one _fixed_ host(name) to use.
+Last possibility for an `override` is the `counter()` function itself (in it's first argument); but all the
+strings are always filtered (by `secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
 
 > **Note**
 > If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but to the
