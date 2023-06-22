@@ -607,6 +607,18 @@ of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully
 **BIG BTW.**: in PHP and this case the `%` modulo operator isn't the right thing, because it'll return
 only integers. What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function! ;)~
 
+#### Summation
+It's obvious you can't just sum every single floating point result to check how much could be deleted and how much not.
+
+But you can sum up:
+* **(a)** the integer components, to see how many files could be deleted.
+* **(b)** the `fmod(*, 1)` float parts, _and_ divide them afterwards by the number of summed up items. So that's the **average**! ;)~
+
+Example given, if you'd like to show a percentage (and/or such a progress bar), just use the second **(b)** calculation,
+and then as usual the 'proportional reasoning' or 'proportional method' (translated correctly??), so: `sum(* % 1) / n * 360`;
+or, if you don't knew it, replace the `360` by your target `base`.. e.g. the width of your progress bar, if you would draw it
+by yourself (in 'px', e.g.). :-)
+
 ## Modules
 *TODO*!
 
