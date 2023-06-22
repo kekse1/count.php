@@ -29,7 +29,6 @@ It's a universal counter script. ... v**3.6.3**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-    * [Management](#management)
 6. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
@@ -97,6 +96,9 @@ So, **that's** all. :D~
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Details
+> **Note**
+> You can easily manage all the values **etc.** via command line!
+> Look at the [CLI mode](#cli-mode) section for details.
 
 #### Text/HTML
 By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
@@ -269,10 +271,6 @@ host could be poisoned as well!
 > The string filter (above) also removes any trailing `.` from the hostnames; so if you call from
 > a web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so
 > the counting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`)!
-
-### Management
-You can easily manage all the values etc. via command line.
-See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
 The normal way is to return the plain value (by default w/ **`Content-Type: text/plain;charset=UTF-8`**),
