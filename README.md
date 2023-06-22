@@ -126,7 +126,7 @@ These IP files (with timestamps in it) will also use own cache files, one per ho
 is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
 
 **Note**
-> **all the files got limits** .. for sure. Also with a limit for auto-creating such files.
+> **All files got limits** .. for sure (maybe hard and soft ones). And also a limit for auto-creating these files (if at all).
 
 ### Server and/or Client
 If a cookie (if actived `client`) already confirmed that the client connected within the **`threshold`** (**2 hours by default**),
