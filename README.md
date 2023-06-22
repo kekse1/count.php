@@ -600,6 +600,9 @@ Anyway, I implemented it this way because of two reasons:
 
 So, that's for your info. :)~
 
+**PS**: I just added some code to return an integer type, if no rest is given. So it's enough now (instead
+of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully deleted if `is_int()`! **;)~**
+
 #### Modulo
 **BIG BTW.**: in PHP and this case the `%` modulo operator isn't the right thing, because it'll return
 only integers. What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function! ;)~
