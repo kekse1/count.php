@@ -8,7 +8,7 @@ It's a universal counter script. ... v**3.6.3**!
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`;
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible;
 - [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s..!
-- [x] Much better **`--check/-c [*]`**. No more manual checking, but using a *vector*. **And** per-host-config check is also better now;
+- [x] Much better **`--check/-c [*]`**. No more manual checking, but using a *vector*. **And** [per-host-config](#per-host-config-overwrite) **check** is also better now;
 - [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code);
 - [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports);
 - [ ] Using `check_file()` function; and reduce many other checks this way.. and for **maximum security** via `chmod()`;
