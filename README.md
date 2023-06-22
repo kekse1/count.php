@@ -12,7 +12,7 @@ It's a universal counter script. ... v**3.6.3**!
 - [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code);
 - [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports);
 - [ ] Using `check_file()` function; and reduce many other checks this way.. and for **maximum security** via `chmod()`;
-- [ ] Planned, a bit prepared, but yet future: **Modules**;
+- [ ] Planned, but yet future: *Modules*;
 
 ## Index
 1. [Issues](#issues)
