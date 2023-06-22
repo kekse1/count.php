@@ -271,10 +271,8 @@ host could be poisoned as well!
 > the counting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`)!
 
 ### Management
-You can easily manage all the values etc. via command line. Like just viewing the values, delete them,
-(re-)set them, and much more.
-
 > **Note**
+> You can easily manage all the values etc. via command line.
 > See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
