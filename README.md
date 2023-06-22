@@ -76,8 +76,9 @@ As an important example, hence here's another file system change necessary: if y
 HTTPD needs access to a sub directory `fonts/`, with at least one installed `.ttf`(!) font in it (which you need to set as the _default
 font_ in the `font` setting).
 
-BTW: You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
-as the default font, btw.. looks great - see the random value on top of this `README.md` (it's random due to `hide == true` config).
+**Note**
+> You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
+> as the default font, btw.. looks great - see the random value on top of this `README.md` (it's random due to `hide == true` config).
 
 Now, **that's** all. :D~
 
@@ -124,7 +125,8 @@ _never_ delete any such file, to protocol the IP's, e.g.).
 These IP files (with timestamps in it) will also use own cache files, one per host, where the amount of them is managed. So if their amount
 is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
 
-And **all the files got limits**, btw.. for sure. Also with a limit for auto-creating such files.
+**Note**
+> **all the files got limits** .. for sure. Also with a limit for auto-creating such files.
 
 ### Server and/or Client
 If a cookie (if actived `client`) already confirmed that the client connected within the **`threshold`** (**2 hours by default**),
@@ -160,8 +162,9 @@ And now the `override` setting can also be a (non-empty) String, to define just 
 to use. Last possibility for an `override` is the `counter()` function itself (in it's first argument);
 but all the strings are always filtered (by `secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
 
-*PS*: If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but
-to the `(true)` state (so the value file will always be created automatically).
+**Note**
+> If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but to the
+> `(true)` state (so the value file will always be created automatically).
 
 ### Overwrites
 Beneath the default configuration, any host (within the file system, as desribed above at [Storage](#storage))
@@ -172,8 +175,9 @@ It came up since in earlier versions I defined the whole configuration via `defi
 globally defined 'variables' (not in the namespace I'm using). BAD.. now everything works even better than
 before this way (and nearly **no** `define()` are used now).
 
-For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section (of the
-[Configuration](#configuration) section. :-)
+**Note**
+> For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section (of the
+> [Configuration](#configuration) section)!
 
 ### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
@@ -213,9 +217,10 @@ Otherwise, without `error` setting, they'll see the error message itself (in sho
 won't see file paths). .. When sending an error, the defined `content` header will be sent; also on drawing
 errors.. so the image will break.
 
-BTW @ developers: I'm using two functions for this. Please use them, **never** a regular `die()` nor a
-`throw new Exception(..)`. These functions handle it better: `error()`/`log_error()`. Please _log_ errors
-only in safe situations, so no client is able to flood the log file..!
+**Warning**
+> I'm using two functions for this. Please use them, **never** a regular `die()` nor a `throw new Exception(..)`.
+> These functions handle it better: `error()`/`log_error()`. Please _log_ errors only in safe situations, so no
+> client is able to flood the log file..!
 
 ### String filter
 _All `$_SERVER` and `$_GET` are filtered to reach security_ (please don't ever trust any [user] input!).
@@ -224,8 +229,8 @@ I just abstracted both functions `secure_{host,path}()` to only one function, wh
 used by the `get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()`
 additionally does a `strtolower()`.
 
-So here you gotta know which characters you can pass, while the maximum length is 224 characters (by default;
-look at the `COUNTER_STRING_LIMIT` constant), btw.
+So here you gotta know which characters you can pass. The maximum length is 224 characters (by default, look
+at the `KEKSE_LIMIT` constant), btw.
 
 * **`a-z`**
 * **`A-Z`**
@@ -255,7 +260,8 @@ couting is not disturbed (otherwise it would end up in another file for w/ and w
 You can easily manage all the values etc. via command line. Like just viewing the values, delete them,
 (re-)set them, and much more.
 
-See the [CLI mode](#cli-mode) section for more infos!
+**Note**
+> See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
 The normal way is to return the plain value (by default w/ **`Content-Type: text/plain;charset=UTF-8`**),
@@ -315,8 +321,9 @@ like.
 Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
-AND the GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this
-is **not** checked within `-c/--check`, btw.).
+**Note**
+> AND the GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this
+> is **not** checked within `-c/--check`, btw.).
 
 The `-c/--check` test will also check if this library is installed, but MAYBE it's installed, but not
 available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
@@ -342,9 +349,11 @@ and are encoded in [JSON format](https://www.json.org/). And they'll be loaded a
 a host is being selected.
 
 ### No more constants.
-Here are the current _default_ settings, including the possible types (whereas every variable with big, bold ⚠️ before
-it's name may **never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)' (which is
-always checked, btw.).
+Here are the current _default_ settings, including the possible types
+
+**Note**
+> Every variable with a big, bold ⚠️ may **never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)';
+> but this is always checked.
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
@@ -436,8 +445,9 @@ Hosts with their own configuration overwrites are marked with an integer on the 
 If it's not prefixed by a `+` and instead theres a single `x`, the config file couldn't be read in or parsed
 to an (associative) array.. in this case please check the file for this host!
 
-**BTW**: the configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
-set of available configuration items)!
+**Warning**
+> The configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
+> set of available configuration items)!
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
@@ -465,15 +475,16 @@ had.
 Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
 your `path` directory!
 
-**BTW**: if `hide` is not a string, but (true), ouput will be a random integer. :]~
+**Note**
+> If `hide` is `true` (instead of a string), ouput will be a random integer. :]~
 
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
 a random integer value.
 
 ### RAW mode
-This mode is not tested very well yet, could you do it for me, please? **Just for your info**: I used
-`namespace kekse\counter`!
+**Note**
+> My namespace is `kekse`.
 
 By defining `raw = true` the base counting function won't be called automatically, so that you've the
 chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
@@ -502,10 +513,12 @@ running PHP scripts see them as begin of regular output! So: (a) it's shown in t
 (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
 as defined in `content` option)! .. so please, just type `php count.php` in your shell.
 
-**BTW**: With enabled `raw` setting this command line interface won't be shown (because this mode is
-for using the script within other PHP scripts) - unless you define one of the parameters shown below!
+**Note**
+> With enabled `raw` setting this command line interface won't be shown (because this mode is
+> for using the script within other PHP scripts) - unless you define a parameter in the cmd line.
 
-The default action is (like) `--values/v`, whereas the `--help/-?` output needs to be called exactly.
+**Note**
+> The default action is (like) `--values/v`, whereas the `--help/-?` output needs to be called exactly.
 
 ##### The argument vector
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
@@ -608,12 +621,14 @@ Anyway, I implemented it this way because of two reasons:
 
 So, that's for your info. :)~
 
-**PS**: I just added some code to return an integer type, if no rest is given. So it's enough now (instead
-of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully deleted if `is_int()`! **;)~**
+**Note**
+> I just added some code to return an integer type, if no rest is given. So it's enough now (instead
+> of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully deleted if `is_int()`!
 
 #### Modulo
-**BIG BTW.**: in PHP and this case the `%` modulo operator isn't the right thing, because it'll return
-only integers. What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function! ;)~
+**Warning**
+> In PHP and this case the `%` modulo operator isn't the right thing, because it'll return only integers.
+> What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function!
 
 #### Summation
 It's obvious that you can't just sum up every single floating point result to check how much could
@@ -664,8 +679,11 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-After cleaning up a bit, removing comments, etc. there are **_6.630_ code lines** left, as of v**3.6.3**!
-_**INFO**_: some lines will be removed soon, because of a new function to handle them better.. ;)~
+**Note**
+> After cleaning up a bit, removing comments, etc. there are **_6.630_ code lines** left, as of v**3.6.3**!
+
+**Warning**
+> Some lines will be removed soon, because of a new function to handle them better.. ;)~
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
