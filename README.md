@@ -570,34 +570,32 @@ Here's the complete list:
 Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`()`**
 are _required_ ones. Most **`*`** arguments can be defined multiple times, for more hosts, e.g.
 
+As hint for myself I've saved [glob.txt](./docs/glob.txt) in this repository.
+
 > **Warning**
 > Using globs requires quoting or escaping most times, as most shells will try to directly
 > resolve them.. if it works sometimes, it's just because the shell didn't find any match (then the
 > original glob is being encoded 'as is').
-
-As hint for myself I've stored [glob.txt](./docs/glob.txt).
 
 > **Note**
 > The `--check/-c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
 > default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
 #### Prompts
-> **Note**
-> As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
-> to ask you for **`yes`** or **`no`** (sometimes/partially). So please confirm this questions, if shown;
-> and just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
+As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
+to ask you for **`yes`** or **`no`** (sometimes/partially). So please confirm this questions, if shown;
+and just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
 
 ## Exports
-For the **count(er)** implementation itself I'm using the namespace **`kekse\counter`**.
+For the **count(er)** implementation _itself_ I'm using the namespace **`kekse\counter`**.
 
 BUT my _common functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported
-in my own `kekse` namespace, including more sub namespaces (for even more functions ;-).
-They could be really handy!
+in my own **`kekse`** namespace. *They could be really handy!*
 
 ### Functions
 | Function                    | Arguments                                                           | Description                                                                                  |
 | --------------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
-| **`is_number()`**           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
+| **`is_number()`**           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` isn't perfect here. :-/|
 | **`check_file()`**          | `$_path`, `$_file`, `$_log_error_source = null`, `$_die = false`    | Default routine to check for file existence or creation, and `chmod()` for more security     |
 | **`files()`**               | (...)                                                               | As I manually use `opendir()` etc. usually, this is just being used in `check_config_item()` |
 | **`limit()`**               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
@@ -652,7 +650,6 @@ So, that's for your info. :)~
 > **Note**
 > It's enough to check for `is_int()` or `is_float()`: the whole recursion depth's fully deleted if `is_int()`!
 
-#### Modulo
 > **Warning**
 > In PHP and this case the `%` modulo operator isn't the right thing, because it'll return only integers.
 > What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function!
