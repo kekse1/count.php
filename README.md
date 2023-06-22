@@ -307,6 +307,7 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | **`aa`**     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                    |
 | **`type`**   | `type` = `'png'`                                | **String**         | See `--types/-t`                   |
 
+#### Explaination
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
 `x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
@@ -327,10 +328,9 @@ The `aa` parameter needs to be `0`, `1`, `y` or `n` to configure anti-aliased te
 Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely
 preferred (example given: `jpg` does not have the best alpha-channel (transparency) support)!
 
-**All parameters are optional**, but only the `?draw` isn't, and needs to be set if you want a graphical
-output (only if allowed by `drawing` configuration). And just to mention it: take a look at `?zero` and
-maybe also the `hide` setting, described somewhere above.. They are changing the way the output image looks
-like.
+> **Note**
+> **All parameters are optional**, but only the **`?draw`** isn't, and needs to be set if you want a graphical
+> output. **`?zero`** is also enabling drawing mode, but you won't see anything at all ...
 
 ### Dependencies
 Important: the [**GD Library**](https://www.php.net/manual/en/book.image.php) has to be installed
