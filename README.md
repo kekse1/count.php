@@ -3,22 +3,24 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**3.6.3**!
 
-## News
-* Best improvement for my `delete()` function: **floating point results**. See [Deletion](#deletion).
-* **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
-* Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
-* Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite).
-* Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites.. //**edit**: now even better, as of v**3.6.0**. :)~
-* To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
-* And, as usual, more bugfixes and improvements.. ^\_^
+## Issues
+- [x] Best improvement for my `delete()` function: **floating point results**. See [Deletion](#deletion).
+- [x] **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
+- [x] Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
+- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite).
+- [x] Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites.. //**edit**: now even better, as of v**3.6.0**. :)~
+- [x] To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
+- [x] And, as usual, more bugfixes and improvements.. ^\_^
+- [ ] Just preparing better `RAW` support and more [(namespaces and) exports](#exports) \[prob is atm. partial 'multi-declaration'..\];
+- [ ] Using `check_file()` function; and reduce many further file checks this way.. plus always **maximum security** by using `chmod()` each time! ;)~
+- [ ] Already planned, but will take a bit longer: **_Module_ support**..
 
 ## Index
-1. [News](#news)
-2. [TODO](#todo)
-3. [Example](#example)
-4. [Installation](#installation)
+1. [Issues](#issues)
+2. [Example](#example)
+3. [Installation](#installation)
 	* [Dependencies](#dependencies)
-5. [Details](#details)
+4. [Details](#details)
 	* [Security](#security)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
@@ -29,17 +31,17 @@ It's a universal counter script. ... v**3.6.3**!
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-6. [Drawing](#drawing)
+5. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-7. [Configuration](#configuration)
+6. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
 	* [Relative Paths](#relative-paths)
 	* [Colors](#colors)
 	* [Radix/Base](#radixbase)
 	* ['auto'](#auto)
 	* [Per-host config overwrite](#per-host-config-overwrite-1)
-8. [Modes](#modes)
+7. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -47,19 +49,14 @@ It's a universal counter script. ... v**3.6.3**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-9. [Exports](#exports)
+8. [Exports](#exports)
 	* [Functions](#functions)
 	* [Namespaces](#namespaces)
 	* [Deletion](#deletion)
-10. [Modules](#modules)
-11. [FAQ](#faq)
-12. [The original version](#the-original-version)
-13. [Copyright and License](#copyright-and-license)
-
-## TODO
-* Just preparing better `RAW` support and more [(namespaces and) exports](#exports) \[prob is atm. partial 'multi-declaration'..\];
-* Using `check_file()` function; and reduce many further file checks this way.. plus always **maximum security** by using `chmod()` each time! ;)~
-* Already planned, but will take a bit longer: **_Module_ support**..
+9. [Modules](#modules)
+10. [FAQ](#faq)
+11. [The original version](#the-original-version)
+12. [Copyright and License](#copyright-and-license)
 
 ## Example
 ![\<img'>](docs/image.png)
