@@ -126,7 +126,7 @@ even **read the fucking source**! ;)~
 And I'm also not going to explain all the configuration details in this overview. Just read further, again..
 
 ### Storage
-Instead of using big databases or an own format in one file or so (what I preferred in ~1999 ;-), I'm chosing the
+Instead of using big databases or an own format in one file or so (what I preferred in ~~**1998**~~ ;-), I'm chosing the
 **file system** as _**very** efficient_ carrier! Really, it's much performance in it!
 
 It's used to store the counted values itself, one file per host. And if `server` setting is enabled, it also creates
