@@ -116,9 +116,10 @@ And I'm also not going to explain all the configuration details in this overview
 Instead of using big databases or an own format in one file or so (what I preferred in ~1999 ;-), I'm chosing the
 **file system** as _**very** efficient_ carrier! Really, it's much performance in it!
 
-It's used to store the counted values itself, one file per host. And if `server` setting enabled, it also creates a directory for each
-host, where every IP address (or their hashes, if [Privacy](#privacy) is a concern) will take on (sub) file each. If you configured it,
-they'll also be cleaned, as often as you defined it (even though you can define to _never_ delete any such file, to protocol the IP's, e.g.).
+It's used to store the counted values itself, one file per host. And if `server` setting is enabled, it also creates
+a directory for each host, where every IP address (or their hashes, if [Privacy](#privacy) is a concern) will take one
+file each. If you configured it, they'll also be cleaned, as often as you defined it (even though you can define to
+_never_ delete any such file, to protocol the IP's, e.g.).
 
 These IP files (with timestamps in it) will also use own cache files, one per host, where the amount of them is managed. So if their amount
 is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
