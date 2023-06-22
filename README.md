@@ -1,13 +1,13 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.5.2**!
+It's a universal counter script. ... v**3.6.0**!
 
 ## News
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
 * Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
 * Completely _new **configuration system**_ .. see [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). As requested by a reviewer. **;)~**
-* Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites..
+* Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites.. //**edit**: now even better, as of v**3.6.0**. :)~
 * To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
 * And, as usual, more bugfixes and improvements.. ^\_^
 
@@ -544,6 +544,7 @@ own `kekse` namespace, including more sub namespaces (for even more functions ;-
 | Function                | Arguments                                                           | Description                                                                                  |
 | ----------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
 | `is_number()`           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
+| `check_file()`          | `$_path`, `$_file`, `$_log_error_source = null`, `$_die = false`    | Default routine to check for file existence or creation, and `chmod()` for more security     |
 | `files()`               | (...)                                                               | As I manually use `opendir()` etc. usually, this is just being used in `check_config_item()` |
 | `limit()`               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
 | `ends_with()`           | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
@@ -608,7 +609,7 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-After cleaning up a bit, removing comments, etc. there are **_6.499_ code lines** left, as of v**3.5.2**!
+After cleaning up a bit, removing comments, etc. there are **_6.510_ code lines** left, as of v**3.6.0**!
 _**INFO**_: some lines will be removed soon, because of a new function to handle them better.. ;)~
 
 ## The original version
