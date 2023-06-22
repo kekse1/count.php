@@ -353,8 +353,8 @@ a host is being selected.
 Here are the current _default_ settings, including the possible types
 
 **Note**
-> Every variable with a big, bold ⚠️ may **never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)';
-> but this is always checked.
+> Every variable with a big, bold ⚠️ may **never** be overwritten by any [per-host config overwrite](#per-host-config-overwrite).
+> But this will always be checked (injection not possible).
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
@@ -403,8 +403,9 @@ be resolved from the location of your `count.php` script (using `__DIR__`). But 
 to your current working directory, you've to define those paths with starting `./` (it's where the script
 gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
 
-But `../` is relative to the `__DIR__` - if you also want to make this relative to the current working
-directory, please use `./../`..
+**Note**
+> `../` is relative to the `__DIR__` - if you also want to make this relative to the current
+> working directory (`$PWD`), just use `./../`.
 
 ### Colors
 Supported formats are:
