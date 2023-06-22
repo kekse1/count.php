@@ -288,7 +288,7 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 
 > **Note**
 > Such *GET* parameters need a prefix before the variable name. It's either **`?`** for the first parameter,
-> or **`&`** for all following ones. **They are defined in the _URL_ you request**!
+> or **`&`** for all following ones. **They are defined in the request _URL_**!
 
 | Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)           |
 | -----------: | :---------------------------------------------- | -----------------: | ---------------------------------: |
