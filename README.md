@@ -7,7 +7,7 @@ It's a universal counter script. ... v**3.6.3**!
 * Best improvement for my `delete()` function: **floating point results**. See [Deletion](#deletion).
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
 * Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
-* Completely _new **configuration system**_ .. see [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). As requested by a reviewer. **;)~**
+* Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite).
 * Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites.. //**edit**: now even better, as of v**3.6.0**. :)~
 * To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
 * And, as usual, more bugfixes and improvements.. ^\_^
@@ -356,9 +356,7 @@ able to read _optional_ (_also_ **glob**) arguments, to verify concrete [per-hos
 too.
 
 The [per-host config overwrite](#per-host-config-overwrite)s do allow a subset/difference of the whole configuration
-items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `@`,
-and are encoded in [JSON format](https://www.json.org/). And they'll be loaded automatically if existing, if such
-a host is being selected.
+items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `@`.
 
 ### No more constants.
 Here are the current _default_ settings, including the possible types
@@ -456,8 +454,7 @@ The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_S
 the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
 easy to unload again. So, they are **differences** to apply if this host with the `@` file is selected.
 
-They get automatically loaded (if the file exists - usually a `@`-prefixed JSON object{} in the `path` directory,
-beneath the other host files/directories).
+They get automatically loaded, and reside beneath the other counter files.
 
 Hosts with their own configuration overwrites are marked with an integer on the right of the `--values/-v` table in
 [CLI](#cli-mode), which indicates how many settings are being overwritten by this file, per host (checked before).
@@ -466,7 +463,7 @@ to an (associative) array.. in this case please check the file for this host!
 
 > **Warning**
 > The configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
-> set of available configuration items)!
+> set of available configuration items)! <sub>and **yes**, this is a *warning*.. xD~</sub>
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
