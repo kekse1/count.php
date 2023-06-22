@@ -608,7 +608,8 @@ of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully
 only integers. What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function! ;)~
 
 #### Summation
-It's obvious you can't just sum every single floating point result to check how much could be deleted and how much not.
+It's obvious that you can't just sum every single floating point result to check how much could be deleted
+and how much failed.
 
 But you can sum up:
 * **(a)** the integer components, to see how many files could be deleted.
