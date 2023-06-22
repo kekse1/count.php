@@ -3,7 +3,7 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**3.6.4**!
 
-## Issues
+## Status
 - [x] Great improvement for my [`delete()` function](#deletion): **floating point results**!
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`;
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible;
@@ -16,7 +16,7 @@ It's a universal counter script. ... v**3.6.4**!
 - [ ] Planned, but yet future: *Modules*;
 
 ## Index
-1. [Issues](#issues)
+1. [Status](#status)
 2. [Example](#example)
 3. [Installation](#installation)
 	* [Dependencies](#dependencies)
