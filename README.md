@@ -127,10 +127,11 @@ is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdi
 And **all the files got limits**, btw.. for sure. Also with a limit for auto-creating such files.
 
 ### Server and/or Client
-If a cookie (if actived `client`) already confirmed that the client connected within the `threshold` (2 hours by default), no `server` test will
-be done after this. And if a cookie doesn't work, there's still this IP test left (if `server` enabled).
+If a cookie (if actived `client`) already confirmed that the client connected within the **`threshold`** (**2 hours by default**),
+no `server` test will be done after this. And if a cookie doesn't work, there's still this IP test left (if `server` enabled).
 
-If `threshold == 0` or `threshold === null`, both `server` and `client` will be overridden (to `false`); as this seems you don't need a `threshold` time.
+If `threshold == 0` or `threshold === null`, both `server` and `client` will be overridden (to `false`); as this seems you don't
+need a `threshold` time.
 
 ### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
@@ -182,14 +183,12 @@ than `threshold` (by default 2 hours) seconds before).
 If you define an `(integer)`, the cache will be cleared only if there are more files existing
 than the (integer). And if you set it to `(null)`, every cleaning is **forbidden**, if you
 want to collect all the IPs or so.. `(false)` would also never call the clean routine, except if
-the `limit` is exceeded..!
+the `limit` is exceeded!
 
 ### Privacy
 And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
 also be hashed, so noone can see them (including yourself, or the webmaster(s), .. even with
-access to the file system).
-
-Just enable the `privacy` setting.
+access to the file system). .. just enable the `privacy` setting.
 
 ### Errors
 
