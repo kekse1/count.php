@@ -83,7 +83,7 @@ font_ in the `font` setting).
 > You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've configured **`Intel One Mono`**
 > (or **`IntelOne Mono`**) as the default font, btw.. looks great (see the random counter value on top of this `README.md`)!
 
-Now, **that's** all. :D~
+So, **that's** all. :D~
 
 _And if you want to edit the default configuration_, see the [Configuration section](#configuration). And to make sure your settings are valid,
 you can call this script like this: `php count.php --check/-c`), which will check your own configuration, if it's correct (mostly in it's type).
