@@ -1,9 +1,10 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.2**!
+It's a universal counter script. ... v**3.6.3**!
 
 ## News
+* Best improvement for my `delete()` function: **floating point results**. See [Deletion](#deletion).
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
 * Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
 * Completely _new **configuration system**_ .. see [Configuration](#configuration), and [Per-host config override](#per-host-config-overwrite). As requested by a reviewer. **;)~**
@@ -46,14 +47,17 @@ It's a universal counter script. ... v**3.6.2**!
 	* [Test mode](#test-mode)
 	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-9. [Namespaces and exports](#namespaces-and-exports)
+9. [Exports](#exports)
+	* [Functions](#functions)
+	* [Namespaces](#namespaces)
+	* [Deletion](#deletion)
 10. [Modules](#modules)
 11. [FAQ](#faq)
 12. [The original version](#the-original-version)
 13. [Copyright and License](#copyright-and-license)
 
 ## TODO
-* Just preparing better `RAW` support and more [namespaces and exports](#namespaces-and-exports) \[prob is atm. partial 'multi-declaration'..\];
+* Just preparing better `RAW` support and more [(namespaces and) exports](#exports) \[prob is atm. partial 'multi-declaration'..\];
 * Using `check_file()` function; and reduce many further file checks this way.. plus always **maximum security** by using `chmod()` each time! ;)~
 * Already planned, but will take a bit longer: **_Module_ support**..
 
@@ -509,7 +513,7 @@ of supported 'functions'.
 |  `-s` | `--sync [*]`             | Same as above, but with cache synchronization..           |
 |  `-l` | `--clean [*]`            | Clean all **outdated** (only!) cache files.               |
 |  `-p` | `--purge [*]`            | Delete the cache(s) for all or specified hosts.           |
-|  `-z` | `--sanitize [-w/-d]`     | Delete file rests, w/ `--allow-without-values/--dot-files`|
+|  `-z` | `--sanitize [-w/-d]`     | Delete file rests, w/ `--without-values` and `--dot-files`|
 |  `-d` | `--delete [*]`           | Totally remove any host (all, or by arguments)            |
 |  `-t` | `--set (host) [value=0]` | Sets the (optional) value for the defined host (only one) |
 |  `-f` | `--fonts [*]`            | Available fonts for drawing `<img>`. Globs allowed.       |
@@ -536,11 +540,12 @@ As some operations are somewhat 'dangerous', especially at deletion of files, th
 to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
 just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
 
-## Namespaces and exports
+## Exports
 For the **count(er)** implementation itself I'm using the namespace `kekse\counter`. **BUT** my _common
 functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported in my
 own `kekse` namespace, including more sub namespaces (for even more functions ;-). They could be really handy!
 
+### Functions
 | Function                | Arguments                                                           | Description                                                                                  |
 | ----------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
 | `is_number()`           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
@@ -556,7 +561,7 @@ own `kekse` namespace, including more sub namespaces (for even more functions ;-
 | `secure()`              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
 | `secure_host()`         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
 | `secure_path()`         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
-| `delete()`              | `$_path`, `$_depth = 0`                                             | One function for deletion of files and directories (optionally recursive)                    |
+| `delete()`              | `$_path`, `$_depth = 0`                                             | Function for file deletion (optionally recursive); see also [Deletion](#deletion)            |
 | `get_param()`           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
 | `unit()`                | `$_string`, `$_float = false`, `$_null = true`                      | Splits into value and unit components, which so can be defined in one string only.           |
 | `color()`               | `$_string`, `$_gd = null`                                           | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool) |
@@ -567,11 +572,37 @@ own `kekse` namespace, including more sub namespaces (for even more functions ;-
 | `warn()`                | (...)                                                               | (CLI feature)                                                                                |
 | `debug()`               | (...)                                                               | (CLI feature)                                                                                |
 
+### Namespaces
 Namespaces used, in general (you really don't need them, everything 'important' is available in the `kekse` namespace (mostyle as relay function); it's just for your info..):
 * `kekse`
 * `kekse\counter`
 * `kekse\color`
 * `kekse\console`
+
+### Deletion
+The `delete()` function should be commented here, for your info.
+
+If deleting recursively (see the 2nd argument of `delete()`), the result can sometimes be a floating
+point value, which indicates, if the whole recursion really deleted everything. So if that's the case,
+it'll be an integer, but otherwise it will be the amount of totally deleted files as the integer
+component, plus the factor of total deleted files divided by the whole (also recursive) file count.
+
+Thus, the result contains more information where otherwise the integer part would be discarded.
+
+To obtain the real file deletion count, just cast it to an `(int)`, and for the factor of deleted files
+by their total amount just use `%1` (which is always only the floating point component/rest).
+
+As an example: try to `$percent = (($result % 1) * 100)`! ;)~
+
+Anyway, I implemented it this way because of two reasons:
+* I needed the number of deleted files, to sum them up or to check if an error occured
+* I wanted to know if a recursive deletion was completed up until the first directory specified
+
+So, that's for your info. :)~
+
+#### Modulo
+**BIG BTW.**: in PHP and this case the `%` modulo operator isn't the right thing, because it'll return
+only integers. What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function! ;)~
 
 ## Modules
 *TODO*!
@@ -609,7 +640,7 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-After cleaning up a bit, removing comments, etc. there are **_6.559_ code lines** left, as of v**3.6.2**!
+After cleaning up a bit, removing comments, etc. there are **_6.630_ code lines** left, as of v**3.6.3**!
 _**INFO**_: some lines will be removed soon, because of a new function to handle them better.. ;)~
 
 ## The original version
