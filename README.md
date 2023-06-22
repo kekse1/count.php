@@ -333,24 +333,24 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 > output. **`?zero`** is also enabling drawing mode, but you won't see anything at all ...
 
 ### Dependencies
-Important: the [**GD Library**](https://www.php.net/manual/en/book.image.php) has to be installed
-for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
+
+#### Libraries
+> **Warning**
+> The [**GD Library**](https://www.php.net/manual/en/book.image.php) has to be installed for this feature.
 
 > **Note**
 > The GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this is
 > **not** checked within `-c/--check`, btw.).
-
-The `-c/--check` test will also check if this library is installed, but MAYBE it's installed, but not
-available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
-web server..
 
 Runned by a web server with enabled `drawing` option and also aktived via `?draw` will only call this
 drawing mode if module is installed. If not, the regular (text/plain) output will nevertheless be used;
 to avoid error output (even though it's bad that you're using an `<img>` tag..... but error output
 wouldn't be visible in this case at all).
 
-The **second dependency** is a configured `fonts` directory with `.ttf`(!) font(s) installed in it (and
-if you don't specify this via `?font` it really *needs* to be pre-set via `font` setting); ...
+#### Fonts
+> **Warning**
+> The **second dependency** is a configured `fonts` directory with (`.ttf`) font(s) installed in it (and
+> if you don't specify this via `?font` it really *needs* to be pre-set via `font` setting); ...
 
 ## Configuration
 The configuration is an associative array of various settings.
