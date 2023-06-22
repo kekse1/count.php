@@ -87,8 +87,7 @@ So, **that's** all. :D~
 
 > **Note**
 > If you want to edit the default configuration, take at look at the [Configuration section](#configuration).
-> And to make sure your settings are valid, you can call this script like this: [**`php count.php --check/-c`**)](#cli-mode),
-> which will check your own configuration.
+> And to make sure your settings are valid, you can call this script like this: [**`php count.php --check/-c`**](#cli-mode).
 
 ### Dependencies
 **NO** dependencies.
