@@ -182,9 +182,9 @@ Beneath the default configuration, any host (within the file system, as desribed
 can have it's own configuration (difference) file, to apply these only to these hosts itself. This is really
 _optional_, but could maybe be very useful sometimes.
 
-It came up since in earlier versions I defined the whole configuration via `define()`, which ends up in
-globally defined 'variables' (not in the namespace I'm using). BAD.. now everything works even better than
-before this way (and nearly **no** `define()` are used now).
+It came up since in earlier versions I defined the whole configuration via `define()`, which ended up in (too
+much) **global** (namespace) declaration.. **BAD**. So now everything works even better than before this way
+(and nearly **no** `define()` is being used now - except some in my own namespace).
 
 > **Note**
 > For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section (of the
@@ -196,9 +196,11 @@ the CLI (cmd-line) mode), if their timestamps are 'out-dated' (so if they have b
 than `threshold` (by default 2 hours) seconds before).
 
 If you define an `(integer)`, the cache will be cleared only if there are more files existing
-than the (integer). And if you set it to `(null)`, every cleaning is **forbidden**, if you
-want to collect all the IPs or so.. `(false)` would also never call the clean routine, except if
-the `limit` is exceeded!
+than the (integer).
+
+> **Warning**
+> If you set it to **`(null)`**, every cleaning is **forbidden**, if you want to collect all the IPs?
+> `(false)` would also never call the clean routine, except if the `limit` is exceeded.
 
 ### Privacy
 And if privacy is one of your concerns, the IPs (in their own files with their timestamps) can
