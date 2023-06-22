@@ -73,8 +73,11 @@ access the file system). **That's all!** :)~
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
 As an important example, hence here's another file system change necessary: if you want to enable the `drawing` routines. Then the
-HTTPD needs access to a sub directory `fonts/`, with at least one installed `.ttf`(!) font in it (which you need to set as the _default
+HTTPD needs access to a sub directory `fonts/`, with at least one installed font in it (which you need to set as the _default
 font_ in the `font` setting).
+
+> **Warning**
+> FreeType seems to only support **`.ttf`** fonts. My script is adapted to this, so other font formats are **not** supported.
 
 > **Note**
 > You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
