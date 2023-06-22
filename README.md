@@ -93,20 +93,22 @@ you can call this script like this: `php count.php --check/-c`), which will chec
 
 ## Details
 By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
-**`XMLHttpRequest()`** or the **`Fetch API`**. The real (HTTP-)`Content-Type` is configurable via the `content` setting
-(on top of the file - see the '[Configuration](#configuration)' section).
+**`XMLHttpRequest()`** or the **`Fetch API`**. This `Content-Type` (a [HTTP](https://wikipedia.org/wiki/HTTP) header) is
+configurable via the `content` setting (see the '[Configuration](#configuration)' section).
 
 This is preferred if you'd like to fit the counter's style exactly to your website. You can define every (CSS) details, etc.
 
-The other way is to embed the counter as server-side drawn `<img>` (`png` and `jpg` supported). That's also good, and that's a lot
-easier! Especially on a site like this one ([github.com](https://github.com/kekse1/)), where you can't just script anything.. here,
-on top of this `README.md`, I included a (private) counter via HTML `<img>` tag. .. and it worx. **^\_^**
+The other way is to embed the counter as (_server-side drawn_) `<img>` (`png` and `jpg` supported). That's also good,
+and that's a lot easier! Especially on a site like this one ([github.com](https://github.com/kekse1/)), where you can't
+just script anything.. here, on top of this `README.md`, I included a (private) counter via HTML `<img>` tag. .. and it
+worx. **^\_^**
 
-Last way to use this counter is in the [RAW mode](#raw-mode).. infos in it's own section.
+Last way to use this counter is in the [RAW mode](#raw-mode) [*not very well tested atm* **and** a bit *TODO*].
 
 ### Security
-I was very concerned about the security.. so I'm not going to explain you all the details in this [Details](#details) section. If you'd
-like to know more, just continue reading this _whole_ documentation, or maybe even **read the fucking source**! ;)~
+I was very concerned about the security.. there are many features for this, so I'm not going to explain you all the details
+in this [Details](#details) section. If you'd like to know more, just continue reading this _whole_ documentation, or maybe
+even **read the fucking source**! ;)~
 
 And I'm also not going to explain all the configuration details in this overview. Just read further, again..
 
