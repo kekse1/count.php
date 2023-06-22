@@ -113,8 +113,8 @@ even **read the fucking source**! ;)~
 And I'm also not going to explain all the configuration details in this overview. Just read further, again..
 
 ### Storage
-Instead of using big databases or an own format in one file or so (what I preferred in ~1999 x)~, I'm chosing the **file system** as
-_very efficient_ carrier! Really, it's much performance in it!
+Instead of using big databases or an own format in one file or so (what I preferred in ~1999 ;-), I'm chosing the
+**file system** as _**very** efficient_ carrier! Really, it's much performance in it!
 
 It's used to store the counted values itself, one file per host. And if `server` setting enabled, it also creates a directory for each
 host, where every IP address (or their hashes, if [Privacy](#privacy) is a concern) will take on (sub) file each. If you configured it,
