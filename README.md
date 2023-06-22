@@ -564,7 +564,7 @@ Here's the complete list:
 Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`()`**
 are _required_ ones. Most **`*`** arguments can be defined multiple times, for more hosts, e.g.
 
-As hint for myself I've saved [glob.txt](./docs/glob.txt) in this repository.
+As hint for myself I've saved [glob.txt](docs/glob.txt) in this repository.
 
 > **Warning**
 > Using globs requires quoting or escaping most times, as most shells will try to directly
@@ -708,5 +708,5 @@ doesn't consume *that* much cpu time or memory.
 projects. It rised a lot - see for yourself! :)~
 
 ## Copyright and License
-The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
-and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' license).
+The Copyright is [(c) Sebastian Kucharczyk](COPYRIGHT.txt),
+and it's licensed under the [MIT](LICENSE.txt) (also known as 'X' or 'X11' license).
