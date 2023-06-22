@@ -618,8 +618,7 @@ But you can instead sum up:
 The second **(b)** is the **average**! Example given, if you'd like to show a percentage (and/or such
 a progress bar), just use the second **(b)** calculation, and then, as usual, the 'proportional reasoning'
 or 'proportional method' (translated correctly??), so: `sum(* % 1) / n * 360`; or, if you don't knew it,
-replace the `360` by your target `base`.. e.g. the width of your progress bar, if you would draw it by
-yourself (in 'px', e.g.). :-)
+replace the `360` by a `base`.. e.g. the width of your progress bar, if you would draw it by yourself..
 
 ## Modules
 *TODO*!
