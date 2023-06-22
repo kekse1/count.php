@@ -89,7 +89,7 @@ you can call this script like this: `php count.php --check/-c`), which will chec
 **NO** dependencies.
 
 **Except** if you're enabling the `drawing` configuration. In this case it's the
-'[**GD Library**](https://www.php.net/manual/en/book.image.php)'. More infos below, in the
+[**GD Library**](https://www.php.net/manual/en/book.image.php). More infos below, in the
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Details
@@ -97,7 +97,7 @@ you can call this script like this: `php count.php --check/-c`), which will chec
 #### Text/HTML
 By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
 **`XMLHttpRequest()`** or the **`Fetch API`**. This `Content-Type` (a [HTTP](https://wikipedia.org/wiki/HTTP) header) is
-configurable via the `content` setting (see the '[Configuration](#configuration)' section).
+configurable via the `content` setting (see the [Configuration](#configuration) section).
 
 This is preferred if you'd like to fit the counter's style exactly to your website. You can define every (CSS) details, etc.
 
@@ -321,7 +321,7 @@ maybe also the `hide` setting, described somewhere above.. They are changing the
 like.
 
 ### Dependencies
-Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' has to be installed
+Important: the [**GD Library**](https://www.php.net/manual/en/book.image.php) has to be installed
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
 > **Note**
@@ -554,8 +554,8 @@ of supported 'functions'.
 |  **`-e`** | **`--errors`**               | Counts the error log lines.                               |
 |  **`-u`** | **`--unlog`**                | Deletes the whole error log file.                         |
 
-Additional arguments within '[]' are optional (and mostly support GLOBs), and those within '()' are
-_required_ ones. Most `*` arguments can be defined multiple times, so most times as multiple globs,
+Additional arguments within **`[]`** are optional (and mostly support GLOBs), and those within **`()`**
+are _required_ ones. Most **`*`** arguments can be defined multiple times, so most times as multiple globs,
 to match the hosts (separated by spaces, each as another argv/argc).
 
 > **Warning**
@@ -674,7 +674,7 @@ bedenke.. why should I just create a `Counter` class instance, where no real mem
 a value (and/or print/draw it), and then, directly after this, the instance would get destroyed again!?
 ... just my two cents. :)~
 
-### # Installation via '[Composer](https://getcomposer.org/)'?
+### # Installation via [Composer](https://getcomposer.org/)?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
 dependencies** which the 'Composer' would need to install.
 
