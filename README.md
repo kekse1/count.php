@@ -94,7 +94,7 @@ you can call this script like this: `php count.php --check/-c`), which will chec
 
 ## Details
 
-#### Text
+#### Text/HTML
 By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
 **`XMLHttpRequest()`** or the **`Fetch API`**. This `Content-Type` (a [HTTP](https://wikipedia.org/wiki/HTTP) header) is
 configurable via the `content` setting (see the '[Configuration](#configuration)' section).
