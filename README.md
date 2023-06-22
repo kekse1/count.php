@@ -271,9 +271,8 @@ host could be poisoned as well!
 > the counting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`)!
 
 ### Management
-> **Note**
-> You can easily manage all the values etc. via command line.
-> See the [CLI mode](#cli-mode) section for more infos!
+You can easily manage all the values etc. via command line.
+See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
 The normal way is to return the plain value (by default w/ **`Content-Type: text/plain;charset=UTF-8`**),
