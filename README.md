@@ -80,8 +80,8 @@ font_ in the `font` setting).
 > FreeType seems to only support **`.ttf`** fonts. My script is adapted to this, so other font formats are **not** supported.
 
 > **Note**
-> You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've setup `Intel One Mono` (or `IntelOne Mono`)
-> as the default font, btw.. looks great - see the random value on top of this `README.md` (it's random due to `hide == true` config).
+> You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've configured **`Intel One Mono`**
+> (or **`IntelOne Mono`**) as the default font, btw.. looks great (see the random counter value on top of this `README.md`)!
 
 Now, **that's** all. :D~
 
