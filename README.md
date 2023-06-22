@@ -19,6 +19,7 @@ It's a universal counter script. ... v**3.6.3**!
 4. [Installation](#installation)
 	* [Dependencies](#dependencies)
 5. [Details](#details)
+	* [Security](#security)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
@@ -91,47 +92,52 @@ you can call this script like this: `php count.php --check/-c`), which will chec
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Details
-By default the script generates a `text/plain` output, so you can easily embed the counting value
-via `XMLHttpRequest()` or the `Fetch API`. The real (HTTP-)`Content-Type` is configurable via the
-`content` setting (on top of the file - see the '[Configuration](#configuration)' section).
+By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
+**`XMLHttpRequest()`** or the **`Fetch API`**. The real (HTTP-)`Content-Type` is configurable via the `content` setting
+(on top of the file - see the '[Configuration](#configuration)' section).
 
-BUT I've finally also managed the `<img>` drawing facilities (see below!), so you can also embed it
-now as simple `<img src="..?draw[...]">`! See the '[Drawing](#drawing)' section.
+This is preferred if you'd like to fit the counter's style exactly to your website. You can define every (CSS) details, etc.
 
-Only in [RAW mode](#raw-mode) (also see '[Modes](#modes)' section) there'll be no real output, so
-that you can integrate this script in your own PHP projects; just use the `kekse\counter\counter()`
-function (*not very well tested atm*).
+The other way is to embed the counter as server-side drawn `<img>` (`png` and `jpg` supported). That's also good, and that's a lot
+easier! Especially on a site like this one ([github.com](https://github.com/kekse1/)), where you can't just script anything.. here,
+on top of this `README.md`, I included a (private) counter via HTML `<img>` tag. .. and it worx. **^\_^**
+
+Last way to use this counter is in the [RAW mode](#raw-mode).. infos in it's own section.
+
+### Security
+I was very concerned about the security.. so I'm not going to explain you all the details in this [Details](#details) section. If you'd
+like to know more, just continue reading this _whole_ documentation, or maybe even **read the fucking source**! ;)~
+
+And I'm also not going to explain all the configuration details in this overview. Just read further, again..
 
 ### Storage
-Uses the file system to store timestamp files for the client IPs (if actived `server`); and
-counting this files (which is a security concern) is done cached via some special files (so
-no 'inefficient' `opendir()` etc. is always necessary ;). The values itself are also located in
-the file system - one file for each host (secured auto-generation included, if you wish, and
-also with a limit in their amount - if you don't create the value files manually; see `auto`
-setting.. _plus_ 'hard' limit, see `limit` setting).
+Instead of using big databases or an own format in one file or so (what I preferred in ~1999 x)~, I'm chosing the **file system** as
+_very efficient_ carrier! Really, it's much performance in it!
 
-The file system is usually top in performance. A real database would be overload for such a
-script. And using only one file and parse/render it by myself is not recommended, as it's very
-inefficient.. the file system should be a great choice (and is only being used if `server` is
-set to `(true)`! :)~
+It's used to store the counted values itself, one file per host. And if `server` setting enabled, it also creates a directory for each
+host, where every IP address (or their hashes, if [Privacy](#privacy) is a concern) will take on (sub) file each. If you configured it,
+they'll also be cleaned, as often as you defined it (even though you can define to _never_ delete any such file, to protocol the IP's, e.g.).
+
+These IP files (with timestamps in it) will also use own cache files, one per host, where the amount of them is managed. So if their amount
+is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
+
+And **all the files got limits**, btw.. for sure. Also with a limit for auto-creating such files.
 
 ### Server and/or Client
-If a cookie (if actived `client`) already confirmed that the client connected within the
-`threshold` (2 hours by default), no `server` test will be done after this. And if a cookie
-doesn't work, there's still this IP test left (if `server` enabled).
+If a cookie (if actived `client`) already confirmed that the client connected within the `threshold` (2 hours by default), no `server` test will
+be done after this. And if a cookie doesn't work, there's still this IP test left (if `server` enabled).
 
-If `threshold == 0` or `threshold === null`, both `server` and `client` will be overridden (to
-`false`); as this seems you don't need a `threshold` time.
+If `threshold == 0` or `threshold === null`, both `server` and `client` will be overridden (to `false`); as this seems you don't need a `threshold` time.
 
 ### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
 
-This would be great, because with every poll the timestamps get updated, so the **`threshold`** setting
+This would be great, because with every poll the timestamps get updated, so the `threshold` setting
 (which gives you the logical, maximum time to refresh, btw.) is not the only prevention against multiple
 countings; periodically polled it makes you some 'session' styles by adapting the timestamp, that will
 never get too old this way.
 
-So, if you're periodically polling this script (I'm doing it via `XMLHttpRequest()`), the client is not
+So, if you're periodically polling this script (I'm doing it via **`XMLHttpRequest()`**), the client is not
 being counted again after the `threshold` time over this 'session', until he disconnects. Then coming
 back again _after_ the two hours (by default) he will get counted again. Pretty easy?
 
@@ -219,18 +225,18 @@ additionally does a `strtolower()`.
 So here you gotta know which characters you can pass, while the maximum length is 224 characters (by default;
 look at the `COUNTER_STRING_LIMIT` constant), btw.
 
-* `a-z`
-* `A-Z`
-* `0-9`
-* `#`
-* `,`
-* `:`
-* `(`
-* `)`
-* `/` (limited)
-* `.` (limited)
-* `-` (limited)
-* `+` (limited)
+* **`a-z`**
+* **`A-Z`**
+* **`0-9`**
+* **`#`**
+* **`,`**
+* **`:`**
+* **`(`**
+* **`)`**
+* **`/`** (limited)
+* **`.`** (limited)
+* **`-`** (limited)
+* **`+`** (limited)
 
 That's also important for the *optional* `?override=` GET parameter (see above), e.g., as hosts (etc.)
 also won't ever be accepted 'as is'.
@@ -261,22 +267,22 @@ To use it, enable the `drawing` option and call script with (at least!) `?draw` 
 parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
 follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
-| Variable | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)        |
-| -------: | :---------------------------------------------- | -----------------: | ------------------------------: |
-| `draw`   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>         |
-| `zero`   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`        |
-| `size`   | `size` = `64`                                   | **String/Integer** | >= 3 and <= 512, `32px`, `24pt` |
-| `unit`   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_|
-| `font`   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                |
-| `fg`     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)           |
-| `bg`     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)           |
-| `angle`  | `angle` = `0`                                   | **Integer/String** | Anticlockwise; [ 'deg', 'rad' ] |
-| `h`      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| `v`      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| `x`      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| `y`      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| `aa`     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                 |
-| `type`   | `type` = `'png'`                                | **String**         | See `--types/-t`                |
+| Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)        |
+| -----------: | :---------------------------------------------- | -----------------: | ------------------------------: |
+| **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>         |
+| **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`        |
+| **`size`**   | `size` = `64`                                   | **String/Integer** | >= 3 and <= 512, `32px`, `24pt` |
+| **`unit`**   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_|
+| **`font`**   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                |
+| **`fg`**     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)           |
+| **`bg`**     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)           |
+| **`angle`**  | `angle` = `0`                                   | **Integer/String** | Anticlockwise; [ 'deg', 'rad' ] |
+| **`h`**      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| **`v`**      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| **`x`**      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| **`y`**      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512              |
+| **`aa`**     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                 |
+| **`type`**   | `type` = `'png'`                                | **String**         | See `--types/-t`                |
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
@@ -334,45 +340,45 @@ and are encoded in [JSON format](https://www.json.org/). And they'll be loaded a
 a host is being selected.
 
 ### No more constants.
-Here are the current _default_ settings, including the possible types (whereas every variable with bold '**!**'
-before it's name may _**never** be overwritten by any '[per-host config overwrite](#per-host-config-overwrite)',
-which will be checked anyway..).
+Here are the current _default_ settings, including the possible types (whereas every variable with big, bold
+<span style="color: red; font-size: 1.25em; font-weight: 800;">`⚠️`</span> before it's name may **never** be
+overwritten by any '[per-host config overwrite](#per-host-config-overwrite)' (which is always checked, btw.).
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
 | Name            | Default value                | Possible types/values                        | Description / Comment(s)                          |
 | --------------: | :--------------------------- | -------------------------------------------: | :-----------------------------------------------: |
-| **!**`path`     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
-| `log`           | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
-| `threshold`     | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
-| **!**`auto`     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
-| `hide`          | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
-| `client`        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
-| `server`        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
-| `drawing`       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
-| **!**`override` | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
-| `content`       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
-| `radix`         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
-| `clean`         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
-| `limit`         | `32768`                      | **Integer** (>=0)                            | Maximum number of files, in base dir and sub dir! |
-| `fonts`         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
-| `font`          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| `size`          | `64`                         | **String** or **Integer** (>=3 and <=512)    | Either Integer, w/ `unit`, or String `pt` or `px` |
-| `unit`          | `px`                         | **String** [ `pt`, `px` ]                    | Will be used if the `size` is just an Integer.    |
-| `fg`            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
-| `bg`            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
-| `angle`         | `0`                          | **Integer/String**                           | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
-| `x`             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
-| `y`             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
-| `h`             | `0`                          | **Integer** (<=512 and >=-512)               | Horizontal space from text to end of image        |
-| `v`             | `0`                          | **Integer** (<=512 and >=-512)               | Vertical space, like above                        |
-| `aa`            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
-| `type`          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
-| `privacy`       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `server` is enabled)    |
-| **!**`hash`     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
-| `error`         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
-| `none`          | `'/'`                        | **String**                                   | And this is shown when `!auto` w/o value file..   |
-| **!**`raw`      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
+| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`path`**     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
+| **`log`**           | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
+| **`threshold`**     | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
+| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
+| **`hide`**          | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
+| **`client`**        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
+| **`server`**        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
+| **`drawing`**       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
+| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| **`content`**       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
+| **`radix`**         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
+| **`clean`**         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
+| **`limit`**         | `32768`                      | **Integer** (>=0)                            | Maximum number of files, in base dir and sub dir! |
+| **`fonts`**         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
+| **`font`**          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
+| **`size`**          | `64`                         | **String** or **Integer** (>=3 and <=512)    | Either Integer, w/ `unit`, or String `pt` or `px` |
+| **`unit`**          | `px`                         | **String** [ `pt`, `px` ]                    | Will be used if the `size` is just an Integer.    |
+| **`fg`**            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
+| **`bg`**            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
+| **`angle`**         | `0`                          | **Integer/String**                           | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
+| **`x`**             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
+| **`y`**             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
+| **`h`**             | `0`                          | **Integer** (<=512 and >=-512)               | Horizontal space from text to end of image        |
+| **`v`**             | `0`                          | **Integer** (<=512 and >=-512)               | Vertical space, like above                        |
+| **`aa`**            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
+| **`type`**          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
+| **`privacy`**       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `server` is enabled)    |
+| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
+| **`error`**         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
+| **`none`**          | `'/'`                        | **String**                                   | And this is shown when `!auto` w/o value file..   |
+| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`raw`**      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
@@ -391,10 +397,10 @@ directory, please use `./../`..
 ### Colors
 Supported formats are:
 
-* `argb()` (with 3x (0-255) and 1x (0.0-1.0));
-* `rgb()` (with 3x (0-255))
-* `(comma separated list) (of 3x (0-255) and optionally 1x (0.0-1.0));
-* `#` hex color strings (w/ and w/o `#` prefix, with a length of one of: [ 3, 4, 6, 8 ]);
+* **`argb()`** (with 3x (0-255) and 1x (0.0-1.0));
+* **`rgb()`** (with 3x (0-255));
+* **`(comma separated)`** (list of 3x (0-255) and optionally 1x (0.0-1.0));
+* **`#`** hex color strings (w/ and w/o `#` prefix, with a length of one of: [ 3, 4, 6, 8 ]);
 
 ### Radix/Base
 The `radix` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
@@ -503,24 +509,24 @@ The default action is (like) `--values/v`, whereas the `--help/-?` output needs 
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
 of supported 'functions'.
 
-| Short | Long                     | Description                                               |
-| ------: | :--------------------- | :-------------------------------------------------------: |
-|  `-?` | `--help`                 | Shows the link to this website..                          |
-|  `-V` | `--version`              | Print current script's version.                           |
-|  `-C` | `--copyright`            | Shows the author of this script. /me ..                   |
-|  `-c` | `--check [*]`            | Verify DEFAULT or, by arguments, per-user configurations  |
-|  `-v` | `--values [*]`           | Shows all vales and more.                                 |
-|  `-s` | `--sync [*]`             | Same as above, but with cache synchronization..           |
-|  `-l` | `--clean [*]`            | Clean all **outdated** (only!) cache files.               |
-|  `-p` | `--purge [*]`            | Delete the cache(s) for all or specified hosts.           |
-|  `-z` | `--sanitize [-w/-d]`     | Delete file rests, w/ `--without-values` and `--dot-files`|
-|  `-d` | `--delete [*]`           | Totally remove any host (all, or by arguments)            |
-|  `-t` | `--set (host) [value=0]` | Sets the (optional) value for the defined host (only one) |
-|  `-f` | `--fonts [*]`            | Available fonts for drawing `<img>`. Globs allowed.       |
-|  `-y` | `--types`                | Available image types for drawing output.                 |
-|  `-h` | `--hashes`               | Available algorithms for `hash` config.                   |
-|  `-e` | `--errors`               | Counts the error log lines.                               |
-|  `-u` | `--unlog`                | Deletes the whole error log file.                         |
+| Short     | Long                         | Description                                               |
+| --------: | :--------------------------- | :-------------------------------------------------------: |
+|  **`-?`** | **`--help`**                 | Shows the link to this website..                          |
+|  **`-V`** | **`--version`**              | Print current script's version.                           |
+|  **`-C`** | **`--copyright`**            | Shows the author of this script. /me ..                   |
+|  **`-c`** | **`--check [*]`**            | Verify DEFAULT or, by arguments, per-user configurations  |
+|  **`-v`** | **`--values [*]`**           | Shows all vales and more.                                 |
+|  **`-s`** | **`--sync [*]`**             | Same as above, but with cache synchronization..           |
+|  **`-l`** | **`--clean [*]`**            | Clean all **outdated** (only!) cache files.               |
+|  **`-p`** | **`--purge [*]`**            | Delete the cache(s) for all or specified hosts.           |
+|  **`-z`** | **`--sanitize [-w/-d]`**     | Delete file rests, w/ `--without-values` and `--dot-files`|
+|  **`-d`** | **`--delete [*]`**           | Totally remove any host (all, or by arguments)            |
+|  **`-t`** | **`--set (host) [value=0]`** | Sets the (optional) value for the defined host (only one) |
+|  **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.       |
+|  **`-y`** | **`--types`**                | Available image types for drawing output.                 |
+|  **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                   |
+|  **`-e`** | **`--errors`**               | Counts the error log lines.                               |
+|  **`-u`** | **`--unlog`**                | Deletes the whole error log file.                         |
 
 Additional arguments within '[]' are optional (and mostly support GLOBs), and those within '()' are
 _required_ ones. Most `*` arguments can be defined multiple times, so most times as multiple globs,
@@ -546,31 +552,31 @@ functions_ (which tend to be used also in other scripts, as they're very 'abstra
 own `kekse` namespace, including more sub namespaces (for even more functions ;-). They could be really handy!
 
 ### Functions
-| Function                | Arguments                                                           | Description                                                                                  |
-| ----------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
-| `is_number()`           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
-| `check_file()`          | `$_path`, `$_file`, `$_log_error_source = null`, `$_die = false`    | Default routine to check for file existence or creation, and `chmod()` for more security     |
-| `files()`               | (...)                                                               | As I manually use `opendir()` etc. usually, this is just being used in `check_config_item()` |
-| `limit()`               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
-| `ends_with()`           | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
-| `starts_with()`         | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
-| `normalize()`           | `$_path`                                                            | Implementation of **path** normalization (works)                                             |
-| `join_path()`           | `... $_args`                                                        | Combines multiple path components to a whole path string **(variadic function)**             |
-| `timestamp()`           | `$_diff = null`                                                     | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp   |
-| `remove_white_spaces()` | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
-| `secure()`              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
-| `secure_host()`         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
-| `secure_path()`         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
-| `delete()`              | `$_path`, `$_depth = 0`                                             | Function for file deletion (optionally recursive); see also [Deletion](#deletion)            |
-| `get_param()`           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
-| `unit()`                | `$_string`, `$_float = false`, `$_null = true`                      | Splits into value and unit components, which so can be defined in one string only.           |
-| `color()`               | `$_string`, `$_gd = null`                                           | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool) |
-| `prompt()`              | `$_string`, `$_return = false`, `$_repeat = true`                   | Until a question is confirmed via `y[es]` or `n[o]`, it'll repeat the question (CLI mode!)   |
-| `log()`                 | (...)                                                               | (CLI feature)                                                                                |
-| `info()`                | (...)                                                               | (CLI feature)                                                                                |
-| `error()`               | (...)                                                               | (CLI feature)                                                                                |
-| `warn()`                | (...)                                                               | (CLI feature)                                                                                |
-| `debug()`               | (...)                                                               | (CLI feature)                                                                                |
+| Function                    | Arguments                                                           | Description                                                                                  |
+| --------------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
+| **`is_number()`**           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` also for strings.. :-/ |
+| **`check_file()`**          | `$_path`, `$_file`, `$_log_error_source = null`, `$_die = false`    | Default routine to check for file existence or creation, and `chmod()` for more security     |
+| **`files()`**               | (...)                                                               | As I manually use `opendir()` etc. usually, this is just being used in `check_config_item()` |
+| **`limit()`**               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
+| **`ends_with()`**           | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
+| **`starts_with()`**         | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
+| **`normalize()`**           | `$_path`                                                            | Implementation of **path** normalization (works)                                             |
+| **`join_path()`**           | `... $_args`                                                        | Combines multiple path components to a whole path string **(variadic function)**             |
+| **`timestamp()`**           | `$_diff = null`                                                     | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp   |
+| **`remove_white_spaces()`** | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
+| **`secure()`**              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
+| **`secure_host()`**         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
+| **`secure_path()`**         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
+| **`delete()`**              | `$_path`, `$_depth = 0`                                             | Function for file deletion (optionally recursive); see also [Deletion](#deletion)            |
+| **`get_param()`**           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
+| **`unit()`**                | `$_string`, `$_float = false`, `$_null = true`                      | Splits into value and unit components, which so can be defined in one string only.           |
+| **`color()`**               | `$_string`, `$_gd = null`                                           | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool) |
+| **`prompt()`**              | `$_string`, `$_return = false`, `$_repeat = true`                   | Until a question is confirmed via `y[es]` or `n[o]`, it'll repeat the question (CLI mode!)   |
+| **`log()`**                 | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
+| **`info()`**                | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
+| **`error()`**               | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
+| **`warn()`**                | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
+| **`debug()`**               | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
 
 ### Namespaces
 Namespaces used, in general (you really don't need them, everything 'important' is available in the `kekse` namespace (mostyle as relay function); it's just for your info..):
@@ -666,4 +672,3 @@ projects. It rised a lot - see for yourself! :)~
 ## Copyright and License
 The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
 and it's licensed under the [MIT](./LICENSE.txt) (also known as 'X' or 'X11' license).
-
