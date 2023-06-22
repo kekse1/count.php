@@ -106,7 +106,7 @@ configurable via the `content` setting (see the [Configuration](#configuration) 
 This is preferred if you'd like to fit the counter's style exactly to your website. You can define every (CSS) details, etc.
 
 #### Image
-The other way is to embed the counter as (_server-side drawn_) `<img>` (`png` and `jpg` supported). That's also good,
+The other way is to embed the counter as (_server-side drawn_) `<img>` (`png` and `jpg` types supported). That's also good,
 and that's a lot easier! Especially on a site like this one ([github.com](https://github.com/kekse1/)), where you can't
 just script anything.. e.g.
 
