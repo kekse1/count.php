@@ -419,8 +419,8 @@ to your current working directory, you've to define those paths with starting `.
 gets called; maybe as symbolic link or by defining a path via e.g. `php ./php/count.php`).
 
 > **Note**
-> `../` is relative to the `__DIR__`, unlike `./`..
-> If you also want to make this relative to the current working directory (`$PWD`), please use `./../`.
+> `../` is relative to the `__DIR__`, unlike `./`!
+> If you also want to make this relative to the current working directory `$PWD`, try `./../`.
 
 ### Colors
 Supported formats are:
@@ -432,8 +432,7 @@ Supported formats are:
 
 > **Note**
 > Above formats don't need extended definition by their names or the `#` hex char.
-> (Mostly) the lengths are enough to determine which type it is.
-> So just set a list of numbers or any hexadecimal notation.
+> The lengths are enough to determine which type it is. So just set a list of numbers or any hexadecimal notation.
 
 ### Radix/Base
 The `radix` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
@@ -515,7 +514,7 @@ nor graphical), and you just get the current value returned by the `counter()` f
 
 The function to call from your scripts (after `require_once('count.php')` or so) is:
 
-`function counter($_host = null, $_read_only = null)`
+* **`function counter($_host = null, $_read_only = null)`**
 
 The first argument is (null) by default - but in `raw` _plus_ `CLI` mode, where no `$_SERVER` is available,
 you really need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
@@ -538,10 +537,10 @@ as defined in `content` option)! .. so please, just type `php count.php` in your
 
 > **Note**
 > With enabled `raw` setting this command line interface won't be shown (because this mode is
-> for using the script within other PHP scripts) - unless you define a parameter in the cmd line.
+> for using the script within other PHP scripts) - **except** if you define a parameter in the cmd line.
 
 > **Note**
-> The default action is (like) `--values/v`, whereas the `--help/-?` output needs to be called exactly.
+> The default action is now `--values/v`, whereas the `--help/-?` output needs to be explicitly called.
 
 ##### The argument vector
 Just run the script without parameters to see all possible `argv[]` options. Here's the current list
@@ -575,22 +574,24 @@ to match the hosts (separated by spaces, each as another argv/argc).
 > resolve them.. if it works sometimes, it's just because the shell didn't find any match (then the
 > original glob is being encoded 'as is').
 
-> **Note**
-> As hint for myself there's the [glob.txt](./docs/glob.txt), JF{M,Y}I..
+As hint for myself I've stored [glob.txt](./docs/glob.txt).
 
 > **Note**
 > The `--check/-c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
 > default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
 #### Prompts
-As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
-to ask you for `yes` or `no` (sometimes/partially). So please confirm this questions, if shown; and
-just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
+> **Note**
+> As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
+> to ask you for **`yes`** or **`no`** (sometimes/partially). So please confirm this questions, if shown;
+> and just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
 
 ## Exports
-For the **count(er)** implementation itself I'm using the namespace `kekse\counter`. **BUT** my _common
-functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported in my
-own `kekse` namespace, including more sub namespaces (for even more functions ;-). They could be really handy!
+For the **count(er)** implementation itself I'm using the namespace **`kekse\counter`**.
+
+BUT my _common functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported
+in my own `kekse` namespace, including more sub namespaces (for even more functions ;-).
+They could be really handy!
 
 ### Functions
 | Function                    | Arguments                                                           | Description                                                                                  |
@@ -648,8 +649,7 @@ Anyway, I implemented it this way because of two reasons:
 So, that's for your info. :)~
 
 > **Note**
-> I just added some code to return an integer type, if no rest is given. So it's enough now (instead
-> of `%`) to check `is_int()` or `is_float()`.. the whole recursion tree was fully deleted if `is_int()`!
+> It's enough to check for `is_int()` or `is_float()`: the whole recursion depth's fully deleted if `is_int()`!
 
 #### Modulo
 > **Warning**
