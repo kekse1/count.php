@@ -114,8 +114,7 @@ Especially useful on a site like this one ([github.com](https://github.com/kekse
 > **Warning**
 > For this to work the `drawing` configuration needs to be **enabled** (_is the default_). But then fonts must be installed!
 
-> **Note**
-> On top of this `README.md` I included my (private) counter via HTML `<img>` tag. .. *worx!*
+On top of this `README.md` I included my (private) counter via HTML `<img>` tag. .. *worx!*
 
 ### Security
 I was very concerned about the security.. there are many features for this, so I'm not going to explain you all the details
@@ -137,14 +136,15 @@ These IP files (with timestamps in it) will also use own cache files, one per ho
 is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
 
 > **Note**
-> **All files got limits** .. for sure. And there's also a limit for auto-creating files (if not existing already).
+> **All files got limits** .. for sure. And there's also a limit for automatical creation of files.
 
 ### Server and/or Client
 If a cookie (if actived `client`) already confirmed that the client connected within the **`threshold`** (**2 hours by default**),
 no `server` test will be done after this. And if a cookie doesn't work, there's still this IP test left (if `server` enabled).
 
-If `threshold == 0` or `threshold === null`, both `server` and `client` will be overridden (to `false`); as this seems you don't
-need a `threshold` time.
+> **Warning**
+> If `threshold == 0` or `threshold === null`, both `server` and `client` will be overridden (to `false`); as this seems you
+> don't need a `threshold` time.
 
 ### Refresh
 If you are able to reload the counter dynamically on your web sites, please do it.
@@ -348,9 +348,8 @@ to avoid error output (even though it's bad that you're using an `<img>` tag....
 wouldn't be visible in this case at all).
 
 #### Fonts
-> **Warning**
-> The **second dependency** is a configured `fonts` directory with (`.ttf`) font(s) installed in it (and
-> if you don't specify this via `?font` it really *needs* to be pre-set via `font` setting); ...
+The **second dependency** is a configured `fonts` directory with (`.ttf`) font(s) installed in it (and
+if you don't specify this via `?font` it really *needs* to be pre-set via `font` setting); ...
 
 ## Configuration
 The configuration is an associative array of various settings.
@@ -431,7 +430,7 @@ Supported formats are:
 * **`#`** hex color strings (w/ and w/o `#` prefix, with a length of one of: [ 3, 4, 6, 8 ]);
 
 > **Note**
-> Above formats don't need extended definition by their names or the `#` hex char.
+> Above formats don't need to be defined exactly (by their names or the `#` hex char).
 > The lengths are enough to determine which type it is. So just set a list of numbers or any hexadecimal notation.
 
 ### Radix/Base
@@ -445,9 +444,10 @@ By default up to `32` value files will automatically be created, if not existing
 host this setting is also overwritten: `true` if `override` setting or `$_host` is a String, and `false` in
 all other cases.
 
-If amount of value files exceeds limit, or if set to `false`, you can easily initialize (or change..) these
-files via the `--set/-t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
-If unspecified, the value defaults to (`0`).
+> **Note**
+> If amount of value files exceeds limit, or if set to `false`, you can easily initialize (or change..) these
+> files via the `--set/-t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
+> If unspecified, the value defaults to (`0`).
 
 Additionally, the `limit` setting is also used for a 'hard' maximum, even if 'auto' integer is greater or without real (int) limit!
 
@@ -505,9 +505,6 @@ With `?test` there will nothing be counted, and the output (can also be combined
 a random integer value.
 
 ### RAW mode
-> **Note**
-> My namespace is `kekse`.
-
 By defining `raw = true` the base counting function won't be called automatically, so that you've the
 chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
 nor graphical), and you just get the current value returned by the `counter()` function.
@@ -525,26 +522,31 @@ IP address).
 
 Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 
-### CLI mode
-**You can test your configuration's validity by running the script from command line (CLI mode)!**
-Just define the `--check/-c [*]` (cmdline) parameter. ;)~
+> **Note**
+> My own namespace is `kekse`.
 
-As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
-as argument to the `php` executable: `php count.php`. The shebang isn't possible, as web servers
-running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
-(b) thus the script can't send any `header()` (necessary inter alia to define the content type,
-as defined in `content` option)! .. so please, just type `php count.php` in your shell.
+### CLI mode
+> **Note**
+> **You can test your configuration's validity by running the script from command line (CLI mode)!**
+> Just call the script with **`--check/-c [\*]`** (cmdline) parameter(s). ;)~
 
 > **Note**
+> As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
+> as argument to the `php` executable: `php count.php`. The shebang isn't possible, as web servers
+> running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
+> (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
+> as defined in `content` option)! .. so please, just type `php count.php` in your shell.
+
+> **Note**
+> The default action (so w/o parameters) is **`--values/-v`**.
+> You need to explicitly define **`--help/-?`** to get a list of available options, etc.
+
+> **Warning**
 > With enabled `raw` setting this command line interface won't be shown (because this mode is
 > for using the script within other PHP scripts) - **except** if you define a parameter in the cmd line.
 
-> **Note**
-> The default action is now `--values/v`, whereas the `--help/-?` output needs to be explicitly called.
-
 ##### The argument vector
-Just run the script without parameters to see all possible `argv[]` options. Here's the current list
-of supported 'functions'.
+Here's the complete list:
 
 | Short     | Long                         | Description                                               |
 | --------: | :--------------------------- | :-------------------------------------------------------: |
@@ -565,9 +567,8 @@ of supported 'functions'.
 |  **`-e`** | **`--errors`**               | Counts the error log lines.                               |
 |  **`-u`** | **`--unlog`**                | Deletes the whole error log file.                         |
 
-Additional arguments within **`[]`** are optional (and mostly support GLOBs), and those within **`()`**
-are _required_ ones. Most **`*`** arguments can be defined multiple times, so most times as multiple globs,
-to match the hosts (separated by spaces, each as another argv/argc).
+Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`()`**
+are _required_ ones. Most **`\*`** arguments can be defined multiple times, for more hosts, e.g.
 
 > **Warning**
 > Using globs requires quoting or escaping most times, as most shells will try to directly
