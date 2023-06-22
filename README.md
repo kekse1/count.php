@@ -4,16 +4,15 @@
 It's a universal counter script. ... v**3.6.3**!
 
 ## Issues
-- [x] Best improvement for my `delete()` function: **floating point results**. See [Deletion](#deletion).
-- [x] **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
-- [x] Now also supporting **rotations**, see the `angle` setting and the `?angle` parameter, .. degrees and radians.
-- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite).
-- [x] Much better `--check/-c [*]` configuration check. Also supporting host parameters (w/ globs) to check for per-host config overwrites.. //**edit**: now even better, as of v**3.6.0**. :)~
-- [x] To make user experience in the [CLI mode](#cli-mode) better, I've just added [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code), and made console output better in general, too..
-- [x] And, as usual, more bugfixes and improvements.. ^\_^
-- [ ] Just preparing better `RAW` support and more [(namespaces and) exports](#exports) \[prob is atm. partial 'multi-declaration'..\];
-- [ ] Using `check_file()` function; and reduce many further file checks this way.. plus always **maximum security** by using `chmod()` each time! ;)~
-- [ ] Already planned, but will take a bit longer: **_Module_ support**..
+- [x] Great improvement for my [`delete()` function](#deletion): **floating point results**!
+- [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`;
+- [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible;
+- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s..!
+- [x] Much better **`--check/-c [*]`**. No more manual checking, but using a *vector*. **And** per-host-config check is also better now;
+- [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code);
+- [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports);
+- [ ] Using `check_file()` function; and reduce many other checks this way.. and for **maximum security** via `chmod()`;
+- [ ] Planned, a bit prepared, but yet future: **Modules**;
 
 ## Index
 1. [Issues](#issues)
