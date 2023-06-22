@@ -322,8 +322,8 @@ Important: the '[**GD Library**](https://www.php.net/manual/en/book.image.php)' 
 for this feature. If it isn't, you can only use the regular `text/plain` output function of this script!
 
 **Note**
-> AND the GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this
-> is **not** checked within `-c/--check`, btw.).
+> The GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this is
+> **not** checked within `-c/--check`, btw.).
 
 The `-c/--check` test will also check if this library is installed, but MAYBE it's installed, but not
 available in the CLI mode, so there'll be a warning there, but nevertheless it's working fine with the
