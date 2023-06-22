@@ -85,8 +85,10 @@ font_ in the `font` setting).
 
 So, **that's** all. :D~
 
-_And if you want to edit the default configuration_, see the [Configuration section](#configuration). And to make sure your settings are valid,
-you can call this script like this: `php count.php --check/-c`), which will check your own configuration, if it's correct (mostly in it's type).
+> **Note**
+> If you want to edit the default configuration, take at look at the [Configuration section](#configuration).
+> And to make sure your settings are valid, you can call this script like this: [**`php count.php --check/-c`**)](#cli-mode),
+> which will check your own configuration.
 
 ### Dependencies
 **NO** dependencies.
