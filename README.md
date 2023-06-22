@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.0**!
+It's a universal counter script. ... v**3.6.1**!
 
 ## News
 * **BIG improvement** in the [*drawing function(s)*](#drawing), _finally_!! Alignment is perfect now, and always the really requested image size! & `pt` vs. `px`. :D~
@@ -609,7 +609,7 @@ doesn't consume *that* much cpu time or memory.
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
-After cleaning up a bit, removing comments, etc. there are **_6.510_ code lines** left, as of v**3.6.0**!
+After cleaning up a bit, removing comments, etc. there are **_6.522_ code lines** left, as of v**3.6.1**!
 _**INFO**_: some lines will be removed soon, because of a new function to handle them better.. ;)~
 
 ## The original version
