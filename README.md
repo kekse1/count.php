@@ -284,8 +284,11 @@ draw a (nearly) empty output image (hidden counter, e.g. .. whereas there's also
 
 ### Parameters
 To use it, enable the `drawing` option and call script with (at least!) `?draw` \[or `?zero`\] (GET)
-parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
-follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
+parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing, as follows..
+
+> **Note**
+> Such *GET* parameters need a prefix before the variable name. It's either **`?`** for the first parameter,
+> or **`&`** for all following ones. **They are defined in the _URL_ you request**!
 
 | Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)           |
 | -----------: | :---------------------------------------------- | -----------------: | ---------------------------------: |
