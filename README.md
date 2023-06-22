@@ -258,8 +258,8 @@ You can easily manage all the values etc. via command line. Like just viewing th
 See the [CLI mode](#cli-mode) section for more infos!
 
 ## Drawing
-The normal way is to return the plain value (by default w/ `Content-Type: text/plain;charset=UTF-8`),
-but I've also implemented some drawing routines, to embed the counter value as `<img>`.
+The normal way is to return the plain value (by default w/ **`Content-Type: text/plain;charset=UTF-8`**),
+but I've also implemented some drawing routines, to embed the counter value as **`<img>`**.
 
 If allowed by `drawing` setting, just use either `?draw` for all possible options, or just `?zero` to
 draw a (nearly) empty output image (hidden counter, e.g. .. whereas there's also the `hide` setting!).
@@ -269,22 +269,22 @@ To use it, enable the `drawing` option and call script with (at least!) `?draw` 
 parameter. More isn't necessary, but there also also some GET parameters to adapt the drawing; as
 follows (whereas they need a prefix, which is either `?` for the first parameter, and `&` for any following):
 
-| Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)        |
-| -----------: | :---------------------------------------------- | -----------------: | ------------------------------: |
-| **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>         |
-| **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`        |
-| **`size`**   | `size` = `64`                                   | **String/Integer** | >= 3 and <= 512, `32px`, `24pt` |
-| **`unit`**   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_|
-| **`font`**   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                |
-| **`fg`**     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)           |
-| **`bg`**     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)           |
-| **`angle`**  | `angle` = `0`                                   | **Integer/String** | Anticlockwise; [ 'deg', 'rad' ] |
-| **`h`**      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| **`v`**      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| **`x`**      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| **`y`**      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512              |
-| **`aa`**     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                 |
-| **`type`**   | `type` = `'png'`                                | **String**         | See `--types/-t`                |
+| Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)           |
+| -----------: | :---------------------------------------------- | -----------------: | ---------------------------------: |
+| **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>            |
+| **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`           |
+| **`size`**   | `size` = `64`                                   | **String/Integer** | >= 3 and <= 512, `32px`, `24pt`    |
+| **`unit`**   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_   |
+| **`font`**   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                   |
+| **`fg`**     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)              |
+| **`bg`**     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)              |
+| **`angle`**  | `angle` = `0`                                   | **Integer/String** | Anticlockwise [ '', 'deg', 'rad' ] |
+| **`h`**      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
+| **`v`**      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
+| **`x`**      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
+| **`y`**      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
+| **`aa`**     | `aa` = `true`                                   | **Boolean**        | Anti Aliasing..                    |
+| **`type`**   | `type` = `'png'`                                | **String**         | See `--types/-t`                   |
 
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
@@ -343,22 +343,22 @@ a host is being selected.
 
 ### No more constants.
 Here are the current _default_ settings, including the possible types (whereas every variable with big, bold
-<span style="color: red; font-size: 1.25em; font-weight: 800;">`⚠️`</span> before it's name may **never** be
+<span style="color: red; font-size: 1.4em; font-weight: 600;">⚠️</span> before it's name may **never** be
 overwritten by any '[per-host config overwrite](#per-host-config-overwrite)' (which is always checked, btw.).
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
 | Name            | Default value                | Possible types/values                        | Description / Comment(s)                          |
 | --------------: | :--------------------------- | -------------------------------------------: | :-----------------------------------------------: |
-| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`path`**     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
+| <span style="color: red; font-size: 1.4em; font-weight: 600;">⚠️</span> **`path`**     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
 | **`log`**           | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
 | **`threshold`**     | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
-| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
+| <span style="color: red; font-size: 1.4em; font-weight: 600;">⚠️</span> **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
 | **`hide`**          | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
 | **`client`**        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
 | **`server`**        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
 | **`drawing`**       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
-| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| <span style="color: red; font-size: 1.4em; font-weight: 600;">⚠️</span> **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
 | **`content`**       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
 | **`radix`**         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
 | **`clean`**         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
@@ -377,10 +377,10 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **`aa`**            | `true`                       | **Boolean**                                  | Anti Aliasing looks better, but it's optional     |
 | **`type`**          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
 | **`privacy`**       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `server` is enabled)    |
-| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
+| <span style="color: red; font-size: 1.4em; font-weight: 600;">⚠️</span> **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
 | **`error`**         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
 | **`none`**          | `'/'`                        | **String**                                   | And this is shown when `!auto` w/o value file..   |
-| <span style="color: red; font-size: 1.25em; font-weight: 800;">⚠️</span> **`raw`**      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
+| <span style="color: red; font-size: 1.4em; font-weight: 600;">⚠️</span> **`raw`**      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
