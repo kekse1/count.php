@@ -528,7 +528,7 @@ Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 ### CLI mode
 > **Note**
 > **You can test your configuration's validity by running the script from command line (CLI mode)!**
-> Just call the script with **`--check/-c [\*]`** (cmdline) parameter(s). ;)~
+> Just call the script with **`--check/-c [*]`** (cmdline) parameter(s). ;)~
 
 > **Note**
 > As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
@@ -568,7 +568,7 @@ Here's the complete list:
 |  **`-u`** | **`--unlog`**                | Deletes the whole error log file.                         |
 
 Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`()`**
-are _required_ ones. Most **`\*`** arguments can be defined multiple times, for more hosts, e.g.
+are _required_ ones. Most **`*`** arguments can be defined multiple times, for more hosts, e.g.
 
 > **Warning**
 > Using globs requires quoting or escaping most times, as most shells will try to directly
