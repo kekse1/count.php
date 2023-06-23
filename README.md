@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.4**!
+It's a universal counter script. ... v**3.6.5**!
 
 ## Status
 - [x] Great improvement for my [`delete()` function](#deletion): **floating point results**!
@@ -691,7 +691,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 > **Note**
-> After cleaning up a bit, removing comments, etc. there are **_6.706_ code lines** left, as of v**3.6.4**!
+> After cleaning up a bit, removing comments, etc. there are **_6.694_ code lines** left, as of v**3.6.5**!
 
 > **Warning**
 > Some lines will be removed soon, because of a new function to handle them better.. ;)~
