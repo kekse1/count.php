@@ -11,9 +11,9 @@ It's a universal counter script. ... v**3.6.9**!
 - [x] Much better **`--check / -c [*]`**. No more manual check, using a special 'vector' now.. **and** [per-host-config](#per-host-config-overwrite) **check** is also better now
 - [x] Extended `delete()` functionality.. incl. floating point results, but also arrays with detailed countings! ..
 - [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) to beautify your terminal
-- [x] Limited list output in the console.. cutting of too many rows/lines. WORX!
-- [ ] *Currently* _MASSIVE_ rewrite of all [CLI mode](#cli-mode) operations.. IN PROGRESS! :)~
-- [ ] And using `check_file()` (w/ `chmod()` for more security) plus clean up the file accessing routines in general!
+- [x] Limited list output in the console.. cutting of too many rows/lines. WORX, even the cmdline switch to disable this behavior. :-)
+- [ ] **Currently _massive_ rewrite of all [CLI mode](#cli-mode) operations.. IN PROGRESS! :)~**
+- [ ] **And using `check_file()` (w/ `chmod()` for more security) plus clean up the file accessing routines in general!**
 - [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports) (atm very *untested*, even known to not fully work)
 - [ ] Planned, but yet future: Modules
 
