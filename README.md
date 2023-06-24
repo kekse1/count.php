@@ -14,6 +14,7 @@ It's a universal counter script. ... v**3.6.9**!
 - [x] Limited list output in the console.. cutting of too many rows/lines. WORX, even the cmdline switch to disable this behavior. :-)
 - [ ] **Currently _massive_ rewrite of all [CLI mode](#cli-mode) operations.. IN PROGRESS! :)~**
 - [ ] **And using `check_file()` (w/ `chmod()` for more security) plus clean up the file accessing routines in general!**
+- [ ] **_To be exact_: ATM I'm doing a rewrite of ~half/third of the whole code!! xD~**
 - [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports) (atm very *untested*, even known to not fully work)
 - [ ] Planned, but yet future: Modules
 
