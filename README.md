@@ -4,16 +4,17 @@
 It's a universal counter script. ... v**3.6.9**!
 
 ## Status
-- [x] Now with limited line output in the [CLI](#cli-mode) (see the `KEKSE_TTY_LIMIT` integer, defaults to `50`, **ok??**). *Can be omitted via additional `--all | -a` parameter*.
-- [x] Nice improvement for my [`delete()` function](#deletion): **floating point results** // ..and **fixed** counted values (v**3.6.9**)!
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
 - [x] **Fixed** the _jagged images_ when rotating ~[ 90, 180, 270 ] degrees (I think that's some 'mistake' or bug in PHP or the GD library...)
 - [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s; and **no more global namespace**
 - [x] Much better **`--check / -c [*]`**. No more manual check, using a special 'vector' now.. **and** [per-host-config](#per-host-config-overwrite) **check** is also better now
+- [x] Extended `delete()` functionality.. incl. floating point results, but also arrays with detailed countings! ..
 - [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) to beautify your terminal
+- [x] Limited list output in the console.. cutting of too many rows/lines. WORX!
+- [ ] *Currently* _MASSIVE_ rewrite of all [CLI mode](#cli-mode) operations.. IN PROGRESS! :)~
+- [ ] And using `check_file()` (w/ `chmod()` for more security) plus clean up the file accessing routines in general!
 - [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports) (atm very *untested*, even known to not fully work)
-- [ ] Using `check_file()` function, to reduce many other file checks.. and for **maximum security** with `chmod()`
 - [ ] Planned, but yet future: Modules
 
 ## Index
