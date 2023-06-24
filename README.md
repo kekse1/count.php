@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.6**!
+It's a universal counter script. ... v**3.6.7**!
 
 ## Status
 - [x] Now with limited line output in the [CLI](#cli-mode) (see the `KEKSE_TTY_LIMIT` integer, defaults to `50`, **ok??**). *Can be omitted via additional `--all | -a` parameter*.
@@ -707,7 +707,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 > **Note**
-> After cleaning up a bit, removing comments, etc. there are **_6.968_ code lines** left, as of v**3.6.6**!
+> After cleaning up a bit, removing comments, etc. there are **_6.974_ code lines** left, as of v**3.6.7**!
 
 > **Warning**
 > Some lines will be removed soon, because of a new function to handle them better.. ;)~
