@@ -163,6 +163,9 @@ If(`override === true`), one can call the script's URL with `?override=(string)`
 `$_SERVER['HTTP_HOST']` nor `$_SERVER['SERVER_NAME']` are being used, but an arbitrary (but filtered)
 string (or just another host you define there).
 
+> **Warning**
+> On **any** override, it's expected this ain't a real host or smth.. so the `make_cookie()` is disabled then!
+
 I don't really like it, but if you need this feature, just use it. Works great.
 
 > **Warning**
