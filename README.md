@@ -473,9 +473,8 @@ to an (associative) array.. in this case please check the file for this host!
 Some of the modes are as follows. And they can **partially** be combined as well!
 
 ### Readonly mode
-You can use the script regularily, but pass `?readonly` or just `?ro`. That will only return/draw the
-current value without writing any files or cookies. The value is not changed then. So one can view it
-without access to the file system or the CLI mode.
+You can use the script regularily, but pass `?ro`. That will only return/draw the current value without writing any
+files or cookies. The value is not changed then. So one can view it without access to the file system or the CLI mode.
 
 ### Drawing mode
 By using `?draw`, if `drawing` setting is enabled, the output will not be `text/plain` (or whatever you
@@ -707,7 +706,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 > **Note**
-> After cleaning up a bit, removing comments, etc. there are **_6.974_ code lines** left, as of v**3.6.7**!
+> After cleaning up a bit, removing comments, etc. there are **_6.983_ code lines** left, as of v**3.6.7**!
 
 > **Warning**
 > Some lines will be removed soon, because of a new function to handle them better.. ;)~
