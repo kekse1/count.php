@@ -1,19 +1,20 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.5**!
+It's a universal counter script. ... v**3.6.6**!
 
 ## Status
-- [x] Great improvement for my [`delete()` function](#deletion): **floating point results**!
-- [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`;
-- [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible;
-- [x] **Fixed** the _blurred images_ when rotating [ 90, 180, 270 ] degrees..!! :-D
-- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s..!
-- [x] Much better **`--check/-c [*]`**. No more manual checking, but using a *vector*. **And** [per-host-config](#per-host-config-overwrite) **check** is also better now;
-- [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code);
-- [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports);
-- [ ] Using `check_file()` function; and reduce many other checks this way.. and for **maximum security** via `chmod()`;
-- [ ] Planned, but yet future: *Modules*;
+- [x] Now with limited line output in the [CLI](#cli-mode) (see the `KEKSE_TTY_LIMIT` integer, defaults to `50`, **ok??**). *Can be omitted via additional `--all | -a` parameter*.
+- [x] Nice improvement for my [`delete()` function](#deletion): **floating point results**
+- [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
+- [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
+- [x] **Fixed** the _jagged images_ when rotating ~[ 90, 180, 270 ] degrees (I think that's some 'mistake' or bug in PHP or the GD library...)
+- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s; and **no more global namespace**
+- [x] Much better **`--check / -c [*]`**. No more manual check, using a special 'vector' now.. **and** [per-host-config](#per-host-config-overwrite) **check** is also better now
+- [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) to beautify your terminal
+- [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports) (atm very *untested*, even known to not fully work)
+- [ ] Using `check_file()` function, to reduce many other file checks.. and for **maximum security** with `chmod()`
+- [ ] Planned, but yet future: Modules
 
 ## Index
 1. [Status](#status)
@@ -83,7 +84,7 @@ So, **that's** all. :D~
 
 > **Note**
 > If you want to edit the default configuration, take at look at the [Configuration section](#configuration).
-> And to make sure your settings are valid, you can call this script like this: [**`php count.php --check/-c`**](#cli-mode).
+> And to make sure your settings are valid, you can call this script like this: [**`php count.php --check / -c`**](#cli-mode).
 
 ### Dependencies
 **NO** dependencies.
@@ -288,17 +289,21 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | -----------: | :---------------------------------------------- | -----------------: | ---------------------------------: |
 | **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>            |
 | **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`           |
-| **`size`**   | `size` = `64`                                   | **String/Integer** | >= 3 and <= 512, `32px`, `24pt`    |
+| **`size`**   | `size` = `64`                                   | **String/Double**  | >= 3 and <= 512, `32px`, `24pt`    |
 | **`unit`**   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_   |
 | **`font`**   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                   |
 | **`fg`**     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)              |
 | **`bg`**     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)              |
-| **`angle`**  | `angle` = `0`                                   | **Integer/String** | Anticlockwise [ '', 'deg', 'rad' ] |
+| **`angle`**  | `angle` = `0`                                   | **String/Double**  | Anticlockwise [ '', 'deg', 'rad' ] |
 | **`h`**      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
 | **`v`**      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
 | **`x`**      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
 | **`y`**      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
-| **`type`**   | `type` = `'png'`                                | **String**         | See `--types/-t`                   |
+| **`type`**   | `type` = `'png'`                                | **String**         | See `--types | -t`                 |
+
+> **Note**
+> Double and Float are two different types in many languages (4 vs. 8 bytes long, or 32 vs. 64 bits), **but in PHP** they
+> seem to be exactly the same! I choosed the `double` notation here, because that's what `gettype()` returns. ;-)
 
 #### Explaination
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
@@ -306,12 +311,12 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 `x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
 `h` is to the left and the right. They both can also be negative values.
 
-`angle` will rotate the whole image anticlockwise (or just use negative values! ;-) .. supported are either integer
-values (assumed as being in 'degrees'), and Strings with a unit [ 'deg', 'rad' ] as suffix.
+`angle` will rotate the whole image anticlockwise (or just use negative values! ;-) .. supported are either integer or
+double/float values (assumed as being in 'degrees'), and Strings with a unit [ `deg`, `rad` ] as suffix.
 
-`size` is either an Integer. In this case the optional `unit` is considered (also in the configuration). Or it can also
-be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used if `size` is
-already with (valid) suffix!
+`size` is either an Integer or Double/Float. In this case the optional `unit` is considered (also in the configuration).
+Or it can also be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used
+if `size` is already with (valid) suffix!
 
 The selected `font` needs to be installed in the `fonts` directory, as `.ttf`. The parameter is normally without
 '.ttf' extension, but this doesn't matter at all.
@@ -331,7 +336,7 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 
 > **Note**
 > The GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this is
-> **not** checked within `-c/--check`, btw.).
+> **not** checked within `--check | -c`, btw.).
 
 Runned by a web server with enabled `drawing` option and also aktived via `?draw` will only call this
 drawing mode if module is installed. If not, the regular (text/plain) output will nevertheless be used;
@@ -345,7 +350,7 @@ if you don't specify this via `?font` it really *needs* to be pre-set via `font`
 ## Configuration
 The configuration is an associative array of various settings.
 
-Look below at [CLI Mode](#cli-mode) to get to know how to verify your own configuration, via `-c/--check [*]`. It's
+Look below at [CLI Mode](#cli-mode) to get to know how to verify your own configuration, via `--check | -c [*]`. It's
 able to read _optional_ (_also_ **glob**) arguments, to verify concrete [per-host config overwrite](#per-host-config-overwrite)s,
 too.
 
@@ -361,41 +366,44 @@ Here are the current _default_ settings, including the possible types
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
-| Name            | Default value                | Possible types/values                        | Description / Comment(s)                          |
-| --------------: | :--------------------------- | -------------------------------------------: | :-----------------------------------------------: |
-| ⚠️ **`path`**     | `'count/'`                   | **String** (non-empty)                       | See [Relative paths](#relative-paths) below       |
-| **`log`**           | `'count.log'`                | **String** (non-empty)                       | File to log errors to (also see link above)       |
-| **`threshold`**     | `7200`                       | **Integer** (>= 0) or **Null**               | How long does it take till counting again?        |
-| ⚠️ **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**    | Create count value files automatically?           |
-| **`hide`**          | `false`                      | **Boolean** or **String**                    | Show the counted value or hide it?                |
-| **`client`**        | `true`                       | **Boolean** or **null**                      | Enables Cookies against re-counting               |
-| **`server`**        | `true`                       | **Boolean**                                  | Enables cache/ip/timestamp files, like above      |
-| **`drawing`**       | `false`                      | **Boolean**                                  | Essential if using `?draw` or `?zero`!            |
-| ⚠️ **`override`** | `false`                      | **Boolean** or **String** (non-empty)        | Instead of using `$_SERVER[*]` `$_GET`/String     |
-| **`content`**       | `'text/plain;charset=UTF-8'` | **String** (non-empty)                       | Non-graphical mode produces only value output     |
-| **`radix`**         | `10`                         | **Integer**                                  | See [Radix](#radix) below .. change the output(s) |
-| **`clean`**         | `true`                       | **null**, **Boolean** or **Integer** (>0)    | Clean outdated cache files and the FS things?     |
-| **`limit`**         | `32768`                      | **Integer** (>=0)                            | Maximum number of files, in base dir and sub dir! |
-| **`fonts`**         | `'fonts/'`                   | **String** (non-empty)                       | Directory with installed '.ttf' fonts @ path      |
-| **`font`**          | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts/-f`\]  | Default font to use                               |
-| **`size`**          | `64`                         | **String** or **Integer** (>=3 and <=512)    | Either Integer, w/ `unit`, or String `pt` or `px` |
-| **`unit`**          | `px`                         | **String** [ `pt`, `px` ]                    | Will be used if the `size` is just an Integer.    |
-| **`fg`**            | `'rgb(0, 0, 0)'`             | **String** (non-empty)                       | See [Colors](#colors) below                       |
-| **`bg`**            | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                       | See [Colors](#colors) below                       |
-| **`angle`**         | `0`                          | **Integer/String**                           | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
-| **`x`**             | `0`                          | **Integer** (<=512 and >=-512)               | Movement of drawed text left/right                |
-| **`y`**             | `0`                          | **Integer** (<=512 and >=-512)               | Same as above, but for up/down                    |
-| **`h`**             | `0`                          | **Integer** (<=512 and >=-512)               | Horizontal space from text to end of image        |
-| **`v`**             | `0`                          | **Integer** (<=512 and >=-512)               | Vertical space, like above                        |
-| **`type`**          | `'png'`                      | **String** (non-empty) \[see `--types/-t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
-| **`privacy`**       | `false`                      | **Boolean**                                  | Hashes the IPs (stored if `server` is enabled)    |
-| ⚠️ **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes/-h`\] | This is the hash algorithm. Used for Cookies, too |
-| **`error`**         | `'*'`                        | **null** or **String**                       | If not (null), it will be shown on **any** error  |
-| **`none`**          | `'/'`                        | **String**                                   | And this is shown when `!auto` w/o value file..   |
-| ⚠️ **`raw`**      | `false`                      | **Boolean**                                  | See the [RAW mode](#raw-mode) section. _Untested_ |
+| Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
+| ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
+| ⚠️ **`path`**     | `'count/'`                   | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
+| **`log`**        | `'count.log'`                | **String** (non-empty)                         | File to log errors to (also see link above)       |
+| **`threshold`**  | `7200`                       | **Integer** (>= 0) or **Null**                 | How long does it take till counting again?        |
+| ⚠️ **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**      | Create count value files automatically?           |
+| **`hide`**       | `false`                      | **Boolean** or **String**                      | Show the counted value or hide it?                |
+| **`client`**     | `true`                       | **Boolean** or **null**                        | Enables Cookies against re-counting               |
+| **`server`**     | `true`                       | **Boolean**                                    | Enables cache/ip/timestamp files, like above      |
+| **`drawing`**    | `false`                      | **Boolean**                                    | Essential if using `?draw` or `?zero`!            |
+| ⚠️ **`override`** | `false`                      | **Boolean** or **String** (non-empty)          | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| **`content`**    | `'text/plain;charset=UTF-8'` | **String** (non-empty)                         | Non-graphical mode produces only value output     |
+| **`radix`**      | `10`                         | **Integer**                                    | See [Radix](#radix) below .. change the output(s) |
+| **`clean`**      | `true`                       | **null**, **Boolean** or **Integer** (>0)      | Clean outdated cache files and the FS things?     |
+| **`limit`**      | `32768`                      | **Integer** (>=0)                              | Maximum number of files, in base dir and sub dir! |
+| **`fonts`**      | `'fonts/'`                   | **String** (non-empty)                         | Directory with installed '.ttf' fonts @ path      |
+| **`font`**       | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts | -f`\]  | Default font to use                               |
+| **`size`**       | `64`                         | **String** or **Double** (>=3 and <=512)       | Either Integer, w/ `unit`, or String `pt` or `px` |
+| **`unit`**       | `px`                         | **String** [ `pt`, `px` ]                      | Will be used if the `size` is just an Integer.    |
+| **`fg`**         | `'rgb(0, 0, 0)'`             | **String** (non-empty)                         | See [Colors](#colors) below                       |
+| **`bg`**         | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                         | See [Colors](#colors) below                       |
+| **`angle`**      | `0`                          | **Double/String**                              | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
+| **`x`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Movement of drawed text left/right                |
+| **`y`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Same as above, but for up/down                    |
+| **`h`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Horizontal space from text to end of image        |
+| **`v`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Vertical space, like above                        |
+| **`type`**       | `'png'`                      | **String** (non-empty) \[see `--types | -t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
+| **`privacy`**    | `false`                      | **Boolean**                                    | Hashes the IPs (stored if `server` is enabled)    |
+| ⚠️ **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes | -h`\] | This is the hash algorithm. Used for Cookies, too |
+| **`error`**      | `'*'`                        | **null** or **String**                         | If not (null), it will be shown on **any** error  |
+| **`none`**       | `'/'`                        | **String**                                     | And this is shown when `!auto` w/o value file..   |
+| ⚠️ **`raw`**      | `false`                      | **Boolean**                                    | See the [RAW mode](#raw-mode) section. _Unstable_ |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
+
+> **Note**
+> Same as above: in PHP Double and Float are the same. But `double` is what `gettype()` returns.
 
 ### Relative paths
 Absolute paths work as usual. But relative paths are used here in two ways.
@@ -434,7 +442,7 @@ all other cases.
 
 > **Note**
 > If amount of value files exceeds limit, or if set to `false`, you can easily initialize (or change..) these
-> files via the `--set/-t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
+> files via the `--set | -t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
 > If unspecified, the value defaults to (`0`).
 
 Additionally, the `limit` setting is also used for a 'hard' maximum, even if 'auto' integer is greater or without real (int) limit!
@@ -449,7 +457,7 @@ easy to unload again. So, they are **differences** to apply if this host with th
 
 They get automatically loaded, and reside beneath the other counter files.
 
-Hosts with their own configuration overwrites are marked with an integer on the right of the `--values/-v` table in
+Hosts with their own configuration overwrites are marked with an integer on the right of the `--values | -v` table in
 [CLI](#cli-mode), which indicates how many settings are being overwritten by this file, per host (checked before).
 If it's not prefixed by a `+` and instead theres a single `x`, the config file couldn't be read in or parsed
 to an (associative) array.. in this case please check the file for this host!
@@ -515,7 +523,7 @@ Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 ### CLI mode
 > **Note**
 > **You can test your configuration's validity by running the script from command line (CLI mode)!**
-> Just call the script with **`--check/-c [*]`** (cmdline) parameter(s). ;)~
+> Just call the script with **`--check | -c [*]`** (cmdline) parameter(s). ;)~
 
 > **Note**
 > As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
@@ -525,8 +533,8 @@ Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 > as defined in `content` option)! .. so please, just type `php count.php` in your shell.
 
 > **Note**
-> The default action (so w/o parameters) is **`--values/-v`**.
-> You need to explicitly define **`--help/-?`** to get a list of available options, etc.
+> The default action (so w/o parameters) is **`--values | -v`**.
+> You need to explicitly define **`--help | -?`** to get a list of available options, etc.
 
 > **Warning**
 > With enabled `raw` setting this command line interface won't be shown (because this mode is
@@ -564,8 +572,13 @@ As hint for myself I've saved [glob.txt](docs/glob.txt) in this repository.
 > resolve them.. if it works sometimes, it's just because the shell didn't find any match (then the
 > original glob is being encoded 'as is').
 
+> **Warning**
+> When printing a list of files to delete or smth. like this, they require console rows/lines, of course.
+> Some lists could be 'too long', so we limit their output to `KEKSE_TTY_LIMIT` rows/lines. If you need to see
+> **all** list items, use the additional parameter **`--all | -a`**. Then the whole list is being outputted.
+
 > **Note**
-> The `--check/-c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
+> The `--check | -c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
 > default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
 #### Prompts
@@ -691,7 +704,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 > **Note**
-> After cleaning up a bit, removing comments, etc. there are **_6.694_ code lines** left, as of v**3.6.5**!
+> After cleaning up a bit, removing comments, etc. there are **_6.968_ code lines** left, as of v**3.6.6**!
 
 > **Warning**
 > Some lines will be removed soon, because of a new function to handle them better.. ;)~
