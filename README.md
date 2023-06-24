@@ -556,7 +556,7 @@ Here's the complete list:
 |  **`-l`** | **`--clean [*]`**            | Clean all **outdated** (only!) cache files.               |
 |  **`-p`** | **`--purge [*]`**            | Delete the cache(s) for all or specified hosts.           |
 |  **`-z`** | **`--sanitize [-w/-d]`**     | Delete file rests, w/ `--without-values` and `--dot-files`|
-|  **`-d`** | **`--delete [*]`**           | Totally remove any host (all, or by arguments)            |
+|  **`-r`** | **`--remove [*]`**           | Totally remove any host (all, or by arguments)            |
 |  **`-t`** | **`--set (host) [value=0]`** | Sets the (optional) value for the defined host (only one) |
 |  **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.       |
 |  **`-y`** | **`--types`**                | Available image types for drawing output.                 |
@@ -610,7 +610,7 @@ in my own **`kekse`** namespace. *They could be really handy!*
 | **`secure()`**              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
 | **`secure_host()`**         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
 | **`secure_path()`**         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
-| **`delete()`**              | `$_path`, `$_depth = 0`                                             | Function for file deletion (optionally recursive); see also [Deletion](#deletion)            |
+| **`delete()`**              | `$_path`, `$_depth = 0`, `$_float = true`                           | Function for file deletion (optionally recursive); see also [Deletion](#deletion)            |
 | **`get_param()`**           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
 | **`unit()`**                | `$_string`, `$_float = false`, `$_null = true`                      | Splits into value and unit components, which so can be defined in one string only.           |
 | **`color()`**               | `$_string`, `$_gd = null`                                           | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool) |
@@ -656,18 +656,10 @@ So, that's for your info. :)~
 > In PHP and this case the `%` modulo operator isn't the right thing, because it'll return only integers.
 > What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function!
 
-#### Summation
-It's obvious that you can't just sum up every single floating point result to check how much could
-be deleted and how much failed.
-
-But you can instead sum up:
-* **(a)** the integer components, to see how many files could be deleted.
-* **(b)** the `%`/`fmod(*, 1)` float components, _AND_ divide them _afterwards_ by the number of items.
-
-The second **(b)** is the **average**! Example given, if you'd like to show a percentage (and/or such
-a progress bar), just use the second **(b)** calculation, and then, as usual, the 'proportional reasoning'
-or 'proportional method' (translated correctly??), so: `sum(* % 1) / n * 360`; or, if you don't knew it,
-replace the `360` by a `base`.. e.g. the width of your progress bar, if you would draw it by yourself..
+> **Warning**
+> Only works this way if you delete a directory!
+> **AND** This is only if the 3rd argument `$_float = true`. If `false`, it'll just return the (summed up)
+> total _deletions_ itself, and if `$_float = null`, the result will be an array of `[total,deleted,failed]`!
 
 ## Modules
 *TODO*!
