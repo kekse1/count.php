@@ -4,6 +4,10 @@
 It's a universal counter script. ... v**3.6.9**!
 
 ## Status
+**De facto there's currently happening a _real big_ code rewrite**, where I'm replacing much parts by
+completely new rewrites! Much things improved.. including all base [CLI mode](#cli-mode) operations on
+the file system, and more.. **so stay tuned**, in some days or so here'll be a new version! ;-)
+
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
 - [x] **Fixed** the _jagged images_ when rotating ~[ 90, 180, 270 ] degrees (I think that's some 'mistake' or bug in PHP or the GD library...)
