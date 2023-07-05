@@ -4,10 +4,11 @@
 It's a universal counter script. ... v**3.6.9**!
 
 ## Status
-**De facto there's currently happening a _real big_ code rewrite**, where I'm replacing much parts by
-completely new rewrites! Much things improved.. including all base [CLI mode](#cli-mode) operations on
-the file system, and more.. so **stay tuned**, in some days or so here'll be a new version v**4.0.0**,
-**plus** some bigger changes on this `README.md`! ;-)
+**De facto there's currently happening a _real big_ code rewrite**, towards v**4.0.0** (including many changes in this README.md)!
+_Current state_: nearly ready, just one last CLI function and some checks left! CLI functions are with much better user experience
+now (including better ANSI sequences); and the drawing routine is nearly perfect now, too! :-D
+Plus: Security has been improved, too.. got as far as I can.. the script's nearly a paranoid environment..! xD~
+**So, stay tuned!** I'll re-check the code a list time in some days, then you're going to get it here. v**4.0.0**! :-D
 
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
