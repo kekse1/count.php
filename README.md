@@ -3,11 +3,19 @@
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**3.6.9**!
 
-## Status
-**De facto there's currently happening a _real big_ code rewrite**, where I'm replacing much parts by
-completely new rewrites! Much things improved.. including all base [CLI mode](#cli-mode) operations on
-the file system, and more.. so **stay tuned**, in some days or so here'll be a new version v**4.0.0**,
-**plus** some bigger changes on this `README.md`! ;-)
+## Status / News
+_**NEWS**:_ I'm nearly done with v**4.0.0**!!!!
+
+Most things are already working great (and the drawing routine is now BEST, also aligning everything
+correct w/o workarounds..)! Some little things left to do..
+
+This new code is nearly a re-write: many things have changed. And the code quality is now better, too.
+
+*Just wait some days*.. before I'm publishing it (including much new README.md), I've just to set up
+another Debian server. _Then_ you can get my newest version. So *stay tuned* (for some days only)!
+
+... and have a nice day.
+
 
 - [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
 - [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
