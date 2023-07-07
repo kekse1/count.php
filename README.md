@@ -1,7 +1,39 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
+<<<<<<< HEAD
 It's a universal counter script. ... v**4.0.0**!
+=======
+It's a universal counter script. ... v**3.6.9**!
+
+## Status / News
+_**NEWS**:_ I'm nearly done with v**4.0.0**!!!!
+
+Most things are already working great (and the drawing routine is now BEST, also aligning everything
+correct w/o workarounds..)! Some little things left to do..
+
+This new code is nearly a re-write: many things have changed. And the code quality is now better, too.
+
+*Just wait some days*.. before I'm publishing it (including much new README.md), I've just to set up
+another Debian server. _Then_ you can get my newest version. So *stay tuned* (for some days only)!
+
+... and have a nice day.
+
+
+- [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
+- [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
+- [x] **Fixed** the _jagged images_ when rotating ~[ 90, 180, 270 ] degrees (I think that's some 'mistake' or bug in PHP or the GD library...)
+- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s; and **no more global namespace**
+- [x] Much better **`--check / -c [*]`**. No more manual check, using a special 'vector' now.. **and** [per-host-config](#per-host-config-overwrite) **check** is also better now
+- [x] Extended `delete()` functionality.. incl. floating point results, but also arrays with detailed countings! ..
+- [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) to beautify your terminal
+- [x] Limited list output in the console.. cutting of too many rows/lines. WORX, even the cmdline switch to disable this behavior. :-)
+- [ ] **Currently _massive_ rewrite of all [CLI mode](#cli-mode) operations.. IN PROGRESS! :)~**
+- [ ] **And using `check_file()` (w/ `chmod()` for more security) plus clean up the file accessing routines in general!**
+- [ ] **_To be exact_: ATM I'm doing a rewrite of \~half/third of the whole code!! xD~**
+- [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports) (atm very *untested*, even known to not fully work)
+- [ ] Planned, but yet future: Modules
+>>>>>>> b58e5efbc2cfa1754caacf0e59b84cf7900cac0c
 
 ## Index
 1. [Screenshot](#screenshot)
