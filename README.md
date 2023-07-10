@@ -1,42 +1,13 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**3.6.9**!
-
-## Status / News
-_**NEWS**:_ I'm nearly done with v**4.0.0**!!!!
-
-Most things are already working great (and the drawing routine is now BEST, also aligning everything
-correct w/o workarounds..)! Some little things left to do..
-
-This new code is nearly a re-write: many things have changed. And the code quality is now better, too.
-
-*Just wait some days*.. before I'm publishing it (including much new README.md), I've just to set up
-another Debian server. _Then_ you can get my newest version. So *stay tuned* (for some days only)!
-
-... and have a nice day.
-
-
-- [x] **_BIG_ improvement** in the [*drawing function(s)*](#drawing)!! Alignment is perfect now, size is always as requested, and supporting both `pt` and `px`
-- [x] Supporting **rotations** now (see the `angle` setting and the `?angle` parameter); either degrees or radians, both are possible
-- [x] **Fixed** the _jagged images_ when rotating ~[ 90, 180, 270 ] degrees (I think that's some 'mistake' or bug in PHP or the GD library...)
-- [x] Completely ***new [configuration](#configuration) system***! With [Per-host config override](#per-host-config-overwrite)s; and **no more global namespace**
-- [x] Much better **`--check / -c [*]`**. No more manual check, using a special 'vector' now.. **and** [per-host-config](#per-host-config-overwrite) **check** is also better now
-- [x] Extended `delete()` functionality.. incl. floating point results, but also arrays with detailed countings! ..
-- [x] To make user experience in the [CLI mode](#cli-mode) better: some basic [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) to beautify your terminal
-- [x] Limited list output in the console.. cutting of too many rows/lines. WORX, even the cmdline switch to disable this behavior. :-)
-- [ ] **Currently _massive_ rewrite of all [CLI mode](#cli-mode) operations.. IN PROGRESS! :)~**
-- [ ] **And using `check_file()` (w/ `chmod()` for more security) plus clean up the file accessing routines in general!**
-- [ ] **_To be exact_: ATM I'm doing a rewrite of \~half/third of the whole code!! xD~**
-- [ ] Preparing better [RAW mode](#raw-mode) support, with better [(namespaces and) exports](#exports) (atm very *untested*, even known to not fully work)
-- [ ] Planned, but yet future: Modules
+It's a universal counter script. ... v**4.0.0**!
 
 ## Index
-1. [Status](#status)
-2. [Example](#example)
-3. [Installation](#installation)
+1. [Screenshot](#screenshot)
+2. [Installation](#installation)
 	* [Dependencies](#dependencies)
-4. [Details](#details)
+3. [Details](#details)
 	* [Security](#security)
 	* [Storage](#storage)
 	* [Server and/or Client](#server-andor-client)
@@ -47,40 +18,50 @@ another Debian server. _Then_ you can get my newest version. So *stay tuned* (fo
 	* [Privacy](#privacy)
 	* [Errors](#errors)
 	* [String filter](#string-filter)
-5. [Drawing](#drawing)
+	* [Security test](#security-test)
+4. [Drawing](#drawing)
 	* [Parameters](#parameters)
 	* [Dependencies](#dependencies-1)
-6. [Configuration](#configuration)
+5. [Configuration](#configuration)
 	* [No more constants.](#no-more-constants)
+	* [Per-host config overwrite](#per-host-config-overwrite)
 	* [Relative Paths](#relative-paths)
 	* [Colors](#colors)
 	* [Radix/Base](#radixbase)
-	* ['auto'](#auto)
-	* [Per-host config overwrite](#per-host-config-overwrite-1)
-7. [Modes](#modes)
+	* [Automatical file creation](#automatical-file-creation)
+6. [Modes](#modes)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
 	* [Hide mode](#hide-mode)
 	* [Test mode](#test-mode)
-	* [RAW mode](#raw-mode)
 	* [CLI mode](#cli-mode)
-8. [Exports](#exports)
-	* [Functions](#functions)
-	* [Namespaces](#namespaces)
-	* [Deletion](#deletion)
-9. [Modules](#modules)
-10. [FAQ](#faq)
-11. [The original version](#the-original-version)
-12. [Copyright and License](#copyright-and-license)
+		* [ANSI Escape Sequences](#ansi-escape-sequences)
+		* [List output limit](#list-output-limit)
+		* [The argument vector](#the-argument-vector)
+		* [Operations](#operations)
+			* [File Scheme](#file-scheme)
+7. [Exports](#exports)
+8. [Modules](#modules)
+9. [FAQ](#faq)
+10. [The original version](#the-original-version)
+11. [Copyright and License](#copyright-and-license)
 
-## Example
-![\<img'>](docs/image.png)
+## Screenshot
+Below is an example screenshot with the [CLI mode](#cli-mode), and here's also an
+~> [example \<img\> drawn in the browser](docs/example.png) (and just take a look
+at the GET query..).
+
+![Running in CLI mode](docs/console.png)
 
 ## Installation
-The easiest way is to just use this `count.php` with it's default configuration: copy it to some path
-in your web root, create a `count/` directory in the same path (with `chmod 1777` maybe - or just make sure that your web server can
-access the file system). **That's all!** :)~
+The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
+and **That's all**! :-) The configured counter directory `count/` will automatically be created.
+
+> **Warning**
+> If your HTTPD uses another user than you've for regular use, you _maybe_ would like to adapt `KEKSE_MODE_{DIR,FILE}`!
+> It's an open door for other users on the system, but if you really need console access under this circumstances,
+> you'd like to do this..
 
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
@@ -99,7 +80,7 @@ So, **that's** all. :D~
 
 > **Note**
 > If you want to edit the default configuration, take at look at the [Configuration section](#configuration).
-> And to make sure your settings are valid, you can call this script like this: [**`php count.php --check / -c`**](#cli-mode).
+> And to make sure your settings are valid, you can call this script like this: [**`php count.php --config / -c`**](#cli-mode).
 
 ### Dependencies
 **NO** dependencies.
@@ -142,6 +123,10 @@ And I'm also not going to explain all the configuration details in this overview
 Instead of using big databases or an own format in one file or so (what I preferred in ~~**1998**~~ ;-), I'm chosing the
 **file system** as _**very** efficient_ carrier! Really, it's much performance in it!
 
+> **Note**
+> Take a look at the [File Scheme](#file-scheme) sub section, to get to know which files are being used (which are _real_
+> counter items of your base counter directory)!
+
 It's used to store the counted values itself, one file per host. And if `server` setting is enabled, it also creates
 a directory for each host, where every IP address (or their hashes, if [Privacy](#privacy) is a concern) will take one
 file each. If you configured it, they'll also be cleaned, as often as you defined it (even though you can define to
@@ -150,7 +135,7 @@ _never_ delete any such file, to protocol the IP's, e.g.).
 These IP files (with timestamps in it) will also use own cache files, one per host, where the amount of them is managed. So if their amount
 is necessary to know, no repetition of `scandir()` (used `opendir()` and `readdir()` most times) is always slowing down things..
 
-> **Note**
+> **Warning**
 > **All files got limits** .. for sure. And there's also a limit for automatical creation of files.
 
 ### Server and/or Client
@@ -179,7 +164,7 @@ If(`override === true`), one can call the script's URL with `?override=(string)`
 string (or just another host you define there).
 
 > **Warning**
-> On **any** override, it's expected this ain't a real host or smth.. so the `make_cookie()` is disabled then!
+> On **any** override, it's expected this ain't a real host or smth.. so the `makeCookie()` is disabled then!
 
 I don't really like it, but if you need this feature, just use it. Works great.
 
@@ -187,9 +172,10 @@ I don't really like it, but if you need this feature, just use it. Works great.
 > The `auto` setting is also overridden in this case, so it's not possible to always use any arbitrary parameter
 > (also important for security). Thus, you first have to create a value file to the corresponding string!
 
-And now the `override` setting can also be a (non-empty) String, to define just one _fixed_ host(name) to use.
-Last possibility for an `override` is the `counter()` function itself (in it's first argument); but all the
-strings are always filtered (by `secure_host()`), and every of these overrides sets `OVERRIDDEN = true`.
+And now the `override` setting can also be a (non-empty) String, to define just one _fixed_ host(name) (or an
+more or less arbitrary (but filtered, see `secureHost()`) identifier String) to use.
+
+Every override set's the state (see `{get,set}State()`) `overridden = true`.
 
 > **Note**
 > If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but to the
@@ -205,8 +191,7 @@ much) **global** (namespace) declaration.. **BAD**. So now everything works even
 (and nearly **no** `define()` is being used now - except some in my own namespace).
 
 > **Note**
-> For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section (of the
-> [Configuration](#configuration) section)!
+> For more infos, see the [Per-host config overwrite](#per-host-config-overwrite) sub section!
 
 ### Cleaning
 If configured, out-dated ip/timestamp files will be deleted (this and more is also possible in
@@ -227,45 +212,39 @@ access to the file system). .. just enable the `privacy` setting.
 
 ### Errors
 
-#### Log file
+#### Log to file
 Most errors will be appended to the `count.log` file (configurable via `log`), so webmasters etc. can
-directly see what's maybe going wrong. _Due to security_, not everything is being logged. Especially
-where one could define own `$_GET[*]` or so, which could end up in flooding the log file!
+directly see what's maybe going wrong. But _due to security_, not everything is being logged.
+Especially where one could define own `$_GET[]` or `$_SERVER[]` or so, which could end up in
+flooding the log file!
 
 > **Note**
 > Logging with timestamps: seconds since the _UNIX epoch_ (the January 1st, 1970).
 
-#### Details
-In `raw` mode, errors won't be logged to file and they won't `die()`, but `throw new Exception(..)`.
-
-But normally you won't use this mode. So normally errors are stopping the execution via `die()` (but
-it's an abstracted function to manage exceptions better). So if an error would be shown to the user
-who called this script, it's either the `error` string, if set: just looks better and safes space on
-the web site, and the user mostly won't need to see the detailed error message.. by default they'll
-just see `/` (kinda variant of the numeric value).
-
-Otherwise, without `error` setting, they'll see the error message itself (in shortened form, so clients
-won't see file paths). .. When sending an error, the defined `content` header will be sent; also on drawing
-errors.. so the image will break.
-
 > **Note**
-> I'm using two functions for this. Please use them, **never** a regular `die()` nor a `throw new Exception(..)`.
-> These functions handle it better: `error()`/`log_error()`. Please _log_ errors only in safe situations, so no
-> client is able to flood the log file..!
+> Parsing this log file is easy: it begins with `[$timestamp]` and optional `$_source($_path)`; after this a regular
+> colon with space `: ` starts the `$_reason` string itself. So you can use `cut -d':' -f{1|2} $file` to extract either
+> the extended infos (`-f1`) or the reason/message itself (`-f2`).
+
+> **Warning**
+> As `cut` only handles one-char `-d` delimiters, you can't include the following space here.
+> But you can `substr()` the message. In the `bash`, this is done via `${line:2}`.
+> But best 'd be to `split()` or smth. similar by string `: ` (a colon and a space)!
 
 ### String filter
-_All `$_SERVER` and `$_GET` are filtered to reach security_ (please don't ever trust any [user] input!).
+_All `$_SERVER[]` and `$_GET[]` are filtered to reach security_ (please don't ever trust any [user] input!).
 
-I just abstracted both functions `secure_{host,path}()` to only one function, which is partially also
-used by the `get_param()`.. both functions stayed: they internally use `secure()`, but the `secure_host()`
-additionally does a `strtolower()`.
+I just abstracted both functions `secure{,Host,Path}()` to only one function, which is partially also
+used by the `getParam()`.. both functions stayed: they internally use `secure()`, but the `secureHost()`
+additionally does a `strtolower()` (via parameter which is passed straight to the base `secure()` (afair).
 
 So here you gotta know which characters you can pass. The maximum length is 224 characters (by default, look
-at the `KEKSE_LIMIT` constant), btw.
+at the `KEKSE_LIMIT_STRING` constant), btw.
 
 * **`a-z`**
 * **`A-Z`**
 * **`0-9`**
+* **`=`**
 * **`#`**
 * **`,`**
 * **`:`**
@@ -279,7 +258,7 @@ at the `KEKSE_LIMIT` constant), btw.
 That's also important for the *optional* `?override=` GET parameter (see above), e.g., as hosts (etc.)
 also won't ever be accepted 'as is'.
 
-So I'm also securing the used `$_SERVER` variables, as e.g. via `Hostname: ...` in the HTTP header the
+So I'm also securing the used `$_SERVER[]` variables, as e.g. via `Hostname: ...` in the HTTP header the
 host could be poisoned as well!
 
 #### **FQDN**'s
@@ -287,6 +266,22 @@ host could be poisoned as well!
 > The string filter (above) also removes any trailing `.` from the hostnames; so if you call from
 > a web browser with a hostname plus trailing dot `.`, which is a **FQDN**, it'll be removed, so
 > the counting is not disturbed (otherwise it would end up in another file for w/ and w/o `.`)!
+
+### Security test
+*Beneath some more or less routines* I even added some basic, _abstract_ file operation functions, which I'm using
+**only** instead of the regular ones (listed below), and in the `checkPath()`.
+
+> **Note**
+> It's more or less nearly too much, but it's the last possibility for security, if the [string filter](#string-filter) failed or smth..
+
+This **`securityTest()`** function checks:
+
+* If path is really a string
+* If path starts with `/` (all used paths are resolved)
+* If any path component is `..`
+* Most times also if path is below one of the counter base paths (as follows)
+
+Used base paths of the counter are: [ `path`, `log`, `fonts`, `modules` ].
 
 ## Drawing
 The normal way is to return the plain value (by default w/ **`Content-Type: text/plain;charset=UTF-8`**),
@@ -313,11 +308,11 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | **`fg`**     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)              |
 | **`bg`**     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)              |
 | **`angle`**  | `angle` = `0`                                   | **String/Double**  | Anticlockwise [ '', 'deg', 'rad' ] |
-| **`h`**      | `h` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
-| **`v`**      | `v` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
-| **`x`**      | `x` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
-| **`y`**      | `y` = `0`                                       | **Integer**        | >= -512 and <= 512                 |
-| **`type`**   | `type` = `'png'`                                | **String**         | See `--types | -t`                 |
+| **`h`**      | `h` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
+| **`v`**      | `v` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
+| **`x`**      | `x` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
+| **`y`**      | `y` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
+| **`type`**   | `type` = `'png'`                                | **String**         | See `--types / -t`                 |
 
 > **Note**
 > Double and Float are two different types in many languages (4 vs. 8 bytes long, or 32 vs. 64 bits), **but in PHP** they
@@ -326,8 +321,9 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 #### Explaination
 `fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
 
-`x` and `y` are just moving the text along these both axis (in px). `v` is the space above and below the text,
-`h` is to the left and the right. They both can also be negative values.
+`x` and `y` are just moving the text along these both axis. `v` is the space above and below the text, `h` is to the left and
+the right. They all can also be negative values, and can be with or without unit suffix. If no suffix defined, they'll be
+scaled by using the `?unit` (or it's setting, if not as parameter).
 
 `angle` will rotate the whole image anticlockwise (or just use negative values! ;-) .. supported are either integer or
 double/float values (assumed as being in 'degrees'), and Strings with a unit [ `deg`, `rad` ] as suffix.
@@ -354,7 +350,7 @@ preferred (example given: `jpg` does not have the best alpha-channel (transparen
 
 > **Note**
 > The GD library also needs 'FreeType' support with it, as we're drawing with True Type Fonts (this is
-> **not** checked within `--check | -c`, btw.).
+> **not** checked within `--config / -c`, btw.).
 
 Runned by a web server with enabled `drawing` option and also aktived via `?draw` will only call this
 drawing mode if module is installed. If not, the regular (text/plain) output will nevertheless be used;
@@ -368,12 +364,8 @@ if you don't specify this via `?font` it really *needs* to be pre-set via `font`
 ## Configuration
 The configuration is an associative array of various settings.
 
-Look below at [CLI Mode](#cli-mode) to get to know how to verify your own configuration, via `--check | -c [*]`. It's
-able to read _optional_ (_also_ **glob**) arguments, to verify concrete [per-host config overwrite](#per-host-config-overwrite)s,
-too.
-
-The [per-host config overwrite](#per-host-config-overwrite)s do allow a subset/difference of the whole configuration
-items to be applied, if such host is selected. They reside in the regular `path` directory, prefixed by a single `@`.
+You can test if they are valid by using the **`--config / -c`** command line argument (with optional argument(s),
+see the [Per-host config overwrite](#per-host-config-overwrite) section below).
 
 ### No more constants.
 Here are the current _default_ settings, including the possible types
@@ -386,42 +378,60 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
 | Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
 | ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
-| ⚠️ **`path`**     | `'count/'`                   | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
+| ⚠️ **`path`**     | `'count/'`                  | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
 | **`log`**        | `'count.log'`                | **String** (non-empty)                         | File to log errors to (also see link above)       |
-| **`threshold`**  | `7200`                       | **Integer** (>= 0) or **Null**                 | How long does it take till counting again?        |
-| ⚠️ **`auto`**     | `32`                         | **Boolean**, **Integer** (>0) or **null**      | Create count value files automatically?           |
-| **`hide`**       | `false`                      | **Boolean** or **String**                      | Show the counted value or hide it?                |
-| **`client`**     | `true`                       | **Boolean** or **null**                        | Enables Cookies against re-counting               |
+| **`threshold`**  | `7200`                       | **Integer**/**NULL**                           | How long does it take till counting again?        |
+| **`auto`**       | `32`                         | **Boolean**/**Integer**/**NULL**               | Create count value files automatically?           |
+| **`hide`**       | `false`                      | **Boolean**/**String**                         | Show the counted value or hide it?                |
+| **`client`**     | `true`                       | **Boolean**/**NULL**                           | Enables Cookies against re-counting               |
 | **`server`**     | `true`                       | **Boolean**                                    | Enables cache/ip/timestamp files, like above      |
 | **`drawing`**    | `false`                      | **Boolean**                                    | Essential if using `?draw` or `?zero`!            |
-| ⚠️ **`override`** | `false`                      | **Boolean** or **String** (non-empty)          | Instead of using `$_SERVER[*]` `$_GET`/String     |
+| ⚠️ **`override`** | `false`                     | **Boolean**/**String** (non-empty)             | Instead of using `$_SERVER[]` `$_GET[]` or String |
 | **`content`**    | `'text/plain;charset=UTF-8'` | **String** (non-empty)                         | Non-graphical mode produces only value output     |
 | **`radix`**      | `10`                         | **Integer**                                    | See [Radix](#radix) below .. change the output(s) |
-| **`clean`**      | `true`                       | **null**, **Boolean** or **Integer** (>0)      | Clean outdated cache files and the FS things?     |
-| **`limit`**      | `32768`                      | **Integer** (>=0)                              | Maximum number of files, in base dir and sub dir! |
+| **`clean`**      | `true`                       | **NULL**/**Boolean**/**Integer**               | Clean outdated cache files and the FS things?     |
+| **`limit`**      | `32768`                      | **Integer**                                    | Maximum number of files, in base dir and sub dir! |
 | **`fonts`**      | `'fonts/'`                   | **String** (non-empty)                         | Directory with installed '.ttf' fonts @ path      |
-| **`font`**       | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts | -f`\]  | Default font to use                               |
-| **`size`**       | `64`                         | **String** or **Double** (>=3 and <=512)       | Either Integer, w/ `unit`, or String `pt` or `px` |
-| **`unit`**       | `px`                         | **String** [ `pt`, `px` ]                      | Will be used if the `size` is just an Integer.    |
+| **`font`**       | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts / -f`\]  | Default font to use                               |
+| **`size`**       | `64`                         | **String**/**Double** (>=3 and <=512)          | Either Double, w/ `unit`, or String `pt` or `px`  |
+| **`unit`**       | `px`                         | **String** [ `pt`, `px` ]                      | Will be used if `size`/`x`/`y`/`h`/`v` is numeric.|
 | **`fg`**         | `'rgb(0, 0, 0)'`             | **String** (non-empty)                         | See [Colors](#colors) below                       |
 | **`bg`**         | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                         | See [Colors](#colors) below                       |
 | **`angle`**      | `0`                          | **Double/String**                              | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
-| **`x`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Movement of drawed text left/right                |
-| **`y`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Same as above, but for up/down                    |
-| **`h`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Horizontal space from text to end of image        |
-| **`v`**          | `0`                          | **Integer** (<=512 and >=-512)                 | Vertical space, like above                        |
-| **`type`**       | `'png'`                      | **String** (non-empty) \[see `--types | -t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
+| **`x`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Movement of drawed text left/right                |
+| **`y`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Same as above, but for up/down                    |
+| **`h`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Horizontal space from text to end of image        |
+| **`v`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Vertical space, like above                        |
+| **`type`**       | `'png'`                      | **String** (non-empty) \[see `--types / -t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
 | **`privacy`**    | `false`                      | **Boolean**                                    | Hashes the IPs (stored if `server` is enabled)    |
-| ⚠️ **`hash`**     | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes | -h`\] | This is the hash algorithm. Used for Cookies, too |
-| **`error`**      | `'*'`                        | **null** or **String**                         | If not (null), it will be shown on **any** error  |
+| **`hash`**       | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes / -h`\] | This is the hash algorithm. Used for Cookies, too |
+| **`error`**      | `'*'`                        | **NULL**/**String**                            | If not (null), it will be shown on **any** error  |
 | **`none`**       | `'/'`                        | **String**                                     | And this is shown when `!auto` w/o value file..   |
-| ⚠️ **`raw`**      | `false`                      | **Boolean**                                    | See the [RAW mode](#raw-mode) section. _Unstable_ |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
 
 > **Note**
 > Same as above: in PHP Double and Float are the same. But `double` is what `gettype()` returns.
+
+### Per-host config overwrite
+The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
+the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
+easy to unload again. So, they are **differences** to apply if this host with the file (`@`-prefixed) is selected.
+
+They get automatically loaded, and reside beneath the other counter files.
+
+> **Note**
+> To check _these_ configuration (difference) files, the regular **`--config / -c`** command line parameter must be
+> extended with at least one {host,override}-name or even **glob**(s). Checks one or more of this per-host config files.
+
+Hosts with their own configuration (difference) overwrites have their own mark in the last `Configuration` column, where
+the first (bold) integer indicates how many real, _valid_ configuration items it has, the second value (after `/`) shows
+how many items there are available in the host config file (as usual a JSON file with `@` prefix char).
+
+> **Warning**
+> The configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
+> set of available configuration items)! <sub>and **yes**, this is a *warning*.. xD~</sub>
 
 ### Relative paths
 Absolute paths work as usual. But relative paths are used here in two ways.
@@ -450,39 +460,25 @@ Supported formats are:
 ### Radix/Base
 The `radix` configuration should be an **Integer** between **2** and **36**. Default is, of course, **10**! :)~
 
-But it's worth to mention that this parameter can also be changed in the `$_GET`-URL with which this script _can_ (optionally) be
+But it's worth to mention that this parameter can also be changed in the `$_GET[]`-URL with which this script _can_ (optionally) be
 called. Just use the `?radix=10` (here with it's default value, if not defined otherwise in the `radix` setting mentioned here above).
 
-### 'auto'
+### Automatical file creation
+This is the `auto` setting.
+
 By default up to `32` value files will automatically be created, if not existing for a host. With overridden
 host this setting is also overwritten: `true` if `override` setting or `$_host` is a String, and `false` in
 all other cases.
 
 > **Note**
-> If amount of value files exceeds limit, or if set to `false`, you can easily initialize (or change..) these
-> files via the `--set | -t (host) [value=0]` parameter in [CLI mode](#cli-mode), with _optional_ value (integer).
-> If unspecified, the value defaults to (`0`).
+> If amount of value files exceeds _this_ limit, or if set to `false`, you can easily initialize (or change..) these
+> files via the `--set / -s <host[=0][, ... ]>` parameter in [CLI mode](#cli-mode), with _optional_ value (integer)
+> for each host (after `=` equal sign). But if value is unspecified, it defaults to `0`.
 
 Additionally, the `limit` setting is also used for a 'hard' maximum, even if 'auto' integer is greater or without real (int) limit!
 
 > **Warning**
 > To (temporarily) **disable** the _whole counting unit_, set `auto = null`. ;)~
-
-### Per-host config overwrite
-The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
-the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
-easy to unload again. So, they are **differences** to apply if this host with the `@` file is selected.
-
-They get automatically loaded, and reside beneath the other counter files.
-
-Hosts with their own configuration overwrites are marked with an integer on the right of the `--values | -v` table in
-[CLI](#cli-mode), which indicates how many settings are being overwritten by this file, per host (checked before).
-If it's not prefixed by a `+` and instead theres a single `x`, the config file couldn't be read in or parsed
-to an (associative) array.. in this case please check the file for this host!
-
-> **Warning**
-> The configuration files are encoded in the [JSON format](https://json.org/) (and don't need to hold the whole
-> set of available configuration items)! <sub>and **yes**, this is a *warning*.. xD~</sub>
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
@@ -498,8 +494,8 @@ define in `content`), but `image/png` or `image/jpeg`, so you can embed the coun
 Please take a look at the [Drawing section](#drawing).
 
 ### Zero mode
-The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined
-otherwise, it'll count invisible this way. :)~
+The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<img>`. If not defined otherwise,
+it'll count invisible this way. :)~
 
 ### Hide mode
 By setting `hide` to true or a string, this string will be shown instead of the real count value.
@@ -516,31 +512,22 @@ your `path` directory!
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
 a random integer value.
 
-### RAW mode
-By defining `raw = true` the base counting function won't be called automatically, so that you've the
-chance of doing this in your PHP scripts manually. This way there'll be no real output (neither text
-nor graphical), and you just get the current value returned by the `counter()` function.
-
-The function to call from your scripts (after `require_once('count.php')` or so) is:
-
-* **`function counter($_host = null, $_read_only = null)`**
-
-The first argument is (null) by default - but in `raw` _plus_ `CLI` mode, where no `$_SERVER` is available,
-you really need to set this argument to a host string, which will overwrite the regular `HOST`, etc.
-
-If called w/ `$_readonly = false` and in `raw` _plus_ `CLI` mode, every call of `counter()` will increase
-the counter value, without `threshold` testing, etc. (as there's neither cookies available, nor an
-IP address).
-
-Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
-
-> **Note**
-> My own namespace is `kekse`.
-
 ### CLI mode
+This is the **c**ommand **l**ine (**i**nterface) mode (just take a look at the [screenshot](#screenshot)
+on top of this `README.md`..).
+
+Here you can also test your configuration's validity by running the script with **`--config / -c [*]`** parameter.
+
+Calling this script without any parameters will show the currently counted values (and more). Otherwise just
+take a look at the sub section [The argument vector](#the-argument-vector) below, or/and look at the section
+[Operations](#operations), to understand how you can manage your whole `count/` directory better.
+
+And if you need help, don't be shy and call this script with **`--help / -h`** parameter!
+
 > **Note**
-> **You can test your configuration's validity by running the script from command line (CLI mode)!**
-> Just call the script with **`--check | -c [*]`** (cmdline) parameter(s). ;)~
+> The output of long lists is, by default, limited to 40 entries/rows. If you want to omit this,
+> add the **`--lines / -n`** parameter. _Optionally_ is even an integer possible, to directly set the amount
+> of maximum rows used (even if there'll be usually a prompt to ask you for more or less..).
 
 > **Note**
 > As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
@@ -549,37 +536,64 @@ Last but not least: regular `die()` are replaced by `throw new Exception(..)`.
 > (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
 > as defined in `content` option)! .. so please, just type `php count.php` in your shell.
 
-> **Note**
-> The default action (so w/o parameters) is **`--values | -v`**.
-> You need to explicitly define **`--help | -?`** to get a list of available options, etc.
+#### ANSI Escape Sequences
+I'm using ANSI Escape Sequences, for styling and coloring the text in a console. For the best support (that every terminal, that implement these sequences),
+I've decided to only use the most rudimentary sequences, so only some basic styles (underline, bold, etc.) and only 4-bit colors (so only max. 8 real colors).
+
+To globally disable these sequences, either use the `define('KEKSE_ANSI', true)` on top of the script,
+or (even better) just call the script with the (optional) parameter **`--no-ansi / -N`**!
 
 > **Warning**
-> With enabled `raw` setting this command line interface won't be shown (because this mode is
-> for using the script within other PHP scripts) - **except** if you define a parameter in the cmd line.
+> As I'm using these sequences **plus** the `printf()` function (etc.), I also implemented my own `\kekse\strlen()` function, plus `\kekse\less()`,
+> where these sequences are being filtered out!
 
-##### The argument vector
-Here's the complete list:
+> **Note**
+> I also own a _much better_ implementation of more than just these basic sequences, but in JavaScript: see my [lib.js / Library.js](https://github.com/kekse1/lib.js/);
+> the real file path is located in this path: [lib.js/tty/ansi.js](https://github.com/kekse1/lib.js/blob/git/lib.js/tty/ansi.js).
 
-| Short     | Long                         | Description                                               |
-| --------: | :--------------------------- | :-------------------------------------------------------: |
-|  **`-?`** | **`--help`**                 | Shows the link to this website..                          |
-|  **`-V`** | **`--version`**              | Print current script's version.                           |
-|  **`-C`** | **`--copyright`**            | Shows the author of this script. /me ..                   |
-|  **`-c`** | **`--check [*]`**            | Verify DEFAULT or, by arguments, per-user configurations  |
-|  **`-v`** | **`--values [*]`**           | Shows all vales and more.                                 |
-|  **`-s`** | **`--sync [*]`**             | Same as above, but with cache synchronization..           |
-|  **`-l`** | **`--clean [*]`**            | Clean all **outdated** (only!) cache files.               |
-|  **`-p`** | **`--purge [*]`**            | Delete the cache(s) for all or specified hosts.           |
-|  **`-z`** | **`--sanitize [-w/-d]`**     | Delete file rests, w/ `--without-values` and `--dot-files`|
-|  **`-r`** | **`--remove [*]`**           | Totally remove any host (all, or by arguments)            |
-|  **`-t`** | **`--set (host) [value=0]`** | Sets the (optional) value for the defined host (only one) |
-|  **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.       |
-|  **`-y`** | **`--types`**                | Available image types for drawing output.                 |
-|  **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                   |
-|  **`-e`** | **`--errors`**               | Counts the error log lines.                               |
-|  **`-u`** | **`--unlog`**                | Deletes the whole error log file.                         |
+#### List output limit
+If you're using _many_ hosts or many files are affected or smth. like this, I've also integrated a limitation of lines/rows outputted in the console.
+So if there are more than `40` (default) rows/lines to output, you're asked if you want to also show the rest of the list, or the output is stopped (w/ comment).
 
-Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`()`**
+You can globally disable this behavior by changing the `define('KEKSE_LIMIT_TTY', 40)` (or even `KEKSE_LIMIT_TTY_PROMPT` to disable the question meantioned above),
+or (better) just call this script with either pure **`--lines / -n`** (to disable the limit), or define another limit by passing it to this parameter.
+
+> **Note**
+> You can pass it by either **`--lines (int)`** or **`--lines=(int)`** (same with **`-n`**).
+
+#### The argument vector
+These are the CLI functions. The real operations on the file system storage are explained in the following
+[Operations](#operations) section, so you'll get to know, which argument is there for which reason..
+
+##### Possible parameters
+To learn how to use the functions to handle the whole `count/` directory (those in the following table with
+**bold** descriptions), go down to the [Operations](#operations) section! Here's the list of all parameters:
+
+> **Warning**
+> Parameters marked with ⚠️ are functions with 'hard' data write operations!
+
+| Short     | Long                         | Description                                                                         |
+| --------: | :--------------------------- | :---------------------------------------------------------------------------------: |
+|    **`-?`** | **`--help`**                 | Shows the link to this website..                                                    |
+|    **`-V`** | **`--version`**              | Print current script's version.                                                     |
+|    **`-W`** | **`--website`**              | Print URL to this project page (on github.com atm.)                                 |
+|    **`-C`** | **`--copyright`**            | Shows the author of this script. /me ..                                             |
+|    **`-I`** | **`--info`**                 | All the above infos at once                                                         |
+|    **`-c`** | **`--config [*]`**           | Verify DEFAULT or, by arguments, per-user configurations                            |
+|    **`-v`** | **`--values [*]`**           | Shows all vales and more.                                                           |
+| ⚠️ **`-y`** | **`--sync [*]`**             | **Same as above, but with cache synchronization..**                                 |
+| ⚠️ **`-l`** | **`--clean [*] [-w]`**       | **Clean all _outdated_ (only!) cache items**                                        |
+| ⚠️ **`-p`** | **`--purge [*]`**            | **Delete the cache(s) for all or specified hosts.**                                 |
+| ⚠️ **`-r`** | **`--remove [*]`**           | **Totally remove any host (all, or by arguments)**                                  |
+| ⚠️ **`-z`** | **`--sanitize [-w]`**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
+| ⚠️ **`-s`** | **`--set <host[=0][, ...]>** | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
+|    **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
+|    **`-p`** | **`--types`**                | Available image types for drawing output.                                           |
+|    **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                                             |
+|    **`-e`** | **`--errors`**               | Counts the error log lines.                                                         |
+|    **`-u`** | **`--unlog`**                | Deletes the whole error log file.                                                   |
+
+Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`<>`**
 are _required_ ones. Most **`*`** arguments can be defined multiple times, for more hosts, e.g.
 
 As hint for myself I've saved [glob.txt](docs/glob.txt) in this repository.
@@ -592,92 +606,166 @@ As hint for myself I've saved [glob.txt](docs/glob.txt) in this repository.
 > **Warning**
 > When printing a list of files to delete or smth. like this, they require console rows/lines, of course.
 > Some lists could be 'too long', so we limit their output to `KEKSE_TTY_LIMIT` rows/lines. If you need to see
-> **all** list items, use the additional parameter **`--all | -a`**. Then the whole list is being outputted.
+> **all** list items, use the additional parameter **`--lines / -n`**. Then the whole list is being outputted.
 
 > **Note**
-> The `--check | -c [*]` can also have *optional* `host` arguments (also globs), to not check the whole
+> The `--config / -c [*]` can also have *optional* host(/override) arguments (also **glob**s), to not check the whole
 > default/global configuration, but the overrided ones (by a [per-host config overwrite](#per-host-config-overwrite)).
 
-#### Prompts
-As some operations are somewhat 'dangerous', especially at deletion of files, there'll be a prompt
-to ask you for **`yes`** or **`no`** (sometimes/partially). So please confirm this questions, if shown;
-and just answer with `y[es]` or `n[o]`, otherwise the `prompt()` will repeat it's question.
+##### Modifiers
+These are the _optional_ modifiers, mostly for specific functions (listed above). So they're not calling a function,
+they modify their behavior!
+
+| Short    | Long                   | Related function        | Description                                                                     |
+| -------: | :--------------------- | :---------------------- | :------------------------------------------------------------------------------ |
+| **`-n`** | **`--lines`**          | (*)                     | Disables limitation on outputted lines or set specific value (optional argument)|
+| **`-N`** | **`--no-ansi`**        | (*)                     | To disable the ANSI escape sequences, e.g. in 'broken' terminals, etc..         |
+| **`-g`** | **`--config`**         | `--remove`              | Will also remove the per-host configuration files (safed by default)            |
+| **`-w`** | **`--without-values`** | `--sanitize`, `--clean` | All host files are being deleted, if no corresponding _value_ file is available |
+
+> **Note**
+> The **`--lines / -n`** modifies output of 'many' functions, whereas the others are for only one function (see 3rd column)!
+
+#### Operations
+This section explains the most important operations on the file system storage.
+
+> **Warning**
+> Any file deletion needs to be confirmed by you, after counting (maybe even listing) the files which would be deleted.
+> There'll appear a question, where you have to type in **`y[es]`** or **`n[o]`**.
+
+###### File Scheme
+> **Note**
+> First it's essential to explain you the Scheme of file system items for this counter. Then, in the following sub sections
+> you'll see exactly what happens why..
+
+So, there are four elementary file types, for which I'm using `define()` with `COUNTER_` prefix, as follows (first column);
+whereas their basename (w/o prefix) equals the hostnames or the override strings (and the prefix characters are also defined
+statically, see their names in the `Prefix` column (2nd)):
+
+| Type / Constant  | Prefix                          | Type      | Meaning / Description                                                                                          |
+| ---------------: | :------------------------------ | :-------- | :------------------------------------------------------------------------------------------------------------- |
+| `COUNTER_VALUE`  | **`~`** (`COUNTER_VALUE_CHAR`)  | File      | The counted values itself are being stored here (integers)                                                     |
+| `COUNTER_DIR`    | **`+`** (`COUNTER_DIR_CHAR`)    | Directory | If `server` is enabled, it'll contain every IP or their Hash as one file each; containing (integer) timestamps |
+| `COUNTER_FILE`   | **`-`** (`COUNTER_FILE_CHAR`)   | File      | If `server` is enabled, these are caches to store the amount of real cache files per `COUNTER_DIR` host        |
+| `COUNTER_CONFIG` | **`@`** (`COUNTER_CONFIG_CHAR`) | File      | These are somehow an exception.. just JSON files with difference configuration, each one for a host/override   |
+
+> **Warning**
+> NONE of the deletion functions will _ever_ delete any `.htaccess` entry!
+
+##### Synchronization
+**`--sync / -y`** function: Is a special case of the **`--values / -v`** function (so after regular showing all the values the sync routine starts).
+Will synchronize the cache files with the cache directories! Nothing else, so in case of out-of-synced cache files they're the only ones which get changed!
+
+_Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts).
+
+> **Warning**:
+> As _exception_: if cache directories are without any cache files, they and their cache files get totally deleted!
+
+##### Cleaning
+**`--clean / -l`** function: Will search for **outdated** (timestamp) files in the cache directories (for any or specified host(s)). They contain timestamps,
+and when they exist longer than the `threshold` setting, they can be deleted. Also see the `clean` setting: if not disabled, this will also happen when the
+script is being called by web client (so in regular counting mode), either always, or when the amount of cache files exceeded the (soft) limit in `(int)clean`.
+
+_Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts). More optional parameters are:
+| Short    | Long                   | Meaning / Description                                                                                                                          |
+| -------: | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`-w`** | **`--without-values`** | Delete `COUNTER_DIR` and `COUNTER_FILE` files if no proper `COUNTER_VALUE` file was found. _Exception_: doesn't delete `COUNTER_CONFIG` files! |
+
+> **Warning**
+> The `threshold` is maybe not set to an integer above zero, in this case the whole cache directories will be deleted.
+
+> **Warning**
+> It's important to know that a [per-host config overwrite](#per-host-config-overwrite) may define an additional `threshold` time for a host. In this case
+> _this_ specific time will be used to check for outdated cache files!! And if it's not an integer above zero, the whole cache directory will be deleted, too.
+
+> **Warning**
+> If a cache directory exist for a host/override which is not available as (`~` prefixed) **value** file, you need to also define **`--without-values / -w`** parameter if the whole
+> cache should also be deleted. Otherwise it'll be handled as usual.
+
+> **Warning**
+> Will also delete any file in the cache directories which are no _regular_ files.
+
+##### Purging
+**`--purge / -p`** function: This function deletes all the cache files and directories for selected/all hosts. So only the `COUNTER_DIR` directories,
+with all their timestamp files in them, plus the corresponding caching `COUNTER_FILE` files which contain the amount of timestamp files for each directory.
+
+_Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts).
+
+##### Removing
+**`--remove / -r`** function: Will delete **any** (real, valid) host file, except the per-host configuration overwrites. _Except_ if the **`--config / -g`** parameter is also defined (also
+possible in combination with the globs or hosts/overrides). With this the configuration files to the specified or found hosts will also be deleted!
+
+_Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts).
+
+##### Sanitizing
+**`--sanitize / -z`** function: Deletes any file in the counter directory and every `COUNTER_DIR` sub directory which doesn't fit in there. **Foreign** files the counter doesn't need.
+
+_Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts). More optional parameters are:
+| Short    | Long                   | Meaning / Description                                                                                                                          |
+| -------: | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`-w`** | **`--without-values`** | Delete `COUNTER_DIR` and `COUNTER_FILE` files if no proper `COUNTER_VALUE` file was found. _Exception_: doesn't delete `COUNTER_CONFIG` files! |
+
+> **Warning**
+> This also holds for the cache directories, which will also be inspected, so all non-_regular_ files in there will be deleted as well!
 
 ## Exports
 For the **count(er)** implementation _itself_ I'm using the namespace **`kekse\counter`**.
 
-BUT my _common functions_ (which tend to be used also in other scripts, as they're very 'abstract') are exported
-in my own **`kekse`** namespace. *They could be really handy!*
-
-### Functions
-| Function                    | Arguments                                                           | Description                                                                                  |
-| --------------------------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
-| **`is_number()`**           | `$_item`                                                            | PHP is missing 'between' `is_int()` and `is_float()`.. `is_numeric()` isn't perfect here. :-/|
-| **`check_file()`**          | `$_path`, `$_file`, `$_log_error_source = null`, `$_die = false`    | Default routine to check for file existence or creation, and `chmod()` for more security     |
-| **`files()`**               | (...)                                                               | As I manually use `opendir()` etc. usually, this is just being used in `check_config_item()` |
-| **`limit()`**               | `$_string`, `$_length = 224 (= KEKSE_STRING_LIMIT)`                 | For a maximum string length. Also look at `KEKSE_STRING_LIMIT`                               |
-| **`ends_with()`**           | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
-| **`starts_with()`**         | `$_haystack`, `$_needle`, `$_case_sensitive = true`                 | ...                                                                                          |
-| **`normalize()`**           | `$_path`                                                            | Implementation of **path** normalization (works)                                             |
-| **`join_path()`**           | `... $_args`                                                        | Combines multiple path components to a whole path string **(variadic function)**             |
-| **`timestamp()`**           | `$_diff = null`                                                     | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp   |
-| **`remove_white_spaces()`** | `$_string`                                                          | Removes any occurence of 'binary' characters and spaces (char codes 0..32)                   |
-| **`secure()`**              | `$_string`                                                          | See [**String filter**](#string-filter): to avoid code injection or smth. similar            |
-| **`secure_host()`**         | `$_string`                                                          | Uses `secure()`, but also converts the result string to lower case `strtolower()`            |
-| **`secure_path()`**         | `$_string`                                                          | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.        |
-| **`delete()`**              | `$_path`, `$_depth = 0`, `$_float = true`                           | Function for file deletion (optionally recursive); see also [Deletion](#deletion)            |
-| **`get_param()`**           | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true` | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool) |
-| **`unit()`**                | `$_string`, `$_float = false`, `$_null = true`                      | Splits into value and unit components, which so can be defined in one string only.           |
-| **`color()`**               | `$_string`, `$_gd = null`                                           | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool) |
-| **`prompt()`**              | `$_string`, `$_return = false`, `$_repeat = true`                   | Until a question is confirmed via `y[es]` or `n[o]`, it'll repeat the question (CLI mode!)   |
-| **`log()`**                 | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
-| **`info()`**                | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
-| **`error()`**               | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
-| **`warn()`**                | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
-| **`debug()`**               | [`*`,] `$_format`, `... $_args`                                     | (CLI feature)                                                                                |
-
-### Namespaces
-Namespaces used, in general (you really don't need them, everything 'important' is available in the `kekse` namespace (mostyle as relay function); it's just for your info..):
-* `kekse`
-* `kekse\counter`
-* `kekse\color`
-* `kekse\console`
-
-### Deletion
-The `delete()` function should be commented here, for your info.
-
-If deleting recursively (see the 2nd argument of `delete()`), the result can sometimes be a floating
-point value, which indicates, if the whole recursion really deleted everything. So if that's the case,
-it'll be an integer, but otherwise it will be the amount of totally deleted files as the integer
-component, plus the factor of total deleted files divided by the whole (also recursive) file count.
-
-Thus, the result contains more information where otherwise the integer part would be discarded.
-
-To obtain the real file deletion count, just cast it to an `(int)`, and for the factor of deleted files
-by their total amount just use `%1` (which is always only the floating point component/rest).
-
-As an example: try to `$percent = (($result % 1) * 100)`! ;)~
-
-Anyway, I implemented it this way because of two reasons:
-* I needed the number of deleted files, to sum them up or to check if an error occured
-* I wanted to know if a recursive deletion was completed up until the first directory specified
-
-So, that's for your info. :)~
+> **Note**
+> Namespaces used in this script are these ones:
+> * `kekse`
+> * `kekse\color`
+> * `kekse\counter`
+> * `kekse\console`
+> * `kekse\console\ansi`
 
 > **Note**
-> It's enough to check for `is_int()` or `is_float()`: the whole recursion depth's fully deleted if `is_int()`!
+> Maybe you'd like to know that enabling the `KEKSE_RAW` (on top of file) will export all my extensions,
+> but without the `kekse\counter` namespace, and the base `counter()` function also won't get called.
+> So you can include this script to get all my following functions without the counter part itself! ;)~
 
-> **Warning**
-> In PHP and this case the `%` modulo operator isn't the right thing, because it'll return only integers.
-> What we _really_ need here is the [`fmod()`](https://www.php.net/fmod) function!
+The following _common functions_ (which tend to be used also in other scripts, as they're 'abstract' and useful also in other scripts)
+are exported in my own **`kekse`** namespace. *They could be really handy*:
 
-> **Warning**
-> Only works this way if you delete a directory!
-> **AND** This is only if the 3rd argument `$_float = true`. If `false`, it'll just return the (summed up)
-> total _deletions_ itself, and if `$_float = null`, the result will be an array of `[total,deleted,failed]`!
+| Function                    | Arguments                                                            | Description                                                                                    |
+| --------------------------: | :------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| **`is_number()`**           | `$_item`                                                             | PHP is missing 'between' `is_int()` and `is_float()`.. as `is_numeric()` is also for Strings.. |
+| **`strlen()`**              | `$_string`, `$_filter = false`, `$_binary = false`, `$_hidden = true`| Own version, mostly to count string length with filtered out ANSI escape sequences (or binary)!|
+| **`less()`**                | `$_string`, `$_binary = false`, `$_hidden = true`                    | Wrapper for `strlen()` w/ `$_filter = null`, to not count, but to return a filtered string     |
+| **`endsWith()`**            | `$_haystack`, `$_needle`, `$_case_sensitive = true`                  | ...                                                                                            |
+| **`startsWith()`**          | `$_haystack`, `$_needle`, `$_case_sensitive = true`                  | ...                                                                                            |
+| **`normalize()`**           | `$_path`                                                             | Implementation of **path** normalization (works)                                               |
+| **`joinPath()`**            | `... $_args`                                                         | Combines multiple path components to a whole path string **(variadic function)**               |
+| **`timestamp()`**           | `$_diff = null`                                                      | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp     |
+| **`removeWhiteSpaces()`**   | `$_string`                                                           | Removes any occurence of binary/non-printable chars and spaces (0..32, 127) .. wrapper function|
+| **`removeBinary()`**        | `$_string`, `$_space = false`                                        | Same as `removeWhiteSpaces()`, but without spaces (if `$_space === false`, which is default)   |
+| **`getParam()`**            | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true`  | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool)   |
+| **`unit()`**                | `$_string`, `$_float = false`, `$_null = true`                       | Splits into value and unit components, which so can be defined in one string only.             |
+| **`color()`**               | `$_string`, `$_gd = null`                                            | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool)   |
+| **`delete()`**              | `$_path`, `$_depth = 0`, `$_extended = false`                        | Function for **any** file deletion! Also recursively, w/ optional (int)depth (or true/false)   |
+| **`checkPath()`**           | `$_path`, `$_file`, `$_log_error_source = null`, (**...**)           | Default routine to check for file existence or creation, and `chmod()` for more security       |
+| **`limit()`**               | `$_string`, `$_length = 224` (`KEKSE_LIMIT_STRING`)                  | For a maximum string length. Also look at `KEKSE_LIMIT_STRING` (which is `224`, by default)    |
+| **`secure()`**              | `$_string`, `$_lower_case = false`                                   | See [**String filter**](#string-filter): to avoid code injection or smth. similar              |
+| **`secureHost()`**          | `$_string`                                                           | Wrapper for `secure()` with `$_lower_case = true` (as hostnames are not case sensitive, ...)   |
+| **`securePath()`**          | `$_string`                                                           | _ATM_ only an alias for the base `secure()` itself. But maybe it'll be improved l8rs.          |
+| **`readFile()`**            | `$_path`, `... $_args`                                               | Especially for reading files within a limited length.. extended version in `kekse\counter`     |
+| **`writeFile()`**           | `$_path`, `$_value`, `... $_args`                                    | Nearly as above; the extended `kekse\counter` version is also build up upon `securityTest()`   |
+| **`readInt()`**             | `$_path`, `... $_args`                                               | Uses `readFile()`, but is especially for managing the counter values or timestamp files, etc.  |
+| **`writeInt()`**            | `$_path`, `$_int`, `... $_args`                                      | For writing integers.. uses `writeFile()`.                                                     |
+| **`log()`**                 | [`*`,] `$_format`, `... $_args`                                      | (CLI feature) Write line to STDOUT, w/ or w/o EOL (or many) with **non-colored** ` >> ` prefix |
+| **`info()`**                | [`*`,] `$_format`, `... $_args`                                      | (CLI feature) Write line to STDOUT, w/ or w/o EOL (or many) w/ **green** colored ` >> ` prefix |
+| **`error()`**               | [`*`,] `$_format`, `... $_args`                                      | (CLI feature) Write line to STDERR, w/ or w/o EOL (or many) with **red** colored ` >> ` prefix |
+| **`warn()`**                | [`*`,] `$_format`, `... $_args`                                      | (CLI feature) Write line to STDERR, w/ or w/o EOL (or many) w/ **orange** colored ` >> ` prefix|
+| **`debug()`**               | [`*`,] `$_format`, `... $_args`                                      | (CLI feature) Write line to STDERR, w/ or w/o EOL (or many) with **blue** colored ` >> ` prefix|
+| **`prompt()`**              | `$_string`, `$_return = false`, `$_repeat = true`                    | (CLI feature) Let the user decide between `y[es]`/`n[o]`, with **yellow** colored ` >> ` prefix|
+
+*.. maybe even more? Maybe some aren't always available? TODO: take a more detail look at all this..*.
 
 ## Modules
-*TODO*!
+*TODO*! Whenever I'm in the mood to implement this (a bigger thing..), I'm _thinking_ about (at least):
+* **events**.php
+* **notifications**.php
+* **statistics**.php
 
 ## FAQ
 This section grew as I got comments on my code. And I hope for your reviews, really! Please contact me,
@@ -710,14 +798,10 @@ I promise not to bloat everything too much; it's just a matter of fact that this
 features and is highly configurable.. nevertheless there are some optimizations etc., so it really
 doesn't consume *that* much cpu time or memory.
 
-*And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
-
 > **Note**
-> After cleaning up a bit, removing comments, etc. there are **_6.977_ code lines** left,
-> as of v**3.6.9**!
+> As of v**4.0.0** there are 'only' **_10.013_ code lines** in total (and there are nearly no comments).
 
-> **Warning**
-> Some lines will be removed soon, because of a new function to handle them better.. ;)~
+*And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
