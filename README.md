@@ -799,7 +799,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.0.0** there are 'only' **_10.013_ code lines** in total (and there are nearly no comments).
+> As of v**4.0.0** there are 'only' **_10.022_ code lines** in total (and there are nearly no comments).
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
