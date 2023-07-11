@@ -94,7 +94,7 @@ at the GET query..).
 > You can easily manage all the values **etc.** via command line!
 > Look at the [CLI mode](#cli-mode) section for details.
 
-#### Text/HTML
+#### text/plain
 By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
 **`XMLHttpRequest()`** or the **`Fetch API`**. This `Content-Type` (a [HTTP](https://wikipedia.org/wiki/HTTP) header) is
 configurable via the `content` setting (see the [Configuration](#configuration) section).
