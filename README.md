@@ -4,9 +4,9 @@
 It's a universal counter script. ... v**4.0.1**!
 
 ## Index
-1. [Screenshot](#screenshot)
-2. [Installation](#installation)
+1. [Installation](#installation)
 	* [Dependencies](#dependencies)
+2. [Screenshots](#screenshots)
 3. [Details](#details)
 	* [Security](#security)
 	* [Storage](#storage)
@@ -47,13 +47,6 @@ It's a universal counter script. ... v**4.0.1**!
 10. [The original version](#the-original-version)
 11. [Copyright and License](#copyright-and-license)
 
-## Screenshot
-Below is an example screenshot with the [CLI mode](#cli-mode), and here's also an
-~> [example \<img\> drawn in the browser](docs/example.png) (and just take a look
-at the GET query..).
-
-![Running in CLI mode](docs/console.png)
-
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
 and **That's all**! :-) The configured counter directory `count/` will automatically be created.
@@ -88,6 +81,13 @@ So, **that's** all. :D~
 **Except** if you're enabling the `drawing` configuration. In this case it's the
 [**GD Library**](https://www.php.net/manual/en/book.image.php). More infos below, in the
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
+
+## Screenshots
+Below is an example screenshot with the [CLI mode](#cli-mode), and an example \<img\> drawn in the browser (and take a look
+at the GET query..).
+
+![Running in CLI mode](docs/console.png)
+![\<img\> drawn in the browser](docs/example.png)
 
 ## Details
 > **Note**
