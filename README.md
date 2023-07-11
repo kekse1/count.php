@@ -1,12 +1,12 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**4.0.0**!
+It's a universal counter script. ... v**4.0.1**!
 
 ## Index
-1. [Screenshot](#screenshot)
-2. [Installation](#installation)
+1. [Installation](#installation)
 	* [Dependencies](#dependencies)
+2. [Screenshots](#screenshots)
 3. [Details](#details)
 	* [Security](#security)
 	* [Storage](#storage)
@@ -47,13 +47,6 @@ It's a universal counter script. ... v**4.0.0**!
 10. [The original version](#the-original-version)
 11. [Copyright and License](#copyright-and-license)
 
-## Screenshot
-Below is an example screenshot with the [CLI mode](#cli-mode), and here's also an
-~> [example \<img\> drawn in the browser](docs/example.png) (and just take a look
-at the GET query..).
-
-![Running in CLI mode](docs/console.png)
-
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
 and **That's all**! :-) The configured counter directory `count/` will automatically be created.
@@ -89,12 +82,19 @@ So, **that's** all. :D~
 [**GD Library**](https://www.php.net/manual/en/book.image.php). More infos below, in the
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
+## Screenshots
+Below is an example screenshot with the [CLI mode](#cli-mode), and an example \<img\> drawn in the browser (and take a look
+at the GET query..).
+
+![Running in CLI mode](docs/console.png)
+![\<img\> drawn in the browser](docs/example.png)
+
 ## Details
 > **Note**
 > You can easily manage all the values **etc.** via command line!
 > Look at the [CLI mode](#cli-mode) section for details.
 
-#### Text/HTML
+#### text/plain
 By default the script generates a **`text/plain`** (plus charset) output, so you can easily embed the counting value via
 **`XMLHttpRequest()`** or the **`Fetch API`**. This `Content-Type` (a [HTTP](https://wikipedia.org/wiki/HTTP) header) is
 configurable via the `content` setting (see the [Configuration](#configuration) section).
@@ -799,7 +799,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.0.0** there are 'only' **_10.022_ code lines** in total (and there are nearly no comments).
+> As of v**4.0.1** there are 'only' **_9.988_ code lines** in total (and there are nearly no comments).
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
