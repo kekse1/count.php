@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**4.0.1**!
+It's a universal counter script. ... v**4.0.2**!
 
 ## Index
 1. [Installation](#installation)
