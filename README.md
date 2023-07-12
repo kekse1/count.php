@@ -86,7 +86,7 @@ So, **that's** all. :D~
 Below is an example screenshot with the [CLI mode](#cli-mode), and an example \<img\> drawn in the browser (and take a look
 at the GET query..).
 
-![Running in CLI mode](docs/console.png)
+![Running in CLI mode](docs/screenshot.png)
 ![\<img\> drawn in the browser](docs/example.png)
 
 ## Details
