@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**4.0.3**!
+It's a universal counter script. ... v**4.0.4**!
 
 ## Index
 1. [Installation](#installation)
@@ -633,6 +633,10 @@ This section explains the most important operations on the file system storage.
 > Any file deletion needs to be confirmed by you, after counting (maybe even listing) the files which would be deleted.
 > There'll appear a question, where you have to type in **`y[es]`** or **`n[o]`**.
 
+> **Note**
+> Any of these operations (but `--sanitize / -z`) can optionally be argued with one or more target hosts,
+> and they can also be GLOBs (but think about escaping or quoting them), like also `--fonts / -f`.
+
 ###### File Scheme
 > **Note**
 > First it's essential to explain you the Scheme of file system items for this counter. Then, in the following sub sections
@@ -799,7 +803,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.0.1** there are 'only' **_9.988_ code lines** in total (and there are nearly no comments).
+> As of v**4.0.4** there are 'only' **_10.019_ code lines** in total (and there are nearly no comments).
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
