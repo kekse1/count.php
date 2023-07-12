@@ -83,11 +83,8 @@ So, **that's** all. :D~
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Screenshots
-Below is an example screenshot with the [CLI mode](#cli-mode), and an example \<img\> drawn in the browser (and take a look
-at the GET query..).
-
-![Running in CLI mode](docs/screenshot.png)
 ![\<img\> drawn in the browser](docs/example.png)
+![Running in CLI mode](docs/screenshot.png)
 
 ## Details
 > **Note**
