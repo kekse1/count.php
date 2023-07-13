@@ -505,10 +505,15 @@ Some of the modes are as follows. And they can **partially** be combined as well
 If allowed by the [configuration `text`](#configuration), you can also draw a regular text beneath the counter values or smth.
 
 This feature is mostly there as I wanted to secure up mail addresses, e.g.. so without HTML code no (regular...) crawler or bot will
-be able to automatically grep such addresses. This is the main reason for this feature..
+be able to automatically grep such addresses. This is the main reason for this feature.
 
-... but it's also possible to draw _any_ regular text, if it's within the configured maximum character count (`96` is default, if config
-`text === true`). I think it's useful, but if you don't want this capability, set configuration `text = false`.
+... but it's also possible to draw _any_ regular text, if it's within the configured maximum character count
+(which is by default set to `32`, or `64` if `text` setting is set to `true`.. `false` or `<=0` disables it).
+
+This will enable the **read only** mode (where some functions and states won't be declared etc., for more
+efficiency ;-).
+
+![Text mode](docs/mail.png)
 
 ### Readonly mode
 You can use the script regularily, but pass `?ro`. That will only return/draw the current value without writing any
