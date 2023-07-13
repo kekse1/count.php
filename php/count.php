@@ -8,7 +8,7 @@ namespace kekse\counter;
 //
 const DEFAULTS = array(
 	'path' => 'count/',
-	'text' => 32,//false,
+	'text' => 32,
 	'log' => 'count.log',
 	'threshold' => 7200,
 	'auto' => 32,//false,
@@ -43,7 +43,7 @@ const DEFAULTS = array(
 
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
-define('COUNTER_VERSION', '4.1.0');
+define('COUNTER_VERSION', '4.1.1');
 define('COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -8357,11 +8357,6 @@ function counter($_read_only = null, $_host = null)
 			setConfig('text', $textConfig);
 			setState('text', $text);
 			
-			if($text)
-			{
-				setState('ro', true);
-			}
-
 			unset($textConfig);
 			unset($text);
 		}

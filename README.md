@@ -510,14 +510,15 @@ be able to automatically grep such addresses. This is the main reason for this f
 ... but it's also possible to draw _any_ regular text, if it's within the configured maximum character count
 (which is by default set to `32`, or `64` if `text` setting is set to `true`.. `false` or `<=0` disables it).
 
-This will enable the [**read only** mode](#readonly-mode) (where some functions and states won't be declared
-etc., to safe resources and more runtime performance ;-) ..
+The counter will also count in this mode.
 
 ![Text mode](docs/mail.png)
 
 ### Readonly mode
 You can use the script regularily, but pass `?ro`. That will only return/draw the current value without writing any
 files or cookies. The value is not changed then. So one can view it without access to the file system or the CLI mode.
+
+Some functions won't be declared here, etc., just for more runtime performance and resource reasons.
 
 ### Drawing mode
 By using `?draw`, if `drawing` setting is enabled, the output will not be `text/plain` (or whatever you
