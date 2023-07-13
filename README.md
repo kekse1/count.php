@@ -90,7 +90,7 @@ So, **that's** all. :D~
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Screenshots
-![\<img\> w/ `text` config](docs/text.png)
+![\<img\> w/ `text` config](docs/text-drawing.png)
 ![\<img\> drawn in the browser](docs/example.png)
 ![Running in CLI mode](docs/screenshot.png)
 
