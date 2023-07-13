@@ -537,7 +537,7 @@ And if you need help, don't be shy and call this script with **`--help / -h`** p
 > **Note**
 > In the past you had to call `php count.php` manually (as a shebang isn't possible with a web server script,
 > due to the header..). **Now** I've added a script [count.sh](src/count.sh), which will wrap this for you,
-> and also argue with any parameters defined. *Just use this helper script in the command line, please.*
+> and also argue with any parameters defined. **Just use this helper script in the command line, please!**
 
 #### ANSI Escape Sequences
 I'm using ANSI Escape Sequences, for styling and coloring the text in a console. For the best support (that every terminal, that implement these sequences),
