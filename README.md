@@ -1,5 +1,4 @@
-<img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
-<img src="https://mnemonics.de/php/count.php?text=kuchen@kekse.biz&size=64px&angle=12.5deg&font=SourceCodePro" />
+<img src="https://kekse.biz/php/count.php?draw&override=github:count.php&text=kuchen@kekse.biz" />
 
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**4.1.0**!
