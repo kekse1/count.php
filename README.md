@@ -60,7 +60,7 @@ and **That's all**! :-) The configured counter directory `count/` will automatic
 > **Note**
 > I'd suggest you to also copy the [`count.sh`](src/count.sh) (wrapper) shell/bash script to easily execute the script
 > in it's [CLI mode](#cli-mode)! Download it _into the same directory as the `count.php`_ and set (just once) `chmod +x count.sh`!
-> You can symlink to it from everywhere, it'll always use the `count.php` from within the same directory where the script's at.
+> You can symlink to it from everywhere, it'll always use the `count.php` from within the same directory where the script's located at.
 
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
