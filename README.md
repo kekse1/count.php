@@ -510,8 +510,8 @@ be able to automatically grep such addresses. This is the main reason for this f
 ... but it's also possible to draw _any_ regular text, if it's within the configured maximum character count
 (which is by default set to `32`, or `64` if `text` setting is set to `true`.. `false` or `<=0` disables it).
 
-This will enable the **read only** mode (where some functions and states won't be declared etc., for more
-efficiency ;-).
+This will enable the [**read only** mode](#readonly-mode) (where some functions and states won't be declared
+etc., to safe resources and more runtime performance ;-) ..
 
 ![Text mode](docs/mail.png)
 
