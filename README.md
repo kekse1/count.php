@@ -357,7 +357,7 @@ extract these links...
 > **Note**
 > **All parameters are optional**, but only the **`?draw`** isn't, and needs to be set if you want a graphical
 > output. **`?zero`** is also enabling drawing mode, but you won't see anything at all ... and this, and only
-> this `?zero` can be set without `?draw`, to draw nevertheless.
+> `?zero` and `?text` can be set without `?draw`, to draw nevertheless..
 
 ### Dependencies
 
