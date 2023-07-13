@@ -535,6 +535,10 @@ And if you need help, don't be shy and call this script with **`--help / -h`** p
 > add the **`--lines / -n`** parameter. _Optionally_ is even an integer possible, to directly set the amount
 > of maximum rows used (even if there'll be usually a prompt to ask you for more or less..).
 
+> **Note**
+> There's also the parameter **`--no-ansi / -N`** to switch off [ANSI escape sequences](#ansi-escape-sequences)!
+> This is mentioned for terminals which don't support colors and styles this way.. by default it's true.
+
 #### Wrapper script
 In the past you had to call `php count.php` manually (as a shebang isn't possible with a web server script,
 due to the header..). **Now** I've added a script [count.sh](src/count.sh), which will wrap this for you,
