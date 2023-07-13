@@ -48,16 +48,6 @@ It's a universal [counter script](php/count.php). ... v**4.3.0**!
 10. [The original version](#the-original-version)
 11. [Copyright and License](#copyright-and-license)
 
-<<<<<<< HEAD
-## Screenshot
-Below is an example screenshot with the [CLI mode](#cli-mode), and here's also an
-~> [example \<img\> drawn in the browser](docs/example.png) (and just take a look
-at the GET query..).
-
-![Running in CLI mode](docs/console.png)
-
-=======
->>>>>>> 82833851acb71ebd610bf400db2ef6d4aecc7283
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
 and **That's all**! :-) The configured counter directory `count/` will automatically be created.
