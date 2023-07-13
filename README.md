@@ -48,8 +48,9 @@ It's a universal counter script. ... v**4.0.0**!
 11. [Copyright and License](#copyright-and-license)
 
 ## Screenshot
-Below is an example screenshot with the [CLI mode](#cli-mode), and here's also an ~> [example <img> drawn in the browser](docs/example.png)
-(and just take a look at the GET query).
+Below is an example screenshot with the [CLI mode](#cli-mode), and here's also an
+~> [example \<img\> drawn in the browser](docs/example.png) (and just take a look
+at the GET query..).
 
 ![Running in CLI mode](docs/console.png)
 
