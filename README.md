@@ -535,11 +535,9 @@ And if you need help, don't be shy and call this script with **`--help / -h`** p
 > of maximum rows used (even if there'll be usually a prompt to ask you for more or less..).
 
 > **Note**
-> As it's not possible to do the default shebang `#!/usr/bin/env php`, you've to call the script
-> as argument to the `php` executable: `php count.php`. The shebang isn't possible, as web servers
-> running PHP scripts see them as begin of regular output! So: (a) it's shown in the browser.. and
-> (b) thus the script can't send any `header()` (necessary inter alia to define the content type,
-> as defined in `content` option)! .. so please, just type `php count.php` in your shell.
+> In the past you had to call `php count.php` manually (as a shebang isn't possible with a web server script,
+> due to the header..). **Now** I've added a script [count.sh](src/count.sh), which will wrap this for you,
+> and also argue with any parameters defined. *Just use this helper script in the command line, please.*
 
 #### ANSI Escape Sequences
 I'm using ANSI Escape Sequences, for styling and coloring the text in a console. For the best support (that every terminal, that implement these sequences),
@@ -813,7 +811,7 @@ doesn't consume *that* much cpu time or memory.
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 ## The original version
-**[The original version](php/original.php)** was a very tiny script as little helping hand for my web
+**[The original version](src/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
 
 ## Copyright and License
