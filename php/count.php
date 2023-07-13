@@ -4,13 +4,50 @@
 namespace kekse\counter;
 
 //
+//change your default configuration here.. that should be all to change..!
+//
+const DEFAULTS = array(
+	'path' => 'count/',
+	'text' => 32,
+	'log' => 'count.log',
+	'threshold' => 7200,
+	'auto' => 32,//false,
+	'hide' => false,//true,
+	'client' => true,//false,
+	'server' => true,//false,
+	'drawing' => true,
+	'override' => false,//true,
+	'content' => 'text/plain;charset=UTF-8',
+	'radix' => 10,//3,
+	'clean' => true,
+	'limit' => 32768,
+	'fonts' => 'fonts/',
+	'font' => 'Candara',
+	'size' => '56px',
+	'min' => false,//true,
+	'unit' => 'px',
+	'fg' => '0,0,0',//'120,130,40',
+	'bg' => '255,255,255,0',
+	'angle' => 0.0,//'10deg',
+	'x' => 0.0,
+	'y' => 0.0,
+	'h' => 0.0,
+	'v' => 0.0,
+	'type' => 'png',
+	'privacy' => false,
+	'hash' => 'sha3-256',
+	'error' => '-',
+	'none' => '/',
+	'modules' => null//'modules/'
+);
+
+//
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
-define('COUNTER_VERSION', '4.0.0');
+define('COUNTER_VERSION', '4.1.1');
 define('COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
 define('KEKSE_ANSI', true); //colors, styles, etc.. @ CLI. _only_ if stdout/stderr is a tty! ^_^
-define('KEKSE_STRICT', true); //should stay (true)! don't change unless you know what you're doing..
 define('KEKSE_LIMIT_TTY', 40); //in cli mode, when showing a list of files, limit output to this amount of lines..
 define('KEKSE_LIMIT_TTY_PROMPT', true); //show a prompt to ask user whether to continue or not?
 define('KEKSE_LIMIT_STRING', 224); //reasonable maximum length for (most) strings.. e.g. path components
@@ -26,46 +63,11 @@ define('COUNTER_DIR_CHAR', '+');
 define('COUNTER_FILE_CHAR', '-');
 define('COUNTER_CONFIG_CHAR', '@');
 //problems with different httpd and console user? set to 0777/0666. but it's really insecure! use 0700/0600!
-//
-define('KEKSE_MODE_DIR', 0777); //file mode; set to (null) to never change (by default)
-define('KEKSE_MODE_FILE', 0666); //dir mode; set to (null) to never change (by default)
+define('KEKSE_MODE_DIR', 0700); //file mode; set to (null) to never change (by default)
+define('KEKSE_MODE_FILE', 0600); //dir mode; set to (null) to never change (by default)
 
 //
 define('KEKSE_CLI', (php_sapi_name() === 'cli'));
-
-//
-const DEFAULTS = array(
-	'path' => 'count/',
-	'log' => 'count.log',
-	'threshold' => 7200,
-	'auto' => 32,//false,
-	'hide' => false,//true,
-	'client' => true,//false,
-	'server' => true,//false,
-	'drawing' => true,
-	'override' => false,//true,
-	'content' => 'text/plain;charset=UTF-8',
-	'radix' => 10,//3,
-	'clean' => true,
-	'limit' => 32768,
-	'fonts' => 'fonts/',
-	'font' => 'IntelOneMono',
-	'size' => '28pt',
-	'unit' => 'px',
-	'fg' => '0,0,0,1',//'120,130,40',
-	'bg' => '255,255,255,0',
-	'angle' => 0.0,//'0.25rad',
-	'x' => 0.0,
-	'y' => 0.0,
-	'h' => 0.0,
-	'v' => 0.0,
-	'type' => 'png',
-	'privacy' => false,
-	'hash' => 'sha3-256',
-	'error' => null,//'-',
-	'none' => '/',
-	'modules' => null//'modules/'
-);
 
 //
 //maybe rather dynamic, in reading out the `modules` directory!?? //(much) TODO!/
@@ -84,7 +86,7 @@ const PATHS = array(
 );
 
 //
-$CONFIG = array();
+$CONFIG = array('*' => array());
 $HASHES = array();
 
 $STATE = array(
@@ -96,6 +98,7 @@ $STATE = array(
 	'ro' => null,
 	'zero' => null,
 	'draw' => null,
+	'text' => null,
 	
 	'path' => null,
 	'log' => null,
@@ -119,6 +122,7 @@ $STATE = array(
 //
 const CONFIG_VECTOR = array(
 	'path' => array('types' => [ 'string' ], 'static' => true, 'min' => 1, 'test' => true),
+	'text' => array('types' => [ 'integer', 'boolean' ], 'min' => 1),
 	'log' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
 	'threshold' => array('types' => [ 'integer', 'NULL' ], 'min' => 0),
 	'auto' => array('types' => [ 'boolean', 'integer', 'NULL' ], 'min' => 0),
@@ -134,6 +138,7 @@ const CONFIG_VECTOR = array(
 	'fonts' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
 	'font' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
 	'size' => array('types' => [ 'double', 'integer', 'string' ], 'min' => 3, 'max' => 512, 'test' => true),
+	'min' => array('types' => [ 'boolean' ]),
 	'unit' => array('types' => [ 'string' ], 'min' => 2, 'max' => 2, 'test' => true),
 	'fg' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
 	'bg' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
@@ -151,7 +156,7 @@ const CONFIG_VECTOR = array(
 );
 
 //
-if(KEKSE_CLI)//i'm altering the argc/argv, so i want a copy just for me..
+if(KEKSE_CLI)
 {
 	$ARGC = null;
 	$ARGV = null;
@@ -726,19 +731,14 @@ function secure($_string, $_lower_case = false)
 		return null;
 	}
 	
-	$len = strlen($_string);
-	
-	if($len > KEKSE_LIMIT_STRING)
-	{
-		return null;
-	}
-	
+	$l = strlen($_string);
 	$result = '';
 	$last = '';
 	$byte = 0;
 	$add = '';
+	$len = 0;
 
-	for($i = 0; $i < $len; ++$i)
+	for($i = 0; $i < $l; ++$i)
 	{
 		if(($byte = ord($_string[$i])) >= 97 && $byte <= 122)
 		{
@@ -818,7 +818,11 @@ function secure($_string, $_lower_case = false)
 		{
 			$result .= $add;
 			$last = $add;
-			++$len;
+
+			if(++$len > KEKSE_LIMIT_STRING)
+			{
+				break;
+			}
 		}
 	}
 
@@ -1205,14 +1209,8 @@ function delete($_path, $_depth = 0, $_extended = false, $_depth_current = 0)
 	return ($f === 0);	
 }
 
-//
-function getParam($_key, $_numeric = false, $_float = false, $_strict = KEKSE_STRICT, $_lower_case = false, $_fallback = true)
+function getParam($_key, $_numeric = false, $_float = false, $_strict = true, $_lower_case = false, $_fallback = true)
 {
-	if(!is_bool($_strict))
-	{
-		$_strict = KEKSE_STRICT;
-	}
-	
 	if(!is_string($_key) || $_key === '')
 	{
 		return null;
@@ -1255,6 +1253,16 @@ function getParam($_key, $_numeric = false, $_float = false, $_strict = KEKSE_ST
 	{
 		return null;
 	}
+	else if(is_int($_numeric))
+	{
+		if($_numeric < 0)
+		{
+			$_numeric = 0;
+			return '';
+		}
+		
+		return \kekse\limit($value, $_numeric);
+	}
 	else
 	{
 		$value = removeWhiteSpaces($value);
@@ -1265,10 +1273,14 @@ function getParam($_key, $_numeric = false, $_float = false, $_strict = KEKSE_ST
 		case '0':
 		case 'n':
 		case 'N':
+		case 'f':
+		case 'F':
 			return false;
 		case '1':
 		case 'y':
 		case 'Y':
+		case 't':
+		case 'T':
 			return true;
 		default:
 			if($_strict)
@@ -1923,7 +1935,8 @@ function colorIsList($_string)
 	}
 	
 	$byte = null;
-	
+	$len = strlen($_string);
+
 	for($i = 0; $i < $len; ++$i)
 	{
 		if(($byte = ord($_string[$i])) === 46 || $byte === 44)
@@ -2657,6 +2670,33 @@ if($consoleCondition)
 		return $result;
 	}
 
+	function underlineFaint($_string, $_reset = true, $_stream = null)
+	{
+		if(!is_string($_string))
+		{
+			$_string = '';
+			$_reset = false;
+		}
+
+		if(! withAnsi($_stream))
+		{
+			return $_string;
+		}
+
+		$result = (ESCAPE . FAINT . ESCAPE . UNDERLINE . $_string);
+
+		if($_reset)
+		{
+			$result .= (ESCAPE . RESET);
+		}
+		else if($_reset === null)
+		{
+			$result .= (ESCAPE . FAINT_OFF . ESCAPE . UNDERLINE_OFF);
+		}
+
+		return $result;
+	}
+
 	function soft($_string, $_reset = true, $_stream = null)
 	{
 		if(!is_string($_string))
@@ -2851,7 +2891,7 @@ if($consoleCondition)
 namespace kekse\counter;
 
 //
-function counter($_read_only = null)
+function counter($_read_only = null, $_host = null)
 {
 	//
 	function getState($_key)
@@ -3722,30 +3762,66 @@ function counter($_read_only = null)
 		//
 		$config = null;
 
-		if(!is_string($_host) || $_host === '')
+		if(!is_string($_host))
 		{
 			$_host = getState('host');
 		}
-
-		if(isset($CONFIG[$_host]))
+		
+		if(is_string($_host) && isset($CONFIG[$_host]) && array_key_exists($_key, $CONFIG[$_host]))
 		{
-			$config = $CONFIG[$_host];
+			return $CONFIG[$_host][$_key];
 		}
-
-		//
-		if($config !== null && array_key_exists($_key, $config))
+		else if(array_key_exists($_key, $CONFIG['*']))
 		{
-			return $config[$_key];
+			return $CONFIG['*'][$_key];
 		}
 		else if(array_key_exists($_key, DEFAULTS))
 		{
 			return DEFAULTS[$_key];
 		}
-
-		//
+		
 		return null;
 	}
 
+	function setConfig($_key, $_value, $_host = null, $_die = true)
+	{
+		//
+		if(is_string($_key) && $_key !== '')
+		{
+			$_key = strtolower($_key);
+		}
+		else if($_die)
+		{
+			error('Invalid $_key (no non-empty String)');
+		}
+		else
+		{
+			return null;
+		}
+		
+		//
+		global $CONFIG;
+		
+		//
+		$config = null;
+		
+		if(!is_string($_host))
+		{
+			$_host = getState('host');
+		}
+
+		if(is_string($_host) && isset($CONFIG[$_host]) && array_key_exists($_key, $CONFIG[$_host]))
+		{
+			return $CONFIG[$_host][$_key] = $_value;
+		}
+		else if(array_key_exists($_key, DEFAULTS))
+		{
+			return $CONFIG['*'][$_key] = $_value;
+		}
+		
+		return null;
+	}
+	
 	function configLoaded($_host = null)
 	{
 		//
@@ -3754,7 +3830,7 @@ function counter($_read_only = null)
 		//
 		$result = null;
 
-		if(is_string($_host) && $_host !== '')
+		if(is_string($_host))
 		{
 			$result = isset($CONFIG[$_host]);
 		}
@@ -4232,7 +4308,7 @@ function counter($_read_only = null)
 	{
 		if(securityTest($_path))
 		{
-			if(! \kekse\startsWith(basename($_path), COUNTER_VALUE_PREFIX))
+			if(! \kekse\startsWith(basename($_path), COUNTER_VALUE_CHAR))
 			{
 				return \kekse\delete($_path, ... $_args);
 			}
@@ -4330,6 +4406,12 @@ function counter($_read_only = null)
 		
 		return $result;
 	}
+	
+	//
+	if(is_string($_read_only))
+	{
+		error('You must have mixed up the $_read_only and $_host argument. The string is the 2nd argument..');
+	}
 
 	//
 	setState('log', getPath(getConfig('log'), true, false, false));
@@ -4399,7 +4481,7 @@ function counter($_read_only = null)
 	}
 
 	//
-	if(KEKSE_CLI)
+	if(KEKSE_CLI && !(KEKSE_RAW && $GLOBALS['KEKSE_ARGC'] === 1))
 	{
 		//
 		function getArguments($_index, $_secure = false)
@@ -4413,9 +4495,7 @@ function counter($_read_only = null)
 
 				if($item === '')
 				{
-					$result[$index++] = $item;
-					array_splice($GLOBALS['KEKSE_ARGV'], $i--, 1);
-					--$GLOBALS['KEKSE_ARGC'];
+					continue;
 				}
 				else if($item[0] === '-' && $item !== '-')
 				{
@@ -4436,8 +4516,6 @@ function counter($_read_only = null)
 				else
 				{
 					$result[$index++] = $item;
-					array_splice($GLOBALS['KEKSE_ARGV'], $i--, 1);
-					--$GLOBALS['KEKSE_ARGC'];
 				}
 			}
 
@@ -4610,8 +4688,6 @@ function counter($_read_only = null)
 							{
 								if(!$_value)
 								{
-									array_splice($GLOBALS['KEKSE_ARGV'], $i, 1);
-									--$GLOBALS['KEKSE_ARGC'];
 									return true;
 								}
 								else
@@ -4624,15 +4700,6 @@ function counter($_read_only = null)
 									}
 									else
 									{
-										array_splice($GLOBALS['KEKSE_ARGV'], $res[0], 1);
-										--$GLOBALS['KEKSE_ARGC'];
-										
-										if($i !== $res[0])
-										{
-											array_splice($GLOBALS['KEKSE_ARGV'], $i, 1);
-											--$GLOBALS['KEKSE_ARGC'];
-										}
-										
 										return $res[1];
 									}
 								}
@@ -4646,8 +4713,6 @@ function counter($_read_only = null)
 					{
 						if(!$_value)
 						{
-							array_splice($GLOBALS['KEKSE_ARGV'], $i, 1);
-							--$GLOBALS['KEKSE_ARGC'];
 							return true;
 						}
 						else
@@ -4660,15 +4725,6 @@ function counter($_read_only = null)
 							}
 							else
 							{
-								array_splice($GLOBALS['KEKSE_ARGV'], $res[0], 1);
-								--$GLOBALS['KEKSE_ARGC'];
-								
-								if($i !== $res[0])
-								{
-									array_splice($GLOBALS['KEKSE_ARGV'], $i, 1);
-									--$GLOBALS['KEKSE_ARGC'];
-								}
-								
 								return $res[1];
 							}
 						}
@@ -4680,8 +4736,6 @@ function counter($_read_only = null)
 					{
 						if(!$_value)
 						{
-							array_splice($GLOBALS['KEKSE_ARGV'], $i, 1);
-							--$GLOBALS['KEKSE_ARGC'];
 							return true;
 						}
 						else
@@ -4694,15 +4748,6 @@ function counter($_read_only = null)
 							}
 							else
 							{
-								array_splice($GLOBALS['KEKSE_ARGV'], $res[0], 1);
-								--$GLOBALS['KEKSE_ARGC'];
-								
-								if($i !== $res[0])
-								{
-									array_splice($GLOBALS['KEKSE_ARGV'], $i, 1);
-									--$GLOBALS['KEKSE_ARGC'];
-								}
-								
 								return $res[1];
 							}
 						}
@@ -4712,8 +4757,6 @@ function counter($_read_only = null)
 
 			if($matched !== null)
 			{
-				array_splice($GLOBALS['KEKSE_ARGV'], $matched, 1);
-				--$GLOBALS['KEKSE_ARGC'];
 				return true;
 			}
 
@@ -5155,50 +5198,51 @@ function counter($_read_only = null)
 
 			//
 			$pad = str_pad('', 12, ' ');
-			$format = ' %s' . \kekse\console\ansi\bold('%18s', true, 1) . ' / ' . \kekse\console\ansi\bold('%-18s', true, 1) . '  ' . \kekse\console\ansi\faint('%s', true, 1) . PHP_EOL;
+			$format = ' %s' . \kekse\console\ansi\bold('%18s', true, 1) . ' / ' . \kekse\console\ansi\bold('%-6s', true, 1) . \kekse\console\ansi\boldFaint('%-8s', true, 1) . '  ' . \kekse\console\ansi\faint('%s', true, 1) . PHP_EOL;
 			$mark = '*';
 			
 			//
 			printf(PHP_EOL);
-			printf($format, $pad, \kekse\console\ansi\boldFaint('-n', true, 1), \kekse\console\ansi\boldFaint('--lines', true, 1), $pad . $pad . 'Disable line limit or define amount of rows to show');
-			printf($format, $pad, \kekse\console\ansi\boldFaint('-N', true, 1), \kekse\console\ansi\boldFaint('--no-ansi', true, 1), $pad . $pad . 'Disable ANSI escape sequences (colors and styles)');
+			printf($format, $pad, \kekse\console\ansi\boldFaint('-n', true, 1), \kekse\console\ansi\boldFaint('--lines', true, 1), $pad, 'Disable line limit or define amount of rows to show');
+			printf($format, $pad, \kekse\console\ansi\boldFaint('-N', true, 1), \kekse\console\ansi\boldFaint('--no-ansi', true, 1), $pad, 'Disable ANSI escape sequences (colors and styles)');
 			printf(PHP_EOL);
-			printf($format, ' ', '--help', '-?', 'This screen');
-			printf($format, ' ', '--version', '-V', 'Current version');
-			printf($format, ' ', '--website', '-W', 'Project website');
-			printf($format, ' ', '--copyright', '-C', 'Copyright info');
-			printf($format, ' ', '--info', '-I', 'All infos together');
+			printf($format, ' ', '--help', '-?', '', 'This screen');
+			printf($format, ' ', '--version', '-V', '', 'Current version');
+			printf($format, ' ', '--website', '-W', '', 'Project website');
+			printf($format, ' ', '--copyright', '-C', '', 'Copyright info');
+			printf($format, ' ', '--info', '-I', '', 'All infos together');
 			printf(PHP_EOL);
-			printf($format, ' ', '--values', '-v', '[' . \kekse\console\ansi\underline('DEFAULT', null, 1) . '] Shows the counted values (w/ cache and config)');
+			printf($format, ' ', '--values', '-v', '[ * ]', '[' . \kekse\console\ansi\underline('DEFAULT', null, 1) . '] Shows the counted values (w/ cache and config)');
 			printf(PHP_EOL);
-			printf($format, ' ', '--config', '-c', 'Check your own configuration (defaults or per-host)');
+			printf($format, ' ', '--config', '-c', '[ * ]', 'Check your own configuration (defaults or per-host)');
 			printf(PHP_EOL);
-			printf($format, $mark, '--sync', '-y', 'Synchronize caches which are out-of-sync.');
-			printf($format, $mark, '--clean', '-l', 'Remove out-dated cache files (remote address protocol)');
+			printf($format, $mark, '--sync', '-y', '[ * ]', 'Synchronize caches which are out-of-sync.');
+			printf($format, $mark, '--clean', '-l', '[ * ]', 'Remove out-dated cache files (remote address protocol)');
 			printf(PHP_EOL);
-			printf($format, $pad, \kekse\console\ansi\boldFaint('-w', true, 1), \kekse\console\ansi\boldFaint('--without-values', true, 1), $pad . 'Also remove caches for hosts without a real value file');
+			printf($format, $pad, \kekse\console\ansi\boldFaint('-w', true, 1), \kekse\console\ansi\boldFaint('--without-values', true, 1), '', 'Also remove caches for hosts without value file');
 			printf(PHP_EOL);
-			printf($format, $mark, '--purge', '-p', 'Delete only the caches (with files plus directories)');
-			printf($format, $mark, '--remove', '-r', 'Delete all real counter files for all/some hosts');
+			printf($format, $mark, '--purge', '-p', '[ * ]', 'Delete only the caches (with files plus directories)');
+			printf($format, $mark, '--remove', '-r', '[ * ]', 'Delete all real counter files for all/some hosts');
 			printf(PHP_EOL);
-			printf($format, $pad, \kekse\console\ansi\boldFaint('-g', true, 1), \kekse\console\ansi\boldFaint('--config', true, 1), $pad . $pad . 'Include the `' . COUNTER_CONFIG_CHAR . '` configuration files as well');
+			printf($format, $pad, \kekse\console\ansi\boldFaint('-g', true, 1), \kekse\console\ansi\boldFaint('--config', true, 1), $pad, 'Include the `' . COUNTER_CONFIG_CHAR . '` configuration files as well');
 			printf(PHP_EOL);
-			printf($format, $mark, '--sanitize', '-z', 'Delete all non-valid counter files (cleaning up)');
+			printf($format, $mark, '--sanitize', '-z', '', 'Delete all non-valid counter files (cleaning up)');
 			printf(PHP_EOL);
-			printf($format, $pad, \kekse\console\ansi\boldFaint('-w', true, 1), \kekse\console\ansi\boldFaint('--without-values', true, 1), $pad . 'Betray host files without own value files as non-valid');
+			printf($format, $pad, \kekse\console\ansi\boldFaint('-w', true, 1), \kekse\console\ansi\boldFaint('--without-values', true, 1), '', 'Betray hosts without own value files as non-valid');
 			printf(PHP_EOL);
-			printf($format, $mark, '--set', '-s', 'Changes or initializes value files (0 by default)');
+			printf($format, $mark, '--set', '-s', '[ *[=value] ]', 'Changes or initializes value files (0 by default)');
 			printf(PHP_EOL);
-			printf($format, ' ', '--fonts', '-f', 'A list of all installed fonts');
-			printf($format, ' ', '--types', '-p', 'A list of all usable image types');
-			printf($format, ' ', '--hashes', '-h', 'A list of all available hashes');
+			printf($format, ' ', '--fonts', '-f', '[ * ]', 'A list of all installed fonts, or selection');
+			printf($format, ' ', '--types', '-p', '', 'A list of all usable image types');
+			printf($format, ' ', '--hashes', '-h', '', 'A list of all available hashes');
 			printf(PHP_EOL);
-			printf($format, ' ', '--errors', '-e', 'Counts the amount of error lines in the log file');
-			printf($format, ' ', '--unlog', '-u', 'Remove the whole log file');
+			printf($format, ' ', '--errors', '-e', '', 'Counts the amount of error lines in the log file');
+			printf($format, ' ', '--unlog', '-u', '', 'Deletes the whole log file, if any');
 			printf(PHP_EOL);
 
 			//
 			\kekse\warn('Lines starting with `' . $mark . '` are functions with \'hard\' write operations!');
+			\kekse\info('These and all with \'[ * ]\' can also have at least one host, or globs!');
 
 			//
 			if(! is_int($_exit))
@@ -5375,7 +5419,7 @@ function counter($_read_only = null)
 				
 				for($i = 0; $i < $cnt; ++$i)
 				{
-					$item = \kekse\joinPath($path, COUNTER_CONFIG_CHAR . $list[$i]);
+					$item = \kekse\joinPath($path, COUNTER_CONFIG_CHAR . strtolower($list[$i]));
 					$item = glob($item, GLOB_BRACE);
 					$len = count($item);
 					
@@ -5472,7 +5516,7 @@ function counter($_read_only = null)
 
 				$maxLen['key'] += 2;
 				
-				$header = \kekse\console\ansi\hard('   %-' . $maxLen['key'] . 's  %-5s  %-' . $maxLen['string'] . 's %-' . $maxLen['type'] . 's %-' . $maxLen['limits'] . 's %s ' . PHP_EOL, true, true);
+				$header = \kekse\console\ansi\underlineFaint('   %-' . $maxLen['key'] . 's  %-5s  %-' . $maxLen['string'] . 's %-' . $maxLen['type'] . 's %-' . $maxLen['limits'] . 's %s ' . PHP_EOL, true, true);
 				printf($header, ($maxLen['key'] <= 2 ? '' : ' Item'), 'State', ($maxLen['string'] === 0 ? '' : 'Comment'), ($maxLen['type'] === 0 ? '' : ' Type'), ($maxLen['limits'] === 0 ? '' : ' Limits'), ' Valid types');
 
 				$format = (\kekse\console\ansi\bold(' %s ', true, true) . \kekse\console\ansi\bold('%' . $maxLen['key'] . 's', true, true) . ' ] ' . \kekse\console\ansi\underline('%5s', true, true) . ': %-' . $maxLen['string'] . 's  ' . \kekse\console\ansi\boldFaint('%' . $maxLen['type'] . 's', true, true) . ' ' . \kekse\console\ansi\soft('%-' . $maxLen['limits'] . 's', true, true) . ' ' . \kekse\console\ansi\faint('%s', true, true) . PHP_EOL);
@@ -5539,7 +5583,7 @@ function counter($_read_only = null)
 					printf(PHP_EOL);
 				}
 
-				$header = \kekse\console\ansi\hard(' %-' . $maxLen['host'] . 's   %-' . $maxLen['key'] . 's    %-5s %-' . $maxLen['string'] . 's    %-' . $maxLen['type'] . 's%-' . $maxLen['limits'] . 's    %s ' . PHP_EOL, true, true);
+				$header = \kekse\console\ansi\underlineFaint(' %-' . $maxLen['host'] . 's   %-' . $maxLen['key'] . 's    %-5s %-' . $maxLen['string'] . 's    %-' . $maxLen['type'] . 's%-' . $maxLen['limits'] . 's    %s ' . PHP_EOL, true, true);
 				printf($header, ($maxLen['host'] === 0 ? '' : ' Host'), ($maxLen['key'] === 0 ? '' : ' Item'), ' State', ($maxLen['string'] === 0 ? '' : ' Comment'), ($maxLen['type'] === 0 ? '' : ' Type'), ($maxLen['limits'] === 0 ? '' : ' Limits'), ' Valid types');
 
 				$invalid = 'NULL';
@@ -5652,8 +5696,15 @@ function counter($_read_only = null)
 					
 					$item = substr($item, 0, $pos);
 				}
-				
-				$hosts[$item] = $value;
+
+				if(($item = \kekse\secureHost($item)) === null)
+				{
+					continue;
+				}
+				else
+				{
+					$hosts[$item] = $value;
+				}
 				
 				if(! is_file(\kekse\joinPath(getState('path'), COUNTER_VALUE_CHAR . $item)))
 				{
@@ -5681,7 +5732,7 @@ function counter($_read_only = null)
 			$same = 0;
 			$result = array();
 
-			$header = \kekse\console\ansi\hard('  %-' . $maxLen . 's       %-10s    %-10s ' . PHP_EOL, true, 1);
+			$header = \kekse\console\ansi\underlineFaint('  %-' . $maxLen . 's       %-10s    %-10s ' . PHP_EOL, true, 1);
 			printf($header, ' Item', ' New value', ' Current value');
 
 			foreach($hosts as $host => $value)
@@ -5777,7 +5828,7 @@ function counter($_read_only = null)
 			$limit = false;
 			$i = 0;
 
-			$header = \kekse\console\ansi\hard('%-' . $maxLen . 's        %-9s %-9s  %s ' . PHP_EOL, true, 1);
+			$header = \kekse\console\ansi\underlineFaint('%-' . $maxLen . 's        %-9s %-9s  %s ' . PHP_EOL, true, 1);
 			printf($header, ($maxLen === 0 ? '' : ' Host'), ' Current', ' New', ' Return value');
 
 			foreach($result as $host => $state)
@@ -5947,7 +5998,7 @@ function counter($_read_only = null)
 				\kekse\warn('No host(s) found.');
 				exit(1);
 			}
-			
+
 			//
 			$maxLen = 0;
 			$hostLen = 0;
@@ -6146,19 +6197,10 @@ function counter($_read_only = null)
 				//
 				$td = count($delete[$host]);
 				
-				if($td > 0)
-				{
-					$totalDelete += $td;
-				}
-				else
-				{
-					unset($delete[$host]);
-				}
-				
-				//
+				$totalDelete += $td;
 				++$totalHosts;
 				$hosts[$h++] = $host;
-				
+
 				if(($hostLen = \kekse\strlen($host, true)) > $maxLen)
 				{
 					$maxLen = $hostLen;
@@ -6247,12 +6289,7 @@ function counter($_read_only = null)
 				else
 				{
 					$cnt = count($tmp);
-					$strings[$host]['delete'] = \kekse\console\ansi\soft('(' . $cnt . ' deletion' . ($cnt === 1 ? '' : 's'), true, 1);
-					
-					if(($currLen = \kekse\strlen($strings[$host]['delete'], true)) > $maxLen['delete'])
-					{
-						$maxLen['delete'] = $currLen;
-					}
+					$strings[$host]['delete'] = \kekse\console\ansi\soft('(' . $cnt . ' deletion' . ($cnt === 1 ? '' : 's') . ')', true, 1);
 				}
 				
 				//
@@ -6312,7 +6349,7 @@ function counter($_read_only = null)
 			$i = 1;
 			$format = ' ' . \kekse\console\ansi\hard(' %' . $maxLen['host'] . 's ', true, 1) . '      ' . \kekse\console\ansi\bold('%' . $maxLen['value'] . 's', true, 1) . '      %' . $maxLen['caches'] . 's / %-' . $maxLen['caches'] . 's        %' . $maxLen['config'] . 's' . PHP_EOL;
 
-			$header = \kekse\console\ansi\hard('%-' . $maxLen['host'] . 's       %-' . $maxLen['value'] . 's %-' . $maxLen['caches'] . 's       %-' . $maxLen['config'] . 's ' . PHP_EOL, true, 1);
+			$header = \kekse\console\ansi\underlineFaint('%-' . $maxLen['host'] . 's       %-' . $maxLen['value'] . 's %-' . $maxLen['caches'] . 's       %-' . $maxLen['config'] . 's ' . PHP_EOL, true, 1);
 			printf($header, ($maxLen['host'] === 0 ? '' : ' Host'), ($maxLen['value'] === 0 ? '' : ' Value'), ($maxLen['caches'] === 0 ? '' : ' Cache'), ($maxLen['config'] === 0 ? '' : ' Configuration'));
 
 			for($i = 0; $i < $h; ++$i)
@@ -6447,7 +6484,7 @@ function counter($_read_only = null)
 			printf(PHP_EOL);
 
 			//
-			$header = \kekse\console\ansi\hard('%-' . $maxLen . 's       %-20s%s     ' . PHP_EOL, true, 1);
+			$header = \kekse\console\ansi\underlineFaint('%-' . $maxLen . 's       %-20s%s     ' . PHP_EOL, true, 1);
 			printf($header, ($maxLen === 0 ? '' : ' Host'), ' Changed', ' Deletions');
 
 			//
@@ -7007,7 +7044,7 @@ function counter($_read_only = null)
 				$limit = false;
 				$i = 0;
 
-				$header = \kekse\console\ansi\hard('%-' . $maxLen . 's       %-10s%18s%18s      %-14s ' . PHP_EOL, true, 1);
+				$header = \kekse\console\ansi\underlineFaint('%-' . $maxLen . 's       %-10s%18s%18s      %-14s ' . PHP_EOL, true, 1);
 				printf($header, ($maxLen === 0 ? '' : ' Host'), ' Real count', 'Changes', 'Deletions', ' Percent');
 
 				foreach($count as $host => $real)
@@ -7202,7 +7239,7 @@ function counter($_read_only = null)
 			$limit = false;
 			$i = 0;
 
-			$header = \kekse\console\ansi\hard('%-' . $maxLen . 's     %-4s / %-4s %8s  ' . PHP_EOL, true, true);
+			$header = \kekse\console\ansi\underlineFaint('%-' . $maxLen . 's     %-4s / %-4s %8s  ' . PHP_EOL, true, true);
 			printf($header, ($maxLen === 0 ? '' : ' Host'), ' del', 'total', ' Percent');
 			
 			foreach($delete as $host => $state)
@@ -7352,7 +7389,7 @@ function counter($_read_only = null)
 			$limit = false;
 			$i = 0;
 
-			$header = \kekse\console\ansi\hard('%-' . $maxLen . 's     %s ' . PHP_EOL, true, 1);
+			$header = \kekse\console\ansi\underlineFaint('%-' . $maxLen . 's     %s ' . PHP_EOL, true, 1);
 			printf($header, ($maxLen === 0 ? '' : ' Host'), ' Selected types');
 			
 			foreach($types as $host => $selection)
@@ -8099,6 +8136,11 @@ function counter($_read_only = null)
 						$index = $i;
 						break;
 				}
+				
+				if($func !== null)
+				{
+					break;
+				}
 			}
 
 			if($index === -1 || !$func)
@@ -8128,48 +8170,17 @@ function counter($_read_only = null)
 		//
 		exit(0);
 	}
-
-	//
-	function withServer($_threshold_test = true)
+	else if(KEKSE_CLI && !is_string($_host))
 	{
-		if(!getState('address'))
-		{
-			return false;
-		}
-		else if($_threshold_test)
-		{
-			$conf = getConfig('threshold');
-		
-			if($conf === null || $conf < 1)
-			{
-				return false;
-			}
-		}
-
-		return !!getConfig('server');
+		error('In CLI mode, you\'ve to define the $_host argument');
 	}
-
-	function withClient($_threshold_test = true)
+	else
 	{
-		if(!getState('address'))
-		{
-			return false;
-		}
-		else if($_threshold_test)
-		{
-			$conf = getConfig('threshold');
-		
-			if($conf === null || $conf < 1)
-			{
-				return false;
-			}
-		}
-
-		return !!getConfig('client');
+		$_host = \kekse\secureHost($_host);
 	}
 
 	//
-	function setup()
+	function setup($_host = null)
 	{
 		//
 		function removePort($_host)
@@ -8203,18 +8214,22 @@ function counter($_read_only = null)
 			return $result;
 		}
 
-		function getHost($_die = true)
+		function getHost($_host = null, $_die = true)
 		{
 			//
 			$result = null;
 			$overridden = false;
 
 			//
-			if(is_string(($result = getConfig('override'))) && $result !== '')
+			if(is_string($result = $_host))
 			{
 				$overridden = true;
 			}
-			else if(is_string($result = \kekse\getParam('override', false)) && $result !== '')
+			else if(is_string(($result = getConfig('override'))) && $result !== '')
+			{
+				$overridden = true;
+			}
+			else if(is_string($result = \kekse\getParam('override', false, false, true)) && $result !== '')
 			{
 				if(! getConfig('override'))
 				{
@@ -8261,10 +8276,90 @@ function counter($_read_only = null)
 		}
 
 		//
-		$host = getHost();
-		setState('host', $host);
-		makeConfig($host);
-		unset($host);
+		function withServer($_threshold_test = true)
+		{
+			if(!getState('address'))
+			{
+				return false;
+			}
+			else if($_threshold_test)
+			{
+				$conf = getConfig('threshold');
+			
+				if($conf === null || $conf < 1)
+				{
+					return false;
+				}
+			}
+
+			return !!getConfig('server');
+		}
+
+		function withClient($_threshold_test = true)
+		{
+			if(!getState('address'))
+			{
+				return false;
+			}
+			else if($_threshold_test)
+			{
+				$conf = getConfig('threshold');
+			
+				if($conf === null || $conf < 1)
+				{
+					return false;
+				}
+			}
+
+			return !!getConfig('client');
+		}
+
+		//
+		$_host = getHost($_host);
+		setState('host', $_host);
+		makeConfig($_host);
+
+		//
+		if(KEKSE_CLI || !getConfig('drawing'))
+		{
+			setConfig('text', 0);
+			setState('text', null);
+		}
+		else
+		{
+			$textConfig = getConfig('text');
+
+			if(is_bool($textConfig))
+			{
+				$textConfig = ($textConfig ? 64 : 0);
+			}
+			else if(! (is_int($textConfig) && $textConfig >= 0))
+			{
+				$textConfig = 0;
+			}
+
+			if($textConfig > KEKSE_LIMIT_STRING)
+			{
+				$textConfig = KEKSE_LIMIT_STRING;
+			}
+
+			setConfig('text', $textConfig);
+
+			if($textConfig > 0)
+			{
+				$text = \kekse\getParam('text', $textConfig);
+			}
+			else
+			{
+				$text = null;
+			}
+			
+			setConfig('text', $textConfig);
+			setState('text', $text);
+			
+			unset($textConfig);
+			unset($text);
+		}
 
 		//
 		if(getState('ro'))
@@ -8351,7 +8446,7 @@ function counter($_read_only = null)
 			}
 
 			//
-			function checkAuto($_host)
+			function checkAuto()
 			{
 				//
 				$path = getState('path');
@@ -8472,7 +8567,7 @@ function counter($_read_only = null)
 			}
 
 			//
-			if(! checkAuto($_host))
+			if(! checkAuto())
 			{
 				error(getConfig('none'), true);
 				exit(127);
@@ -8985,18 +9080,22 @@ function counter($_read_only = null)
 	}
 
 	//
-	setup();
+	setup($_host);
 
 	//
 	if(getConfig('drawing'))
 	{
 		//
-		function draw($_text, $_zero = null)
+		function draw($_text, $_zero_text = null)
 		{
 			//
-			if(!is_bool($_zero))
+			if(!is_bool($_zero_text) && !is_int($_zero_text))
 			{
-				$_zero = !!getState('zero');
+				$_zero_text = !!getState('zero');
+			}
+			else if(is_int($_zero_text) && strlen($_text) > $_zero_text)
+			{
+				$_text = \kekse\limit($_text, $_zero_text);
 			}
 			
 			//
@@ -9008,10 +9107,10 @@ function counter($_read_only = null)
 			function getDrawingType()
 			{
 				//
-				$result = \kekse\getParam('type', false);
+				$result = \kekse\getParam('type', false, false, true);
 				$byParam = true;
 
-				if(!is_string($result))
+				if($result === null)
 				{
 					$result = getConfig('type');
 					$byParam = false;
@@ -9045,7 +9144,7 @@ function counter($_read_only = null)
 			}
 
 			//
-			if($_zero)
+			if($_zero_text === true)
 			{
 				//
 				function drawZero($_type)
@@ -9198,15 +9297,25 @@ function counter($_read_only = null)
 					$result['x'] = \kekse\getParam('x', true, true, false);
 					$result['y'] = \kekse\getParam('y', true, true, false);
 					$result['angle'] = \kekse\getParam('angle', true, true, false);
+					$result['min'] = \kekse\getParam('min', null);
 				}
 
 				//
 				$byParam = array();
 				
 				//
+				$byParam['min'] = true;
+
+				if($result['min'] === null)
+				{
+					$result['min'] = getConfig('min');
+					$byParam['min'] = false;
+				}
+
+				//
 				$byParam['unit'] = true;
 				
-				if(! $result['unit'])
+				if($result['unit'] === null)
 				{
 					$result['unit'] = getConfig('unit');
 					$byParam['unit'] = false;
@@ -9682,13 +9791,32 @@ function counter($_read_only = null)
 					$maxX = (float)round(max($m[0], $m[2], $m[4], $m[6]), 2);
 					$minY = (float)round(min($m[1], $m[3], $m[5], $m[7]), 2);
 					$maxY = (float)round(max($m[1], $m[3], $m[5], $m[7]), 2);
-					
-					$height = $_options['px'];
 					$calculatedHeight = ($maxY - $minY);
-					$diffHeight = ($height - $calculatedHeight);
-					$top = $height - $maxY - ($diffHeight / 2);//$top = (($diffHeight - $minY) - ($diffHeight) / 2);
+
+					if($_options['min'])
+					{
+						$height = $calculatedHeight;
+					}
+					else
+					{
+						$height = $_options['px'];
+					}
+					
+					$diffHeight = $height - $calculatedHeight;
+					$top = $height - $maxY - $diffHeight / 2;//$top = (($diffHeight - $minY) - ($diffHeight) / 2);
 					$width = ($maxX - $minX);
 					$left = -$minX / 2;
+					
+					if($height < $_options['px'])
+					{
+						$height += 4.0;
+						$top += 2.0;
+					}
+
+					if($height > $_options['px'])
+					{
+						$height = $_options['px'];
+					}
 
 					$_options['width'] = (float)round($width, 2);
 					$_options['height'] = (float)round($height, 2);
@@ -9701,7 +9829,7 @@ function counter($_read_only = null)
 						'maxX' => $maxX,
 						'maxY' => $maxY
 					);
-					
+
 					return array(
 						'width' => &$_options['width'],
 						'height' => &$_options['height'],
@@ -9960,9 +10088,16 @@ function counter($_read_only = null)
 	}
 
 	//
-	if(getState('draw') || getState('zero'))
+	if(getState('draw') || getState('zero') || getState('text') !== null)
 	{
-		draw($value, getState('zero'));
+		if(getState('text'))
+		{
+			draw(getState('text'), getConfig('text'));
+		}
+		else
+		{
+			draw($value, getState('zero'));
+		}
 	}
 	else
 	{
