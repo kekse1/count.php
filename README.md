@@ -818,7 +818,7 @@ doesn't consume *that* much cpu time or memory.
 > **Note**
 > As of v**4.0.7** there are 'only' **_10.047_ code lines** left (and there are nearly no comments).
 
-*And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
+*If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 ## The original version
 **[The original version](src/original.php)** was a very tiny script as little helping hand for my web
