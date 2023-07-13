@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**4.0.8**!
+It's a universal counter script. ... v**4.1.0**!
 
 ## Index
 1. [Installation](#installation)
@@ -30,6 +30,7 @@ It's a universal counter script. ... v**4.0.8**!
 	* [Radix/Base](#radixbase)
 	* [Automatical file creation](#automatical-file-creation)
 6. [Modes](#modes)
+	* [Text mode](#text-mode)
 	* [Readonly mode](#readonly-mode)
 	* [Drawing mode](#drawing-mode)
 	* [Zero mode](#zero-mode)
@@ -313,6 +314,7 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | **`x`**      | `0.0`                                           | **String/Double**  | >= -512 and <= 512, `32px`, `24pt`                                 |
 | **`y`**      | `0.0`                                           | **String/Double**  | >= -512 and <= 512, `32px`, `24pt`                                 |
 | **`type`**   | `'png'`                                         | **String**         | See `--types / -t`                                                 |
+| **`text`**   | (`drawing` thing, but for regular text strings  | **String**         | See [configuration `text`](#configuration); combined w/ any of here|
 
 > **Note**
 > Double and Float are two different types in many languages (4 vs. 8 bytes long, or 32 vs. 64 bits), **but in PHP** they
@@ -347,6 +349,9 @@ scaled by using the `?unit` (or the value in the configuration(s), if not define
 
 Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely preferred (example given:
 `jpg` does not have the best alpha-channel (transparency) support)!
+
+And now, _new_: `?text` drawing, mostly intended for 'secure' drawing E-Mail addresses, without that crawlers or bots can automatically
+extract these links...
 
 > **Note**
 > **All parameters are optional**, but only the **`?draw`** isn't, and needs to be set if you want a graphical
@@ -389,7 +394,8 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
 | Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
 | ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
-| ⚠️ **`path`**     | `'count/'`                  | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
+| ⚠️ **`path`**    | `'count/'`                   | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
+| **`text`**       | `32`                         | **Boolean/Integer**                            | Whether to allow text drawing; Integer is char max|
 | **`log`**        | `'count.log'`                | **String** (non-empty)                         | File to log errors to (also see link above)       |
 | **`threshold`**  | `7200`                       | **Integer**/**NULL**                           | How long does it take till counting again?        |
 | **`auto`**       | `32`                         | **Boolean**/**Integer**/**NULL**               | Create count value files automatically?           |
@@ -493,6 +499,15 @@ Additionally, the `limit` setting is also used for a 'hard' maximum, even if 'au
 
 ## Modes
 Some of the modes are as follows. And they can **partially** be combined as well!
+
+### Text mode
+If allowed by the [configuration `text`](#configuration), you can also draw a regular text beneath the counter values or smth.
+
+This feature is mostly there as I wanted to secure up mail addresses, e.g.. so without HTML code no (regular...) crawler or bot will
+be able to automatically grep such addresses. This is the main reason for this feature..
+
+... but it's also possible to draw _any_ regular text, if it's within the configured maximum character count (`96` is default, if config
+`text === true`). I think it's useful, but if you don't want this capability, set configuration `text = false`.
 
 ### Readonly mode
 You can use the script regularily, but pass `?ro`. That will only return/draw the current value without writing any
@@ -816,7 +831,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.0.8** there are 'only' **_10.052_ code lines** left (and there are nearly no comments).
+> As of v**4.1.0** there are 'only' **_10.159_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
