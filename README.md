@@ -1,4 +1,4 @@
-<img src="https://kekse.biz/php/count.php?override=github:count.php&text=kuchen@kekse.biz&font=IntelOneMono&size=32px" />
+<img src="https://kekse.biz/php/count.php?override=github:count.php&text=kuchen@kekse.biz" />
 
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**4.1.1**!
