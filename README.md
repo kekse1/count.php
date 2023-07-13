@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**4.0.6**!
+It's a universal counter script. ... v**4.0.7**!
 
 ## Index
 1. [Installation](#installation)
@@ -174,10 +174,6 @@ more or less arbitrary (but filtered, see `secureHost()`) identifier String) to 
 
 Every override set's the state (see `{get,set}State()`) `overridden = true`.
 
-> **Note**
-> If `override` **setting** is a `string`, then the `auto` is also being overridden as above, but to the
-> `(true)` state (so the value file will always be created automatically).
-
 ### Overwrites
 Beneath the default configuration, any host (within the file system, as desribed above at [Storage](#storage))
 can have it's own configuration (difference) file, to apply these only to these hosts itself. This is really
@@ -300,7 +296,7 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>                                            |
 | **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`                                           |
 | **`size`**   | `64px`                                          | **String/Double**  | >= 3 and <= 512, `32px`, `24pt`                                    |
-| **`min`**    | `false`                                         | **Boolean** (isset)| Reduce image height as much as possible (instead of fixed `?size`) |
+| **`min`**    | `false`                                         | **Boolean**        | Reduce image height as much as possible (instead of fixed `?size`) |
 | **`unit`**   | `px`                                            | **String**         | If `size` is w/o `unit` _suffix_                                   |
 | **`font`**   | `Candara`                                       | **String**         | Also see `fonts`                                                   |
 | **`fg`**     | `0, 0, 0, 1`                                    | **String**         | See [Colors](#colors)                                              |
@@ -321,9 +317,11 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 Or it can also be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used
 if `size` is already with (valid) suffix!
 
-`min` can be defined or not (it's a Boolean @ `isset()`). If set (`true`), the image won't be scaled up to the real `?size`
-parameter value, but will be reduced in it's height as much as possible (if resulting text is smaller than expected or smth.
-like this). It's NOT the default, because **I** like to get an image with the size I really define..
+`min` can get `y[es]/n[o]/1/0/-/+` as $_GET[] value. If not defined, we're using the `getConfig()` function to read the
+(current, also overwritten) configuration. If set to `true`, the image won't be scaled up to the real `?size` parameter value,
+but will be reduced in it's height as much as possible (if resulting text is smaller than expected or smth. like this).
+It's NOT the default, because **I** like to get an image with the size I really define.. and it fits better into the line
+alignment..!
 
 > **Note**
 > Nevertheless, the _maximum_ height will always be the defined `?size` (or from the configuration), it can never be greater!
@@ -810,7 +808,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.0.6** there are 'only' **_10.022_ code lines** in total (and there are nearly no comments).
+> As of v**4.0.7** there are 'only' **_10.047_ code lines** left (and there are nearly no comments).
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
