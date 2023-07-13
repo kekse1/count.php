@@ -1,7 +1,7 @@
 <img src="https://kekse.biz/php/count.php?draw&override=github:count.php" />
 
 # [count.php](https://github.com/kekse1/count.php/)
-It's a universal counter script. ... v**4.0.5**!
+It's a universal counter script. ... v**4.0.6**!
 
 ## Index
 1. [Installation](#installation)
@@ -295,49 +295,59 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 > Such *GET* parameters need a prefix before the variable name. It's either **`?`** for the first parameter,
 > or **`&`** for all following ones. **They are defined in the request _URL_**!
 
-| Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)           |
-| -----------: | :---------------------------------------------- | -----------------: | ---------------------------------: |
-| **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>            |
-| **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`           |
-| **`size`**   | `size` = `64`                                   | **String/Double**  | >= 3 and <= 512, `32px`, `24pt`    |
-| **`unit`**   | `unit` = `px`                                   | **String**         | If `size` is w/o `unit` _suffix_   |
-| **`font`**   | `font` = `'IntelOneMono'`                       | **String**         | Also see `fonts`                   |
-| **`fg`**     | `fg` = `'0,0,0,1'`                              | **String**         | See [Colors](#colors)              |
-| **`bg`**     | `bg` = `'255,255,255,0'`                        | **String**         | See [Colors](#colors)              |
-| **`angle`**  | `angle` = `0`                                   | **String/Double**  | Anticlockwise [ '', 'deg', 'rad' ] |
-| **`h`**      | `h` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
-| **`v`**      | `v` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
-| **`x`**      | `x` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
-| **`y`**      | `y` = `0`                                       | **String/Double**  | >= -512 and <= 512, `32px`, `24pt` |
-| **`type`**   | `type` = `'png'`                                | **String**         | See `--types / -t`                 |
+| Variable     | Default [Settings](#settings) \[= (value)\]     | Type               | Description / Comment(s)                                           |
+| -----------: | :---------------------------------------------- | -----------------: | -----------------------------------------------------------------: |
+| **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>                                            |
+| **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`                                           |
+| **`size`**   | `64px`                                          | **String/Double**  | >= 3 and <= 512, `32px`, `24pt`                                    |
+| **`min`**    | `false`                                         | **Boolean** (isset)| Reduce image height as much as possible (instead of fixed `?size`) |
+| **`unit`**   | `px`                                            | **String**         | If `size` is w/o `unit` _suffix_                                   |
+| **`font`**   | `Candara`                                       | **String**         | Also see `fonts`                                                   |
+| **`fg`**     | `0, 0, 0, 1`                                    | **String**         | See [Colors](#colors)                                              |
+| **`bg`**     | `255, 255, 255, 0`                              | **String**         | See [Colors](#colors)                                              |
+| **`angle`**  | `0.0`                                           | **String/Double**  | Anticlockwise [ '', 'deg', 'rad' ]                                 |
+| **`h`**      | `0.0`                                           | **String/Double**  | >= -512 and <= 512, `32px`, `24pt`                                 |
+| **`v`**      | `0.0`                                           | **String/Double**  | >= -512 and <= 512, `32px`, `24pt`                                 |
+| **`x`**      | `0.0`                                           | **String/Double**  | >= -512 and <= 512, `32px`, `24pt`                                 |
+| **`y`**      | `0.0`                                           | **String/Double**  | >= -512 and <= 512, `32px`, `24pt`                                 |
+| **`type`**   | `'png'`                                         | **String**         | See `--types / -t`                                                 |
 
 > **Note**
 > Double and Float are two different types in many languages (4 vs. 8 bytes long, or 32 vs. 64 bits), **but in PHP** they
 > seem to be exactly the same! I choosed the `double` notation here, because that's what `gettype()` returns. ;-)
 
 #### Explaination
-`fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
-
-`x` and `y` are just moving the text along these both axis. `v` is the space above and below the text, `h` is to the left and
-the right. They all can also be negative values, and can be with or without unit suffix. If no suffix defined, they'll be
-scaled by using the `?unit` (or it's setting, if not as parameter).
-
-`angle` will rotate the whole image anticlockwise (or just use negative values! ;-) .. supported are either integer or
-double/float values (assumed as being in 'degrees'), and Strings with a unit [ `deg`, `rad` ] as suffix.
-
 `size` is either an Integer or Double/Float. In this case the optional `unit` is considered (also in the configuration).
 Or it can also be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used
 if `size` is already with (valid) suffix!
 
-The selected `font` needs to be installed in the `fonts` directory, as `.ttf`. The parameter is normally without
-'.ttf' extension, but this doesn't matter at all.
+`min` can be defined or not (it's a Boolean @ `isset()`). If set (`true`), the image won't be scaled up to the real `?size`
+parameter value, but will be reduced in it's height as much as possible (if resulting text is smaller than expected or smth.
+like this). It's NOT the default, because **I** like to get an image with the size I really define..
 
-Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely
-preferred (example given: `jpg` does not have the best alpha-channel (transparency) support)!
+> **Note**
+> Nevertheless, the _maximum_ height will always be the defined `?size` (or from the configuration), it can never be greater!
+
+So, `unit` sets the default unit to use for `h`, `v`, `x`, `y` and `size`, if there are only `Integer/Double` values, not a String with unit suffix.
+
+The selected `font` needs to be installed in the `fonts` directory, as `.ttf`. The parameter is normally without '.ttf' extension, but this doesn't matter at all.
+
+`fg` and `bg` are colors, see the [Colors](#colors) sub section of the [Configuration](#configuration) section.
+
+`angle` will rotate the whole image anticlockwise (or just use negative values! ;-) .. supported are either integer or
+double/float values (assumed as being in 'degrees'), and Strings with a unit [ `deg`, `rad` ] as suffix.
+
+`x` and `y` are just moving the text along these both axis. `v` is the space above and below the text, `h` is to the left and
+the right. They all can also be negative values, and can be with or without unit suffix. If no suffix defined, they'll be
+scaled by using the `?unit` (or the value in the configuration(s), if not defined as parameter).
+
+Last but not least, the `?type` can atm be set to `png` and `jpg`, whereas `png` is absolutely preferred (example given:
+`jpg` does not have the best alpha-channel (transparency) support)!
 
 > **Note**
 > **All parameters are optional**, but only the **`?draw`** isn't, and needs to be set if you want a graphical
-> output. **`?zero`** is also enabling drawing mode, but you won't see anything at all ...
+> output. **`?zero`** is also enabling drawing mode, but you won't see anything at all ... and this, and only
+> this `?zero` can be set without `?draw`, to draw nevertheless.
 
 ### Dependencies
 
@@ -800,7 +810,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.0.5** there are 'only' **_10.005_ code lines** in total (and there are nearly no comments).
+> As of v**4.0.6** there are 'only' **_10.022_ code lines** in total (and there are nearly no comments).
 
 *And if you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
