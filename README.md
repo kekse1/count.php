@@ -57,6 +57,10 @@ and **That's all**! :-) The configured counter directory `count/` will automatic
 > It's an open door for other users on the system, but if you really need console access under this circumstances,
 > you'd like to do this..
 
+> **Note**
+> I'd suggest you to also copy the [`count.sh`](src/count.sh) (wrapper) shell/bash script to easily execute the script
+> in it's [CLI mode](#cli-mode)! Download it _into the same directory as the `count.php`_ and set (just once) `chmod +x count.sh`!
+
 The possible, possibly complex rest is described in the [Configuration section](#configuration).
 
 As an important example, hence here's another file system change necessary: if you want to enable the `drawing` routines. Then the
