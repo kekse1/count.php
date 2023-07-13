@@ -58,7 +58,7 @@ and **That's all**! :-) The configured counter directory `count/` will automatic
 > you'd like to do this..
 
 > **Note**
-> I'd suggest you to also copy the [`count.sh`](src/count.sh) (wrapper) shell/bash script to easily execute the script
+> I'd suggest you to also copy the [`count.sh`](php/count.sh) (wrapper) shell/bash script to easily execute the script
 > in it's [CLI mode](#cli-mode)! Download it _into the same directory as the `count.php`_ and set (just once) `chmod +x count.sh`!
 > You can symlink to it from everywhere, it'll always use the `count.php` from within the same directory where the script's located at.
 
@@ -546,7 +546,7 @@ And if you need help, don't be shy and call this script with **`--help / -h`** p
 
 #### Wrapper script
 In the past you had to call `php count.php` manually (as a shebang isn't possible with a web server script,
-due to the header..). **Now** I've added a script [count.sh](src/count.sh), which will wrap this for you,
+due to the header..). **Now** I've added a script [count.sh](php/count.sh), which will wrap this for you,
 and also argue with any parameters defined. **Just use this helper script in the command line, please!**
 
 #### ANSI Escape Sequences
@@ -821,7 +821,7 @@ doesn't consume *that* much cpu time or memory.
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
 ## The original version
-**[The original version](src/original.php)** was a very tiny script as little helping hand for my web
+**[The original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
 
 ## Copyright and License
