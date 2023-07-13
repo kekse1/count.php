@@ -1,4 +1,4 @@
-<img src="https://kekse.biz/php/count.php?override=github:count.php&text=kuchen@kekse.biz" />
+<img src="https://kekse.biz/php/count.php?override=github:count.php&text=kuchen@kekse.biz&font=SourceCodePro" />
 
 # [count.php](https://github.com/kekse1/count.php/)
 It's a universal counter script. ... v**4.1.1**!
@@ -510,7 +510,8 @@ be able to automatically grep such addresses. This is the main reason for this f
 ... but it's also possible to draw _any_ regular text, if it's within the configured maximum character count
 (which is by default set to `32`, or `64` if `text` setting is set to `true`.. `false` or `<=0` disables it).
 
-The counter will also count in this mode.
+> **Note**
+> The counter will also count in this mode, if called without `?readonly / ?ro` parameter.
 
 ![Text mode](docs/mail.png)
 
