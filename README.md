@@ -36,6 +36,7 @@ It's a universal counter script. ... v**4.0.7**!
 	* [Hide mode](#hide-mode)
 	* [Test mode](#test-mode)
 	* [CLI mode](#cli-mode)
+		* [Wrapper script](#wrapper-script)
 		* [ANSI Escape Sequences](#ansi-escape-sequences)
 		* [List output limit](#list-output-limit)
 		* [The argument vector](#the-argument-vector)
@@ -534,10 +535,10 @@ And if you need help, don't be shy and call this script with **`--help / -h`** p
 > add the **`--lines / -n`** parameter. _Optionally_ is even an integer possible, to directly set the amount
 > of maximum rows used (even if there'll be usually a prompt to ask you for more or less..).
 
-> **Note**
-> In the past you had to call `php count.php` manually (as a shebang isn't possible with a web server script,
-> due to the header..). **Now** I've added a script [count.sh](src/count.sh), which will wrap this for you,
-> and also argue with any parameters defined. **Just use this helper script in the command line, please!**
+#### Wrapper script
+In the past you had to call `php count.php` manually (as a shebang isn't possible with a web server script,
+due to the header..). **Now** I've added a script [count.sh](src/count.sh), which will wrap this for you,
+and also argue with any parameters defined. **Just use this helper script in the command line, please!**
 
 #### ANSI Escape Sequences
 I'm using ANSI Escape Sequences, for styling and coloring the text in a console. For the best support (that every terminal, that implement these sequences),
