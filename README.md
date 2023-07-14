@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`" />
 
-It's a universal [counter script](php/count.php). ... v**4.3.2**!
+It's a universal [counter script](php/count.php). ... v**4.3.3**!
 
 ## Index
 1. [Installation](#installation)
@@ -72,8 +72,7 @@ font_ in the `font` setting).
 > FreeType seems to only support **`.ttf`** fonts. My script is adapted to this, so other font formats are **not** supported.
 
 > **Note**
-> You can just use the [`fonts/`](fonts/) shipped with(in) this repository. I've configured **`Intel One Mono`**
-> (or **`IntelOne Mono`**) as the default font, btw.. looks great (see the random counter value on top of this `README.md`)!
+> You can just use the [`fonts/`](fonts/) shipped with(in) this repository.
 
 So, **that's** all. :D~
 
@@ -409,7 +408,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **`clean`**      | `true`                       | **NULL**/**Boolean**/**Integer**               | Clean outdated cache files and the FS things?     |
 | **`limit`**      | `32768`                      | **Integer**                                    | Maximum number of files, in base dir and sub dir! |
 | **`fonts`**      | `'fonts/'`                   | **String** (non-empty)                         | Directory with installed '.ttf' fonts @ path      |
-| **`font`**       | `'IntelOneMono'`             | **String** (non-empty) \[see `--fonts / -f`\]  | Default font to use                               |
+| **`font`**       | `'Candara'`                  | **String** (non-empty) \[see `--fonts / -f`\]  | Default font to use                               |
 | **`size`**       | `64`                         | **String**/**Double** (>=3 and <=512)          | Either Double, w/ `unit`, or String `pt` or `px`  |
 | **`unit`**       | `px`                         | **String** [ `pt`, `px` ]                      | Will be used if `size`/`x`/`y`/`h`/`v` is numeric.|
 | **`fg`**         | `'rgb(0, 0, 0)'`             | **String** (non-empty)                         | See [Colors](#colors) below                       |
@@ -842,7 +841,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.3.2** there are 'only' **_10.247_ code lines** left (and there are nearly no comments).
+> As of v**4.3.3** there are 'only' **_10.248_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
