@@ -760,8 +760,12 @@ For the **count(er)** implementation _itself_ I'm using the namespace **`kekse\c
 
 > **Note**
 > Maybe you'd like to know that enabling the `KEKSE_RAW` (on top of file) will export all my extensions,
-> but without the `kekse\counter` namespace, and the base `counter()` function also won't get called.
+> but without the `\kekse\counter` namespace, and the base `counter()` function also won't get called.
 > So you can include this script to get all my following functions without the counter part itself! ;)~
+
+> **Note**
+> This script only defines the `KEKSE_RAW` if not already defined: this way you can define it in any
+> other PHP script which includes the `kekse` exports, e.g. via `require_once()`! :-D
 
 The following _common functions_ (which tend to be used also in other scripts, as they're 'abstract' and useful also in other scripts)
 are exported in my own **`kekse`** namespace. *They could be really handy*:
