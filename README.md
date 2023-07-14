@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`" />
 
-It's a universal [counter script](php/count.php). ... v**4.3.3**!
+It's a universal [counter script](php/count.php). ... v**4.3.4**!
 
 ## Index
 1. [Installation](#installation)
@@ -622,7 +622,7 @@ To learn how to use the functions to handle the whole `count/` directory (those 
 | ⚠️ **`-z`** | **`--sanitize [-w]`**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
 | ⚠️ **`-s`** | **`--set <host[=0][, ...]>** | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
 |    **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
-|    **`-p`** | **`--types`**                | Available image types for drawing output.                                           |
+|    **`-t`** | **`--types`**                | Available image types for drawing output.                                           |
 |    **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                                             |
 |    **`-e`** | **`--errors`**               | Counts the error log lines.                                                         |
 |    **`-u`** | **`--unlog`**                | Deletes the whole error log file.                                                   |
