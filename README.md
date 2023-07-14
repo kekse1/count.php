@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`" />
 
-It's a universal [counter script](php/count.php). ... v**4.3.0**!
+It's a universal [counter script](php/count.php). ... v**4.3.1**!
 
 ## Index
 1. [Installation](#installation)
@@ -89,7 +89,7 @@ So, **that's** all. :D~
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Screenshots
-![\<img\> w/ `text` config](docs/mail.png)
+![\<img\> w/ `text` config](docs/text-mode.png)
 ![\<img\> drawn in the browser](docs/example.png)
 ![Running in CLI mode](docs/screenshot.png)
 
@@ -422,7 +422,7 @@ This `DEFAULTS` are stored in the script file itself, in a `const` array.
 | **`type`**       | `'png'`                      | **String** (non-empty) \[see `--types / -t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
 | **`privacy`**    | `false`                      | **Boolean**                                    | Hashes the IPs (stored if `server` is enabled)    |
 | **`hash`**       | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes / -h`\] | This is the hash algorithm. Used for Cookies, too |
-| **`error`**      | `'*'`                        | **NULL**/**String**                            | If not (null), it will be shown on **any** error  |
+| **`error`**      | `null`                       | **NULL**/**String**                            | If not (null), it will be shown on **any** error  |
 | **`none`**       | `'/'`                        | **String**                                     | And this is shown when `!auto` w/o value file..   |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
@@ -512,7 +512,7 @@ be able to automatically grep such addresses. This is the main reason for this f
 > **Note**
 > The counter will also count in this mode, if called without `?readonly / ?ro` parameter.
 
-![Text mode](docs/mail.png)
+![Text mode](docs/text-mode.png)
 
 ### Readonly mode
 You can use the script regularily, but pass `?ro`. That will only return/draw the current value without writing any
@@ -838,7 +838,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.3.0** there are 'only' **_10.145_ code lines** left (and there are nearly no comments).
+> As of v**4.3.1** there are 'only' **_10.243_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
