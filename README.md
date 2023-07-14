@@ -676,19 +676,19 @@ This section explains the most important operations on the file system storage.
 > First it's essential to explain you the Scheme of file system items for this counter. Then, in the following sub sections
 > you'll see exactly what happens why..
 
-So, there are four elementary file types, for which I'm using `define()` with `COUNTER_` prefix, as follows (first column);
+So, there are four elementary file types, for which I'm using `define()` with `KEKSE_COUNTER_` prefix, as follows (first column);
 whereas their basename (w/o prefix) equals the hostnames or the override strings (and the prefix characters are also defined
 statically, see their names in the `Prefix` column (2nd)):
 
 | Type / Constant  | Prefix                          | Type      | Meaning / Description                                                                                          |
 | ---------------: | :------------------------------ | :-------- | :------------------------------------------------------------------------------------------------------------- |
-| `COUNTER_VALUE`  | **`~`** (`COUNTER_VALUE_CHAR`)  | File      | The counted values itself are being stored here (integers)                                                     |
-| `COUNTER_DIR`    | **`+`** (`COUNTER_DIR_CHAR`)    | Directory | If `server` is enabled, it'll contain every IP or their Hash as one file each; containing (integer) timestamps |
-| `COUNTER_FILE`   | **`-`** (`COUNTER_FILE_CHAR`)   | File      | If `server` is enabled, these are caches to store the amount of real cache files per `COUNTER_DIR` host        |
-| `COUNTER_CONFIG` | **`@`** (`COUNTER_CONFIG_CHAR`) | File      | These are somehow an exception.. just JSON files with difference configuration, each one for a host/override   |
+| `KEKSE_COUNTER_VALUE`  | **`~`** (`KEKSE_COUNTER_VALUE_CHAR`)  | File      | The counted values itself are being stored here (integers)                                                     |
+| `KEKSE_COUNTER_DIR`    | **`+`** (`KEKSE_COUNTER_DIR_CHAR`)    | Directory | If `server` is enabled, it'll contain every IP or their Hash as one file each; containing (integer) timestamps |
+| `KEKSE_COUNTER_FILE`   | **`-`** (`KEKSE_COUNTER_FILE_CHAR`)   | File      | If `server` is enabled, these are caches to store the amount of real cache files per `KEKSE_COUNTER_DIR` host        |
+| `KEKSE_COUNTER_CONFIG` | **`@`** (`KEKSE_COUNTER_CONFIG_CHAR`) | File      | These are somehow an exception.. just JSON files with difference configuration, each one for a host/override   |
 
 > **Warning**
-> NONE of the deletion functions will _ever_ delete any `.htaccess` entry!
+> NONE of the deletion functions will delete any `.htaccess` entry, nor the others in `*_KEEP*`..<
 
 ##### Synchronization
 **`--sync / -y`** function: Is a special case of the **`--values / -v`** function (so after regular showing all the values the sync routine starts).
@@ -707,7 +707,7 @@ script is being called by web client (so in regular counting mode), either alway
 _Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts). More optional parameters are:
 | Short    | Long                   | Meaning / Description                                                                                                                          |
 | -------: | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`-w`** | **`--without-values`** | Delete `COUNTER_DIR` and `COUNTER_FILE` files if no proper `COUNTER_VALUE` file was found. _Exception_: doesn't delete `COUNTER_CONFIG` files! |
+| **`-w`** | **`--without-values`** | Delete `KEKSE_COUNTER_DIR` and `KEKSE_COUNTER_FILE` files if no proper `KEKSE_COUNTER_VALUE` file was found. _Exception_: doesn't delete `KEKSE_COUNTER_CONFIG` files! |
 
 > **Warning**
 > The `threshold` is maybe not set to an integer above zero, in this case the whole cache directories will be deleted.
@@ -724,8 +724,8 @@ _Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts). 
 > Will also delete any file in the cache directories which are no _regular_ files.
 
 ##### Purging
-**`--purge / -p`** function: This function deletes all the cache files and directories for selected/all hosts. So only the `COUNTER_DIR` directories,
-with all their timestamp files in them, plus the corresponding caching `COUNTER_FILE` files which contain the amount of timestamp files for each directory.
+**`--purge / -p`** function: This function deletes all the cache files and directories for selected/all hosts. So only the `KEKSE_COUNTER_DIR` directories,
+with all their timestamp files in them, plus the corresponding caching `KEKSE_COUNTER_FILE` files which contain the amount of timestamp files for each directory.
 
 _Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts).
 
@@ -736,12 +736,12 @@ possible in combination with the globs or hosts/overrides). With this the config
 _Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts).
 
 ##### Sanitizing
-**`--sanitize / -z`** function: Deletes any file in the counter directory and every `COUNTER_DIR` sub directory which doesn't fit in there. **Foreign** files the counter doesn't need.
+**`--sanitize / -z`** function: Deletes any file in the counter directory and every `KEKSE_COUNTER_DIR` sub directory which doesn't fit in there. **Foreign** files the counter doesn't need.
 
 _Optional parameter(s):_ Host/Override names or **glob**s (to match for hosts). More optional parameters are:
 | Short    | Long                   | Meaning / Description                                                                                                                          |
 | -------: | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`-w`** | **`--without-values`** | Delete `COUNTER_DIR` and `COUNTER_FILE` files if no proper `COUNTER_VALUE` file was found. _Exception_: doesn't delete `COUNTER_CONFIG` files! |
+| **`-w`** | **`--without-values`** | Delete `KEKSE_COUNTER_DIR` and `KEKSE_COUNTER_FILE` files if no proper `COUNTER_VALUE` file was found. _Exception_: doesn't delete `KEKSE_COUNTER_CONFIG` files! |
 
 > **Warning**
 > This also holds for the cache directories, which will also be inspected, so all non-_regular_ files in there will be deleted as well!
