@@ -780,7 +780,7 @@ are exported in my own **`kekse`** namespace. *They could be really handy*:
 | **`removeBinary()`**        | `$_string`, `$_space = false`                                        | Same as `removeWhiteSpaces()`, but without spaces (if `$_space === false`, which is default)   |
 | **`getParam()`**            | `$_key`, `$_numeric = false`, `$_float = true`, `$_fallback = true`  | Returns a `$_GET[]` variable **very secured** and _optionally_ converted (int, double, bool)   |
 | **`unit()`**                | `$_string`, `$_float = false`, `$_null = true`                       | Splits into value and unit components, which so can be defined in one string only.             |
-| **`color()`**               | `$_string`, `$_gd = null`                                            | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')` (if !bool)   |
+| **`color()`**               | `$_string`, `$_gd = null`                                            | See [Colors](#colors).. the `$_gd` argument is `true` if `extension_loaded('gd')`, if `!(bool)`|
 | **`delete()`**              | `$_path`, `$_depth = 0`, `$_extended = false`                        | Function for **any** file deletion! Also recursively, w/ optional (int)depth (or true/false)   |
 | **`checkPath()`**           | `$_path`, `$_file`, `$_log_error_source = null`, (**...**)           | Default routine to check for file existence or creation, and `chmod()` for more security       |
 | **`limit()`**               | `$_string`, `$_length = 224` (`KEKSE_LIMIT_STRING`)                  | For a maximum string length. Also look at `KEKSE_LIMIT_STRING` (which is `224`, by default)    |
