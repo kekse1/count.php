@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`" />
 
-It's a universal [counter script](php/count.php). ... v**4.3.5**!
+It's a universal [counter script](php/count.php). ... v**4.4.0**!
 
 ## Index
 1. [Installation](#installation)
@@ -302,7 +302,7 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 | **`draw`**   | (`drawing` needs to be enabled!) = `false`      | **No value**       | By default _no_ \<img\>                                            |
 | **`zero`**   | (`drawing` again) (overrides the options below) | **No value**       | _Alternative_ to `?draw`                                           |
 | **`size`**   | `64px`                                          | **String/Double**  | >= 3 and <= 512, `32px`, `24pt`                                    |
-| **`min`**    | `false`                                         | **Boolean**        | Reduce image height as much as possible (instead of fixed `?size`) |
+| **`scale`**  | `false`                                         | **Boolean**        | Instead of fixed `?size`, fit the image to the drawn text/value    |
 | **`unit`**   | `px`                                            | **String**         | If `size` is w/o `unit` _suffix_                                   |
 | **`font`**   | `Candara`                                       | **String**         | Also see `fonts`                                                   |
 | **`fg`**     | `0, 0, 0, 1`                                    | **String**         | See [Colors](#colors)                                              |
@@ -324,14 +324,10 @@ parameter. More isn't necessary, but there also also some GET parameters to adap
 Or it can also be a String with unit suffix [ `px`, `pt` ]. `unit` can have one of these both strings, but will not be used
 if `size` is already with (valid) suffix!
 
-`min` can get `y[es]/n[o]/1/0/-/+` as $_GET[] value. If not defined, we're using the `getConfig()` function to read the
+`scale` can get `y[es]/n[o]/1/0/-/+` as $_GET[] value. If not defined, we're using the `getConfig()` function to read the
 (current, also overwritten) configuration. If set to `true`, the image won't be scaled up to the real `?size` parameter value,
-but will be reduced in it's height as much as possible (if resulting text is smaller than expected or smth. like this).
-It's NOT the default, because **I** like to get an image with the size I really define.. and it fits better into the line
-alignment..!
-
-> **Note**
-> Nevertheless, the _maximum_ height will always be the defined `?size` (or from the configuration), it can never be greater!
+but will be reduced in it's size as much as possible (to perfectly fit the text/value). ... It is NOT the default setting,
+because **I** like to get an image with the size I really define.. and it fits better into the line alignment.
 
 So, `unit` sets the default unit to use for `h`, `v`, `x`, `y` and `size`, if there are only `Integer/Double` values, not a String with unit suffix.
 
@@ -840,7 +836,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.3.5** there are 'only' **_10.259_ code lines** left (and there are nearly no comments).
+> As of v**4.4.0** there are 'only' **_10.247_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
