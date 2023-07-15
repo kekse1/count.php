@@ -600,14 +600,16 @@ These are the CLI functions. The real operations on the file system storage are 
 [Operations](#operations) section, so you'll get to know, which argument is there for which reason..
 
 ##### Possible parameters
- Here's the list of all parameters:
+The following parameters are the main [CLI](#cli-mode) functions - they can't be combined (first occurence of one of these 'counts' ;)~
 
 > **Warning**
 > Parameters marked with ⚠️ are functions with 'hard' data write operations! .. to learn how to use these functions
 > (to handle the whole `count/` base directory), scroll down to the [Operations](#operations) section!
 
-| .. | Short     | Long                           | Description                                                                         |
-| -- | --------: | :----------------------------- | :---------------------------------------------------------------------------------: |
+Here's the list of all the parameters/functions:
+
+| .. | Short    | Long                           | Description                                                                         |
+| -- | -------: | :----------------------------- | :---------------------------------------------------------------------------------: |
 |    | **`-?`** | **`--help`**                 | Shows the link to this website..                                                    |
 |    | **`-V`** | **`--version`**              | Print current script's version.                                                     |
 |    | **`-W`** | **`--website`**              | Print URL to this project page (on github.com atm.)                                 |
