@@ -677,9 +677,7 @@ This section explains the most important operations on the file system storage.
 > First it's essential to explain you the Scheme of file system items for this counter. Then, in the following sub sections
 > you'll see exactly what happens why..
 
-So, there are four elementary file types, for which I'm using `define()` with `KEKSE_COUNTER_` prefix, as follows (first column);
-whereas their basename (w/o prefix) equals the hostnames or the override strings (and the prefix characters are also defined
-statically, see their names in the `Prefix` column (2nd)):
+So, there are four elementary file types (for which I'm using two `define()` each: `KEKSE_COUNTER_`), as follows:
 
 | Prefix Char | Type      | Meaning / Description                                                                                           |
 | :---------: | :-------- | :-------------------------------------------------------------------------------------------------------------- |
