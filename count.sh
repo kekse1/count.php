@@ -1,1 +1,1 @@
-src/count.sh
+php/count.sh
