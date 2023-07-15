@@ -596,7 +596,10 @@ or (better) just call this script with either pure **`--lines / -n`** (to disabl
 > You can pass it by either **`--lines (int)`** or **`--lines=(int)`** (same with **`-n`**).
 
 #### The argument vector
-The following parameters are the main [CLI](#cli-mode) functions - they can't be combined (first occurence of one of these 'counts' ;)~
+The following parameters are the main [CLI](#cli-mode) functions.
+
+> **Note**
+> They can't be combined! .. first occurence 'counts'. ;)~
 
 > **Warning**
 > Parameters marked with ⚠️ are functions with 'hard' data write operations! .. to learn how to use these functions
