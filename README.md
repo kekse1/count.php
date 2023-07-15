@@ -617,11 +617,11 @@ Here's the list of all the parameters/functions:
 |    | **`-c`** | **`--config`** \[*\]            | Verify DEFAULT or, by arguments, per-user configurations                            |
 |    | **`-v`** | **`--values`** \[*\]            | Shows all vales and more.                                                           |
 | ⚠️ | **`-y`** | **`--sync`** \[*\]              | **Same as above, but with cache synchronization..**                                 |
-| ⚠️ | **`-l`** | **`--clean`** \[*\] ..          | **Clean all _outdated_ (only!) cache items**                                        |
+| ⚠️ | **`-l`** | **`--clean`** \[*\]             | **Clean all _outdated_ (only!) cache items**                                        |
 | ⚠️ | **`-p`** | **`--purge`** \[*\]             | **Delete the cache(s) for all or specified hosts.**                                 |
 | ⚠️ | **`-r`** | **`--remove`** \[*\]            | **Totally remove any host (all, or by arguments)**                                  |
-| ⚠️ | **`-z`** | **`--sanitize`** ..             | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
-| ⚠️ | **`-s`** | **`--set`** \< ... \>           | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
+| ⚠️ | **`-z`** | **`--sanitize`**                | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
+| ⚠️ | **`-s`** | **`--set`** \<...\>             | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
 |    | **`-f`** | **`--fonts`** \[*\]             | Available fonts for drawing `<img>`. Globs allowed.                                 |
 |    | **`-t`** | **`--types`**                   | Available image types for drawing output.                                           |
 |    | **`-h`** | **`--hashes`**                  | Available algorithms for `hash` config.                                             |
