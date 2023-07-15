@@ -386,43 +386,43 @@ see the [Per-host config overwrite](#per-host-config-overwrite) section below).
 Here are the current _default_ settings, including the possible types
 
 > **Note**
-> Every variable with a big, bold ⚠️ may **never** be overwritten by any [per-host config overwrite](#per-host-config-overwrite).
+> Every variable with a big, bold ⚠️ will **never** be overwritten by any [per-host config overwrite](#per-host-config-overwrite).
 > But this will always be checked (injection not possible).
 
 This `DEFAULTS` are stored in the script file itself, in a `const` array.
 
-| Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
-| ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
-| ⚠️ **`path`**    | `'count/'`                   | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
-| **`text`**       | `32`                         | **Boolean/Integer**                            | Whether to allow text drawing; Integer is char max|
-| **`log`**        | `'count.log'`                | **String** (non-empty)                         | File to log errors to (also see link above)       |
-| **`threshold`**  | `7200`                       | **Integer**/**NULL**                           | How long does it take till counting again?        |
-| **`auto`**       | `32`                         | **Boolean**/**Integer**/**NULL**               | Create count value files automatically?           |
-| **`hide`**       | `false`                      | **Boolean**/**String**                         | Show the counted value or hide it?                |
-| **`client`**     | `true`                       | **Boolean**/**NULL**                           | Enables Cookies against re-counting               |
-| **`server`**     | `true`                       | **Boolean**                                    | Enables cache/ip/timestamp files, like above      |
-| **`drawing`**    | `false`                      | **Boolean**                                    | Essential if using `?draw` or `?zero`!            |
-| ⚠️ **`override`** | `false`                     | **Boolean**/**String** (non-empty)             | Instead of using `$_SERVER[]` `$_GET[]` or String |
-| **`content`**    | `'text/plain;charset=UTF-8'` | **String** (non-empty)                         | Non-graphical mode produces only value output     |
-| **`radix`**      | `10`                         | **Integer**                                    | See [Radix](#radix) below .. change the output(s) |
-| **`clean`**      | `true`                       | **NULL**/**Boolean**/**Integer**               | Clean outdated cache files and the FS things?     |
-| **`limit`**      | `32768`                      | **Integer**                                    | Maximum number of files, in base dir and sub dir! |
-| **`fonts`**      | `'fonts/'`                   | **String** (non-empty)                         | Directory with installed '.ttf' fonts @ path      |
-| **`font`**       | `'Candara'`                  | **String** (non-empty) \[see `--fonts / -f`\]  | Default font to use                               |
-| **`size`**       | `64`                         | **String**/**Double** (>=3 and <=512)          | Either Double, w/ `unit`, or String `pt` or `px`  |
-| **`unit`**       | `px`                         | **String** [ `pt`, `px` ]                      | Will be used if `size`/`x`/`y`/`h`/`v` is numeric.|
-| **`fg`**         | `'rgb(0, 0, 0)'`             | **String** (non-empty)                         | See [Colors](#colors) below                       |
-| **`bg`**         | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                         | See [Colors](#colors) below                       |
-| **`angle`**      | `0`                          | **Double/String**                              | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
-| **`x`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Movement of drawed text left/right                |
-| **`y`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Same as above, but for up/down                    |
-| **`h`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Horizontal space from text to end of image        |
-| **`v`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Vertical space, like above                        |
-| **`type`**       | `'png'`                      | **String** (non-empty) \[see `--types / -t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
-| **`privacy`**    | `false`                      | **Boolean**                                    | Hashes the IPs (stored if `server` is enabled)    |
-| **`hash`**       | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes / -h`\] | This is the hash algorithm. Used for Cookies, too |
-| **`error`**      | `null`                       | **NULL**/**String**                            | If not (null), it will be shown on **any** error  |
-| **`none`**       | `'/'`                        | **String**                                     | And this is shown when `!auto` w/o value file..   |
+| .. | Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
+| -- | ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
+| ⚠️ | **`path`**       | `'count/'`                   | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
+|    | **`text`**       | `32`                         | **Boolean/Integer**                            | Whether to allow text drawing; Integer is char max|
+|    | **`log`**        | `'count.log'`                | **String** (non-empty)                         | File to log errors to (also see link above)       |
+|    | **`threshold`**  | `7200`                       | **Integer**/**NULL**                           | How long does it take till counting again?        |
+|    | **`auto`**       | `32`                         | **Boolean**/**Integer**/**NULL**               | Create count value files automatically?           |
+|    | **`hide`**       | `false`                      | **Boolean**/**String**                         | Show the counted value or hide it?                |
+|    | **`client`**     | `true`                       | **Boolean**/**NULL**                           | Enables Cookies against re-counting               |
+|    | **`server`**     | `true`                       | **Boolean**                                    | Enables cache/ip/timestamp files, like above      |
+|    | **`drawing`**    | `false`                      | **Boolean**                                    | Essential if using `?draw` or `?zero`!            |
+| ⚠️ | **`override`**   | `false`                      | **Boolean**/**String** (non-empty)             | Instead of using `$_SERVER[]` `$_GET[]` or String |
+|    | **`content`**    | `'text/plain;charset=UTF-8'` | **String** (non-empty)                         | Non-graphical mode produces only value output     |
+|    | **`radix`**      | `10`                         | **Integer**                                    | See [Radix](#radix) below .. change the output(s) |
+|    | **`clean`**      | `true`                       | **NULL**/**Boolean**/**Integer**               | Clean outdated cache files and the FS things?     |
+|    | **`limit`**      | `32768`                      | **Integer**                                    | Maximum number of files, in base dir and sub dir! |
+|    | **`fonts`**      | `'fonts/'`                   | **String** (non-empty)                         | Directory with installed '.ttf' fonts @ path      |
+|    | **`font`**       | `'Candara'`                  | **String** (non-empty) \[see `--fonts / -f`\]  | Default font to use                               |
+|    | **`size`**       | `64`                         | **String**/**Double** (>=3 and <=512)          | Either Double, w/ `unit`, or String `pt` or `px`  |
+|    | **`unit`**       | `px`                         | **String** [ `pt`, `px` ]                      | Will be used if `size`/`x`/`y`/`h`/`v` is numeric.|
+|    | **`fg`**         | `'rgb(0, 0, 0)'`             | **String** (non-empty)                         | See [Colors](#colors) below                       |
+|    | **`bg`**         | `'rgba(255, 255, 255, 0)'`   | **String** (non-empty)                         | See [Colors](#colors) below                       |
+|    | **`angle`**      | `0`                          | **Double/String**                              | Anticlockwise rotation; (int) vs. `*deg` or `*rad`|
+|    | **`x`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Movement of drawed text left/right                |
+|    | **`y`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Same as above, but for up/down                    |
+|    | **`h`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Horizontal space from text to end of image        |
+|    | **`v`**          | `0`                          | **Double/String** (<=512 and >=-512)           | Vertical space, like above                        |
+|    | **`type`**       | `'png'`                      | **String** (non-empty) \[see `--types / -t`\]  | Only `png` and `jpg` supported 'atm' (are best!)  |
+|    | **`privacy`**    | `false`                      | **Boolean**                                    | Hashes the IPs (stored if `server` is enabled)    |
+|    | **`hash`**       | `'sha3-256'`                 | **String** (non-empty) \[see `--hashes / -h`\] | This is the hash algorithm. Used for Cookies, too |
+|    | **`error`**      | `null`                       | **NULL**/**String**                            | If not (null), it will be shown on **any** error  |
+|    | **`none`**       | `'/'`                        | **String**                                     | And this is shown when `!auto` w/o value file..   |
 
 It'd be better to create a `.htaccess` file with at least `Deny from all` in your `path` directory. But consider that not every HTTPD (web server)
 supports such a file (e.g. `lighttpd`..)!
@@ -600,32 +600,32 @@ These are the CLI functions. The real operations on the file system storage are 
 [Operations](#operations) section, so you'll get to know, which argument is there for which reason..
 
 ##### Possible parameters
-To learn how to use the functions to handle the whole `count/` directory (those in the following table with
-big, bold `⚠️`), go down to the [Operations](#operations) section! Here's the list of all parameters:
+ Here's the list of all parameters:
 
 > **Warning**
-> Parameters marked with ⚠️ are functions with 'hard' data write operations!
+> Parameters marked with ⚠️ are functions with 'hard' data write operations! .. to learn how to use these functions
+> (to handle the whole `count/` base directory), scroll down to the [Operations](#operations) section!
 
-| Short     | Long                           | Description                                                                         |
-| --------: | :----------------------------- | :---------------------------------------------------------------------------------: |
-|    **`-?`** | **`--help`**                 | Shows the link to this website..                                                    |
-|    **`-V`** | **`--version`**              | Print current script's version.                                                     |
-|    **`-W`** | **`--website`**              | Print URL to this project page (on github.com atm.)                                 |
-|    **`-C`** | **`--copyright`**            | Shows the author of this script. /me ..                                             |
-|    **`-I`** | **`--info`**                 | All the above infos at once                                                         |
-|    **`-c`** | **`--config [*]`**           | Verify DEFAULT or, by arguments, per-user configurations                            |
-|    **`-v`** | **`--values [*]`**           | Shows all vales and more.                                                           |
-| ⚠️ **`-y`** | **`--sync [*]`**             | **Same as above, but with cache synchronization..**                                 |
-| ⚠️ **`-l`** | **`--clean [*] [-w]`**       | **Clean all _outdated_ (only!) cache items**                                        |
-| ⚠️ **`-p`** | **`--purge [*]`**            | **Delete the cache(s) for all or specified hosts.**                                 |
-| ⚠️ **`-r`** | **`--remove [*]`**           | **Totally remove any host (all, or by arguments)**                                  |
-| ⚠️ **`-z`** | **`--sanitize [-w]`**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
-| ⚠️ **`-s`** | **`--set <host[=0][, ...]>** | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
-|    **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
-|    **`-t`** | **`--types`**                | Available image types for drawing output.                                           |
-|    **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                                             |
-|    **`-e`** | **`--errors`**               | Counts the error log lines.                                                         |
-|    **`-u`** | **`--unlog`**                | Deletes the whole error log file.                                                   |
+| .. | Short     | Long                           | Description                                                                         |
+| -- | --------: | :----------------------------- | :---------------------------------------------------------------------------------: |
+|    | **`-?`** | **`--help`**                 | Shows the link to this website..                                                    |
+|    | **`-V`** | **`--version`**              | Print current script's version.                                                     |
+|    | **`-W`** | **`--website`**              | Print URL to this project page (on github.com atm.)                                 |
+|    | **`-C`** | **`--copyright`**            | Shows the author of this script. /me ..                                             |
+|    | **`-I`** | **`--info`**                 | All the above infos at once                                                         |
+|    | **`-c`** | **`--config [*]`**           | Verify DEFAULT or, by arguments, per-user configurations                            |
+|    | **`-v`** | **`--values [*]`**           | Shows all vales and more.                                                           |
+| ⚠️ | **`-y`** | **`--sync [*]`**             | **Same as above, but with cache synchronization..**                                 |
+| ⚠️ | **`-l`** | **`--clean [*] [-w]`**       | **Clean all _outdated_ (only!) cache items**                                        |
+| ⚠️ | **`-p`** | **`--purge [*]`**            | **Delete the cache(s) for all or specified hosts.**                                 |
+| ⚠️ | **`-r`** | **`--remove [*]`**           | **Totally remove any host (all, or by arguments)**                                  |
+| ⚠️ | **`-z`** | **`--sanitize [-w]`**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
+| ⚠️ | **`-s`** | **`--set <host[=0][, ...]>** | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
+|    | **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
+|    | **`-t`** | **`--types`**                | Available image types for drawing output.                                           |
+|    | **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                                             |
+|    | **`-e`** | **`--errors`**               | Counts the error log lines.                                                         |
+|    | **`-u`** | **`--unlog`**                | Deletes the whole error log file.                                                   |
 
 Additional arguments within **`[]`** are optional (and most **do** support GLOBs), and those within **`<>`**
 are _required_ ones. Most **`*`** arguments can be defined multiple times, for more hosts, e.g.
