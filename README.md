@@ -601,13 +601,13 @@ These are the CLI functions. The real operations on the file system storage are 
 
 ##### Possible parameters
 To learn how to use the functions to handle the whole `count/` directory (those in the following table with
-**bold** descriptions), go down to the [Operations](#operations) section! Here's the list of all parameters:
+big, bold `⚠️`), go down to the [Operations](#operations) section! Here's the list of all parameters:
 
 > **Warning**
 > Parameters marked with ⚠️ are functions with 'hard' data write operations!
 
-| Short     | Long                         | Description                                                                         |
-| --------: | :--------------------------- | :---------------------------------------------------------------------------------: |
+| Short     | Long                           | Description                                                                         |
+| --------: | :----------------------------- | :---------------------------------------------------------------------------------: |
 |    **`-?`** | **`--help`**                 | Shows the link to this website..                                                    |
 |    **`-V`** | **`--version`**              | Print current script's version.                                                     |
 |    **`-W`** | **`--website`**              | Print URL to this project page (on github.com atm.)                                 |
