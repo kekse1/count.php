@@ -621,7 +621,7 @@ Here's the list of all the parameters/functions:
 | ⚠️ | **`-p`** | **`--purge [*]`**            | **Delete the cache(s) for all or specified hosts.**                                 |
 | ⚠️ | **`-r`** | **`--remove [*]`**           | **Totally remove any host (all, or by arguments)**                                  |
 | ⚠️ | **`-z`** | **`--sanitize [-w]`**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
-| ⚠️ | **`-s`** | **`--set <host[=0][, ...]>** | Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
+| ⚠️ | **`-s`** | **`--set <host[=0][, ...]>`**| Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
 |    | **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
 |    | **`-t`** | **`--types`**                | Available image types for drawing output.                                           |
 |    | **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                                             |
