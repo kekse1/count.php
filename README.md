@@ -672,6 +672,9 @@ This section explains the most important operations on the file system storage.
 > Any of these operations (but `--sanitize / -z`) can optionally be argued with one or more target hosts,
 > and they can also be GLOBs (but think about escaping or quoting them), like also `--fonts / -f`.
 
+> **Note**
+> NONE of the deleting functions will delete `.htaccess` files, so the others defined in `KEKSE_KEEP*`!
+
 ###### File Scheme
 > **Note**
 > First it's essential to explain you the Scheme of file system items for this counter. Then, in the following sub sections
@@ -685,9 +688,6 @@ So, there are four elementary file types (for which I'm using two `define()` eac
 | **`+`**     | Directory | (If `server` is enabled) It'll contain every IP or their Hash as one file each; containing (integer) timestamps |
 | **`-`**     | File      | (If `server` is enabled) These are caches to store the amount of real cache files per **`+`**                   |
 | **`@`**     | File      | Somehow an exception.. just JSON files with difference configuration, each one for a host/override              |
-
-> **Warning**
-> NONE of the deletion functions will delete any `.htaccess` entry, nor the others defined in `KEKSE_KEEP{,*}`..
 
 ##### Synchronization
 **`--sync / -y`** function: Is a special case of the **`--values / -v`** function (so after regular showing all the values the sync routine starts).
