@@ -614,15 +614,15 @@ Here's the list of all the parameters/functions:
 |    | **`-W`** | **`--website`**              | Print URL to this project page (on github.com atm.)                                 |
 |    | **`-C`** | **`--copyright`**            | Shows the author of this script. /me ..                                             |
 |    | **`-I`** | **`--info`**                 | All the above infos at once                                                         |
-|    | **`-c`** | **`--config [*]`**           | Verify DEFAULT or, by arguments, per-user configurations                            |
-|    | **`-v`** | **`--values [*]`**           | Shows all vales and more.                                                           |
-| ⚠️ | **`-y`** | **`--sync [*]`**             | **Same as above, but with cache synchronization..**                                 |
-| ⚠️ | **`-l`** | **`--clean [*] [-w]`**       | **Clean all _outdated_ (only!) cache items**                                        |
-| ⚠️ | **`-p`** | **`--purge [*]`**            | **Delete the cache(s) for all or specified hosts.**                                 |
-| ⚠️ | **`-r`** | **`--remove [*]`**           | **Totally remove any host (all, or by arguments)**                                  |
-| ⚠️ | **`-z`** | **`--sanitize [-w]`**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
-| ⚠️ | **`-s`** | **`--set <host[=0][, ...]>`**| Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
-|    | **`-f`** | **`--fonts [*]`**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
+|    | **`-c`** | **`--config` [*]**           | Verify DEFAULT or, by arguments, per-user configurations                            |
+|    | **`-v`** | **`--values` [*]**           | Shows all vales and more.                                                           |
+| ⚠️ | **`-y`** | **`--sync` [*]**             | **Same as above, but with cache synchronization..**                                 |
+| ⚠️ | **`-l`** | **`--clean` [*] [-w]**       | **Clean all _outdated_ (only!) cache items**                                        |
+| ⚠️ | **`-p`** | **`--purge` [*]**            | **Delete the cache(s) for all or specified hosts.**                                 |
+| ⚠️ | **`-r`** | **`--remove` [*]**           | **Totally remove any host (all, or by arguments)**                                  |
+| ⚠️ | **`-z`** | **`--sanitize` [-w]**        | **Delete file rests, which don't fit into the regular [file scheme](#file-scheme)** |
+| ⚠️ | **`-s`** | **`--set` <host[=0][, ...]>**| Sets (optional) value for the defined host(s) \[without value it's (0) by default\] |
+|    | **`-f`** | **`--fonts` [*]**            | Available fonts for drawing `<img>`. Globs allowed.                                 |
 |    | **`-t`** | **`--types`**                | Available image types for drawing output.                                           |
 |    | **`-h`** | **`--hashes`**               | Available algorithms for `hash` config.                                             |
 |    | **`-e`** | **`--errors`**               | Counts the error log lines.                                                         |
