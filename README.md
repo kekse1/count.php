@@ -681,15 +681,15 @@ So, there are four elementary file types, for which I'm using `define()` with `K
 whereas their basename (w/o prefix) equals the hostnames or the override strings (and the prefix characters are also defined
 statically, see their names in the `Prefix` column (2nd)):
 
-| Type / Constant  | Prefix                          | Type      | Meaning / Description                                                                                          |
-| ---------------: | :------------------------------ | :-------- | :------------------------------------------------------------------------------------------------------------- |
-| `KEKSE_COUNTER_VALUE`  | **`~`** (`KEKSE_COUNTER_VALUE_CHAR`)  | File      | The counted values itself are being stored here (integers)                                                     |
-| `KEKSE_COUNTER_DIR`    | **`+`** (`KEKSE_COUNTER_DIR_CHAR`)    | Directory | If `server` is enabled, it'll contain every IP or their Hash as one file each; containing (integer) timestamps |
-| `KEKSE_COUNTER_FILE`   | **`-`** (`KEKSE_COUNTER_FILE_CHAR`)   | File      | If `server` is enabled, these are caches to store the amount of real cache files per `KEKSE_COUNTER_DIR` host        |
-| `KEKSE_COUNTER_CONFIG` | **`@`** (`KEKSE_COUNTER_CONFIG_CHAR`) | File      | These are somehow an exception.. just JSON files with difference configuration, each one for a host/override   |
+| Prefix Char | Type      | Meaning / Description                                                                                           |
+| :---------: | :-------- | :-------------------------------------------------------------------------------------------------------------- |
+| **`~`**     | File      | The counted values itself are being stored here (integers)                                                      |
+| **`+`**     | Directory | (If `server` is enabled) It'll contain every IP or their Hash as one file each; containing (integer) timestamps |
+| **`-`**     | File      | (If `server` is enabled) These are caches to store the amount of real cache files per **`+`**                   |
+| **`@`**     | File      | Somehow an exception.. just JSON files with difference configuration, each one for a host/override              |
 
 > **Warning**
-> NONE of the deletion functions will delete any `.htaccess` entry, nor the others in `*_KEEP*`..<
+> NONE of the deletion functions will delete any `.htaccess` entry, nor the others defined in `KEKSE_KEEP{,*}`..
 
 ##### Synchronization
 **`--sync / -y`** function: Is a special case of the **`--values / -v`** function (so after regular showing all the values the sync routine starts).
