@@ -836,7 +836,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.4.0** there are 'only' **_10.247_ code lines** left (and there are nearly no comments).
+> As of v**4.4.1** there are 'only' **_10.229_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
