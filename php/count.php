@@ -48,7 +48,7 @@ const DEFAULTS = array(
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '4.4.1');
+define('KEKSE_COUNTER_VERSION', '4.4.2');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -68,8 +68,8 @@ define('KEKSE_COUNTER_DIR_CHAR', '+');
 define('KEKSE_COUNTER_FILE_CHAR', '-');
 define('KEKSE_COUNTER_CONFIG_CHAR', '@');
 //problems with different httpd and console user? set to 0777/0666. but it's really insecure! use 0700/0600!
-define('KEKSE_MODE_DIR', 0700); //file mode; set to (null) to never change (by default)
-define('KEKSE_MODE_FILE', 0600); //dir mode; set to (null) to never change (by default)
+define('KEKSE_MODE_DIR', 0777); //file mode; set to (null) to never change (by default)
+define('KEKSE_MODE_FILE', 0666); //dir mode; set to (null) to never change (by default)
 
 //
 define('KEKSE_CLI', (php_sapi_name() === 'cli'));
@@ -2247,7 +2247,7 @@ if($consoleCondition)
 	}
 	
 	//
-	function insertPrefix($_string, $_color = null, $_stream = true)
+	function insertPrefix($_string, $_color = null, $_stream = true, $_input = false)
 	{
 		if(! is_string($_string))
 		{
@@ -2281,18 +2281,18 @@ if($consoleCondition)
 
 			if($seq !== null)
 			{
-				return ($seq . ' >> ' . ansi\ESCAPE . ansi\RESET . $_string);
+				return ($seq . ($_input ? ' << ' : ' >> ') . ansi\ESCAPE . ansi\RESET . $_string);
 			}
 		}
 
-		return (' >> ' . $_string);
+		return (($_input ? ' << ' : ' >> ') . $_string);
 	}
 
 	//
 	function prompt($_format, ... $_args)
 	{
 		//
-		$_string = insertPrefix(ansi\bold(sprintf($_format, ... $_args), true, 2), 'yellow', STDERR);
+		$_string = insertPrefix(ansi\bold(sprintf($_format, ... $_args), true, 2), 'yellow', STDERR, true);
 		$len = \kekse\strlen($_string, true);
 		$s = str_pad('', $len, ' ');
 
