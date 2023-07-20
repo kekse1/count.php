@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`" />
 
-It's a universal [counter script](php/count.php). ... v**4.4.2**!
+It's a universal [counter script](php/count.php). ... v**4.4.3**!
 
 ## Index
 1. [Installation](#installation)
@@ -251,8 +251,9 @@ at the `KEKSE_LIMIT_STRING` constant), btw.
 * **`)`**
 * **`/`** (limited)
 * **`.`** (limited)
-* **`-`** (limited)
 * **`+`** (limited)
+* **`-`** (limited)
+* **`_`**
 
 That's also important for the *optional* `?override=` GET parameter (see above), e.g., as hosts (etc.)
 also won't ever be accepted 'as is'.
@@ -836,7 +837,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.4.2** there are 'only' **_10.229_ code lines** left (and there are nearly no comments).
+> As of v**4.4.3** there are 'only' **_10.242_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
