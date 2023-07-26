@@ -1,3 +1,5 @@
 
 	# raw mode: really load everything, and check l8rs, too(!)
 
+	# 'null' config? @ drawing text
+
