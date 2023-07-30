@@ -68,8 +68,8 @@ define('KEKSE_COUNTER_DIR_CHAR', '+');
 define('KEKSE_COUNTER_FILE_CHAR', '-');
 define('KEKSE_COUNTER_CONFIG_CHAR', '@');
 //problems with different httpd and console user? set to 0777/0666. but it's really insecure! use 0700/0600!
-define('KEKSE_MODE_DIR', 0700); //file mode; set to (null) to never change (by default)
-define('KEKSE_MODE_FILE', 0600); //dir mode; set to (null) to never change (by default)
+define('KEKSE_MODE_DIR', 0777); //file mode; set to (null) to never change (by default)
+define('KEKSE_MODE_FILE', 0666); //dir mode; set to (null) to never change (by default)
 
 //
 define('KEKSE_CLI', (php_sapi_name() === 'cli'));
@@ -2129,7 +2129,7 @@ function colorIsHexadecimal($_string)
 namespace kekse;
 
 //
-$consoleCondition = (KEKSE_CLI || KEKSE_RAW);
+$consoleCondition = KEKSE_CLI;
 
 function prompt(... $_args)
 {
