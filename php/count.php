@@ -48,7 +48,7 @@ const DEFAULTS = array(
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '4.4.3');
+define('KEKSE_COUNTER_VERSION', '4.4.4');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -195,6 +195,25 @@ if(KEKSE_CLI)
 
 //
 namespace kekse;
+
+//
+const SIZE_UNITS = array('Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
+
+function renderSize($_bytes, $_precision = 2)
+{
+	$max = count(SIZE_UNITS);
+	$rest = $_bytes;
+	$index = 0;
+	
+	while($rest >= 1024)
+	{
+		$rest /= 1024;
+		if(++$index >= ($max - 1)) break;
+	}
+	
+	$result = round($rest, $_precision);
+	return ($result . ' ' . SIZE_UNITS[$index]);
+}
 
 //
 function endsWith($_haystack, $_needle, $_case_sensitive = true)
