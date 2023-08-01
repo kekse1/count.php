@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`" />
 
-It's a universal [counter script](php/count.php). ... v**4.4.4**!
+It's a universal [counter script](php/count.php). ... v**4.4.5**!
 
 ## Index
 1. [Installation](#installation)
