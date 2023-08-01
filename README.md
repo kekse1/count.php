@@ -767,6 +767,7 @@ are exported in my own **`kekse`** namespace. *They could be really handy*:
 
 | Function                    | Arguments                                                            | Description                                                                                    |
 | --------------------------: | :------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| **`renderSize()`**          | `$_bytes`, `$_precision`                                             | Just to convert a byte count integer to a real string with unit suffix (only base 1024 atm.)   |
 | **`is_number()`**           | `$_item`                                                             | PHP is missing 'between' `is_int()` and `is_float()`.. as `is_numeric()` is also for Strings.. |
 | **`strlen()`**              | `$_string`, `$_filter = false`, `$_binary = false`, `$_hidden = true`| Own version, mostly to count string length with filtered out ANSI escape sequences (or binary)!|
 | **`less()`**                | `$_string`, `$_binary = false`, `$_hidden = true`                    | Wrapper for `strlen()` w/ `$_filter = null`, to not count, but to return a filtered string     |
