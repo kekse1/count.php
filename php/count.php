@@ -16,7 +16,7 @@ const DEFAULTS = array(
 	'log' => 'count.log',
 	'threshold' => 7200,
 	'auto' => 32,//false,
-	'hide' => false,//true,
+	'hide' => false,
 	'client' => true,//false,
 	'server' => true,//false,
 	'drawing' => true,
@@ -68,8 +68,8 @@ define('KEKSE_COUNTER_DIR_CHAR', '+');
 define('KEKSE_COUNTER_FILE_CHAR', '-');
 define('KEKSE_COUNTER_CONFIG_CHAR', '@');
 //problems with different httpd and console user? set to 0777/0666. but it's really insecure! use 0700/0600!
-define('KEKSE_MODE_DIR', 0777); //file mode; set to (null) to never change (by default)
-define('KEKSE_MODE_FILE', 0666); //dir mode; set to (null) to never change (by default)
+define('KEKSE_MODE_DIR', 0700); //file mode; set to (null) to never change (by default)
+define('KEKSE_MODE_FILE', 0600); //dir mode; set to (null) to never change (by default)
 
 //
 define('KEKSE_CLI', (php_sapi_name() === 'cli'));
