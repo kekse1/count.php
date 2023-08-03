@@ -1,5 +1,0 @@
-
-	# raw mode: really load everything, and check l8rs, too(!)
-
-	# 'null' config? @ drawing text (so text drawing can be allowed w/o matching host/override..)
-
