@@ -3651,7 +3651,7 @@ function counter($_read_only = null, $_host = null)
 					//(1) 'font' is (correctly!) set (and readable - see above!!), else false here
 					//(2) if ok, look if 'font' exists as .ttf in the 'fonts'! and readable.. etc.!!
 					//if not all were true, result = 'Drawing is not possible this way.
-					//AND: maybe the other neccessary config items for drawing to also test!?!
+					//AND: maybe the other necessary config items for drawing to also test!?!
 					break;
 				case 'fg':
 				case 'bg':
