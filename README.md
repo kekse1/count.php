@@ -1,4 +1,4 @@
-<img src="https://kekse.biz/php/count.php?override=github:count.php&text=`count.php`&draw" />
+<img src="https://kekse.biz/github.php?override=github:count.php&text=`count.php`&draw" />
 
 It's a universal [counter script](php/count.php). ... v**4.4.5**!
 
@@ -12,6 +12,7 @@ It's a universal [counter script](php/count.php). ... v**4.4.5**!
 	* [Server and/or Client](#server-andor-client)
 	* [Refresh](#refresh)
 	* [Override](#override)
+		* [Static mode](#static-mode)
 	* [Overwrites](#overwrites)
 	* [Cleaning](#cleaning)
 	* [Privacy](#privacy)
@@ -179,6 +180,11 @@ And now the `override` setting can also be a (non-empty) String, to define just 
 more or less arbitrary (but filtered, see `secureHost()`) identifier String) to use.
 
 Every override set's the state (see `{get,set}State()`) `overridden = true`.
+
+#### Static mode
+Beneath a Boolean type the `override` can also be one **string**. In this case, only for this one 'host' will be
+counted! It's useful for only one website, and even if you GET it with `https://host` or `https://www.host`, maybe
+`https://subdomain.host` or even `https://127.1` or so, only ONE value will be counted!
 
 ### Overwrites
 Beneath the default configuration, any host (within the file system, as desribed above at [Storage](#storage))
