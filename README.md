@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/github.php?override=github:count.php&text=`count.php`&draw" />
 
-It's a universal [counter script](php/count.php). ... v**4.4.5**!
+It's a universal [counter script](php/count.php). ... v**4.4.6**!
 
 ## Index
 1. [Installation](#installation)
@@ -844,7 +844,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**4.4.4** there are 'only' **_10.261_ code lines** left (and there are nearly no comments).
+> As of v**4.4.6** there are 'only' **_10.260_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
@@ -857,3 +857,4 @@ The Copyright is [(c) Sebastian Kucharczyk](COPYRIGHT.txt),
 and it's licensed under the [MIT](LICENSE.txt) (also known as 'X' or 'X11' license).
 
 ![kekse.biz](favicon.png)
+
