@@ -517,7 +517,7 @@ be able to automatically grep such addresses. This is the main reason for this f
 ![Text mode](docs/text-mode.png)
 
 ### Readonly mode
-You can use the script regularily, but pass `?ro`. That will only return/draw the current value without writing any
+You can use the script as usual, but pass `?ro`. That will only return/draw the current value without writing any
 files or cookies. The value is not changed then. So one can view it without access to the file system or the CLI mode.
 
 Some functions won't be declared here, etc., just for more runtime performance and resource reasons.
