@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+#
+file='count.php'
+
 #
 real="$(realpath "$0")"
 dir="$(dirname "$real")"
@@ -10,5 +14,5 @@ if [[ -z "$php" ]]; then
 fi
 
 #
-$php $dir/count.php "$@"
+eval "${php} ${dir}/${file} \"$@\""
 
