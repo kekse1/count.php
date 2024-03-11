@@ -392,6 +392,9 @@ wouldn't be visible in this case at all).
 The **second dependency** is a configured `fonts` directory with (`.ttf`) font(s) installed in it (and
 if you don't specify this via `?font` it really *needs* to be pre-set via `font` setting); ...
 
+> **Note**
+> I'd recommend to replace remove space ` ` in the font filename (etc.) to 'beautify' your `$?font=*` parameters.
+
 ## Configuration
 The configuration is an associative array of various settings.
 
