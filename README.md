@@ -93,6 +93,18 @@ So, **that's** all. :D~
 ![\<img\> drawn in the browser](docs/example.png)
 ![Running in CLI mode](docs/screenshot.png)
 
+### Directory structure
+This is the structure of the file system of this Git repository, *jfyi*:
+
+| Directory      | Description                                                                                              |
+| -------------: | :------------------------------------------------------------------------------------------------------- |
+| **`count/`**   | The default directory for all values, caches, etc. (plus .htaccess to deny direct reading);              |
+| **`docs/`**    | `.md` documentation, and it's example screenshots/images (so: github internal);                          |
+| **`fonts/`**   | Pre-installed fonts (used when drawing the counter values etc.) (plus .htaccess to deny direct reading); |
+| **`modules/`** | This is only a future possibility.. nothing which is used right now (so can be left out);                |
+| **`php/`**     | Mainly the source itself (plus a bit rest, feel free to ignore it [should be symlinks, maybe]);          |
+| **`sh/`**      | The wrapper shell script, to call the `count.php` via command line (within correct directory boundings); |
+
 ## Details
 > **Note**
 > You can easily manage all the values **etc.** via command line!
