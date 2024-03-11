@@ -10,7 +10,16 @@ namespace kekse\counter;
 //
 //change your default configuration here.. that should be all to change..!
 //
-const DEFAULTS = array(
+//UPDATE [2024-03-11]: this part stays as some optional 'recommendation' for
+//your BASE(!) config.. if you like it more 'modular', use a 'count.json' in
+//your 'count.php' base directory (or rename it to any basename the real name
+//of this 'count.php' is (or has been changed by you).
+//
+//jfyi: the 'count.json' BASE(!) config file is also used with differences
+//between the '.json' and this 'DEFAULTS' base config. so you can use a .json
+//file with e.g. only { path } or so, the rest is used by following 'DEFAULTS'.
+//
+$DEFAULTS = array(
 	'path' => 'count/',
 	'text' => 32,
 	'log' => 'count.log',
@@ -21,7 +30,7 @@ const DEFAULTS = array(
 	'server' => true,//false,
 	'drawing' => true,
 	'override' => false,//true,
-	'content' => 'text/plain;charset=utf-8',
+	'content' => 'text/plain;charset=UTF-8',
 	'radix' => 10,//4,
 	'clean' => true,
 	'limit' => 32768,
@@ -46,9 +55,16 @@ const DEFAULTS = array(
 );
 
 //
+define('KEKSE_SCRIPT', $_SERVER['SCRIPT_NAME']);
+define('KEKSE_SCRIPT_ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('KEKSE_SCRIPT_DIR', dirname(KEKSE_SCRIPT));
+define('KEKSE_SCRIPT_BASE', basename(KEKSE_SCRIPT));
+define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
+
+//
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '4.4.7');
+define('KEKSE_COUNTER_VERSION', '5.0.0');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -73,6 +89,73 @@ define('KEKSE_MODE_FILE', 0600); //dir mode; set to (null) to never change (by d
 
 //
 define('KEKSE_CLI', (php_sapi_name() === 'cli'));
+
+//
+function getBaseConfigPath()
+{
+	return (KEKSE_SCRIPT_ROOT . KEKSE_SCRIPT_DIR . DIRECTORY_SEPARATOR . KEKSE_SCRIPT_NAME . '.json');
+}
+
+function hasBaseConfigFile($_path = null)
+{
+	if(!is_string($_path) || $_path === '') $_path = getBaseConfigPath();
+	return (is_file($_path) && is_readable($_path));
+}
+
+function loadBaseConfigFile()
+{
+	$path; if(!hasBaseConfigFile($path = getBaseConfigPath())) return null;
+	$data = file_get_contents($path, false); if($data === '') return null;
+	$data = json_decode($data, true, 4); if(!is_array($data)) return null;
+	return $data;
+}
+
+if(hasBaseConfigFile())
+{
+	global $DEFAULTS;
+	
+	$config = loadBaseConfigFile();
+	$keys = array_keys($config);
+	$count = count($keys);
+	$invalid = array();
+	
+	define('KEKSE_COUNTER_JSON', getBaseConfigPath());
+	
+	for($i = 0, $j = 0; $i < $count; ++$i)
+	{
+		if(array_key_exists($keys[$i], $DEFAULTS))
+		{
+			$DEFAULTS[$keys[$i]] = $config[$keys[$i]];
+		}
+		else
+		{
+			$invalid[$j++] = $keys[$i];
+		}
+	}
+	
+	$count = count($invalid);
+	
+	if($count > 0)
+	{
+		header('Content-Type: text/plain;charset=UTF-8');
+
+		$text = $count . ' invalid configuration items in `' . KEKSE_COUNTER_JSON . '`:' . PHP_EOL;
+		if(KEKSE_CLI) fprintf(STDERR, ' >> ' . $text . PHP_EOL); else echo $text;
+		
+		for($i = 0; $i < $count; ++$i)
+		{
+			if(KEKSE_CLI) fprintf(STDERR, '    ' . $keys[$i] . PHP_EOL);
+			else echo '# ' . $keys[$i];
+		}
+		
+		if(KEKSE_CLI) fprintf(STDERR, PHP_EOL);
+		exit(123);
+	}
+}
+else
+{
+	define('KEKSE_COUNTER_JSON', null);
+}
 
 //
 //maybe rather dynamic, in reading out the `modules` directory!?? //(much) TODO!/
@@ -258,9 +341,9 @@ function normalize($_path)
 	}
 	
 	$len = strlen($_path);
-	$abs = ($_path[0] === '/');
-	$dir = ($_path[$len - 1] === '/');
-	$split = explode('/', $_path);
+	$abs = ($_path[0] === DIRECTORY_SEPARATOR);
+	$dir = ($_path[$len - 1] === DIRECTORY_SEPARATOR);
+	$split = explode(DIRECTORY_SEPARATOR, $_path);
 	$result = array();
 	$minus = 0;
 	$item = '';
@@ -312,7 +395,7 @@ function normalize($_path)
 	}
 	
 	//
-	return implode('/', $result);
+	return implode(DIRECTORY_SEPARATOR, $result);
 }
 
 function joinPath(... $_args)
@@ -333,7 +416,7 @@ function joinPath(... $_args)
 		}
 		else if($_args[$i] !== '')
 		{
-			$result .= $_args[$i] . '/';
+			$result .= $_args[$i] . DIRECTORY_SEPARATOR;
 		}
 	}
 	
@@ -355,7 +438,7 @@ function checkPath($_path, $_file, $_source = null, $_delete = false, $_create =
 	{
 		return false;
 	}
-	else if(($_path = normalize($_path)) === '/')
+	else if(($_path = normalize($_path)) === DIRECTORY_SEPARATOR)
 	{
 		if($log)
 		{
@@ -811,13 +894,13 @@ function secure($_string, $_lower_case = false)
 			{
 				$add = '';
 			}
-			else if($last === '/')
+			else if($last === DIRECTORY_SEPARATOR)
 			{
 				$add = '';
 			}
 			else
 			{
-				$add = '/';
+				$add = DIRECTORY_SEPARATOR;
 			}
 		}
 		else if($byte === 95)
@@ -926,7 +1009,7 @@ function delete($_path, $_depth = 0, $_extended = false, $_depth_current = 0)
 				
 				return false;
 			}
-			else if($real === '/')
+			else if($real === DIRECTORY_SEPARATOR)
 			{
 				if($_extended === true)
 				{
@@ -3032,6 +3115,9 @@ namespace kekse\counter;
 function counter($_read_only = null, $_host = null)
 {
 	//
+	global $DEFAULTS;
+
+	//
 	function getState($_key)
 	{
 		//
@@ -3747,6 +3833,7 @@ function counter($_read_only = null, $_host = null)
 	function configCheck($_config = null, $_bool = false, $_die = true)
 	{
 		//
+		global $DEFAULTS;
 		global $CONFIG;
 
 		//
@@ -3758,7 +3845,7 @@ function counter($_read_only = null, $_host = null)
 		}
 		else
 		{
-			$_config = DEFAULTS;
+			$_config = $DEFAULTS;
 			$host = false;
 		}
 
@@ -3802,7 +3889,7 @@ function counter($_read_only = null, $_host = null)
 							'value' => null,
 							'static' => $static,
 							'valid' => false,
-							'string' => 'Missing! Needs to be set in DEFAULTS',
+							'string' => 'Missing! Needs to be set in $DEFAULTS',
 							'type' => null,
 							'types' => $types,
 							'validType' => null,
@@ -3881,6 +3968,9 @@ function counter($_read_only = null, $_host = null)
 	function getConfig($_key, $_host = null, $_die = true)
 	{
 		//
+		global $DEFAULTS;
+
+		//
 		if(is_string($_key) && $_key !== '')
 		{
 			$_key = strtolower($_key);
@@ -3913,9 +4003,9 @@ function counter($_read_only = null, $_host = null)
 		{
 			return $CONFIG['*'][$_key];
 		}
-		else if(array_key_exists($_key, DEFAULTS))
+		else if(array_key_exists($_key, $DEFAULTS))
 		{
-			return DEFAULTS[$_key];
+			return $DEFAULTS[$_key];
 		}
 		
 		return null;
@@ -3923,6 +4013,9 @@ function counter($_read_only = null, $_host = null)
 
 	function setConfig($_key, $_value, $_host = null, $_die = true)
 	{
+		//
+		global $DEFAULTS;
+
 		//
 		if(is_string($_key) && $_key !== '')
 		{
@@ -3952,7 +4045,7 @@ function counter($_read_only = null, $_host = null)
 		{
 			return $CONFIG[$_host][$_key] = $_value;
 		}
-		else if(array_key_exists($_key, DEFAULTS))
+		else if(array_key_exists($_key, $DEFAULTS))
 		{
 			return $CONFIG['*'][$_key] = $_value;
 		}
@@ -4237,7 +4330,7 @@ function counter($_read_only = null, $_host = null)
 		
 		$result = '';
 
-		if($_path[0] === '/')
+		if($_path[0] === DIRECTORY_SEPARATOR)
 		{
 			$result = $_path;
 		}
@@ -4245,7 +4338,7 @@ function counter($_read_only = null, $_host = null)
 		{
 			if(($result = getcwd()) !== false)
 			{
-				$result .= '/' . $_path;
+				$result .= DIRECTORY_SEPARATOR . $_path;
 			}
 			else if($_die)
 			{
@@ -4273,7 +4366,7 @@ function counter($_read_only = null, $_host = null)
 		}
 		else
 		{
-			$result = __DIR__ . ($_path[0] === '/' ? '' : '/') . $_path;
+			$result = __DIR__ . ($_path[0] === DIRECTORY_SEPARATOR ? '' : DIRECTORY_SEPARATOR) . $_path;
 		}
 		
 		if(is_string($result))
@@ -4324,7 +4417,7 @@ function counter($_read_only = null, $_host = null)
 		{
 			return false;
 		}
-		else if($_path[0] !== '/')
+		else if($_path[0] !== DIRECTORY_SEPARATOR)
 		{
 			$result = false;
 		}
@@ -4334,7 +4427,7 @@ function counter($_read_only = null, $_host = null)
 		}
 		else
 		{
-			$split = explode('/', $_path);
+			$split = explode(DIRECTORY_SEPARATOR, $_path);
 			$len = count($split);
 			
 			for($i = 0; $i < $len; ++$i)
@@ -4353,14 +4446,14 @@ function counter($_read_only = null, $_host = null)
 				$pw;
 				$po;
 
-				if($_path[strlen($_path) - 1] === '/')
+				if($_path[strlen($_path) - 1] === DIRECTORY_SEPARATOR)
 				{
 					$pw = $_path;
 					$po = substr($_path, 0, -1);
 				}
 				else
 				{
-					$pw = $_path . '/';
+					$pw = $_path . DIRECTORY_SEPARATOR;
 					$po = $_path;
 				}
 
@@ -4382,14 +4475,14 @@ function counter($_read_only = null, $_host = null)
 					$w;
 					$o;
 
-					if($_value[strlen($_value) - 1] === '/')
+					if($_value[strlen($_value) - 1] === DIRECTORY_SEPARATOR)
 					{
 						$w = $_value;
 						$o = substr($_value, 0, -1);
 					}
 					else
 					{
-						$w = $_value . '/';
+						$w = $_value . DIRECTORY_SEPARATOR;
 						$o = $_value;
 					}
 
@@ -8794,7 +8887,7 @@ function counter($_read_only = null, $_host = null)
 				
 				return setcookie(getState('cookie'), (string)\kekse\timestamp(), array(
 					'expires' => (time() + $ts),
-					'path' => '/',
+					'path' => DIRECTORY_SEPARATOR,
 					'samesite' => 'Strict',
 					'secure' => false, //!empty($_SERVER['HTTPS']);
 					'httponly' => true
