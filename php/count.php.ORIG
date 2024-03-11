@@ -48,7 +48,7 @@ const DEFAULTS = array(
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '4.4.7');
+define('KEKSE_COUNTER_VERSION', '4.4.6');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -8283,23 +8283,22 @@ function counter($_read_only = null, $_host = null)
 
 			if($index === -1 || !$func)
 			{
-				/*\kekse\error(2, \kekse\console\ansi\bold('Unknown parameter' . ($GLOBALS['KEKSE_ARGC'] === 2 ? '' : 's'), true, 'error') . '!');
+				\kekse\error(2, \kekse\console\ansi\bold('Unknown parameter' . ($GLOBALS['KEKSE_ARGC'] === 2 ? '' : 's'), true, 'error') . '!');
 				help(-1, null);
 				printf(PHP_EOL);
 				\kekse\error(\kekse\console\ansi\bold('Unknown parameter' . ($GLOBALS['KEKSE_ARGC'] === 2 ? '' : 's'), true, 'error') . '!');
-				exit(1);*/
-				$func = 'values';
+				exit(1);
 			}
-			//else {
-			//
-			array_splice($GLOBALS['KEKSE_ARGV'], $index--, 1);
-			--$GLOBALS['KEKSE_ARGC'];
+			else
+			{
+				array_splice($GLOBALS['KEKSE_ARGV'], $index--, 1);
+				--$GLOBALS['KEKSE_ARGC'];
 				
-			$func = '\kekse\counter\\' . $func;
-			$func($index, ... $params);
-			//}
+				$func = '\kekse\counter\\' . $func;
+				$func($index, ... $params);
 				
-			exit(0);
+				exit(0);
+			}
 		}
 		
 		//
