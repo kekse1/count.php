@@ -8283,21 +8283,16 @@ function counter($_read_only = null, $_host = null)
 
 			if($index === -1 || !$func)
 			{
-				/*\kekse\error(2, \kekse\console\ansi\bold('Unknown parameter' . ($GLOBALS['KEKSE_ARGC'] === 2 ? '' : 's'), true, 'error') . '!');
-				help(-1, null);
-				printf(PHP_EOL);
-				\kekse\error(\kekse\console\ansi\bold('Unknown parameter' . ($GLOBALS['KEKSE_ARGC'] === 2 ? '' : 's'), true, 'error') . '!');
-				exit(1);*/
 				$func = 'values';
 			}
-			//else {
-			//
-			array_splice($GLOBALS['KEKSE_ARGV'], $index--, 1);
-			--$GLOBALS['KEKSE_ARGC'];
+			else
+			{
+				array_splice($GLOBALS['KEKSE_ARGV'], $index--, 1);
+				--$GLOBALS['KEKSE_ARGC'];
+			}
 				
 			$func = '\kekse\counter\\' . $func;
 			$func($index, ... $params);
-			//}
 				
 			exit(0);
 		}
