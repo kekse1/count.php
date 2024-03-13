@@ -31,7 +31,7 @@ $DEFAULTS = array(
 	'drawing' => true,
 	'override' => false,//true,
 	'content' => 'text/plain;charset=UTF-8',
-	'radix' => 10,//4,
+	'radix' => 10,
 	'clean' => true,
 	'limit' => 32768,
 	'fonts' => 'fonts/',
@@ -39,7 +39,7 @@ $DEFAULTS = array(
 	'size' => '64px',
 	'scale' => false,
 	'unit' => 'px',
-	'fg' => '0,0,0,1',//'120, 130, 40',
+	'fg' => '120, 130, 40', //0,0,0,1
 	'bg' => '#fff0',
 	'angle' => 0.0,//'7deg',
 	'x' => 0.0,
