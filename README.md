@@ -79,6 +79,10 @@ font_ in the `font` setting).
 > **Note**
 > You can just use the [`fonts/`](fonts/) shipped with(in) this repository.
 
+> **Warning**
+> It may be unsafe to store the `count/` directory inside your web root (even though you use a `.htaccess`),
+> so install it somewhere out there and adapt your `path` configuration.
+
 So, **that's** all. :D~
 
 > **Note**
