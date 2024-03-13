@@ -411,7 +411,9 @@ Here are the current _default_ settings, including the possible types
 > Every variable with a big, bold ⚠️ will **never** be overwritten by any [per-host config overwrite](#per-host-config-overwrite).
 > But this will always be checked (injection not possible).
 
-This `DEFAULTS` are stored in the script file itself, in a `const` array.
+This `$DEFAULTS` are stored in the script file itself, on the top. You can leave them as my defaults, and
+better 'd be to use a `count.json` in the same directory where the `count.php` (or a symlink) resides;
+they'll overwrite the `$DEFAULTS`.
 
 | .. | Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
 | -- | ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
@@ -454,7 +456,7 @@ supports such a file (e.g. `lighttpd`..)!
 
 ### Per-host config overwrite
 The per-host configuration allows a _sub-set_ of settings (look at the `CONFIG_STATIC` const array) to 'overwrite'
-the default configuration (see `DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
+the default configuration (see `$DEFAULTS`). And they're just 'shifted', which makes it very efficient, and even very
 easy to unload again. So, they are **differences** to apply if this host with the file (`@`-prefixed) is selected.
 
 They get automatically loaded, and reside beneath the other counter files.
