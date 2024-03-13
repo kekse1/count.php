@@ -423,6 +423,10 @@ they'll overwrite the `$DEFAULTS`.
 > So **PLEASE** use a `count.json` in the same directory where your file/symlink resides! **If you update
 > the script itself**, then your configuration will stay as it was, customized by you!
 
+> *Note*
+> The `.json` mentioned above should be named the same as the `count.php` itself (so the basename without
+> extension). So if you call this script e.g. `counter.php`, your config file should be `counter.json`.
+
 | .. | Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
 | -- | ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
 | ⚠️ | **`path`**       | `'count/'`                   | **String** (non-empty)                         | See [Relative paths](#relative-paths) below       |
