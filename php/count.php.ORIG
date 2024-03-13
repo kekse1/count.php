@@ -65,7 +65,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.0.1');
+define('KEKSE_COUNTER_VERSION', '5.0.0');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -302,24 +302,32 @@ function renderSize($_bytes, $_precision = 2)
 //
 function endsWith($_haystack, $_needle, $_case_sensitive = true)
 {
-	if(!$_case_sensitive)
+	if(strlen($_needle) > strlen($_haystack))
+	{
+		return false;
+	}
+	else if(!$_case_sensitive)
 	{
 		$_haystack = strtolower($_haystack);
 		$_needle = strtolower($_needle);
 	}
-	
-	return str_ends_with($_haystack, $_needle);
+
+	return (substr($_haystack, -strlen($_needle)) === $_needle);
 }
 
 function startsWith($_haystack, $_needle, $_case_sensitive = true)
 {
-	if(!$_case_sensitive)
+	if(strlen($_needle) > strlen($_haystack))
+	{
+		return false;
+	}
+	else if(!$_case_sensitive)
 	{
 		$_haystack = strtolower($_haystack);
 		$_needle = strtolower($_needle);
 	}
 	
-	return str_starts_with($_haystack, $_needle);
+	return (substr($_haystack, 0, strlen($_needle)) === $_needle);
 }
 
 function normalize($_path)

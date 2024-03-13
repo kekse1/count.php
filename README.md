@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/github.php?override=github:count.php&text=`count.php`&draw" />
 
-It's a universal [counter script](php/count.php). ... v**5.0.0**!
+It's a universal [counter script](php/count.php). ... v**5.0.1**!
 
 ## Index
 1. [Installation](#installation)
@@ -51,7 +51,7 @@ It's a universal [counter script](php/count.php). ... v**5.0.0**!
 12. [Copyright and License](#copyright-and-license)
 
 ## Updated
-* \[**2024-03-11**\]: new **major version v5.0.0**!
+* \[**2024-03-11**\]: new **major version v5.0.1**!
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
@@ -418,6 +418,10 @@ Here are the current _default_ settings, including the possible types
 This `$DEFAULTS` are stored in the script file itself, on the top. You can leave them as my defaults, and
 better 'd be to use a `count.json` in the same directory where the `count.php` (or a symlink) resides;
 they'll overwrite the `$DEFAULTS`.
+
+> *Warning*
+> So **PLEASE** use a `count.json` in the same directory where your file/symlink resides! **If you update
+> the script itself**, then your configuration will stay as it was, customized by you!
 
 | .. | Name             | Default value                | Possible types/values                          | Description / Comment(s)                          |
 | -- | ---------------: | :--------------------------- | ---------------------------------------------: | :-----------------------------------------------: |
@@ -802,8 +806,8 @@ are exported in my own **`kekse`** namespace. *They could be really handy*:
 | **`is_number()`**           | `$_item`                                                             | PHP is missing 'between' `is_int()` and `is_float()`.. as `is_numeric()` is also for Strings.. |
 | **`strlen()`**              | `$_string`, `$_filter = false`, `$_binary = false`, `$_hidden = true`| Own version, mostly to count string length with filtered out ANSI escape sequences (or binary)!|
 | **`less()`**                | `$_string`, `$_binary = false`, `$_hidden = true`                    | Wrapper for `strlen()` w/ `$_filter = null`, to not count, but to return a filtered string     |
-| **`endsWith()`**            | `$_haystack`, `$_needle`, `$_case_sensitive = true`                  | ...                                                                                            |
-| **`startsWith()`**          | `$_haystack`, `$_needle`, `$_case_sensitive = true`                  | ...                                                                                            |
+| **`endsWith()`**            | `$_haystack`, `$_needle`, `$_case_sensitive = true`                  | Extending `str_ends_with()` with the `$_case_sensitive` parameter (defaults to `true`          |
+| **`startsWith()`**          | `$_haystack`, `$_needle`, `$_case_sensitive = true`                  | Same like above, but for `str_starts_with()`                                                   |
 | **`normalize()`**           | `$_path`                                                             | Implementation of **path** normalization (works)                                               |
 | **`joinPath()`**            | `... $_args`                                                         | Combines multiple path components to a whole path string **(variadic function)**               |
 | **`timestamp()`**           | `$_diff = null`                                                      | Integer: either the timestamp itself (unix seconds) or the difference to another timestamp     |
@@ -869,7 +873,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**5.0.0** there are 'only' **_10.349_ code lines** left (and there are nearly no comments).
+> As of v**5.0.1** there are 'only' **_10.342_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
