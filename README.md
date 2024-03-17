@@ -1,4 +1,4 @@
-![https://kekse.biz/github.php?draw&override=github:count.php](count.php)
+<img src="https://kekse.biz/github.php?draw&override=github:count.php">
 
 It's a universal [counter script](php/count.php). ... v**5.0.1**!
 
