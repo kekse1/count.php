@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# Copyright (c) Sebastian Kucharczyk <kuchen@kekse.biz>
+# https://kekse.biz/ https://github.com/kekse1/count.php/
+# v0.2.0
+#
 
 # if not set, using the basename($0, '.php');
 file=''
