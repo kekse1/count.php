@@ -66,7 +66,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.0.1');
+define('KEKSE_COUNTER_VERSION', '5.0.2');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -1733,7 +1733,7 @@ function color($_string, $_gd = null)
 
 	if(!is_string($_string))
 	{
-		if(is_array($_string) && color_check_array($_string))
+		if(is_array($_string) && colorCheckArray($_string))
 		{
 			return color_fix($_string, $_gd);
 		}
