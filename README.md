@@ -97,6 +97,12 @@ So, **that's** all. :D~
 [Drawing section](#drawing) and it's [drawing dependencies](#dependencies-1) sub section.
 
 ## Screenshots
+See the GET-Parameters of these screenshots.
+
+The first one is with [text mode](#text-mode) (to scramble a mail address, e.g.).
+The second one is with [radix/base `36`](#radixbase) (like a binary digit, but with base 36, as example).
+The third one is the [CLI mode](#cli-mode), to manage the script within a terminal.
+
 ![\<img\> w/ `text` config](docs/text-mode.png)
 ![\<img\> drawn in the browser](docs/example.png)
 ![Running in CLI mode](docs/screenshot.png)
