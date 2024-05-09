@@ -66,7 +66,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.0.2');
+define('KEKSE_COUNTER_VERSION', '5.0.3');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -4892,7 +4892,6 @@ function counter($_read_only = null, $_host = null)
 				}
 
 				$value = null;
-				$str = strlen($item);
 				$assign = strpos($item, '=');
 				
 				if($assign !== false)
@@ -4900,6 +4899,8 @@ function counter($_read_only = null, $_host = null)
 					$value = substr($item, $assign + 1);
 					$item = substr($item, 0, $assign);
 				}
+
+				$str = strlen($item);
 
 				if($item[1] !== '-' && $str > 2)
 				{
