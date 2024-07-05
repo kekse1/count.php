@@ -47,6 +47,7 @@ It's a universal [counter script](php/count.php). ... v**5.0.3**!
 8. [Exports](#exports)
 9. [Modules](#modules)
 10. [FAQ](#faq)
+11. [TODO](#todo)
 11. [The original version](#the-original-version)
 12. [Copyright and License](#copyright-and-license)
 
@@ -886,6 +887,9 @@ doesn't consume *that* much cpu time or memory.
 > As of v**5.0.3** there are 'only' **_10.344_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
+
+## TODO
+* The output of the [CLI Mode](#cli-mode) (at least the counter values) should be exportable als JSON!
 
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
