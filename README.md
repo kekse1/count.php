@@ -52,7 +52,7 @@ It's a universal [counter script](php/count.php). ... v**5.1.0**!
 12. [Copyright and License](#copyright-and-license)
 
 ## Updated
-* \[**2024-07-21**\]: new **version v5.1.0**!
+* \[**2024-07-21**\]: new **v5.1.0**!
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
