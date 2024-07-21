@@ -579,8 +579,8 @@ This feature is there for private couting, without letting the users known how m
 `true` is for a random value in the maximum range (see `getrandmax()`),
 an integer limits this value to a maximum.
 
-Beware: if you _really_ want to hide these values, please create the `.htaccess` w/
-`Deny from all` in your `path` directory!
+Beware: if you _really_ want to hide these values, please also create the `.htaccess`
+w/ `Deny from all` in your `path` directory!
 
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
