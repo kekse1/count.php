@@ -66,7 +66,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.1.0');
+define('KEKSE_COUNTER_VERSION', '5.1.1');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -216,7 +216,7 @@ const CONFIG_VECTOR = array(
 	'log' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
 	'threshold' => array('types' => [ 'integer', 'NULL' ], 'min' => 0),
 	'auto' => array('types' => [ 'boolean', 'integer', 'NULL' ], 'min' => 0),
-	'hide' => array('types' => [ 'boolean', 'string', 'integer' ], 'test' => true),
+	'hide' => array('types' => [ 'boolean', 'string', 'integer' ]),
 	'client' => array('types' => [ 'boolean' ]),
 	'server' => array('types' => [ 'boolean' ]),
 	'drawing' => array('types' => [ 'boolean' ]),
@@ -3573,27 +3573,6 @@ function counter($_read_only = null, $_host = null)
 		{
 			switch($_key)
 			{
-				case 'hide':
-					if(is_int($_value))
-					{
-						if($_value < 0)
-						{
-							$validTest = 'Minimum is zero';
-						}
-						else if($_value > getrandmax())
-						{
-							$success = 'WARN: exceeds limit';
-						}
-						else
-						{
-							$validTest = true;
-						}
-					}
-					else
-					{
-						$validTest = true;
-					}
-					break;
 				case 'angle':
 					if(is_string($_value))
 					{
@@ -10282,8 +10261,8 @@ function counter($_read_only = null, $_host = null)
 	{
 		if(is_int($hide) && !getState('test'))
 		{
-			$max = min($hide, getrandmax());
-			$value = (string)rand(0, $max);
+			$hide = min(abs($hide), getrandmax());
+			$value = (string)rand(0, $hide);
 		}
 		else if($hide === true && !getState('test'))
 		{

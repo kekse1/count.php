@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/github.php?draw&override=github:count.php" />
 
-It's a universal [counter script](php/count.php). ... v**5.1.0**!
+It's a universal [counter script](php/count.php). ... v**5.1.1**!
 
 ## Index
 1. [Installation](#installation)
@@ -52,7 +52,7 @@ It's a universal [counter script](php/count.php). ... v**5.1.0**!
 12. [Copyright and License](#copyright-and-license)
 
 ## Updated
-* \[**2024-07-21**\]: new **v5.1.0**!
+* \[**2024-07-21**\]: new **v5.1.1**!
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
@@ -883,7 +883,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**5.1.0** there are 'only' **_10.378_ code lines** left (and there are nearly no comments).
+> As of v**5.1.1** there are 'only' **_10.357_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
