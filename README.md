@@ -52,7 +52,7 @@ It's a universal [counter script](php/count.php). ... v**5.0.3**!
 12. [Copyright and License](#copyright-and-license)
 
 ## Updated
-* \[**2024-03-11**\]: new **version v5.0.3**!
+* \[**2024-07-21**\]: new **version v5.1.0**!
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
@@ -441,7 +441,7 @@ they'll overwrite the `$DEFAULTS`.
 |    | **`log`**        | `'count.log'`                | **String** (non-empty)                         | File to log errors to (also see link above)       |
 |    | **`threshold`**  | `7200`                       | **Integer**/**NULL**                           | How long does it take till counting again?        |
 |    | **`auto`**       | `32`                         | **Boolean**/**Integer**/**NULL**               | Create count value files automatically?           |
-|    | **`hide`**       | `false`                      | **Boolean**/**String**                         | Show the counted value or hide it?                |
+|    | **`hide`**       | `false`                      | **Boolean**/**String**/**Integer**             | Show the counted value or hide it?                |
 |    | **`client`**     | `true`                       | **Boolean**/**NULL**                           | Enables Cookies against re-counting               |
 |    | **`server`**     | `true`                       | **Boolean**                                    | Enables cache/ip/timestamp files, like above      |
 |    | **`drawing`**    | `false`                      | **Boolean**                                    | Essential if using `?draw` or `?zero`!            |
@@ -582,6 +582,7 @@ your `path` directory!
 
 > **Note**
 > If `hide` is `true` (instead of a string), ouput will be a random integer. :]~
+> And if it's a positive **integer**, it defines the maximum, random hide value.
 
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be

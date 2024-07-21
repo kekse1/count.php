@@ -25,12 +25,12 @@ $DEFAULTS = array(
 	'text' => 32,
 	'log' => 'count.log',
 	'threshold' => 7200,
-	'auto' => 32,//false,
+	'auto' => 32,
 	'hide' => false,
-	'client' => true,//false,
-	'server' => true,//false,
+	'client' => true,
+	'server' => true,
 	'drawing' => true,
-	'override' => false,//true,
+	'override' => false,
 	'content' => 'text/plain;charset=UTF-8',
 	'radix' => 10,
 	'clean' => true,
@@ -42,7 +42,7 @@ $DEFAULTS = array(
 	'unit' => 'px',
 	'fg' => '120, 130, 40', //0,0,0,1
 	'bg' => '#fff0',
-	'angle' => 0.0,//'7deg',
+	'angle' => 0.0,
 	'x' => 0.0,
 	'y' => 0.0,
 	'h' => 0.0,
@@ -66,7 +66,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.0.3');
+define('KEKSE_COUNTER_VERSION', '5.1.0');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -216,7 +216,7 @@ const CONFIG_VECTOR = array(
 	'log' => array('types' => [ 'string' ], 'min' => 1, 'test' => true),
 	'threshold' => array('types' => [ 'integer', 'NULL' ], 'min' => 0),
 	'auto' => array('types' => [ 'boolean', 'integer', 'NULL' ], 'min' => 0),
-	'hide' => array('types' => [ 'boolean', 'string' ]),
+	'hide' => array('types' => [ 'boolean', 'string', 'integer' ], 'test' => true),
 	'client' => array('types' => [ 'boolean' ]),
 	'server' => array('types' => [ 'boolean' ]),
 	'drawing' => array('types' => [ 'boolean' ]),
@@ -303,24 +303,32 @@ function renderSize($_bytes, $_precision = 2)
 //
 function endsWith($_haystack, $_needle, $_case_sensitive = true)
 {
-	if(!$_case_sensitive)
+	if(strlen($_needle) > strlen($_haystack))
+	{
+		return false;
+	}
+	else if(!$_case_sensitive)
 	{
 		$_haystack = strtolower($_haystack);
 		$_needle = strtolower($_needle);
 	}
 	
-	return str_ends_with($_haystack, $_needle);
+	return (substr($_haystack, -strlen($_needle)) === $_needle);
 }
 
 function startsWith($_haystack, $_needle, $_case_sensitive = true)
 {
-	if(!$_case_sensitive)
+	if(strlen($_needle) > strlen($_haystack))
+	{
+		return false;
+	}
+	else if(!$_case_sensitive)
 	{
 		$_haystack = strtolower($_haystack);
 		$_needle = strtolower($_needle);
 	}
 	
-	return str_starts_with($_haystack, $_needle);
+	return (substr($_haystack, 0, strlen($_needle)) === $_needle);
 }
 
 function normalize($_path)
@@ -3565,6 +3573,27 @@ function counter($_read_only = null, $_host = null)
 		{
 			switch($_key)
 			{
+				case 'hide':
+					if(is_int($_value))
+					{
+						if($_value < 0)
+						{
+							$validTest = 'Minimum is zero';
+						}
+						else if($_value > getrandmax())
+						{
+							$success = 'WARN: exceeds limit';
+						}
+						else
+						{
+							$validTest = true;
+						}
+					}
+					else
+					{
+						$validTest = true;
+					}
+					break;
 				case 'angle':
 					if(is_string($_value))
 					{
@@ -10251,7 +10280,12 @@ function counter($_read_only = null, $_host = null)
 	}
 	else
 	{
-		if($hide === true && !getState('test'))
+		if(is_int($hide) && !getState('test'))
+		{
+			$max = min($hide, getrandmax());
+			$value = (string)rand(0, $max);
+		}
+		else if($hide === true && !getState('test'))
 		{
 			$value = (string)rand();
 		}
