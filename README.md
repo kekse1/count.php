@@ -573,16 +573,14 @@ The `?zero` should be set instead of `?draw`, just to draw an 'empty' (1px) `<im
 it'll count invisible this way. :)~
 
 ### Hide mode
-By setting `hide` to true or a string, this string will be shown instead of the real count value.
-This feature is there for private couting, without letting the users known how much visitors you already
-had.
+By setting `hide` to true, an integer or a string, the string will be shown instead of the real count value.
+This feature is there for private couting, without letting the users known how much visitors you already had.
 
-Beware: if you _really_ want to hide these values, please create the `.htaccess` w/ `Deny from all` in
-your `path` directory!
+`true` is for a random value in the maximum range (see `getrandmax()`),
+an integer limits this value to a maximum.
 
-> **Note**
-> If `hide` is `true` (instead of a string), ouput will be a random integer. :]~
-> And if it's a positive **integer**, it defines the maximum, random hide value.
+Beware: if you _really_ want to hide these values, please create the `.htaccess` w/
+`Deny from all` in your `path` directory!
 
 ### Test mode
 With `?test` there will nothing be counted, and the output (can also be combined with `?draw`) will be
