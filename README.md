@@ -862,7 +862,7 @@ end up in more resource consumption.. so, I think it's O.K. as it is now.. 'old 
 
 **Update**: I admit it could be better to use multiple files (which I wanted to avoid in this version),
 maybe with classes. The current code loads certain parts only if necessary, but it could be even better
-to distribute the code over many files, so a `require_once` would reduce the overhead in a maximum...
+to distribute the code over many files, so a `require_once` would reduce the overhead to a maximum...
 
 ### # Installation via [Composer](https://getcomposer.org/)?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
