@@ -66,7 +66,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.1.1');
+define('KEKSE_COUNTER_VERSION', '5.2.0');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -4688,25 +4688,32 @@ function counter($_read_only = null, $_host = null)
 
 	if(getConfig('drawing'))
 	{
-		setState('fonts', getPath(getConfig('fonts'), false, false));
+		if(extension_loaded('gd'))
+		{
+			setState('fonts', getPath(getConfig('fonts'), false, false));
 
-		if(KEKSE_CLI)
-		{
-			setState('zero', null);
-			setState('draw', null);
-		}
-		else
-		{
-			if(getState('fonts'))
+			if(KEKSE_CLI)
 			{
-				setState('zero', ((getConfig('drawing') && isset($_GET['zero']) && extension_loaded('gd'))));
-				setState('draw', ((getState('zero') || (getConfig('drawing') && isset($_GET['draw']) && extension_loaded('gd')))));
+				setState('zero', null);
+				setState('draw', null);
 			}
 			else
 			{
-				setState('draw', false);
+				if(getState('fonts'))
+				{
+					setState('zero', ((getConfig('drawing') && isset($_GET['zero']))));
+					setState('draw', ((getState('zero') || (getConfig('drawing') && isset($_GET['draw'])))));
+				}
+				else
+				{
+					setState('draw', false);
+				}
 			}
-		}	
+		}
+		else
+		{
+			setState('fonts', null);
+		}
 	}
 	else
 	{
@@ -8550,7 +8557,7 @@ function counter($_read_only = null, $_host = null)
 		makeConfig($_host);
 
 		//
-		if(KEKSE_CLI || !getConfig('drawing'))
+		if(KEKSE_CLI || !getConfig('drawing') || !extension_loaded('gd'))
 		{
 			setConfig('text', 0);
 			setState('text', null);
@@ -9313,7 +9320,7 @@ function counter($_read_only = null, $_host = null)
 	setup($_host);
 
 	//
-	if(getConfig('drawing'))
+	if(getConfig('drawing') && extension_loaded('gd'))
 	{
 		//
 		function draw($_text, $_zero_text = null)

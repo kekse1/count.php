@@ -1,6 +1,6 @@
 <img src="https://kekse.biz/github.php?draw&override=github:count.php" />
 
-It's a universal [counter script](php/count.php). ... v**5.1.1**!
+It's a universal [counter script](php/count.php). ... v**5.2.0**!
 
 ## Index
 1. [Installation](#installation)
@@ -52,7 +52,7 @@ It's a universal [counter script](php/count.php). ... v**5.1.1**!
 12. [Copyright and License](#copyright-and-license)
 
 ## Updated
-* \[**2024-07-21**\]: new **v5.1.1**!
+* \[**2024-11-04**\]; to **v5.2.0**!
 
 ## Installation
 The easiest way is to just use this `count.php` with it's default configuration: copy it to some path in your htdocs/,
@@ -860,10 +860,9 @@ Just because it ain't necessary. I've just set a `namespace kekse\counter`, so e
 in the global namespace.. that should be enough. It could even really be, that using classes would even
 end up in more resource consumption.. so, I think it's O.K. as it is now.. 'old skewl'! :)~
 
-bedenke.. why should I just create a `Counter` class instance, where no real member variables are given
-(as all are stored on the disk), and to only call a function `count()`, just to let her directly return
-a value (and/or print/draw it), and then, directly after this, the instance would get destroyed again!?
-... just my two cents. :)~
+**Update**: I admit it could be better to use multiple files (which I wanted to avoid in this version),
+maybe with classes. The current code loads certain parts only if necessary, but it could be even better
+to distribute the code over many files, so a `require_once` would reduce the overhead in a maximum...
 
 ### # Installation via [Composer](https://getcomposer.org/)?
 I'm pretty sure there's no real 'installation' necessary here.. additionally, there are also **no real
@@ -883,7 +882,7 @@ features and is highly configurable.. nevertheless there are some optimizations 
 doesn't consume *that* much cpu time or memory.
 
 > **Note**
-> As of v**5.1.1** there are 'only' **_10.357_ code lines** left (and there are nearly no comments).
+> As of v**5.2.0** there are 'only' **_10.364_ code lines** left (and there are nearly no comments).
 
 *If you find more possible optimizations, don't be shy and contact me! I'd be really happy. :-)*
 
