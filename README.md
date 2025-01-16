@@ -49,7 +49,8 @@ It's a universal [counter script](php/count.php). ... v**5.2.0**!
 10. [FAQ](#faq)
 11. [TODO](#todo)
 11. [The original version](#the-original-version)
-12. [Copyright and License](#copyright-and-license)
+12. [Contact](#contact)
+13. [Copyright and License](#copyright-and-license)
 
 ## Updated
 * \[**2024-11-04**\]; to **v5.2.0**!
@@ -892,6 +893,9 @@ doesn't consume *that* much cpu time or memory.
 ## The original version
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
+
+# Contact
+<img src="https://kekse.biz/github.php?override=github:count.php&draw&text=count.php@kekse.biz&angle=6&size=38pt&fg=150,20,90&font=OpenSans&ro&readonly&h=64&v=16" />
 
 # Copyright and License
 The Copyright is [(c) Sebastian Kucharczyk](COPYRIGHT.txt),
