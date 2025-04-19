@@ -105,9 +105,9 @@ The first one is with [text mode](#text-mode) (to scramble a mail address, e.g.)
 The second one is with [radix/base `36`](#radixbase) (like a binary digit, but with base 36, as example).
 The third one is the [CLI mode](#cli-mode), to manage the script within a terminal.
 
-![\<img\> w/ `text` config](docs/text-mode.png)
-![\<img\> drawn in the browser](docs/example.png)
-![Running in CLI mode](docs/screenshot.png)
+![\<img\> w/ `text` config](img/text-mode.png)
+![\<img\> drawn in the browser](img/example.png)
+![Running in CLI mode](img/screenshot.png)
 
 ### Directory structure
 This is the structure of the file system of this Git repository, *jfyi*:
@@ -555,7 +555,7 @@ be able to automatically grep such addresses. This is the main reason for this f
 > **Note**
 > The counter will also count in this mode, if called without `?readonly / ?ro` parameter.
 
-![Text mode](docs/text-mode.png)
+![Text mode](img/text-mode.png)
 
 ### Readonly mode
 You can use the script as usual, but pass `?ro`. That will only return/draw the current value without writing any
