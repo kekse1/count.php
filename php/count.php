@@ -66,7 +66,7 @@ define('KEKSE_SCRIPT_NAME', basename(KEKSE_SCRIPT, '.php'));
 //
 define('KEKSE_COPYRIGHT', 'Sebastian Kucharczyk <kuchen@kekse.biz>');
 define('KEKSE_WEBSITE', 'https://kekse.biz/');
-define('KEKSE_COUNTER_VERSION', '5.2.0');
+define('KEKSE_COUNTER_VERSION', '5.2.1');
 define('KEKSE_COUNTER_WEBSITE', 'https://github.com/kekse1/count.php/');
 
 //
@@ -3235,10 +3235,10 @@ function counter($_read_only = null, $_host = null)
 
 		if(!$_own && is_string(getConfig('error')))
 		{
-			die(getConfig('error'));
+			die((string)getConfig('error'));
 		}
 
-		die($_reason);
+		die((string)$_reason);
 	}
 		
 	function logError($_reason, $_source = '', $_path = '', $_die = true, $_force_log_file = false)
@@ -3347,7 +3347,8 @@ function counter($_read_only = null, $_host = null)
 
 		if($doLog)
 		{
-			$res = file_put_contents(getState('log'), $data, FILE_APPEND);
+			$res = file_put_contents(getState('log'),
+				$data, FILE_APPEND | LOCK_EX);
 			
 			if($res === false)
 			{
@@ -6057,7 +6058,7 @@ function counter($_read_only = null, $_host = null)
 				}
 				else
 				{
-					$res = \kekse\writeInt($path, $values[0]);
+					$res = \kekse\writeInt($path, $values[0], LOCK_EX);
 				}
 				
 				//
@@ -6789,7 +6790,7 @@ function counter($_read_only = null, $_host = null)
 				{
 					$path = \kekse\joinPath(getState('path'), KEKSE_COUNTER_FILE_CHAR . $host);
 					
-					if(\kekse\writeInt($path, $cache[1]) === false)
+					if(\kekse\writeInt($path, $cache[1], LOCK_EX) === false)
 					{
 						++$syncFail;
 					}
@@ -7219,7 +7220,7 @@ function counter($_read_only = null, $_host = null)
 				
 				if($res !== $state[1])
 				{
-					$res = \kekse\writeInt($p, $state[1]);
+					$res = \kekse\writeInt($p, $state[1], LOCK_EX);
 				
 					if($res !== false)
 					{
@@ -9082,7 +9083,7 @@ function counter($_read_only = null, $_host = null)
 				}
 				
 				//
-				$result = writeInt(getState('file'), $value);
+				$result = writeInt(getState('file'), $value, LOCK_EX);
 				
 				if($result === false)
 				{
@@ -9156,7 +9157,7 @@ function counter($_read_only = null, $_host = null)
 					}
 				}
 				
-				$r = writeInt($file, $_value);
+				$r = writeInt($file, $_value, LOCK_EX);
 				
 				if($r === false)
 				{
@@ -9228,7 +9229,7 @@ function counter($_read_only = null, $_host = null)
 				
 				//
 				$timestamp = \kekse\timestamp();
-				$res = writeInt(getState('ip'), $timestamp);
+				$res = writeInt(getState('ip'), $timestamp, LOCK_EX);
 				
 				if($res === false)
 				{
@@ -9262,7 +9263,7 @@ function counter($_read_only = null, $_host = null)
 					return false;
 				}
 
-				$res = writeInt(getState('value'), $_value);
+				$res = writeInt(getState('value'), $_value, LOCK_EX);
 				
 				if($res === false)
 				{
