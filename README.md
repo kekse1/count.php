@@ -5,7 +5,7 @@ It's a universal [counter script](php/count.php). ... v**5.2.1**!
 <br>
 
 > [!TIP]
-> I've got another way to handle many visitors better (**not (yet?) implemented**).
+> I've got another way to handle many visitors better (**not** (yet?) **implemented**).
 > The problem is the **file locking** (you maybe know from databases, etc.).
 > So I decided to implement all following counting scripts that way
 > it'll create a file for each source address and show the counted value by
