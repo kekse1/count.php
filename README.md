@@ -14,7 +14,7 @@ It's a universal [counter script](php/count.php). ... v**5.2.1**!
 > them and then summing up their amount in the base counter file.
 > And I think we'll need a timestamp in each of these files, too (so we can
 > also handle a count time limit for each visitor - the cronjob would be
-> limited to a global interval..).
+> limited to a global interval..). //**UPDATE**/ we don't even need a cronjob!!
 
 <br><br>
 
