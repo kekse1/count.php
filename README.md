@@ -2,7 +2,7 @@
 
 It's a universal [counter script](php/count.php). ... v**5.2.1**!
 
-<br>
+<br><br>
 
 > [!TIP]
 > I've got another way to handle many visitors better (**not** (yet?) **implemented**).
