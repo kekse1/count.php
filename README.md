@@ -911,8 +911,12 @@ doesn't consume *that* much cpu time or memory.
 **[The original version](php/original.php)** was a very tiny script as little helping hand for my web
 projects. It rised a lot - see for yourself! :)~
 
+<br><br><br>
+
 # Contact
 <img src="https://kekse.biz/github.php?override=github:count.php&draw&text=count.php@kekse.biz&angle=6&size=38pt&fg=150,20,90&font=OpenSans&ro&readonly&h=64&v=16" />
+
+<br>
 
 # Copyright and License
 The Copyright is [(c) Sebastian Kucharczyk](COPYRIGHT.txt),
