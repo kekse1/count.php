@@ -1,3 +1,4 @@
+<img src="without.svg" /><br>
 <img src="https://kekse.biz/github.php?draw&override=github:count.php" />
 
 It's a universal [counter script](php/count.php). ... v**5.2.1**!
